@@ -12,16 +12,10 @@ class TagsTableSeeder extends Seeder
     public function run()
     {
         DB::table('tags')->insert([
-            'name' => 'Coup de coeur'
-        ]);
-        DB::table('tags')->insert([
-            'name' => 'Offre du mois'
-        ]);
-        DB::table('tags')->insert([
-            'name' => 'Promotions'
-        ]);
-        DB::table('tags')->insert([
-            'name' => 'Offres spéciales'
+            ['name' => 'Coup de coeur'],
+            ['name' => 'Offre du mois'],
+            ['name' => 'Promotions'],
+            ['name' => 'Offres spéciales']
         ]);
     }
 }

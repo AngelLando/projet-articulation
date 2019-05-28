@@ -16,15 +16,8 @@ class PackagingTableSeeder extends Seeder
 
         for ($i=0; $i<=sizeof($capacity)-1; $i++) {
             DB::table('packagings')->insert([
-                'type' => 'Caisse en bois',
-                'capacity' => $capacity[$i],
-            ]);
-        }
-
-        for ($i=0; $i<=sizeof($capacity)-1; $i++) {
-            DB::table('packagings')->insert([
-                'type' => 'Carton',
-                'capacity' => $capacity[$i],
+                ['type' => 'Caisse en bois', 'capacity' => $capacity[$i]],
+                ['type' => 'Carton', 'capacity' => $capacity[$i]]
             ]);
         }
     }

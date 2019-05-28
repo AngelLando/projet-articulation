@@ -12,20 +12,10 @@ class ShippingCostsTableSeeder extends Seeder
     public function run()
     {
         DB::table('shipping_costs')->insert([
-            'type' => 'free',
-            'amount' => 0
-        ]);
-        DB::table('shipping_costs')->insert([
-            'type' => 'b12',
-            'amount' => 30
-        ]);
-        DB::table('shipping_costs')->insert([
-            'type' => 'b23',
-            'amount' => 35
-        ]);
-        DB::table('shipping_costs')->insert([
-            'type' => 'b35',
-            'amount' => 40
+            ['type' => 'free', 'amount' => 0],
+            ['type' => 'b12', 'amount' => 30],
+            ['type' => 'b23', 'amount' => 35],
+            ['type' => 'b35', 'amount' => 40]
         ]);
     }
 }

@@ -12,16 +12,9 @@ class CountriesTableSeeder extends Seeder
     public function run()
     {
         DB::table('countries')->insert([
-            'code' => 'IT',
-            'name' => 'Italie',
-        ]);
-        DB::table('countries')->insert([
-            'code' => 'CH',
-            'name' => 'Suisse',
-        ]);
-        DB::table('countries')->insert([
-            'code' => 'ES',
-            'name' => 'Espagne',
+            ['code' => 'IT', 'name' => 'Italie'],
+            ['code' => 'CH', 'name' => 'Suisse'],
+            ['code' => 'ES', 'name' => 'Espagne']
         ]);
     }
 }

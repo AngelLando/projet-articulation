@@ -12,10 +12,8 @@ class TypesTableSeeder extends Seeder
     public function run()
     {
         DB::table('types')->insert([
-            'name' => 'Primeur',
-        ]);
-        DB::table('types')->insert([
-            'name' => 'Normal',
+            ['name' => 'Primeur'],
+            ['name' => 'Normal']
         ]);
     }
 }

@@ -12,24 +12,11 @@ class PricesTableSeeder extends Seeder
     public function run()
     {
         DB::table('prices')->insert([
-            'type' => 'Normal',
-            'amount' => 27.50
-        ]);
-        DB::table('prices')->insert([
-            'type'=> 'Normal',
-            'amount' => 19.90
-        ]);
-        DB::table('prices')->insert([
-            'type'=> 'Offre de fin de lot',
-            'amount' => 24
-        ]);
-        DB::table('prices')->insert([
-            'type' => 'Offre spéciale',
-            'amount' => 23
-        ]);
-        DB::table('prices')->insert([
-            'type'=> 'Normal',
-            'amount'=> 350
+            ['type' => 'Normal', 'amount' => 27.50],
+            ['type'=> 'Normal', 'amount' => 19.90],
+            ['type'=> 'Offre de fin de lot', 'amount' => 24],
+            ['type' => 'Offre spéciale', 'amount' => 23],
+            ['type'=> 'Normal', 'amount'=> 350]
         ]);
     }
 }
