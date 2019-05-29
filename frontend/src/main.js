@@ -18,7 +18,8 @@ const routes = [
 const router = new Router({
     routes : routes,
     mode: 'history',
-    base : '/HEIG-2/devProdMed/ProjetArticulation/laravel/projet-articulation/public',
+    //base : '/HEIG-2/devProdMed/ProjetArticulation/laravel/projet-articulation/public',  /*congif Christophe*/
+    base : '/projet-articulation/public/', /*congif Joy*/
 })
 
 new Vue({
