@@ -70,15 +70,15 @@ class RegisterController extends Controller
             'prefix' => '',
             'gender' => ''
         ]);
-        return $person;
 
-        $user = User::insertGetId([
+        $user = User::create([
             'username' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'birth_date' => '',
             'person_id' => $person->id
         ]);
+
         return $user;
     }
 }
