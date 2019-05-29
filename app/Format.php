@@ -11,6 +11,6 @@ class Format extends Model
     }
 
     public function products() {
-        return $this->belongsTo('App\Product');
+        return $this->hasMany('App\Product');
     }
 }
