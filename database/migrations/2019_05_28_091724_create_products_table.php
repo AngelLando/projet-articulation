@@ -35,6 +35,10 @@ class CreateProductsTable extends Migration
             $table->foreign('region_id')
                 ->references('id')
                 ->on('regions');
+            $table->integer('price_id')->unsigned();
+            $table->foreign('price_id')
+                ->references('id')
+                ->on('prices');
          });
     }
 
