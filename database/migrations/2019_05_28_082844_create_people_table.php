@@ -19,6 +19,7 @@ class CreatePeopleTable extends Migration
             $table->string('lastname');
             $table->string('prefix');
             $table->string('gender');
+            $table->timestamps();
          });
     }
 
