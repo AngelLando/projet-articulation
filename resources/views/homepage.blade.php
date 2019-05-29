@@ -1,7 +1,7 @@
-@extends('template')
+@extends('layouts.app')
 
 
-@section('contenu')
+@section('content')
 
 
     @foreach($allProducts as $product)
@@ -18,7 +18,6 @@
                     <p>{{$product['product_kind']}}</p>
                     <img src="{{$product['product_path_image']}}" alt="">
                 </section>
-                </hr>
             </div>
         </article>
         <br>
