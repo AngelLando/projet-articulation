@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $fillable=['kind','name','year', 'path_image', 'weight', 'stock', 'alcohol', 'quotation', 'format_id', 'type_id', 'region_id'];
+
     public function appellations() {
         return $this->belongsToMany('App\Appellation');
     }
@@ -15,7 +17,7 @@ class Product extends Model
     }
 
     public function format() {
-        return $this->hasOne('App\Format');
+        return $this->belongsTo('App\Format');
     }
 
     public function orderItem() {
