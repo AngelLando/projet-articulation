@@ -17,9 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::get('/products', 'ProductController@index')->name('products');
+
 Route::get('/{any}', function(){
     return view('home');
 })->where('any', '.*');
-
-Route::get('/{any}', 'ProductController@index')->where('any', '.*')->name('products');
-
