@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/{any}', function () {
+    //return view('welcome');
+
+    return File::get(public_path().'/dist/index.html');
+})->where('any', '.*');
 
 Auth::routes();
 
@@ -21,6 +23,4 @@ Auth::routes();
 
 //Route::get('/products', 'ProductController@index')->name('products');
 
-Route::get('/{any}', function(){
-    return view('home');
-})->where('any', '.*');
+
