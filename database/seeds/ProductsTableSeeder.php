@@ -22,7 +22,8 @@ class ProductsTableSeeder extends Seeder
             'quotation' => 'WeinWisser : 18/20',
             'format_id' => 2,
             'type_id' => 1,
-            'region_id' => 1],
+            'region_id' => 1,
+            'price_id'=> 1],
 
             ['kind' => 'Vin rouge',
             'name' => 'Château Cambon la Pelouse',
@@ -34,7 +35,8 @@ class ProductsTableSeeder extends Seeder
             'quotation' => 'WeinWisser : 18/20',
             'format_id' => 1,
             'type_id' => 2,
-            'region_id' => 1],
+            'region_id' => 1,
+            'price_id'=> 1],
 
             ['kind' => 'Vin mousseux',
             'name' => 'Champagne Charles Mignon 1er Cru "Premium Reserve Brut"',
@@ -46,7 +48,8 @@ class ProductsTableSeeder extends Seeder
             'quotation' => '',
             'format_id' => 3,
             'type_id' => 2,
-            'region_id' => 1],
+            'region_id' => 1,
+            'price_id'=> 1],
 
             ['kind' => 'Vin blanc',
             'name' => 'Château Romer du Hayot',
@@ -58,7 +61,8 @@ class ProductsTableSeeder extends Seeder
             'quotation' => '',
             'format_id' => 1,
             'type_id' => 1,
-            'region_id' => 1]
+            'region_id' => 1,
+            'price_id'=> 1]
          ]);        
     }
 }

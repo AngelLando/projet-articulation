@@ -27,6 +27,7 @@ class ProductController extends Controller
             $newProduct['product_path_image'] = $product->path_image;
             $newProduct['product_stock'] = $product->stock;
             $newProduct['format'] = $product->format->name;
+            $newProduct['product_price'] = $product->prices[0]->amount;
             //$newProduct['productRating'] = $product->productRatings[0]->value;
             $newProduct['packaging_capacity'] = $product->format->packagings[0]->capacity;
             array_push($allProducts, $newProduct);
