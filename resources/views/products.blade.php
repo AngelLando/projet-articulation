@@ -13,6 +13,7 @@
 <div id="app">
     <header-component></header-component>
     <products-component></products-component>
+    <productcard-component></productcard-component>
     <footer-component></footer-component>
 </div>
 <script src="{{ asset('js/app.js') }}"></script></body>
