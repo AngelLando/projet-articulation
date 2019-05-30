@@ -4,15 +4,20 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+ require('./bootstrap');
 
 
+ import BootstrapVue from 'bootstrap-vue'
 
-window.Vue = require('vue');
-import BootstrapVue from 'bootstrap-vue'
-Vue.use(BootstrapVue)
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+ window.Vue = require('vue');
+ import 'bootstrap/dist/css/bootstrap.css'
+ import 'bootstrap-vue/dist/bootstrap-vue.css'
+ import Router from 'vue-router'
+ import App from './views/App'
+ import productCard from './views/productCard'
+ import ProductsComponent from './components/ProductsComponent'
+ Vue.use(Router)
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -39,8 +44,24 @@ Vue.component('products-component', require('./components/ProductsComponent.vue'
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
+    const router = new Router({
+        routes: [
+        {
+          path:'/',
+          name: ProductsComponent,
+          component: ProductsComponent
+
+        },
+            {
+              path:'/:productid',
+              name: productCard,
+              component: productCard
+            }
+            ]
+          })
+
+ const app = new Vue({
+  el: '#app',
+  render: h => h(App),
+  router,
 });
-
-
