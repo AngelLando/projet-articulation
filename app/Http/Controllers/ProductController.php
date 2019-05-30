@@ -16,10 +16,13 @@ class ProductController extends Controller
     public function index()
     {
         $all = ['products' => Product::all()];
+        return $all;
+        /*
         $products = $all['products'];
         $allProducts = [];
         foreach($products as $product) {
             $newProduct = [];
+            $newProduct['product_id'] = $product->id;
             $newProduct['product_name'] = $product->name;
             $newProduct['product_kind'] = $product->kind;
             $newProduct['product_year'] = $product->year;
@@ -33,9 +36,10 @@ class ProductController extends Controller
             array_push($allProducts, $newProduct);
         }
 
+
         // CONVERT ARRAY TO JSON TO PASS DATAS
         $json = json_encode($allProducts);
-        return view('homepage')->with('allProducts', $allProducts);
+        return view('homepage')->with('allProducts', $allProducts);*/
     }
 
     /**
