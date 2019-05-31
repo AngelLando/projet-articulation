@@ -5,6 +5,9 @@
             <router-link :to="{ path: '/' }" class="nav-link">            
                 <li>Home</li>
             </router-link>
+                        <router-link :to="{ path: '/produits' }" class="nav-link">            
+                <li>Produits</li>
+            </router-link>
             <router-link :to="{ path: '/login' }" class="nav-link">            
                 <li>Login</li>
             </router-link>

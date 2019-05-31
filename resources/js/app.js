@@ -8,6 +8,7 @@
  import App from './views/App'
  import productCard from './views/productCard'
  import login from './views/login'
+  import home from './views/home'
  import ProductsComponent from './components/ProductsComponent'
  Vue.use(Router)
 
@@ -17,12 +18,16 @@ const router = new Router({
   routes: [
   {
     path:'/',
-    component: ProductsComponent
+    component: home
 
   },
   {
     path:'/login',
     component: login
+  },
+    {
+    path:'/produits',
+    component: ProductsComponent
   },
   {
     path:'/produits/:productid',
