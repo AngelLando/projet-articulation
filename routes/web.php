@@ -21,7 +21,12 @@ Route::get('/products', 'ProductController@index')->name('products');
 
 Route::get('/', 'PageController@indexProducts');
 
-Route::get('/products/{product}', 'ProductController@show');
+// Route::get('/products/{product}', 'ProductController@show');
+
+Route::get('/product/{id}', [
+    'uses' => 'ProductController@single',
+    'as' => 'product.single'
+]);
 
 
 /*

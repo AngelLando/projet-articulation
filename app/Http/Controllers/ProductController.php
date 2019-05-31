@@ -16,8 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $all = ['products' => Product::all()];
-        return $all;
-        /*
+        
         $products = $all['products'];
         $allProducts = [];
         foreach($products as $product) {
@@ -39,7 +38,12 @@ class ProductController extends Controller
 
         // CONVERT ARRAY TO JSON TO PASS DATAS
         $json = json_encode($allProducts);
-        return view('homepage')->with('allProducts', $allProducts);*/
+        return view('homepage')->with('allProducts', $allProducts);
+    }
+
+    public function single($id)
+    {
+        return view('single', ['product' => Product::find($id)]);
     }
 
     /**
