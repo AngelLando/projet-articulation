@@ -17,13 +17,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/products', 'ProductController@index')->name('products');
+Route::get('/produits', 'ProductController@index')->name('products');
 
-Route::get('/', 'PageController@indexProducts');
+Route::get('/', 'ProductController@index')->name('products');
 
-// Route::get('/products/{product}', 'ProductController@show');
+//=> JSON file
+Route::get('/products', 'ProductController@show');
 
-Route::get('/product/{id}', [
+Route::get('/produit/{id}', [
     'uses' => 'ProductController@single',
     'as' => 'product.single'
 ]);

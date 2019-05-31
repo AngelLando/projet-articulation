@@ -1,20 +1,30 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <title>Laravel</title>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-</head>
-<body>
-<div id="app">
-    <header-component></header-component>
+@section('content')
+
+
+    @foreach($allProducts as $product)
+        <article class="row bg-primary">
+            <div class="col-md-12">
+                <header>
+                    <h1>{{$product['product_name']}}</h1>
+                    <div class="pull-right">
+                    </div>
+                </header>
+                <hr>
+                <section>
+                    <p>{{$product['product_year']}}</p>
+                    <p>{{$product['product_kind']}}</p>
+                    <img src="{{$product['product_path_image']}}" alt="">
+                    <a href="{{ route('product.single', ['id' => $product['product_id']]) }}"><button type="button" class="btn btn-secondary">Voir ce produit</button></a>
+                </section>
+               
+            </div>
+        </article>
+        <br>
+    @endforeach
+     <div id="app">
     <products-component></products-component>
-    <productcard-component></productcard-component>
-    <footer-component></footer-component>
 </div>
-<script src="{{ asset('js/app.js') }}"></script></body>
-</html>
+@endsection

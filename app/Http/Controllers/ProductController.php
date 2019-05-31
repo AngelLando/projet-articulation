@@ -75,7 +75,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-          $product = ['products' => $product];
+          $product = ['products' => $product::all()];
         return $product;
     }
 
