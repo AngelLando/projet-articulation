@@ -7,13 +7,12 @@
             <p>{{ product.year }}</p>
             <img :src="product.path_image" alt="">
             <h2>{{product.price}} CHF</h2>
-                        <router-link :to="{ path: '/'+product.id, params: {productid:product.id}}">Acheter ce produit</router-link>
-            <button class="btn btn-sm btn-primary float-right">Buy Now</button>
+            <router-link :to="{ path: '/produits/'+product.id,  params: {productid:product.id}}">Acheter ce produit</router-link>
 
+
+        </div>
 
     </div>
-
-</div>
 </template>
 
 <script>
