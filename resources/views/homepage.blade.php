@@ -17,6 +17,7 @@
                     <p>{{$product['product_year']}}</p>
                     <p>{{$product['product_kind']}}</p>
                     <img src="{{$product['product_path_image']}}" alt="">
+                    <a href="{{ route('product.single', ['id' => $product['product_id']]) }}"><button type="button" class="btn btn-secondary">Voir ce produit</button></a>
                 </section>
             </div>
         </article>
