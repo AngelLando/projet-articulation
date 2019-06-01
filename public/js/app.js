@@ -1769,15 +1769,10 @@ __webpack_require__.r(__webpack_exports__);
       products: []
     };
   },
+  props: ['prod'],
   mounted: function mounted() {
-    var _this = this;
-
-    axios.get('products').then(function (_ref) {
-      var data = _ref.data;
-      return _this.products = data.products;
-    });
-  },
-  props: ['sta']
+    this.products = JSON.parse(this.prod);
+  }
 });
 
 /***/ }),
@@ -24611,7 +24606,7 @@ var hasIntersectionObserverSupport = isBrowser && 'IntersectionObserver' in wind
 
 var getEnv = function getEnv(key) {
   var fallback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  var env = typeof process !== 'undefined' && process ? Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) || false : {};
+  var env = typeof process !== 'undefined' && process ? Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) || false : {};
 
   if (!key) {
     /* istanbul ignore next */
@@ -65731,7 +65726,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("div", { staticClass: "ml-auto text-right" }, [
                             _c("div", { staticClass: "product_format" }, [
-                              _vm._v(_vm._s(product.format) + "xx cl")
+                              _vm._v(_vm._s(product.format))
                             ])
                           ])
                         ]
@@ -65747,7 +65742,7 @@ var render = function() {
                           _c("div", { staticClass: "product_name" }, [
                             _c(
                               "a",
-                              { attrs: { href: "produit/" + product.id } },
+                              { attrs: { href: "produit/" + product.slug } },
                               [_vm._v(_vm._s(product.name))]
                             )
                           ])
@@ -65765,8 +65760,10 @@ var render = function() {
                             "div",
                             { staticClass: "product_price text-right" },
                             [
-                              _vm._v("CHF " + _vm._s(product.price) + "xxx."),
-                              _c("span", [_vm._v("xx")])
+                              _vm._v("CHF " + _vm._s(product.price)),
+                              product.price % 1 === 0
+                                ? _c("span", [_vm._v(".-")])
+                                : _vm._e()
                             ]
                           )
                         ]
@@ -78248,8 +78245,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\projet-articulation\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\projet-articulation\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/christopheschranz/Documents/Cours/HEIG-2/devProdMed/ProjetArticulation/laravel/projet-articulation/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/christopheschranz/Documents/Cours/HEIG-2/devProdMed/ProjetArticulation/laravel/projet-articulation/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

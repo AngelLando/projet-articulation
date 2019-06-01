@@ -28,14 +28,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="ml-auto text-right">
-                                                    <div class="product_format">{{product.format}}xx cl</div>
+                                                    <div class="product_format">{{product.format}}</div>
                                                 </div>
                                             </div>
                                             <div class="product_info name d-flex flex-row align-items-start justify-content-start">
                                                 <div class="product_name"><a :href="`produit/`+product.slug">{{ product.name }}</a></div>
                                             </div>
                                             <div class="product_info price d-flex flex-row align-items-start justify-content-start">
-                                                <div class="product_price text-right">CHF {{ product.price }}xxx.<span>xx</span></div>
+                                                <div class="product_price text-right">CHF {{ product.price }}<span v-if="product.price % 1 === 0">.-</span></div>
                                             </div>
                                             <div class="product_buttons">
                                                 <div class="text-right d-flex flex-row align-items-start justify-content-start">
@@ -57,7 +57,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </template>
 
 <script src="./Catalog.js"></script>
