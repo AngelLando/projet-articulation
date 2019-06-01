@@ -4,9 +4,10 @@ export default {
             products : []
         }
     },
+    props : ['prod'],
     mounted () {
-        axios.get('products').then(({data}) => this.products = data.products)
+        this.products = JSON.parse(this.prod);
     },
-    props : ['sta']
+
 }
 
