@@ -29,6 +29,7 @@ Route::get('/produit/{id}', [
     'as' => 'product.single'
 ]);
 
+Route::get('/checkout', 'CartController@checkout')->name('checkout');
 
 /*
 Route::get('/{any}', function () {

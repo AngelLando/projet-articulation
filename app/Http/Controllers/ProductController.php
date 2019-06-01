@@ -112,4 +112,9 @@ class ProductController extends Controller
     {
         //
     }
+
+    public static function getById($id)
+    {
+        return ['product' => Product::where('id', $id)->firstOrFail()];
+    }
 }
