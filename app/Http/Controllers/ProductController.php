@@ -29,21 +29,22 @@ class ProductController extends Controller
             $newProduct['product_path_image'] = $product->path_image;
             $newProduct['product_stock'] = $product->stock;
             $newProduct['format'] = $product->format->name;
+            $newProduct['quotation'] = $product->quotation;
+            $newProduct['slug'] = $product->slug;
             $newProduct['product_price'] = $product->prices[0]->amount;
             //$newProduct['productRating'] = $product->productRatings[0]->value;
             $newProduct['packaging_capacity'] = $product->format->packagings[0]->capacity;
             array_push($allProducts, $newProduct);
         }
 
-
         // CONVERT ARRAY TO JSON TO PASS DATAS
         $json = json_encode($allProducts);
         return view('homepage')->with('allProducts', $allProducts);
     }
 
-    public function single($id)
+    public function single($slug)
     {
-        return view('single', ['product' => Product::find($id)]);
+        return view('single', ['product' => Product::where('slug', $slug)->firstOrFail()]);
     }
 
     /**

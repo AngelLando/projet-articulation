@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable=['kind','name','year', 'path_image', 'weight', 'stock', 'alcohol', 'quotation', 'format_id', 'type_id', 'region_id'];
+    protected $fillable=['kind','name','year', 'path_image', 'weight', 'stock', 'alcohol', 'quotation', 'slug', 'format_id', 'type_id', 'region_id'];
 
     public function appellations() {
         return $this->belongsToMany('App\Appellation');
