@@ -17,8 +17,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/produits', 'ProductController@index')->name('products');
-
 Route::get('/', 'ProductController@index')->name('products');
 
 //=> JSON file
@@ -30,6 +28,8 @@ Route::get('/produit/{id}', [
 ]);
 
 Route::get('/checkout', 'CartController@checkout')->name('checkout');
+
+Route::post('/check', 'AddressController@store')->name('check');
 
 /*
 Route::get('/{any}', function () {

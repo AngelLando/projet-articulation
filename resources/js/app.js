@@ -9,6 +9,9 @@ Vue.component('products-catalog', require('./components/Catalog/Catalog.vue').de
 
 Vue.component('checkout-component', require('./components/Cart/Cart.vue').default);
 
+Vue.component('address-component', require('./components/Address/Address.vue').default);
+
+
 
 //Ici, on monte juste le tout ensemble. On lui dit: tu prends le App.vue (c'est notre base avec header footer) et tu lui montes à la div app le router avec les components.
 const app = new Vue({
