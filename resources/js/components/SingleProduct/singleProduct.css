@@ -250,6 +250,7 @@ Product
 }
 
 .more_info{
+      cursor: pointer;
   font-family: Montserrat;
 font-style: normal;
 font-weight: bold;
@@ -318,7 +319,6 @@ color: #000000;
 
 div.product_selection{
     cursor: pointer;
-
   padding:10px;
   padding-left: 25px;
   padding-right:25px;
