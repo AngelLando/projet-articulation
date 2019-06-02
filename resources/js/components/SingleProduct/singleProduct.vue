@@ -6,7 +6,7 @@
                 <div class="products">
                     <div class="container">
                         <div class="row product_row">
-                            <div class ="breadcrumbs col-xl-12 mb-3 ml-3"><p>Nos vins > 2015 Château Brane-Cantenac</p></div>
+                            <div class ="breadcrumbs col-xl-12 mb-3 ml-3"><p>Nos vins > {{product.kind}} > {{product.name}}</p></div>
                             <!-- Product -->
                             <div class="col-xl-4">
                                 <div class="product">
@@ -20,9 +20,9 @@
                                 </div>
 
                                 <div class ="col-xl-5 ">
-                                    <p class ="product_year ">2015</p>
-                                    <p class="product_name">Château les Justices</p>
-                                    <p class="product_price pb-2">CHF 30.16</p>
+                                    <p class ="product_year ">{{product.kind}}</p>
+                                    <p class="product_name">{{product.name}}</p>
+                                    <p class="product_price pb-2">CHF {{ product.price }}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></p>
                                     <div class="product_buttons">
                                         <div class="text-right d-flex flex-row align-items-start justify-content-start">
                                             <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
@@ -60,18 +60,19 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class ="col-xl-12 ml-3"></div>
-                                <div class="row more_info ">
-                                    <div class="description more_info_selected col-md-auto"><p v-on:click="isHiddenDescr=true; isHiddenInfo=false; isHiddenRating=false">Description</p></div>
-                                    <div class="information col-md-auto"><p v-on:click="isHiddenDescr=false; isHiddenInfo=true; isHiddenRating=false">Information</p></div>
-                                    <div class="rating col-md-auto"><p v-on:click="isHiddenDescr=false; isHiddenInfo=false; isHiddenRating=true">Avis (4)</p></div>
+                                <div class ="col-xl-12 "></div>
+                                <div class="row more_info ml-3 pt-5 pb-3">
+                                    <div class="description more_info_selected col-md-auto" @click="underline" v-on:click="isHiddenDescr=true; isHiddenInfo=false; isHiddenRating=false">Description</div>
+                                    <div class="information col-md-auto" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=true; isHiddenRating=false">Information</div>
+                                    <div class="rating col-md-auto" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=false; isHiddenRating=true">Avis (4)</div>
                                 </div>
-                                                 <div class="content content_description col-xl-12 ml-3"><p v-if="isHiddenDescr">Le Château Les Justices, en Sauternes, appartient à la famille Gonet-Médeville, surnommée "l'antiquaire du Sauternes", du fait de son Château Gilette qui défie le temps. En effet, ce nectar est mis en bouteilles seulement après une vingtaine d'années de vieillissement. Le vin du Château Les Justices en est une superbe introduction...
-                                    </p></div>
-                                    <div class="content content_information col-xl-12 ml-3"><p v-if="isHiddenInfo">Ceci est un petit test information
-                                    </p></div>
-                                                <div class="content content_information col-xl-12 ml-3"><p v-if="isHiddenRating">Ceci est un petit test notes
-                                    </p></div>
+                                <div class="content content_description col-xl-12 ml-3" v-if="isHiddenDescr">Le Château Les Justices, en Sauternes, appartient à la famille Gonet-Médeville, surnommée "l'antiquaire du Sauternes", du fait de son Château Gilette qui défie le temps. En effet, ce nectar est mis en bouteilles seulement après une vingtaine d'années de vieillissement. Le vin du Château Les Justices en est une superbe introduction...
+                                </div>
+                                <div class="content content_information col-xl-12 ml-3" v-if="isHiddenInfo">Ceci est un petit test information
+                                </div>
+                                <div class="content content_rating col-xl-12 ml-3" v-if="isHiddenRating"><p>Titre <div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div></p><p>Contenu</p>
+                                            </div>
+                                </div>
 
                             </div>
                         </div>

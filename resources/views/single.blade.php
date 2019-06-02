@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-<products-single></products-single>
+<products-single prod="{{$product}} "></products-single>
 @endsection
