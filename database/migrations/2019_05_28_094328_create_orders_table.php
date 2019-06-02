@@ -15,26 +15,26 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('delivery_method');
-            $table->float('tva');
-            $table->float('discount');
-            $table->string('payment_method');
-            $table->integer('gift');
-            $table->string('comment');
+            $table->string('delivery_method')->unsigned()->nullable();
+            $table->float('tva')->unsigned()->nullable();
+            $table->float('discount')->unsigned()->nullable();
+            $table->string('payment_method')->unsigned()->nullable();
+            $table->integer('gift')->unsigned()->nullable();
+            $table->string('comment')->unsigned()->nullable();
             $table->timestamps();
-            $table->integer('address_id_1')->unsigned()->unique();
+            $table->integer('address_id_1')->unsigned();
             $table->foreign('address_id_1')
                 ->references('id')
                 ->on('addresses');
-            $table->integer('address_id_2')->unsigned()->unique();
+            $table->integer('address_id_2')->unsigned();
             $table->foreign('address_id_2')
                 ->references('id')
                 ->on('addresses');
-            $table->integer('address_id_3')->unsigned()->unique();
+            $table->integer('address_id_3')->unsigned();
             $table->foreign('address_id_3')
                 ->references('id')
                 ->on('addresses');
-            $table->integer('shipping_cost_id')->unsigned()->unique();
+            $table->integer('shipping_cost_id')->unsigned();
             $table->foreign('shipping_cost_id')
                 ->references('id')
                 ->on('shipping_costs');

@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Order;
-use App\Http\Controllers\AddressController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\ShippingCostController;
+use App\OrderItem;
 
-class OrderController extends Controller
+class OrderItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,36 +30,27 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store(Request $request, $orderId)
     {
-        // Insert the first address in the database
-        $addressId1 = AddressController::store($request);
-
-        // Make the sum of all products' quantity and return the right shippingcost
-        $shippingCosts = ShippingCostController::getRigthShippingCost($request);
-
-        // Create the Order
-        $orderId = Order::insertGetId([
-            'address_id_1' => $addressId1,
-            'address_id_2' => $addressId1,
-            'address_id_3' => $addressId1,
-            'shipping_cost_id' => $shippingCosts
-        ]);
-
-        // Create all OrderItems needed
-        $orderItems = OrderItemController::store($request, $orderId);
-
-        // return OrderId
-        return $orderItems;
+        $products = $request->products;
+        foreach($products as $product) {
+            OrderItem::create([
+                'order_id' => $orderId,
+                'product_id' => $product['id'],
+                'quantity' => $product['quantity'],
+                'discount' => 0
+            ]);
+        }
+     return 1;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -73,7 +61,7 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -84,8 +72,8 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -96,13 +84,11 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
     }
-
-
 }

@@ -14,8 +14,8 @@ class CreateOrderItemsTable extends Migration
     public function up()
     {
         Schema::create('order_items', function (Blueprint $table) {
-            $table->integer('order_id')->unsigned()->unique();
-            $table->integer('product_id')->unsigned()->unique();
+            $table->integer('order_id')->unsigned();
+            $table->integer('product_id')->unsigned();
             $table->foreign('order_id')
                 ->references('id')
                 ->on('orders');

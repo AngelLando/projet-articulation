@@ -17,8 +17,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/produits', 'ProductController@index')->name('products');
-
 Route::get('/', 'ProductController@index')->name('products');
 
 //=> JSON file
@@ -31,6 +29,7 @@ Route::get('/produit/{id}', [
 
 Route::get('/checkout', 'CartController@checkout')->name('checkout');
 
+
 Route::get('/user/account', [
     'uses' => 'UserController@index',
     'as' => 'user.account'
@@ -40,6 +39,8 @@ Route::post('/user/account/update', [
     'uses' => 'UserController@update',
     'as' => 'user.account.update'
 ]);
+Route::post('/check', 'OrderController@store')->name('check');
+
 
 /*
 Route::get('/{any}', function () {
