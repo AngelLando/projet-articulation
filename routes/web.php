@@ -39,8 +39,13 @@ Route::post('/user/account/update', [
     'uses' => 'UserController@update',
     'as' => 'user.account.update'
 ]);
+
 Route::post('/check', 'OrderController@store')->name('check');
 
+Route::get('/cart/add', [
+    'uses' => 'CartController@store',
+    'as' => 'cart.store'
+]);
 
 /*
 Route::get('/{any}', function () {
