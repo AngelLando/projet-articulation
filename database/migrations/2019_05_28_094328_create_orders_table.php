@@ -15,12 +15,12 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('delivery_method')->unsigned()->nullable();
-            $table->float('tva')->unsigned()->nullable();
-            $table->float('discount')->unsigned()->nullable();
-            $table->string('payment_method')->unsigned()->nullable();
-            $table->integer('gift')->unsigned()->nullable();
-            $table->string('comment')->unsigned()->nullable();
+            $table->string('delivery_method')->nullable();
+            $table->float('tva')->nullable();
+            $table->float('discount')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->integer('gift')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
             $table->integer('address_id_1')->unsigned();
             $table->foreign('address_id_1')
