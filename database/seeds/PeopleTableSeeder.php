@@ -12,9 +12,9 @@ class PeopleTableSeeder extends Seeder
     public function run()
     {
         DB::table('people')->insert([
-            ['firstname' => 'Joy', 'lastname' => 'Oppliger', 'prefix' => 'Mme', 'gender' => 'F'],
-            ['firstname' => 'Pauline', 'lastname' => 'Baeni', 'prefix' => 'Mme', 'gender' => 'F'],
-            ['firstname' => 'Ksenia', 'lastname' => 'Mironova', 'prefix' => 'Mme', 'gender' => 'F']
+            ['firstname' => 'Joy', 'lastname' => 'Oppliger', 'prefix' => 'Mme', 'gender' => 'f'],
+            ['firstname' => 'Pauline', 'lastname' => 'Baeni', 'prefix' => 'Mme', 'gender' => 'f'],
+            ['firstname' => 'Ksenia', 'lastname' => 'Mironova', 'prefix' => 'Mme', 'gender' => 'f']
         ]);
     }
 }

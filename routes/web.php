@@ -31,6 +31,16 @@ Route::get('/produit/{id}', [
 
 Route::get('/checkout', 'CartController@checkout')->name('checkout');
 
+Route::get('/user/account', [
+    'uses' => 'UserController@index',
+    'as' => 'user.account'
+]);
+
+Route::post('/user/account/update', [
+    'uses' => 'UserController@update',
+    'as' => 'user.account.update'
+]);
+
 /*
 Route::get('/{any}', function () {
     //return view('welcome');
