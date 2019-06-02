@@ -20,7 +20,7 @@ class CreateAddressesTable extends Migration
             $table->string('city');
             $table->string('region');
             $table->string('country');
-            $table->integer('person_id')->unsigned()->unique();
+            $table->integer('person_id')->unsigned();
             $table->foreign('person_id')
                 ->references('id')
                 ->on('people');

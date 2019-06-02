@@ -29,12 +29,16 @@ export default {
               region: this.region,
               country: this.country,
           };
-          console.log(this.address)
-          axios.post('check', this.address).then(console.log('formulaire envoyé!')).then(function (response) {
+          this.data = {
+              address : this.address,
+              products : JSON.parse(this.cart),
+          }
+          console.log(this.data)
+          axios.post('check', this.data).then(console.log('formulaire envoyé!')).then(function (response) {
               console.log(response);
           })
       }
-    },
+    },props : ['cart'],
 
 }
 

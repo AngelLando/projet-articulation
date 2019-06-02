@@ -92,9 +92,13 @@ class CartController extends Controller
     public function checkout()
     {
         $userId = 1;
+
         $cart = ['cart' => Cart::where('user_id', $userId)->firstOrFail()];
+
+
         $cartItems = $cart['cart']->cartItems;
         $cart = [];
+
         foreach($cartItems as $cartItem) {
             $prod = ProductController::getById($cartItem->product_id);
             $product = $prod['product'];

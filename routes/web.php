@@ -29,7 +29,7 @@ Route::get('/produit/{id}', [
 
 Route::get('/checkout', 'CartController@checkout')->name('checkout');
 
-Route::post('/check', 'AddressController@store')->name('check');
+Route::post('/check', 'OrderController@store')->name('check');
 
 /*
 Route::get('/{any}', function () {

@@ -35,20 +35,17 @@ class AddressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store(Request $request)
     {
-
-        Address::create([
-           'street' => $request->street,
-            'npa' => $request->npa,
-            'city' => $request-> city,
-            'region' => $request->region,
-            'country' => $request->country,
+        $id = Address::insertGetId([
+           'street' => $request->address['street'],
+            'npa' => $request->address['npa'],
+            'city' => $request->address['city'],
+            'region' => $request->address['region'],
+            'country' => $request->address['country'],
             'person_id' => 1
         ]);
-        return $request->all();
-        //$inputs=array_merge($request->all(), ['person_id'==1]);
-        //$this->address->create($inputs);
+        return $id;
 
     }
 
