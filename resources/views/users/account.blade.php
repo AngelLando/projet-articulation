@@ -36,7 +36,7 @@
     </div>
     <div class="form-group">
         <label for="birth_date">Date de naissance</label>
-        <input type="date" name="birth_date" class="form-control" id="birth_date" placeholder="Date de naissance">
+        <input type="date" name="birth_date" class="form-control" value="{{ $user->birth_date }}" id="birth_date" placeholder="Date de naissance">
     </div>
     <button type="submit" class="btn btn-primary">Mettre à jour mon compte</button>
 </form>
