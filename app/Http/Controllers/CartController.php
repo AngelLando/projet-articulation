@@ -18,8 +18,37 @@ class CartController extends Controller
     public function index()
     {
         $userId = 1;
-        $carts = ['carts' => Cart::all()];
-       return view('cart');
+
+        $cart = ['cart' => Cart::where('user_id', $userId)->firstOrFail()];
+
+
+        $cartItems = $cart['cart']->cartItems;
+        $cart = [];
+
+        foreach($cartItems as $cartItem) {
+            $prod = ProductController::getById($cartItem->product_id);
+            $product = $prod['product'];
+            $newProduct= [];
+            $newProduct['id'] = $product->id;
+            $newProduct['name'] = $product->name;
+            $newProduct['kind'] = $product->kind;
+            $newProduct['year'] = $product->year;
+            $newProduct['path_image'] = $product->path_image;
+            $newProduct['stock'] = $product->stock;
+            $newProduct['format'] = $product->format->name;
+            $newProduct['quotation'] = $product->quotation;
+            $newProduct['slug'] = $product->slug;
+            $newProduct['price'] = $product->prices[0]->amount;
+            //$newProduct['productRating'] = $product->productRatings[0]->value;
+            $newProduct['packaging_capacity'] = $product->format->packagings[0]->capacity;
+            $newProduct['quantity'] = $cartItem->quantity;
+            $newProduct['error'] = self::checkForAvailability($newProduct['quantity'], $newProduct['stock']);
+            array_push($cart, $newProduct);
+        }
+
+        // CONVERT ARRAY TO JSON TO PASS DATAS
+        $json = json_encode($cart);
+        return view('cart')->with('cart', $json);
     }
 
     /**
