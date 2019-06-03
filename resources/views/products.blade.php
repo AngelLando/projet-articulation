@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
-
 @section('content')
-
-
     @foreach($allProducts as $product)
         <article class="row bg-primary">
             <div class="col-md-12">
@@ -19,12 +16,12 @@
                     <img src="{{$product['product_path_image']}}" alt="">
                     <a href="{{ route('product.single', ['id' => $product['product_id']]) }}"><button type="button" class="btn btn-secondary">Voir ce produit</button></a>
                 </section>
-               
+
             </div>
         </article>
         <br>
     @endforeach
      <div id="app">
-    <products-component></products-component>
-</div>
+       <products-component></products-component>
+    </div>
 @endsection
