@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dcb3c956bd60a0976299f180e91353f0",
+    "content-hash": "9240a36d0ba0329fc3335e560fffdc47",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2940,6 +2940,64 @@
     ],
     "packages-dev": [
         {
+            "name": "andrey-helldar/laravel-lang-publisher",
+            "version": "v1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andrey-helldar/laravel-lang-publisher.git",
+                "reference": "0d3ea694da99694f6dbada0cbfd6b0898e6f06e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andrey-helldar/laravel-lang-publisher/zipball/0d3ea694da99694f6dbada0cbfd6b0898e6f06e7",
+                "reference": "0d3ea694da99694f6dbada0cbfd6b0898e6f06e7",
+                "shasum": ""
+            },
+            "require": {
+                "caouecs/laravel-lang": "~3.0",
+                "illuminate/console": "^5.3",
+                "php": "~5.6|^7.0"
+            },
+            "suggest": {
+                "andrey-helldar/lang-translations": "Translation of main messages"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Helldar\\LaravelLangPublisher\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Helldar\\LaravelLangPublisher\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrey Helldar",
+                    "email": "helldar@ai-rus.com"
+                }
+            ],
+            "description": "Publisher lang files for the Laravel Framework from caouecs/Laravel-lang",
+            "keywords": [
+                "lang",
+                "languages",
+                "laravel",
+                "lpm",
+                "publisher"
+            ],
+            "time": "2019-01-05T02:07:21+00:00"
+        },
+        {
             "name": "barryvdh/laravel-debugbar",
             "version": "v3.2.3",
             "source": {
@@ -3067,6 +3125,49 @@
                 "laravel-dump-server"
             ],
             "time": "2018-10-04T07:22:24+00:00"
+        },
+        {
+            "name": "caouecs/laravel-lang",
+            "version": "3.0.62",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/caouecs/Laravel-lang.git",
+                "reference": "fcb8cec051b175278e0a9efa440f0b1033d12dd7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/fcb8cec051b175278e0a9efa440f0b1033d12dd7",
+                "reference": "fcb8cec051b175278e0a9efa440f0b1033d12dd7",
+                "shasum": ""
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.10"
+            },
+            "suggest": {
+                "ablunier/laravel-lang-installer": "Command for easily add languages to a Laravel project",
+                "andrey-helldar/laravel-lang-publisher": "Easy installation and update of translation files for your project",
+                "arcanedev/laravel-lang": "Translations manager and checker for Laravel 5",
+                "overtrue/laravel-lang": "Command to add languages in your project"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "caouecs",
+                    "email": "caouecs@caouecs.net"
+                }
+            ],
+            "description": "Languages for Laravel",
+            "keywords": [
+                "lang",
+                "languages",
+                "laravel",
+                "lpm"
+            ],
+            "time": "2019-03-17T10:36:46+00:00"
         },
         {
             "name": "doctrine/instantiator",
