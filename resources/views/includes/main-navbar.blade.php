@@ -70,7 +70,7 @@
            </li>
            <li class="nav-item">
             <img src="{{ asset('images/shopping-cart.svg') }} " width="25" height="25" alt="Login" ></a>
-            <a class="nav-link" href="#">PANIER</a>
+            <a class="nav-link" href="{{route('cart')}}">PANIER</a>
           </li>
         </ul>
     </div>

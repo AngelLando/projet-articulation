@@ -1,4 +1,4 @@
-export default {
+/**export default {
 	data() {
 		return {
 			products : [],
@@ -24,3 +24,4 @@ export default {
 	},
 
 }
+**/
