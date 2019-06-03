@@ -153,7 +153,7 @@ Product
     font-weight: bold;
     font-size: 20px;
     line-height: 24px;
-    color: black;
+    color: black !important;
 }
 
 
