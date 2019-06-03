@@ -16,7 +16,6 @@ class ProductController extends Controller
     public function index()
     {
         $all = ['products' => Product::all()];
-
         $products = $all['products'];
         $tab = [];
         $allProducts = [];
@@ -34,17 +33,8 @@ class ProductController extends Controller
     public function single($slug)
     {
         $products = [];
-        $recommandations = [];
         $rawProduct = Product::where('slug', $slug)->firstOrFail();
-        $recommandationProduct = Product::where([
-                ['kind', $rawProduct->kind],
-                ['id', '!=', $rawProduct->id]]
-        )->get()->take(3);
-        foreach ($recommandationProduct as $recommandation) {
-            $newRecommandation = $this->getAllData($recommandation);
-            array_push($recommandations, $newRecommandation);
-        }
-
+        $recommandations = $this->getRecommandations($rawProduct);
         $product = $this->getAllData($rawProduct);
         $products['product'] = $product;
         $products['products'] = $recommandations;
@@ -148,5 +138,18 @@ class ProductController extends Controller
         //$newProduct['productRating'] = $product->productRatings[0]->value;
         $newProduct['packaging_capacity'] = $product->format->packagings[0]->capacity;
         return $newProduct;
+    }
+
+    public function getRecommandations ($rawProduct) {
+        $recommandations =[];
+        $recommandationProduct = Product::where([
+                ['kind', $rawProduct->kind],
+                ['id', '!=', $rawProduct->id]]
+        )->get()->take(3);
+        foreach ($recommandationProduct as $recommandation) {
+            $newRecommandation = $this->getAllData($recommandation);
+            array_push($recommandations, $newRecommandation);
+        }
+        return $recommandations;
     }
 }
