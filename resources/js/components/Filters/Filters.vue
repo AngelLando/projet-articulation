@@ -85,7 +85,23 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="selection_title pt-4"><p>Années pour ce vin :</p></div>
+                                <br>
+                                <div class="content col-xl-12">Prix :</div>
+
+                                <vue-slider v-model="value_2" :min="10.77" :max="915.45" :interval="0.01"/>
+
+
+                                <div class="row results_sort ml-3 pt-5 pb-3">
+                                    <div class="sort col-md-auto">
+                                        liste
+                                    </div>
+                                    <div class="sort col-md-auto">
+                                        Trier par :
+                                    </div>
+                                    <div class="results col-md-auto">
+                                        14 produits trouvés
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
