@@ -28,6 +28,7 @@ Route::get('/produit/{id}', [
 ]);
 
 Route::get('/checkout', 'CartController@checkout')->name('checkout');
+Route::get('/cart', 'CartController@index')->name('cart');
 
 
 Route::get('/user/account', [
@@ -39,6 +40,7 @@ Route::post('/user/account/update', [
     'uses' => 'UserController@update',
     'as' => 'user.account.update'
 ]);
+
 
 Route::post('/check', 'OrderController@store')->name('check');
 

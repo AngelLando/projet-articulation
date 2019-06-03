@@ -19,8 +19,7 @@ class CartController extends Controller
     {
         $userId = 1;
         $carts = ['carts' => Cart::all()];
-        dd($carts);
-       // return view('single', ['product' => Product::where('slug', $slug)->firstOrFail()]);
+       return view('cart');
     }
 
     /**
