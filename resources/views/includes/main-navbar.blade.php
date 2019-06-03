@@ -40,7 +40,7 @@
               <a class="dropdown-item" href="{{ route('login') }}">{{ __('Se connecter') }}</a>
               <div class="dropdown-divider"></div>
                 @if (Route::has('register'))
-              <a class="dropdown-item" href="{{ route('register') }}">{{ __('S'enregistrer) }}</a>
+              <a class="dropdown-item" href="{{ route('register') }}">{{ __("S'enregistrer") }}</a>
             </div>
           </li>
           @endif
