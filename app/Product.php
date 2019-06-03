@@ -32,8 +32,8 @@ class Product extends Model
         return $this->hasMany('App\ProductRating');
     }
 
-    public function region() {
-        return $this->hasOne('App\Region');
+    public function supplier() {
+        return $this->belongsTo('App\Supplier');
     }
 
     public function tags() {

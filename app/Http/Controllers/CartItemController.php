@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Cart;
 use App\CartItem;
+use App\Product;
 use Illuminate\Http\Request;
 
 class CartItemController extends Controller
@@ -37,6 +38,13 @@ class CartItemController extends Controller
      */
     public function store(Request $request)
     {
+
+        $selectedProductStock = Product::where('id', $request->product_id)->firstOrFail()->stock;
+
+        $this->validate($request, [
+            'quantity' => 'integer|max:'.$selectedProductStock,
+        ]);
+
         $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
 
         $cartItem = CartItem::create([
@@ -44,6 +52,7 @@ class CartItemController extends Controller
             'cart_id' => $cart->id,
             'quantity' => $request->quantity
         ]);
+        return $selectedProductStock;
     }
 
     /**

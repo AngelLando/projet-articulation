@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('kind');
             $table->string('name');
             $table->string('year');
+            $table->longText('description');
             $table->string('path_image');
             $table->float('weight');
             $table->integer('stock');
@@ -32,10 +33,10 @@ class CreateProductsTable extends Migration
             $table->foreign('type_id')
                 ->references('id')
                 ->on('types');
-            $table->integer('region_id')->unsigned();
-            $table->foreign('region_id')
+            $table->integer('supplier_id')->unsigned();
+            $table->foreign('supplier_id')
                 ->references('id')
-                ->on('regions');
+                ->on('suppliers');
             $table->integer('price_id')->unsigned();
             $table->foreign('price_id')
                 ->references('id')

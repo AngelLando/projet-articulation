@@ -31,4 +31,4 @@
 </template>
 
 <script src="./Address.js"></script>
-<style src="./Address.css"></style>
+<style src="./Address.css" scoped></style>

@@ -15,11 +15,10 @@
 
 Auth::routes();
 
+
+// GET
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', 'ProductController@index')->name('products');
-
-//=> JSON file
 Route::get('/products', 'ProductController@show');
 
 Route::get('/produit/{id}', [
@@ -27,15 +26,20 @@ Route::get('/produit/{id}', [
     'as' => 'product.single'
 ]);
 
-Route::get('/checkout', 'CartController@checkout')->name('checkout');
-Route::get('/cart', 'CartController@index')->name('cart');
-
-
 Route::get('/user/account', [
     'uses' => 'UserController@index',
     'as' => 'user.account'
 ]);
 
+// return JSON file
+Route::get('/', 'ProductController@index')->name('products');
+
+Route::get('/checkout', 'CartController@checkout')->name('checkout');
+
+Route::get('/cart', 'CartController@index')->name('cart');
+
+
+// POST
 Route::post('/user/account/update', [
     'uses' => 'UserController@update',
     'as' => 'user.account.update'
@@ -45,6 +49,43 @@ Route::post('/user/account/update', [
 Route::post('/check', 'OrderController@store')->name('check');
 
 Route::post('/add', 'CartItemController@store')->name('add');
+
+
+// Pages Routes
+
+Route::get('/nos-primeurs', function()
+{
+    return View::make('pages.nos-primeurs');
+})->name('nos-primeurs');
+
+Route::get('/nos-vins', function()
+{
+    return View::make('pages.nos-vins');
+})->name('nos-vins');
+
+Route::get('/nouveautes', function()
+{
+    return View::make('pages.nouveautes');
+})->name('nouveautes');
+
+Route::get('/offres-speciales', function()
+{
+    return View::make('pages.offres-speciales');
+})->name('offres-speciales');
+
+Route::get('/promotions', function()
+{
+    return View::make('pages.promotions');
+})->name('promotions');
+
+
+
+
+
+
+
+
+
 
 /*
 Route::get('/{any}', function () {

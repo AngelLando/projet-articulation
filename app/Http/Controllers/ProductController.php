@@ -16,7 +16,6 @@ class ProductController extends Controller
     public function index()
     {
         $all = ['products' => Product::all()];
-
         $products = $all['products'];
         $tab = [];
         $allProducts = [];
@@ -34,17 +33,8 @@ class ProductController extends Controller
     public function single($slug)
     {
         $products = [];
-        $recommandations = [];
         $rawProduct = Product::where('slug', $slug)->firstOrFail();
-        $recommandationProduct = Product::where([
-                ['kind', $rawProduct->kind],
-                ['id', '!=', $rawProduct->id]]
-        )->get()->take(3);
-        foreach ($recommandationProduct as $recommandation) {
-            $newRecommandation = $this->getAllData($recommandation);
-            array_push($recommandations, $newRecommandation);
-        }
-
+        $recommandations = $this->getRecommandations($rawProduct);
         $product = $this->getAllData($rawProduct);
         $products['product'] = $product;
         $products['products'] = $recommandations;
@@ -132,13 +122,34 @@ class ProductController extends Controller
         $newProduct['kind'] = $product->kind;
         $newProduct['year'] = $product->year;
         $newProduct['path_image'] = $product->path_image;
+        $newProduct['type'] = $product->type->name;
+        $newProduct['supplier'] = $product->supplier->name;
+        $newProduct['region'] = $product->supplier->region->name;
+        $newProduct['country'] = $product->supplier->region->country->name;
         $newProduct['stock'] = $product->stock;
+        $newProduct['description'] = $product->description;
+        $newProduct['alcohol'] = $product->alcohol;
         $newProduct['format'] = $product->format->name;
         $newProduct['quotation'] = $product->quotation;
         $newProduct['slug'] = $product->slug;
         $newProduct['price'] = $product->prices[0]->amount;
+        $newProduct['tag'] = $product->tags[0]->name;
+        $newProduct['appellation'] = $product->appellations[0]->name;
         //$newProduct['productRating'] = $product->productRatings[0]->value;
         $newProduct['packaging_capacity'] = $product->format->packagings[0]->capacity;
         return $newProduct;
+    }
+
+    public function getRecommandations ($rawProduct) {
+        $recommandations =[];
+        $recommandationProduct = Product::where([
+                ['kind', $rawProduct->kind],
+                ['id', '!=', $rawProduct->id]]
+        )->get()->take(3);
+        foreach ($recommandationProduct as $recommandation) {
+            $newRecommandation = $this->getAllData($recommandation);
+            array_push($recommandations, $newRecommandation);
+        }
+        return $recommandations;
     }
 }
