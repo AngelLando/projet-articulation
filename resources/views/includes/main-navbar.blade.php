@@ -24,6 +24,8 @@
                     FR
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                     <a class="dropdown-item" >FR</a> <!--  href="https://www.gazzar-vins.ch/" -->
+                     <div class="dropdown-divider"></div>
                      <a class="dropdown-item">EN</a> <!-- href="https://www.gazzar-wines.ch/" -->
                      <div class="dropdown-divider"></div>
                      <a class="dropdown-item" >DE</a> <!--  href="https://www.gazzar-weine.ch/" -->
@@ -38,7 +40,7 @@
               <a class="dropdown-item" href="{{ route('login') }}">{{ __('Se connecter') }}</a>
               <div class="dropdown-divider"></div>
                 @if (Route::has('register'))
-              <a class="dropdown-item" href="{{ route('register') }}">{{ __('Registrer') }}</a>
+              <a class="dropdown-item" href="{{ route('register') }}">{{ __('S'enregistrer) }}</a>
             </div>
           </li>
           @endif
