@@ -16,12 +16,17 @@
 export default {
 	methods:{
 		underline: function(event){
-			console.log(event.target)
 			var clickedElement = event.target;
 			$(clickedElement).addClass("more_info_selected");
 			$(clickedElement).siblings().removeClass("more_info_selected");
 			$(clickedElement).siblings().addClass("more_info");
 		},
+		set_choice:function(event){
+			var clickedElement = event.target;
+			$(clickedElement).addClass("product_selection_selected");
+			$(clickedElement).siblings().removeClass("product_selection_selected");
+			$(clickedElement).siblings().addClass("product_selection");
+		}
 	},
 	data() {
 		return {

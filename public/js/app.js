@@ -1878,11 +1878,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     underline: function underline(event) {
-      console.log(event.target);
       var clickedElement = event.target;
       $(clickedElement).addClass("more_info_selected");
       $(clickedElement).siblings().removeClass("more_info_selected");
       $(clickedElement).siblings().addClass("more_info");
+    },
+    set_choice: function set_choice(event) {
+      var clickedElement = event.target;
+      $(clickedElement).addClass("product_selection_selected");
+      $(clickedElement).siblings().removeClass("product_selection_selected");
+      $(clickedElement).siblings().addClass("product_selection");
     }
   },
   data: function data() {
@@ -8660,7 +8665,7 @@ var components = {
 /*!***********************************************************!*\
   !*** ./node_modules/bootstrap-vue/es/components/index.js ***!
   \***********************************************************/
-/*! exports provided: BVModalPlugin, BVToastPlugin, AlertPlugin, BadgePlugin, BreadcrumbPlugin, ButtonPlugin, ButtonGroupPlugin, ButtonToolbarPlugin, InputGroupPlugin, CardPlugin, CarouselPlugin, LayoutPlugin, CollapsePlugin, DropdownPlugin, EmbedPlugin, FormPlugin, FormGroupPlugin, FormCheckboxPlugin, FormRadioPlugin, FormInputPlugin, FormTextareaPlugin, FormFilePlugin, FormSelectPlugin, ImagePlugin, JumbotronPlugin, LinkPlugin, ListGroupPlugin, MediaPlugin, ModalPlugin, NavPlugin, NavbarPlugin, PaginationPlugin, PaginationNavPlugin, PopoverPlugin, ProgressPlugin, SpinnerPlugin, TablePlugin, TabsPlugin, ToastPlugin, TooltipPlugin, Alert, Badge, Breadcrumb, Button, ButtonGroup, ButtonToolbar, InputGroup, Card, Carousel, Layout, Collapse, Dropdown, Embed, Form, FormGroup, FormCheckbox, FormRadio, FormInput, FormTextarea, FormFile, FormSelect, Image, Jumbotron, Link, ListGroup, Media, Modal, Nav, Navbar, Pagination, PaginationNav, Popover, Progress, Spinner, Table, Tabs, Toast, Tooltip, BAlert, BBadge, BBreadcrumb, BBreadcrumbItem, BBreadcrumbLink, BButton, BButtonClose, BButtonGroup, BButtonToolbar, BInputGroup, BInputGroupAddon, BInputGroupPrepend, BInputGroupAppend, BInputGroupText, BCard, BCardHeader, BCardBody, BCardTitle, BCardSubTitle, BCardFooter, BCardImg, BCardImgLazy, BCardText, BCardGroup, BCarousel, BCarouselSlide, BContainer, BRow, BCol, BFormRow, BCollapse, BDropdown, BDropdownItem, BDropdownItemButton, BDropdownHeader, BDropdownDivider, BDropdownForm, BDropdownText, BDropdownGroup, BEmbed, BForm, BFormDatalist, BFormText, BFormInvalidFeedback, BFormValidFeedback, BFormGroup, BFormCheckbox, BFormCheckboxGroup, BFormRadio, BFormRadioGroup, BFormInput, BFormTextarea, BFormFile, BFormSelect, BImg, BImgLazy, BJumbotron, BLink, BListGroup, BListGroupItem, BMedia, BMediaAside, BMediaBody, BModal, BNav, BNavItem, BNavText, BNavForm, BNavItemDropdown, BNavbar, BNavbarNav, BNavbarBrand, BNavbarToggle, BPagination, BPaginationNav, BPopover, BProgress, BProgressBar, BSpinner, BTable, BTabs, BTab, BToast, BToaster, BTooltip, default */
+/*! exports provided: default, BVModalPlugin, BVToastPlugin, AlertPlugin, BadgePlugin, BreadcrumbPlugin, ButtonPlugin, ButtonGroupPlugin, ButtonToolbarPlugin, InputGroupPlugin, CardPlugin, CarouselPlugin, LayoutPlugin, CollapsePlugin, DropdownPlugin, EmbedPlugin, FormPlugin, FormGroupPlugin, FormCheckboxPlugin, FormRadioPlugin, FormInputPlugin, FormTextareaPlugin, FormFilePlugin, FormSelectPlugin, ImagePlugin, JumbotronPlugin, LinkPlugin, ListGroupPlugin, MediaPlugin, ModalPlugin, NavPlugin, NavbarPlugin, PaginationPlugin, PaginationNavPlugin, PopoverPlugin, ProgressPlugin, SpinnerPlugin, TablePlugin, TabsPlugin, ToastPlugin, TooltipPlugin, Alert, Badge, Breadcrumb, Button, ButtonGroup, ButtonToolbar, InputGroup, Card, Carousel, Layout, Collapse, Dropdown, Embed, Form, FormGroup, FormCheckbox, FormRadio, FormInput, FormTextarea, FormFile, FormSelect, Image, Jumbotron, Link, ListGroup, Media, Modal, Nav, Navbar, Pagination, PaginationNav, Popover, Progress, Spinner, Table, Tabs, Toast, Tooltip, BAlert, BBadge, BBreadcrumb, BBreadcrumbItem, BBreadcrumbLink, BButton, BButtonClose, BButtonGroup, BButtonToolbar, BInputGroup, BInputGroupAddon, BInputGroupPrepend, BInputGroupAppend, BInputGroupText, BCard, BCardHeader, BCardBody, BCardTitle, BCardSubTitle, BCardFooter, BCardImg, BCardImgLazy, BCardText, BCardGroup, BCarousel, BCarouselSlide, BContainer, BRow, BCol, BFormRow, BCollapse, BDropdown, BDropdownItem, BDropdownItemButton, BDropdownHeader, BDropdownDivider, BDropdownForm, BDropdownText, BDropdownGroup, BEmbed, BForm, BFormDatalist, BFormText, BFormInvalidFeedback, BFormValidFeedback, BFormGroup, BFormCheckbox, BFormCheckboxGroup, BFormRadio, BFormRadioGroup, BFormInput, BFormTextarea, BFormFile, BFormSelect, BImg, BImgLazy, BJumbotron, BLink, BListGroup, BListGroupItem, BMedia, BMediaAside, BMediaBody, BModal, BNav, BNavItem, BNavText, BNavForm, BNavItemDropdown, BNavbar, BNavbarNav, BNavbarBrand, BNavbarToggle, BPagination, BPaginationNav, BPopover, BProgress, BProgressBar, BSpinner, BTable, BTabs, BTab, BToast, BToaster, BTooltip */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19265,7 +19270,7 @@ var NAME = 'BTooltip'; // @vue/component
 /*!***********************************************************!*\
   !*** ./node_modules/bootstrap-vue/es/directives/index.js ***!
   \***********************************************************/
-/*! exports provided: VBTogglePlugin, VBModalPlugin, VBScrollspyPlugin, VBTooltipPlugin, VBPopoverPlugin, BToggle, BModal, BScrollspy, BTooltip, BPopover, VBToggle, VBModal, VBScrollspy, VBTooltip, VBPopover, default */
+/*! exports provided: default, VBTogglePlugin, VBModalPlugin, VBScrollspyPlugin, VBTooltipPlugin, VBPopoverPlugin, BToggle, BModal, BScrollspy, BTooltip, BPopover, VBToggle, VBModal, VBScrollspy, VBTooltip, VBPopover */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33724,7 +33729,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,700,700i,900,900i&display=swap);", ""]);
 
 // module
-exports.push([module.i, "/* permet de rajouter la font \"icomoon\" */\n@font-face {\n  font-family: \"icomoon\";\n  src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + ");\n  src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + "?#iefix) format(\"embedded-opentype\"),\n  url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.ttf */ "./resources/fonts/icomoon.ttf")) + ") format(\"truetype\"),\n  url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.woff */ "./resources/fonts/icomoon.woff")) + ") format(\"woff\"),\n  url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.svg */ "./resources/fonts/icomoon.svg")) + "#icomoon) format(\"svg\");\n  font-weight: normal;\n  font-style: normal;\n}\n\n/***********\nGlobal\n***********/\na[data-v-226df464], a[data-v-226df464]:hover, a[data-v-226df464]:visited, a[data-v-226df464]:active, a[data-v-226df464]:link\n{\n  text-decoration: none;\n  -webkit-font-smoothing: antialiased;\n  -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;\n  text-shadow: rgba(0,0,0,.01) 0 0 1px;\n}\n\n\n/***********\nContainer\n***********/\n.super_container[data-v-226df464]\n{\n  width: 100%;\n  overflow: hidden;\n}\n.super_container_inner[data-v-226df464]\n{\n  transition: all 400ms ease;\n}\n.super_container_inner.active[data-v-226df464]\n{\n  -webkit-transform: translateX(350px);\n  transform: translateX(350px);\n}\n.super_overlay[data-v-226df464]\n{\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100%;\n  background: rgba(0,0,0,0.75);\n  z-index: 101;\n  visibility: hidden;\n  opacity: 0;\n  transition: all 400ms ease;\n}\n.super_container_inner.active .super_overlay[data-v-226df464]\n{\n  visibility: visible;\n  opacity: 1;\n}\n\n\n\n/***********\nProducts\n***********/\n.image[data-v-226df464] {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 35%;\n}\n.products[data-v-226df464]\n{\n  background: #FFFFFF;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n.products_row[data-v-226df464]\n{\n  margin-top: 10px;\n}\n\n\n/***********\nProduct\n***********/\n.product[data-v-226df464]\n{\n  width: 321px;\n  overflow: hidden;\n  border-radius: 3px;\n  padding-top: 10px;\n  margin-bottom: 50px;\n  border: 1px solid #F0F0F0;\n  box-sizing: border-box;\n  box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.09);\n}\n.product_year[data-v-226df464] \n{\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: 500;\n  font-size: 20px;\n  line-height: 25px;\n  display: flex;\n  align-items: center;\n\n  color: #828282;\n}\n.product_info[data-v-226df464]\n{\n  padding-left: 25px;\n  padding-right: 25px;\n  padding-top: 18px;\n  padding-bottom: 10px;\n}\n.product_name[data-v-226df464]\n{\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 25px;\n  line-height: 30px;\n  display: flex;\n  align-items: center;\n\n  color: #000000;\n}\n.product_image[data-v-226df464] {\n  margin-bottom:-65px;\n  margin-top: -5px;\n}\n.product_info.name[data-v-226df464] {\n  height: 5.5em;\n}\n.product_info.price[data-v-226df464] {\n  height:4.5em;\n}\n.product_info.year_format[data-v-226df464] {\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: 500;\n  margin-top: -15px;\n  font-size: 20px;\n  display: flex;\n  align-items: center;\n  height: 2em;\n  color: #000000;\n}\n.product_price[data-v-226df464] {\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 25px;\n  line-height: 30px;\n  color: #930046;\n}\n.product_cart[data-v-226df464] {\n  border-radius: 0px 50px 50px 0px;\n}\n.product_buttons > div[data-v-226df464]\n{\n  width: 100%;\n  height: 100%;\n}\n.product_buttons > div > div[data-v-226df464]\n{\n  width: 50%;\n  height: 100%;\n  transition: all 200ms ease;\n}\n.home_item_large .product_buttons > div > div[data-v-226df464]\n{\n  border-top: solid 1px rgba(255,255,255,0.2);\n}\n\n\n/*taille du panier*/\n.product_button > div > div img[data-v-226df464] {\n  padding-top: 3px;\n  max-width: 70%;\n}\n.home_item_large .product_buttons > div > div[data-v-226df464]:hover\n{\n  background: rgba(255,255,255,0.1);\n}\n.product_buttons > div > div[data-v-226df464]:first-of-type\n{\n  border-right: solid 1px #ededed;\n}\n.home_item_large .product_buttons > div > div[data-v-226df464]:first-of-type\n{\n  border-right: solid 1px rgba(255,255,255,0.2);\n}\n.product_button[data-v-226df464]\n{\n  cursor: pointer;\n}\n.more_info[data-v-226df464]{\n      cursor: pointer;\n  font-family: Montserrat;\nfont-style: normal;\nfont-weight: bold;\nfont-size: 15px;\nline-height: 20px;\ncolor: black;\n}\n.more_info_selected[data-v-226df464] {\n  text-decoration: underline;\n  color: #930046;\n}\n.product_button > div > div[data-v-226df464]\n{\n  width: 36px;\n  height: 36px;\n  margin-top: 4px;\n}\n.favorite-heart[data-v-226df464] {\n  top: -430px;\n  right: -235px;\n}\n.share[data-v-226df464] {\n  top: -50px;\n  right: -25px;\n}\n.favorite-heart > img[data-v-226df464]\n{\n  width: 35px;\n}\ndiv.product_button.product_cart[data-v-226df464], .add_product[data-v-226df464] {\n  color: white;\n  font-family: Montserrat;\n  font-style: normal;\n  line-height: 20px;\n  font-size: 15px;\n  font-weight: 500;\n  background-color: #930046;\n}\n.content[data-v-226df464] {\n  font-family: Montserrat;\nfont-style: normal;\nfont-weight: normal;\nfont-size: 15px;\nline-height: 20px;\ncolor: #000000;\n}\n.breadcrumbs[data-v-226df464] {\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: 500;\n  font-size: 17px;\n  line-height: 24px;\n\n  color: #000000;\n}\ndiv.product_selection[data-v-226df464]{\n    cursor: pointer;\n  padding:10px;\n  padding-left: 25px;\n  padding-right:25px;\n background: #FFFFFF;\nborder: 1.5px solid #930046;\nbox-sizing: border-box;\nborder-radius: 100px;\nfont-family: Montserrat;\nfont-style: normal;\nfont-weight: bold;\nfont-size: 17px;\nline-height: 17px;\n/* identical to box height */\ndisplay: flex;\nalign-items: center;\ntext-align: center;\n\ncolor: #930046;\n}\ndiv.product_selection[data-v-226df464]:hover{\n  background: #930046;\n  color:white;\n}\n.product_cart[data-v-226df464] {\n  width: 4em !important;\n  padding: 1.5em;\n  height: 2.25em !important;\n}\n.add_product[data-v-226df464] {\n  padding: 1.5em 0em 1.5em 3em;\n  height: 2.25em !important;\n  width: 7em !important;\n  padding-left: 0.5em;\n}\n.product_quantity[data-v-226df464]{\n  width: 6em !important;\n}\n.selection_title[data-v-226df464] {\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 15px;\n  line-height: 15px;\n  color: #000000;\n}\n\n/***********\nProduct_rating\n***********/\n.rating_r i[data-v-226df464]:not(:last-of-type)\n{\n  margin-right: 4px;\n}\n.rating_r i[data-v-226df464]::before\n{\n  font-family: 'icomoon';\n  content: \"\\E9D9\";\n  font-style: normal;\n  font-size: 16px;\n  color: #930046;\n}\n", ""]);
+exports.push([module.i, "/* permet de rajouter la font \"icomoon\" */\n@font-face {\n  font-family: \"icomoon\";\n  src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + ");\n  src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + "?#iefix) format(\"embedded-opentype\"),\n  url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.ttf */ "./resources/fonts/icomoon.ttf")) + ") format(\"truetype\"),\n  url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.woff */ "./resources/fonts/icomoon.woff")) + ") format(\"woff\"),\n  url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.svg */ "./resources/fonts/icomoon.svg")) + "#icomoon) format(\"svg\");\n  font-weight: normal;\n  font-style: normal;\n}\n\n/***********\nGlobal\n***********/\na[data-v-226df464], a[data-v-226df464]:hover, a[data-v-226df464]:visited, a[data-v-226df464]:active, a[data-v-226df464]:link\n{\n  text-decoration: none;\n  -webkit-font-smoothing: antialiased;\n  -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;\n  text-shadow: rgba(0,0,0,.01) 0 0 1px;\n}\n\n\n/***********\nContainer\n***********/\n.super_container[data-v-226df464]\n{\n  width: 100%;\n  overflow: hidden;\n}\n.super_container_inner[data-v-226df464]\n{\n  transition: all 400ms ease;\n}\n.super_container_inner.active[data-v-226df464]\n{\n  -webkit-transform: translateX(350px);\n  transform: translateX(350px);\n}\n.super_overlay[data-v-226df464]\n{\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100%;\n  background: rgba(0,0,0,0.75);\n  z-index: 101;\n  visibility: hidden;\n  opacity: 0;\n  transition: all 400ms ease;\n}\n.super_container_inner.active .super_overlay[data-v-226df464]\n{\n  visibility: visible;\n  opacity: 1;\n}\n\n\n\n/***********\nProducts\n***********/\n.image[data-v-226df464] {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 40%;\n}\n.products[data-v-226df464]\n{\n  background: #FFFFFF;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n.products_row[data-v-226df464]\n{\n  margin-top: 10px;\n}\n\n\n/***********\nProduct\n***********/\n.product[data-v-226df464]\n{\n  width: 321px;\n  overflow: hidden;\n  border-radius: 3px;\n  padding-top: 10px;\n  margin-bottom: 0px;\n  border: 1px solid #F0F0F0;\n  box-sizing: border-box;\n  box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.09);\n}\n.product_year[data-v-226df464] \n{\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: 500;\n  font-size: 20px;\n  line-height: 25px;\n  display: flex;\n  align-items: center;\n\n  color: #828282;\n}\n.product_info[data-v-226df464]\n{\n  padding-left: 25px;\n  padding-right: 25px;\n  padding-top: 18px;\n  padding-bottom: 10px;\n}\n.product_name[data-v-226df464]\n{\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 25px;\n  line-height: 30px;\n  display: flex;\n  align-items: center;\n\n  color: #000000;\n}\n.product_image[data-v-226df464] {\n  margin-bottom:-85px;\n  margin-top: -20px;\n}\n.product_info.name[data-v-226df464] {\n  height: 5.5em;\n}\n.product_info.price[data-v-226df464] {\n  height:4.5em;\n}\n.product_info.year_format[data-v-226df464] {\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: 500;\n  margin-top: -15px;\n  font-size: 20px;\n  display: flex;\n  align-items: center;\n  height: 2em;\n  color: #000000;\n}\n.product_price[data-v-226df464] {\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 25px;\n  line-height: 30px;\n  color: #930046;\n}\n.product_cart[data-v-226df464] {\n  border-radius: 0px 50px 50px 0px;\n}\n.product_buttons > div[data-v-226df464]\n{\n  width: 100%;\n  height: 100%;\n}\n.product_buttons > div > div[data-v-226df464]\n{\n  width: 50%;\n  height: 100%;\n  transition: all 200ms ease;\n}\n.home_item_large .product_buttons > div > div[data-v-226df464]\n{\n  border-top: solid 1px rgba(255,255,255,0.2);\n}\n\n\n/*taille du panier*/\n.product_button > div > div img[data-v-226df464] {\n  padding-top: 3px;\n  max-width: 70%;\n}\n.home_item_large .product_buttons > div > div[data-v-226df464]:hover\n{\n  background: rgba(255,255,255,0.1);\n}\n.product_buttons > div > div[data-v-226df464]:first-of-type\n{\n  border-right: solid 1px #ededed;\n}\n.home_item_large .product_buttons > div > div[data-v-226df464]:first-of-type\n{\n  border-right: solid 1px rgba(255,255,255,0.2);\n}\n.product_button[data-v-226df464]\n{\n  cursor: pointer;\n}\n.more_info[data-v-226df464]{\n      cursor: pointer;\n  font-family: Montserrat;\nfont-style: normal;\nfont-weight: bold;\nfont-size: 15px;\nline-height: 20px;\ncolor: black;\n}\n.more_info_selected[data-v-226df464] {\n  text-decoration: underline;\n  color: #930046;\n}\n.product_button > div > div[data-v-226df464]\n{\n  width: 36px;\n  height: 36px;\n  margin-top: 4px;\n}\n.favorite-heart[data-v-226df464] {\n  top: -450px;\n  right: -235px;\n}\n.share[data-v-226df464] {\n  top: -70px;\n  right: -25px;\n}\n.favorite-heart > img[data-v-226df464]\n{\n  width: 35px;\n}\ndiv.product_button.product_cart[data-v-226df464], .add_product[data-v-226df464] {\n  color: white;\n  font-family: Montserrat;\n  font-style: normal;\n  line-height: 20px;\n  font-size: 15px;\n  font-weight: 500;\n  background-color: #930046;\n}\n.content[data-v-226df464] {\n  font-family: Montserrat;\nfont-style: normal;\nfont-weight: normal;\nfont-size: 15px;\nline-height: 20px;\ncolor: #000000;\n}\n.breadcrumbs[data-v-226df464] {\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: 500;\n  font-size: 17px;\n  line-height: 24px;\n  color: #000000;\n}\ndiv.product_selection[data-v-226df464]{\n    cursor: pointer;\n  padding:10px;\n  padding-left: 25px;\n  padding-right:25px;\n background: #FFFFFF;\nborder: 1.5px solid #930046;\nbox-sizing: border-box;\nborder-radius: 100px;\nfont-family: Montserrat;\nfont-style: normal;\nfont-weight: bold;\nfont-size: 15px;\nline-height: 15px;\n/* identical to box height */\ndisplay: flex;\nalign-items: center;\ntext-align: center;\n\ncolor: #930046;\n}\ndiv.product_selection[data-v-226df464]:hover{\n  background: #930046;\n  color:white;\n}\ndiv.product_selection_selected[data-v-226df464]{\n  background: #930046;\n  color:white;\n}\n.product_cart[data-v-226df464] {\n  width: 4em !important;\n  padding: 1.5em;\n  height: 2.25em !important;\n}\n.add_product[data-v-226df464] {\n  padding: 1.5em 0em 1.5em 3em;\n  height: 2.25em !important;\n  width: 7em !important;\n  padding-left: 0.5em;\n}\n.product_quantity[data-v-226df464]{\n  width: 6em !important;\n}\n.selection_title[data-v-226df464] {\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 15px;\n  line-height: 15px;\n  color: #000000;\n}\n\n/***********\nProduct_rating\n***********/\n.rating_r i[data-v-226df464]:not(:last-of-type)\n{\n  margin-right: 4px;\n}\n.rating_r i[data-v-226df464]::before\n{\n  font-family: 'icomoon';\n  content: \"\\E9D9\";\n  font-style: normal;\n  font-size: 16px;\n  color: #930046;\n}\n", ""]);
 
 // exports
 
@@ -66706,14 +66711,15 @@ var render = function() {
         _c("div", { staticClass: "products" }, [
           _c("div", { staticClass: "container" }, [
             _c("div", { staticClass: "row product_row" }, [
-              _c("div", { staticClass: "breadcrumbs col-xl-12 mb-3 ml-3" }, [
-                _c("p", [
-                  _vm._v(
-                    "Nos vins > " +
-                      _vm._s(_vm.product.kind) +
-                      " > " +
-                      _vm._s(_vm.product.name)
-                  )
+              _c("div", { staticClass: "breadcrumbs col-xl-12 mb-4 ml-3" }, [
+                _c("a", { attrs: { href: "" } }, [_vm._v("Nos vins")]),
+                _vm._v(" >"),
+                _c("a", { attrs: { href: "" } }, [
+                  _vm._v(" " + _vm._s(_vm.product.kind))
+                ]),
+                _vm._v(" > "),
+                _c("a", { attrs: { href: "" } }, [
+                  _vm._v(_vm._s(_vm.product.name))
                 ])
               ]),
               _vm._v(" "),
@@ -66753,7 +66759,96 @@ var render = function() {
                 _vm._v(" "),
                 _vm._m(1),
                 _vm._v(" "),
-                _vm._m(2)
+                _c("div", { staticClass: "selection" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "text-right d-flex flex-row align-items-start justify-content-start"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "product_selection product_selection_selected year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3",
+                            on: { click: _vm.set_choice }
+                          },
+                          [_vm._v("2015")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3",
+                            on: { click: _vm.set_choice }
+                          },
+                          [_vm._v("2016")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3",
+                            on: { click: _vm.set_choice }
+                          },
+                          [_vm._v("2017")]
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "text-right d-flex flex-row align-items-start justify-content-start"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "product_selection product_selection_selected conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3",
+                            on: { click: _vm.set_choice }
+                          },
+                          [_vm._v("Carton de 12 unités")]
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "text-right d-flex flex-row align-items-start justify-content-start"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "product_selection_selected product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3",
+                            on: { click: _vm.set_choice }
+                          },
+                          [_vm._v("75 cl")]
+                        )
+                      ]
+                    )
+                  ])
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-xl-12 " }),
@@ -66848,7 +66943,7 @@ var render = function() {
                     { staticClass: "content content_rating col-xl-12 ml-3" },
                     [
                       _c("p", [_vm._v("Titre ")]),
-                      _vm._m(3),
+                      _vm._m(5),
                       _c("p"),
                       _c("p", [_vm._v("Contenu")])
                     ]
@@ -66934,96 +67029,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "selection" }, [
-      _c("div", { staticClass: "selection_title pt-4" }, [
-        _c("p", [_vm._v("Années pour ce vin :")])
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c(
-          "div",
-          {
-            staticClass:
-              "text-right d-flex flex-row align-items-start justify-content-start"
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3"
-              },
-              [_vm._v("2015")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3"
-              },
-              [_vm._v("2016")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3"
-              },
-              [_vm._v("2017")]
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "selection_title pt-4" }, [
-        _c("p", [_vm._v("Condtionnements disponibles pour ce format :")])
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c(
-          "div",
-          {
-            staticClass:
-              "text-right d-flex flex-row align-items-start justify-content-start"
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3"
-              },
-              [_vm._v("Carton de 12 unités")]
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "selection_title pt-4" }, [
-        _c("p", [_vm._v("Formats disponibles :")])
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c(
-          "div",
-          {
-            staticClass:
-              "text-right d-flex flex-row align-items-start justify-content-start"
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3"
-              },
-              [_vm._v("75 cl")]
-            )
-          ]
-        )
-      ])
+    return _c("div", { staticClass: "selection_title pt-4" }, [
+      _c("p", [_vm._v("Années pour ce vin :")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "selection_title pt-4" }, [
+      _c("p", [_vm._v("Condtionnements disponibles pour ce format :")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "selection_title pt-4" }, [
+      _c("p", [_vm._v("Formats disponibles :")])
     ])
   },
   function() {
