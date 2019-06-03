@@ -40,7 +40,7 @@ export default {
 	mounted () {
 		let json = JSON.parse(this.prod);
         this.product = json.product;
-        this.recommandations = json.recommandations;
+        this.products = json.recommandations;
 	},
 
 }

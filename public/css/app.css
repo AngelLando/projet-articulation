@@ -548,6 +548,17 @@ a > code {
   color: inherit;
 }
 
+.similar_products{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 15px;
+line-height: 20px;
+
+color: #000000;
+margin-left:220px;
+}
+
 kbd {
   padding: 0.2rem 0.4rem;
   font-size: 87.5%;
