@@ -12,8 +12,18 @@
 	},
 }**/
 
-
 export default {
+	data() {
+		return {
+			product : [],
+			isHiddenDescr:true,
+			isHiddenInfo:false,
+			isHiddenRating:false,
+			cartItem : '',
+            product_id: '',
+            quantity : '',
+		}
+	},
 	methods:{
 		underline: function(event){
 			var clickedElement = event.target;
@@ -26,15 +36,17 @@ export default {
 			$(clickedElement).addClass("product_selection_selected");
 			$(clickedElement).siblings().removeClass("product_selection_selected");
 			$(clickedElement).siblings().addClass("product_selection");
-		}
-	},
-	data() {
-		return {
-			product : [],
-			isHiddenDescr:true,
-			isHiddenInfo:false,
-			isHiddenRating:false,
-		}
+		},
+		submitCartItem (e) {
+			  this.cartItem  = {
+				  product_id: this.product.id,
+				  quantity: this.quantity
+			  };
+			  console.log(this.cartItem);
+			  axios.post('../add', this.cartItem).then(function (response) {
+				  console.log(response);
+			  })
+		  }
 	},
 	props : ['prod'],
 	mounted () {
