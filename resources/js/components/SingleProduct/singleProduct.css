@@ -121,9 +121,13 @@ Product
   margin-bottom: 0px;
   border: 1px solid #F0F0F0;
   box-sizing: border-box;
-  box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.09);
+  box-shadow: 4px 5px 14px rgba(0, 0, 0, 0.09);
 }
 
+.line{
+border-top: 1px solid #D3D3D3;
+
+}
 
 .product_year 
 {
@@ -365,6 +369,11 @@ div.product_selection_selected{
 
 .product_quantity{
   width: 6em !important;
+}
+
+.choice_list {
+  background: #FFFFFF;
+border: 2.5px solid #EDEDED;
 }
 
 .selection_title {
