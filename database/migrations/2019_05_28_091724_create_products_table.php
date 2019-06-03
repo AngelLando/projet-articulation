@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('kind');
             $table->string('name');
             $table->string('year');
+            $table->longText('description');
             $table->string('path_image');
             $table->float('weight');
             $table->integer('stock');

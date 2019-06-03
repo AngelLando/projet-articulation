@@ -61,4 +61,4 @@
 </template>
 
 <script src="./Cart.js"></script>
-<style src="./Cart.css"></style>
+<style src="./Cart.css" scoped></style>

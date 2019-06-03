@@ -131,9 +131,13 @@ class ProductController extends Controller
         $newProduct['path_image'] = $product->path_image;
         $newProduct['stock'] = $product->stock;
         $newProduct['format'] = $product->format->name;
+        //$newProduct['country'] = $product->region->country->name;
+        dd($product->region);
         $newProduct['quotation'] = $product->quotation;
         $newProduct['slug'] = $product->slug;
         $newProduct['price'] = $product->prices[0]->amount;
+        $newProduct['tag'] = $product->tags[0]->name;
+        $newProduct['appellation'] = $product->appellations[0]->name;
         //$newProduct['productRating'] = $product->productRatings[0]->value;
         $newProduct['packaging_capacity'] = $product->format->packagings[0]->capacity;
         return $newProduct;
