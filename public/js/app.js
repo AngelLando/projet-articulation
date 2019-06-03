@@ -1873,19 +1873,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/**export default {
-	data() {
-		return {
-			product: [],
-			isHiddenDescr:true,
-			isHiddenInfo:false,
-			isHiddenRating:false,
-		}
-	},
-	mounted () {
-		axios.get('/projet-articulation/public/products/2').then(({data}) => this.product = data.products)
-	},
-}**/
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     underline: function underline(event) {
@@ -1899,8 +1886,13 @@ __webpack_require__.r(__webpack_exports__);
       $(clickedElement).addClass("product_selection_selected");
       $(clickedElement).siblings().removeClass("product_selection_selected");
       $(clickedElement).siblings().addClass("product_selection");
+    },
+    input: function input(test) {
+      localStorage.setItem('storedData', test);
+      console.log(localStorage.getItem('storedData'));
     }
   },
+  watch: {},
   data: function data() {
     return {
       product: [],
@@ -66866,9 +66858,15 @@ var render = function() {
                         },
                         [
                           _c("select", { staticClass: "choice_list" }, [
-                            _c("option", { attrs: { value: "volvo" } }, [
-                              _vm._v(_vm._s(_vm.product.packaging_capacity))
-                            ])
+                            _c(
+                              "option",
+                              {
+                                domProps: {
+                                  value: _vm.product.packaging_capacity
+                                }
+                              },
+                              [_vm._v(_vm._s(_vm.product.packaging_capacity))]
+                            )
                           ])
                         ]
                       ),
@@ -66877,7 +66875,12 @@ var render = function() {
                         "div",
                         {
                           staticClass:
-                            "product_button add_product text-center d-flex flex-column align-items-center justify-content-center"
+                            "product_button add_product text-center d-flex flex-column align-items-center justify-content-center",
+                          on: {
+                            click: function($event) {
+                              return _vm.input(_vm.product.id)
+                            }
+                          }
                         },
                         [_vm._v("AJOUTER")]
                       ),
