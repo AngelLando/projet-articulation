@@ -38,7 +38,7 @@
                                         <div class="selection_title pt-4"><p>Années pour ce vin :</p></div>
                                         <div>
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                <div @click="set_choice" class="product_selection product_selection_selected year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2015</div>
+                                                <div @click="set_choice" class="product_selection product_selection_selected year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.year}}</div>
                                                 <div @click="set_choice" class="product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2016</div>
                                                 <div @click="set_choice" class="product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2017</div>
 
@@ -47,14 +47,14 @@
                                         <div class="selection_title pt-4"><p>Condtionnements disponibles pour ce format :</p></div>
                                         <div>
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                <div @click="set_choice" class="product_selection product_selection_selected conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">Carton de 12 unités</div>
+                                                <div @click="set_choice" class="product_selection product_selection_selected conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.packaging_capacity}}</div>
 
                                             </div>
                                         </div>
                                         <div class="selection_title pt-4"><p>Formats disponibles :</p></div>
                                         <div>
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                <div @click="set_choice" class="product_selection_selected product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">75 cl</div>
+                                                <div @click="set_choice" class="product_selection_selected product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.format}}</div>
 
                                             </div>
                                         </div>
@@ -79,9 +79,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
 </template>
 
 <script src="./singleProduct.js"></script>

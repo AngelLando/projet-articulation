@@ -20,19 +20,7 @@ class ProductController extends Controller
         $products = $all['products'];
         $allProducts = [];
         foreach($products as $product) {
-            $newProduct = [];
-            $newProduct['id'] = $product->id;
-            $newProduct['name'] = $product->name;
-            $newProduct['kind'] = $product->kind;
-            $newProduct['year'] = $product->year;
-            $newProduct['path_image'] = $product->path_image;
-            $newProduct['stock'] = $product->stock;
-            $newProduct['format'] = $product->format->name;
-            $newProduct['quotation'] = $product->quotation;
-            $newProduct['slug'] = $product->slug;
-            $newProduct['price'] = $product->prices[0]->amount;
-            //$newProduct['productRating'] = $product->productRatings[0]->value;
-            $newProduct['packaging_capacity'] = $product->format->packagings[0]->capacity;
+            $newProduct = $this->getAllData($product);
             array_push($allProducts, $newProduct);
         }
 
@@ -43,7 +31,10 @@ class ProductController extends Controller
 
     public function single($slug)
     {
-        return view('single', ['product' => Product::where('slug', $slug)->firstOrFail()]);
+        $rawProduct = Product::where('slug', $slug)->firstOrFail();
+        $product = $this->getAllData($rawProduct);
+        $json = json_encode($product);
+        return view('single')->with('product', $json);
     }
 
     /**
@@ -116,5 +107,22 @@ class ProductController extends Controller
     public static function getById($id)
     {
         return ['product' => Product::where('id', $id)->firstOrFail()];
+    }
+
+    public function getAllData($product) {
+        $newProduct = [];
+        $newProduct['id'] = $product->id;
+        $newProduct['name'] = $product->name;
+        $newProduct['kind'] = $product->kind;
+        $newProduct['year'] = $product->year;
+        $newProduct['path_image'] = $product->path_image;
+        $newProduct['stock'] = $product->stock;
+        $newProduct['format'] = $product->format->name;
+        $newProduct['quotation'] = $product->quotation;
+        $newProduct['slug'] = $product->slug;
+        $newProduct['price'] = $product->prices[0]->amount;
+        //$newProduct['productRating'] = $product->productRatings[0]->value;
+        $newProduct['packaging_capacity'] = $product->format->packagings[0]->capacity;
+        return $newProduct;
     }
 }

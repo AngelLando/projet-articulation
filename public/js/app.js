@@ -113,7 +113,6 @@ var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/
 var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
 var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
 var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/axios/lib/core/createError.js");
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(/*! ./../helpers/btoa */ "./node_modules/axios/lib/helpers/btoa.js");
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -125,22 +124,6 @@ module.exports = function xhrAdapter(config) {
     }
 
     var request = new XMLHttpRequest();
-    var loadEvent = 'onreadystatechange';
-    var xDomain = false;
-
-    // For IE 8/9 CORS support
-    // Only supports POST and GET calls and doesn't returns the response headers.
-    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
-    if ( true &&
-        typeof window !== 'undefined' &&
-        window.XDomainRequest && !('withCredentials' in request) &&
-        !isURLSameOrigin(config.url)) {
-      request = new window.XDomainRequest();
-      loadEvent = 'onload';
-      xDomain = true;
-      request.onprogress = function handleProgress() {};
-      request.ontimeout = function handleTimeout() {};
-    }
 
     // HTTP basic authentication
     if (config.auth) {
@@ -155,8 +138,8 @@ module.exports = function xhrAdapter(config) {
     request.timeout = config.timeout;
 
     // Listen for ready state
-    request[loadEvent] = function handleLoad() {
-      if (!request || (request.readyState !== 4 && !xDomain)) {
+    request.onreadystatechange = function handleLoad() {
+      if (!request || request.readyState !== 4) {
         return;
       }
 
@@ -173,15 +156,26 @@ module.exports = function xhrAdapter(config) {
       var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
       var response = {
         data: responseData,
-        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
-        status: request.status === 1223 ? 204 : request.status,
-        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+        status: request.status,
+        statusText: request.statusText,
         headers: responseHeaders,
         config: config,
         request: request
       };
 
       settle(resolve, reject, response);
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle browser request cancellation (as opposed to a manual cancellation)
+    request.onabort = function handleAbort() {
+      if (!request) {
+        return;
+      }
+
+      reject(createError('Request aborted', config, 'ECONNABORTED', request));
 
       // Clean up request
       request = null;
@@ -214,8 +208,8 @@ module.exports = function xhrAdapter(config) {
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
-          cookies.read(config.xsrfCookieName) :
-          undefined;
+        cookies.read(config.xsrfCookieName) :
+        undefined;
 
       if (xsrfValue) {
         requestHeaders[config.xsrfHeaderName] = xsrfValue;
@@ -302,6 +296,7 @@ module.exports = function xhrAdapter(config) {
 var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
 var Axios = __webpack_require__(/*! ./core/Axios */ "./node_modules/axios/lib/core/Axios.js");
+var mergeConfig = __webpack_require__(/*! ./core/mergeConfig */ "./node_modules/axios/lib/core/mergeConfig.js");
 var defaults = __webpack_require__(/*! ./defaults */ "./node_modules/axios/lib/defaults.js");
 
 /**
@@ -331,7 +326,7 @@ axios.Axios = Axios;
 
 // Factory for creating new instances
 axios.create = function create(instanceConfig) {
-  return createInstance(utils.merge(defaults, instanceConfig));
+  return createInstance(mergeConfig(axios.defaults, instanceConfig));
 };
 
 // Expose Cancel & CancelToken
@@ -480,10 +475,11 @@ module.exports = function isCancel(value) {
 "use strict";
 
 
-var defaults = __webpack_require__(/*! ./../defaults */ "./node_modules/axios/lib/defaults.js");
 var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var buildURL = __webpack_require__(/*! ../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
 var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ "./node_modules/axios/lib/core/InterceptorManager.js");
 var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ "./node_modules/axios/lib/core/dispatchRequest.js");
+var mergeConfig = __webpack_require__(/*! ./mergeConfig */ "./node_modules/axios/lib/core/mergeConfig.js");
 
 /**
  * Create a new instance of Axios
@@ -507,13 +503,14 @@ Axios.prototype.request = function request(config) {
   /*eslint no-param-reassign:0*/
   // Allow for axios('example/url'[, config]) a la fetch API
   if (typeof config === 'string') {
-    config = utils.merge({
-      url: arguments[0]
-    }, arguments[1]);
+    config = arguments[1] || {};
+    config.url = arguments[0];
+  } else {
+    config = config || {};
   }
 
-  config = utils.merge(defaults, {method: 'get'}, this.defaults, config);
-  config.method = config.method.toLowerCase();
+  config = mergeConfig(this.defaults, config);
+  config.method = config.method ? config.method.toLowerCase() : 'get';
 
   // Hook up interceptors middleware
   var chain = [dispatchRequest, undefined];
@@ -532,6 +529,11 @@ Axios.prototype.request = function request(config) {
   }
 
   return promise;
+};
+
+Axios.prototype.getUri = function getUri(config) {
+  config = mergeConfig(this.defaults, config);
+  return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, '');
 };
 
 // Provide aliases for supported request methods
@@ -778,9 +780,93 @@ module.exports = function enhanceError(error, config, code, request, response) {
   if (code) {
     error.code = code;
   }
+
   error.request = request;
   error.response = response;
+  error.isAxiosError = true;
+
+  error.toJSON = function() {
+    return {
+      // Standard
+      message: this.message,
+      name: this.name,
+      // Microsoft
+      description: this.description,
+      number: this.number,
+      // Mozilla
+      fileName: this.fileName,
+      lineNumber: this.lineNumber,
+      columnNumber: this.columnNumber,
+      stack: this.stack,
+      // Axios
+      config: this.config,
+      code: this.code
+    };
+  };
   return error;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/mergeConfig.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/mergeConfig.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
+
+/**
+ * Config-specific merge-function which creates a new config-object
+ * by merging two configuration objects together.
+ *
+ * @param {Object} config1
+ * @param {Object} config2
+ * @returns {Object} New object resulting from merging config2 to config1
+ */
+module.exports = function mergeConfig(config1, config2) {
+  // eslint-disable-next-line no-param-reassign
+  config2 = config2 || {};
+  var config = {};
+
+  utils.forEach(['url', 'method', 'params', 'data'], function valueFromConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    }
+  });
+
+  utils.forEach(['headers', 'auth', 'proxy'], function mergeDeepProperties(prop) {
+    if (utils.isObject(config2[prop])) {
+      config[prop] = utils.deepMerge(config1[prop], config2[prop]);
+    } else if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (utils.isObject(config1[prop])) {
+      config[prop] = utils.deepMerge(config1[prop]);
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
+
+  utils.forEach([
+    'baseURL', 'transformRequest', 'transformResponse', 'paramsSerializer',
+    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
+    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress', 'maxContentLength',
+    'validateStatus', 'maxRedirects', 'httpAgent', 'httpsAgent', 'cancelToken',
+    'socketPath'
+  ], function defaultToConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
+
+  return config;
 };
 
 
@@ -807,8 +893,7 @@ var createError = __webpack_require__(/*! ./createError */ "./node_modules/axios
  */
 module.exports = function settle(resolve, reject, response) {
   var validateStatus = response.config.validateStatus;
-  // Note: status is not exposed by XDomainRequest
-  if (!response.status || !validateStatus || validateStatus(response.status)) {
+  if (!validateStatus || validateStatus(response.status)) {
     resolve(response);
   } else {
     reject(createError(
@@ -881,12 +966,13 @@ function setContentTypeIfUnset(headers, value) {
 
 function getDefaultAdapter() {
   var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(/*! ./adapters/xhr */ "./node_modules/axios/lib/adapters/xhr.js");
-  } else if (typeof process !== 'undefined') {
+  // Only Node.JS has a process variable that is of [[Class]] process
+  if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
     // For node use HTTP adapter
     adapter = __webpack_require__(/*! ./adapters/http */ "./node_modules/axios/lib/adapters/xhr.js");
+  } else if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(/*! ./adapters/xhr */ "./node_modules/axios/lib/adapters/xhr.js");
   }
   return adapter;
 }
@@ -895,6 +981,7 @@ var defaults = {
   adapter: getDefaultAdapter(),
 
   transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Accept');
     normalizeHeaderName(headers, 'Content-Type');
     if (utils.isFormData(data) ||
       utils.isArrayBuffer(data) ||
@@ -988,54 +1075,6 @@ module.exports = function bind(fn, thisArg) {
 
 /***/ }),
 
-/***/ "./node_modules/axios/lib/helpers/btoa.js":
-/*!************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/btoa.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// btoa polyfill for IE<10 courtesy https://github.com/davidchambers/Base64.js
-
-var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-
-function E() {
-  this.message = 'String contains an invalid character';
-}
-E.prototype = new Error;
-E.prototype.code = 5;
-E.prototype.name = 'InvalidCharacterError';
-
-function btoa(input) {
-  var str = String(input);
-  var output = '';
-  for (
-    // initialize result and counter
-    var block, charCode, idx = 0, map = chars;
-    // if the next str index does not exist:
-    //   change the mapping table to "="
-    //   check if d has no fractional digits
-    str.charAt(idx | 0) || (map = '=', idx % 1);
-    // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
-    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
-  ) {
-    charCode = str.charCodeAt(idx += 3 / 4);
-    if (charCode > 0xFF) {
-      throw new E();
-    }
-    block = block << 8 | charCode;
-  }
-  return output;
-}
-
-module.exports = btoa;
-
-
-/***/ }),
-
 /***/ "./node_modules/axios/lib/helpers/buildURL.js":
 /*!****************************************************!*\
   !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
@@ -1105,6 +1144,11 @@ module.exports = function buildURL(url, params, paramsSerializer) {
   }
 
   if (serializedParams) {
+    var hashmarkIndex = url.indexOf('#');
+    if (hashmarkIndex !== -1) {
+      url = url.slice(0, hashmarkIndex);
+    }
+
     url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
   }
 
@@ -1156,50 +1200,50 @@ module.exports = (
   utils.isStandardBrowserEnv() ?
 
   // Standard browser envs support document.cookie
-  (function standardBrowserEnv() {
-    return {
-      write: function write(name, value, expires, path, domain, secure) {
-        var cookie = [];
-        cookie.push(name + '=' + encodeURIComponent(value));
+    (function standardBrowserEnv() {
+      return {
+        write: function write(name, value, expires, path, domain, secure) {
+          var cookie = [];
+          cookie.push(name + '=' + encodeURIComponent(value));
 
-        if (utils.isNumber(expires)) {
-          cookie.push('expires=' + new Date(expires).toGMTString());
+          if (utils.isNumber(expires)) {
+            cookie.push('expires=' + new Date(expires).toGMTString());
+          }
+
+          if (utils.isString(path)) {
+            cookie.push('path=' + path);
+          }
+
+          if (utils.isString(domain)) {
+            cookie.push('domain=' + domain);
+          }
+
+          if (secure === true) {
+            cookie.push('secure');
+          }
+
+          document.cookie = cookie.join('; ');
+        },
+
+        read: function read(name) {
+          var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+          return (match ? decodeURIComponent(match[3]) : null);
+        },
+
+        remove: function remove(name) {
+          this.write(name, '', Date.now() - 86400000);
         }
-
-        if (utils.isString(path)) {
-          cookie.push('path=' + path);
-        }
-
-        if (utils.isString(domain)) {
-          cookie.push('domain=' + domain);
-        }
-
-        if (secure === true) {
-          cookie.push('secure');
-        }
-
-        document.cookie = cookie.join('; ');
-      },
-
-      read: function read(name) {
-        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
-        return (match ? decodeURIComponent(match[3]) : null);
-      },
-
-      remove: function remove(name) {
-        this.write(name, '', Date.now() - 86400000);
-      }
-    };
-  })() :
+      };
+    })() :
 
   // Non standard browser env (web workers, react-native) lack needed support.
-  (function nonStandardBrowserEnv() {
-    return {
-      write: function write() {},
-      read: function read() { return null; },
-      remove: function remove() {}
-    };
-  })()
+    (function nonStandardBrowserEnv() {
+      return {
+        write: function write() {},
+        read: function read() { return null; },
+        remove: function remove() {}
+      };
+    })()
 );
 
 
@@ -1248,64 +1292,64 @@ module.exports = (
 
   // Standard browser envs have full support of the APIs needed to test
   // whether the request URL is of the same origin as current location.
-  (function standardBrowserEnv() {
-    var msie = /(msie|trident)/i.test(navigator.userAgent);
-    var urlParsingNode = document.createElement('a');
-    var originURL;
+    (function standardBrowserEnv() {
+      var msie = /(msie|trident)/i.test(navigator.userAgent);
+      var urlParsingNode = document.createElement('a');
+      var originURL;
 
-    /**
+      /**
     * Parse a URL to discover it's components
     *
     * @param {String} url The URL to be parsed
     * @returns {Object}
     */
-    function resolveURL(url) {
-      var href = url;
+      function resolveURL(url) {
+        var href = url;
 
-      if (msie) {
+        if (msie) {
         // IE needs attribute set twice to normalize properties
+          urlParsingNode.setAttribute('href', href);
+          href = urlParsingNode.href;
+        }
+
         urlParsingNode.setAttribute('href', href);
-        href = urlParsingNode.href;
+
+        // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+        return {
+          href: urlParsingNode.href,
+          protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+          host: urlParsingNode.host,
+          search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+          hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+          hostname: urlParsingNode.hostname,
+          port: urlParsingNode.port,
+          pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+            urlParsingNode.pathname :
+            '/' + urlParsingNode.pathname
+        };
       }
 
-      urlParsingNode.setAttribute('href', href);
+      originURL = resolveURL(window.location.href);
 
-      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
-      return {
-        href: urlParsingNode.href,
-        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
-        host: urlParsingNode.host,
-        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
-        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
-        hostname: urlParsingNode.hostname,
-        port: urlParsingNode.port,
-        pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
-                  urlParsingNode.pathname :
-                  '/' + urlParsingNode.pathname
-      };
-    }
-
-    originURL = resolveURL(window.location.href);
-
-    /**
+      /**
     * Determine if a URL shares the same origin as the current location
     *
     * @param {String} requestURL The URL to test
     * @returns {boolean} True if URL shares the same origin, otherwise false
     */
-    return function isURLSameOrigin(requestURL) {
-      var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
-      return (parsed.protocol === originURL.protocol &&
+      return function isURLSameOrigin(requestURL) {
+        var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+        return (parsed.protocol === originURL.protocol &&
             parsed.host === originURL.host);
-    };
-  })() :
+      };
+    })() :
 
   // Non standard browser envs (web workers, react-native) lack needed support.
-  (function nonStandardBrowserEnv() {
-    return function isURLSameOrigin() {
-      return true;
-    };
-  })()
+    (function nonStandardBrowserEnv() {
+      return function isURLSameOrigin() {
+        return true;
+      };
+    })()
 );
 
 
@@ -1450,7 +1494,7 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1626,9 +1670,13 @@ function trim(str) {
  *
  * react-native:
  *  navigator.product -> 'ReactNative'
+ * nativescript
+ *  navigator.product -> 'NativeScript' or 'NS'
  */
 function isStandardBrowserEnv() {
-  if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+  if (typeof navigator !== 'undefined' && (navigator.product === 'ReactNative' ||
+                                           navigator.product === 'NativeScript' ||
+                                           navigator.product === 'NS')) {
     return false;
   }
   return (
@@ -1710,6 +1758,32 @@ function merge(/* obj1, obj2, obj3, ... */) {
 }
 
 /**
+ * Function equal to merge with the difference being that no reference
+ * to original objects is kept.
+ *
+ * @see merge
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function deepMerge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = deepMerge(result[key], val);
+    } else if (typeof val === 'object') {
+      result[key] = deepMerge({}, val);
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
  * Extends object a by mutably adding to it the properties of object b.
  *
  * @param {Object} a The object to be extended
@@ -1747,9 +1821,32 @@ module.exports = {
   isStandardBrowserEnv: isStandardBrowserEnv,
   forEach: forEach,
   merge: merge,
+  deepMerge: deepMerge,
   extend: extend,
   trim: trim
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
 
 
 /***/ }),
@@ -8665,7 +8762,7 @@ var components = {
 /*!***********************************************************!*\
   !*** ./node_modules/bootstrap-vue/es/components/index.js ***!
   \***********************************************************/
-/*! exports provided: default, BVModalPlugin, BVToastPlugin, AlertPlugin, BadgePlugin, BreadcrumbPlugin, ButtonPlugin, ButtonGroupPlugin, ButtonToolbarPlugin, InputGroupPlugin, CardPlugin, CarouselPlugin, LayoutPlugin, CollapsePlugin, DropdownPlugin, EmbedPlugin, FormPlugin, FormGroupPlugin, FormCheckboxPlugin, FormRadioPlugin, FormInputPlugin, FormTextareaPlugin, FormFilePlugin, FormSelectPlugin, ImagePlugin, JumbotronPlugin, LinkPlugin, ListGroupPlugin, MediaPlugin, ModalPlugin, NavPlugin, NavbarPlugin, PaginationPlugin, PaginationNavPlugin, PopoverPlugin, ProgressPlugin, SpinnerPlugin, TablePlugin, TabsPlugin, ToastPlugin, TooltipPlugin, Alert, Badge, Breadcrumb, Button, ButtonGroup, ButtonToolbar, InputGroup, Card, Carousel, Layout, Collapse, Dropdown, Embed, Form, FormGroup, FormCheckbox, FormRadio, FormInput, FormTextarea, FormFile, FormSelect, Image, Jumbotron, Link, ListGroup, Media, Modal, Nav, Navbar, Pagination, PaginationNav, Popover, Progress, Spinner, Table, Tabs, Toast, Tooltip, BAlert, BBadge, BBreadcrumb, BBreadcrumbItem, BBreadcrumbLink, BButton, BButtonClose, BButtonGroup, BButtonToolbar, BInputGroup, BInputGroupAddon, BInputGroupPrepend, BInputGroupAppend, BInputGroupText, BCard, BCardHeader, BCardBody, BCardTitle, BCardSubTitle, BCardFooter, BCardImg, BCardImgLazy, BCardText, BCardGroup, BCarousel, BCarouselSlide, BContainer, BRow, BCol, BFormRow, BCollapse, BDropdown, BDropdownItem, BDropdownItemButton, BDropdownHeader, BDropdownDivider, BDropdownForm, BDropdownText, BDropdownGroup, BEmbed, BForm, BFormDatalist, BFormText, BFormInvalidFeedback, BFormValidFeedback, BFormGroup, BFormCheckbox, BFormCheckboxGroup, BFormRadio, BFormRadioGroup, BFormInput, BFormTextarea, BFormFile, BFormSelect, BImg, BImgLazy, BJumbotron, BLink, BListGroup, BListGroupItem, BMedia, BMediaAside, BMediaBody, BModal, BNav, BNavItem, BNavText, BNavForm, BNavItemDropdown, BNavbar, BNavbarNav, BNavbarBrand, BNavbarToggle, BPagination, BPaginationNav, BPopover, BProgress, BProgressBar, BSpinner, BTable, BTabs, BTab, BToast, BToaster, BTooltip */
+/*! exports provided: BVModalPlugin, BVToastPlugin, AlertPlugin, BadgePlugin, BreadcrumbPlugin, ButtonPlugin, ButtonGroupPlugin, ButtonToolbarPlugin, InputGroupPlugin, CardPlugin, CarouselPlugin, LayoutPlugin, CollapsePlugin, DropdownPlugin, EmbedPlugin, FormPlugin, FormGroupPlugin, FormCheckboxPlugin, FormRadioPlugin, FormInputPlugin, FormTextareaPlugin, FormFilePlugin, FormSelectPlugin, ImagePlugin, JumbotronPlugin, LinkPlugin, ListGroupPlugin, MediaPlugin, ModalPlugin, NavPlugin, NavbarPlugin, PaginationPlugin, PaginationNavPlugin, PopoverPlugin, ProgressPlugin, SpinnerPlugin, TablePlugin, TabsPlugin, ToastPlugin, TooltipPlugin, Alert, Badge, Breadcrumb, Button, ButtonGroup, ButtonToolbar, InputGroup, Card, Carousel, Layout, Collapse, Dropdown, Embed, Form, FormGroup, FormCheckbox, FormRadio, FormInput, FormTextarea, FormFile, FormSelect, Image, Jumbotron, Link, ListGroup, Media, Modal, Nav, Navbar, Pagination, PaginationNav, Popover, Progress, Spinner, Table, Tabs, Toast, Tooltip, BAlert, BBadge, BBreadcrumb, BBreadcrumbItem, BBreadcrumbLink, BButton, BButtonClose, BButtonGroup, BButtonToolbar, BInputGroup, BInputGroupAddon, BInputGroupPrepend, BInputGroupAppend, BInputGroupText, BCard, BCardHeader, BCardBody, BCardTitle, BCardSubTitle, BCardFooter, BCardImg, BCardImgLazy, BCardText, BCardGroup, BCarousel, BCarouselSlide, BContainer, BRow, BCol, BFormRow, BCollapse, BDropdown, BDropdownItem, BDropdownItemButton, BDropdownHeader, BDropdownDivider, BDropdownForm, BDropdownText, BDropdownGroup, BEmbed, BForm, BFormDatalist, BFormText, BFormInvalidFeedback, BFormValidFeedback, BFormGroup, BFormCheckbox, BFormCheckboxGroup, BFormRadio, BFormRadioGroup, BFormInput, BFormTextarea, BFormFile, BFormSelect, BImg, BImgLazy, BJumbotron, BLink, BListGroup, BListGroupItem, BMedia, BMediaAside, BMediaBody, BModal, BNav, BNavItem, BNavText, BNavForm, BNavItemDropdown, BNavbar, BNavbarNav, BNavbarBrand, BNavbarToggle, BPagination, BPaginationNav, BPopover, BProgress, BProgressBar, BSpinner, BTable, BTabs, BTab, BToast, BToaster, BTooltip, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19270,7 +19367,7 @@ var NAME = 'BTooltip'; // @vue/component
 /*!***********************************************************!*\
   !*** ./node_modules/bootstrap-vue/es/directives/index.js ***!
   \***********************************************************/
-/*! exports provided: default, VBTogglePlugin, VBModalPlugin, VBScrollspyPlugin, VBTooltipPlugin, VBPopoverPlugin, BToggle, BModal, BScrollspy, BTooltip, BPopover, VBToggle, VBModal, VBScrollspy, VBTooltip, VBPopover */
+/*! exports provided: VBTogglePlugin, VBModalPlugin, VBScrollspyPlugin, VBTooltipPlugin, VBPopoverPlugin, BToggle, BModal, BScrollspy, BTooltip, BPopover, VBToggle, VBModal, VBScrollspy, VBTooltip, VBPopover, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24750,7 +24847,7 @@ var hasIntersectionObserverSupport = isBrowser && 'IntersectionObserver' in wind
 
 var getEnv = function getEnv(key) {
   var fallback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  var env = typeof process !== 'undefined' && process ? Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) || false : {};
+  var env = typeof process !== 'undefined' && process ? Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) || false : {};
 
   if (!key) {
     /* istanbul ignore next */
@@ -33669,7 +33766,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,700,700i,900,900i&display=swap);", ""]);
 
 // module
-exports.push([module.i, "/* permet de rajouter la font \"icomoon\" */\n@font-face {\r\n    font-family: \"icomoon\";\r\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + ");\r\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + "?#iefix) format(\"embedded-opentype\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.ttf */ "./resources/fonts/icomoon.ttf")) + ") format(\"truetype\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.woff */ "./resources/fonts/icomoon.woff")) + ") format(\"woff\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.svg */ "./resources/fonts/icomoon.svg")) + "#icomoon) format(\"svg\");\r\n    font-weight: normal;\r\n    font-style: normal;\n}\r\n\r\n/***********\r\nGlobal\r\n***********/\ndiv\r\n{\r\n    display: block;\r\n    position: relative;\r\n    box-sizing: border-box;\n}\na, a:hover, a:visited, a:active, a:link\r\n{\r\n    text-decoration: none;\r\n    -webkit-font-smoothing: antialiased;\r\n    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;\r\n    text-shadow: rgba(0,0,0,.01) 0 0 1px;\n}\r\n\r\n\r\n/***********\r\nContainer\r\n***********/\n.super_container\r\n{\r\n    width: 100%;\r\n    overflow: hidden;\n}\n.super_container_inner\r\n{\r\n    transition: all 400ms ease;\n}\n.super_container_inner.active\r\n{\r\n    -webkit-transform: translateX(350px);\r\n    transform: translateX(350px);\n}\n.super_overlay\r\n{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100%;\r\n    background: rgba(0,0,0,0.75);\r\n    z-index: 101;\r\n    visibility: hidden;\r\n    opacity: 0;\r\n    transition: all 400ms ease;\n}\n.super_container_inner.active .super_overlay\r\n{\r\n    visibility: visible;\r\n    opacity: 1;\n}\r\n\r\n\r\n\r\n/***********\r\nProducts\r\n***********/\n.image {\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    width: 17%;\n}\n.products\r\n{\r\n    background: #FFFFFF;\r\n    padding-top: 72px;\r\n    padding-bottom: 82px;\n}\n.products_row\r\n{\r\n    margin-top: 32px;\n}\r\n\r\n\r\n/***********\r\nProduct\r\n***********/\n.product\r\n{\r\n    width: 321px;\r\n    overflow: hidden;\r\n    border-radius: 3px;\r\n    padding-top: 10px;\r\n    margin-bottom: 30px;\r\n    border: 1px solid #F0F0F0;\r\n    box-sizing: border-box;\r\n    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.09);\n}\n.product_name a:hover\r\n{\r\n    color: #bdbdbf;\n}\n.product_info\r\n{\r\n    padding-left: 25px;\r\n    padding-right: 25px;\r\n    padding-top: 18px;\r\n    padding-bottom: 10px;\n}\n.product_name a\r\n{\r\n    font-family: Montserrat;\r\n    font-weight: bold;\r\n    font-size: 20px;\r\n    line-height: 24px;\r\n    color: black;\n}\n.product_image {\r\n    margin-bottom: -40px;\n}\n.product_info.name {\r\n    height: 5.5em;\n}\n.product_info.price {\r\n    height:4.5em;\n}\n.product_info.year_format {\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    margin-top: -15px;\r\n    font-size: 20px;\r\n    display: flex;\r\n    align-items: center;\r\n    height: 2em;\r\n    color: #000000;\n}\n.product_price {\r\n    color: #930046;\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: bold;\r\n    font-size: 26px;\r\n    margin-left: 1px;\r\n    vertical-align: top;\n}\n.product_buttons > div\r\n{\r\n    width: 100%;\r\n    height: 100%;\n}\n.product_buttons > div > div\r\n{\r\n    width: 50%;\r\n    height: 100%;\r\n    transition: all 200ms ease;\n}\n.home_item_large .product_buttons > div > div\r\n{\r\n    border-top: solid 1px rgba(255,255,255,0.2);\n}\r\n\r\n\r\n/*taille du panier*/\n.product_button > div > div img {\r\n    padding-top: 3px;\r\n    max-width: 70%;\n}\n.home_item_large .product_buttons > div > div:hover\r\n{\r\n    background: rgba(255,255,255,0.1);\n}\n.product_buttons > div > div:first-of-type\r\n{\r\n    border-right: solid 1px #ededed;\n}\n.home_item_large .product_buttons > div > div:first-of-type\r\n{\r\n    border-right: solid 1px rgba(255,255,255,0.2);\n}\n.product_button\r\n{\r\n    cursor: pointer;\n}\n.product_button > div > div\r\n{\r\n    width: 36px;\r\n    height: 36px;\r\n    margin-top: 4px;\n}\n.favorite-heart {\r\n    top: -200px;\r\n    right: -250px;\n}\n.favorite-heart > img\r\n{\r\n    width: 40px;\n}\ndiv.product_button.product_cart, .add_product {\r\n    color: white;\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    line-height: 22px;\r\n    font-size: 18px;\r\n    font-weight: 500;\r\n    background-color: #930046;\n}\n.product_cart {\r\n    width: 7em !important;\r\n    padding: 1.5em;\r\n    height: 2.25em !important;\n}\n.add_product {\r\n    padding: 1.5em 0em 1.5em 3em;\r\n    height: 2.25em !important;\r\n    width: 12em !important;\r\n    padding-left: 0.4em;\n}\r\n\r\n\r\n/***********\r\nProduct_rating\r\n***********/\n.rating_r i:not(:last-of-type)\r\n{\r\n    margin-right: 4px;\n}\n.rating_r i::before\r\n{\r\n    font-family: 'icomoon';\r\n    content: \"\\E9D9\";\r\n    font-style: normal;\r\n    font-size: 16px;\r\n    color: #930046;\n}\r\n", ""]);
+exports.push([module.i, "/* permet de rajouter la font \"icomoon\" */\n@font-face {\n    font-family: \"icomoon\";\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + ");\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + "?#iefix) format(\"embedded-opentype\"),\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.ttf */ "./resources/fonts/icomoon.ttf")) + ") format(\"truetype\"),\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.woff */ "./resources/fonts/icomoon.woff")) + ") format(\"woff\"),\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.svg */ "./resources/fonts/icomoon.svg")) + "#icomoon) format(\"svg\");\n    font-weight: normal;\n    font-style: normal;\n}\n\n/***********\nGlobal\n***********/\ndiv\n{\n    display: block;\n    position: relative;\n    box-sizing: border-box;\n}\na, a:hover, a:visited, a:active, a:link\n{\n    text-decoration: none;\n    -webkit-font-smoothing: antialiased;\n    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;\n    text-shadow: rgba(0,0,0,.01) 0 0 1px;\n}\n\n\n/***********\nContainer\n***********/\n.super_container\n{\n    width: 100%;\n    overflow: hidden;\n}\n.super_container_inner\n{\n    transition: all 400ms ease;\n}\n.super_container_inner.active\n{\n    -webkit-transform: translateX(350px);\n    transform: translateX(350px);\n}\n.super_overlay\n{\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100%;\n    background: rgba(0,0,0,0.75);\n    z-index: 101;\n    visibility: hidden;\n    opacity: 0;\n    transition: all 400ms ease;\n}\n.super_container_inner.active .super_overlay\n{\n    visibility: visible;\n    opacity: 1;\n}\n\n\n\n/***********\nProducts\n***********/\n.image {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n    width: 17%;\n}\n.products\n{\n    background: #FFFFFF;\n    padding-top: 72px;\n    padding-bottom: 82px;\n}\n.products_row\n{\n    margin-top: 32px;\n}\n\n\n/***********\nProduct\n***********/\n.product\n{\n    width: 321px;\n    overflow: hidden;\n    border-radius: 3px;\n    padding-top: 10px;\n    margin-bottom: 30px;\n    border: 1px solid #F0F0F0;\n    box-sizing: border-box;\n    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.09);\n}\n.product_name a:hover\n{\n    color: #bdbdbf;\n}\n.product_info\n{\n    padding-left: 25px;\n    padding-right: 25px;\n    padding-top: 18px;\n    padding-bottom: 10px;\n}\n.product_name a\n{\n    font-family: Montserrat;\n    font-weight: bold;\n    font-size: 20px;\n    line-height: 24px;\n    color: black;\n}\n.product_image {\n    margin-bottom: -40px;\n}\n.product_info.name {\n    height: 5.5em;\n}\n.product_info.price {\n    height:4.5em;\n}\n.product_info.year_format {\n    font-family: Montserrat;\n    font-style: normal;\n    font-weight: 500;\n    margin-top: -15px;\n    font-size: 20px;\n    display: flex;\n    align-items: center;\n    height: 2em;\n    color: #000000;\n}\n.product_price {\n    color: #930046;\n    font-family: Montserrat;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 26px;\n    margin-left: 1px;\n    vertical-align: top;\n}\n.product_buttons > div\n{\n    width: 100%;\n    height: 100%;\n}\n.product_buttons > div > div\n{\n    width: 50%;\n    height: 100%;\n    transition: all 200ms ease;\n}\n.home_item_large .product_buttons > div > div\n{\n    border-top: solid 1px rgba(255,255,255,0.2);\n}\n\n\n/*taille du panier*/\n.product_button > div > div img {\n    padding-top: 3px;\n    max-width: 70%;\n}\n.home_item_large .product_buttons > div > div:hover\n{\n    background: rgba(255,255,255,0.1);\n}\n.product_buttons > div > div:first-of-type\n{\n    border-right: solid 1px #ededed;\n}\n.home_item_large .product_buttons > div > div:first-of-type\n{\n    border-right: solid 1px rgba(255,255,255,0.2);\n}\n.product_button\n{\n    cursor: pointer;\n}\n.product_button > div > div\n{\n    width: 36px;\n    height: 36px;\n    margin-top: 4px;\n}\n.favorite-heart {\n    top: -200px;\n    right: -250px;\n}\n.favorite-heart > img\n{\n    width: 40px;\n}\ndiv.product_button.product_cart, .add_product {\n    color: white;\n    font-family: Montserrat;\n    font-style: normal;\n    line-height: 22px;\n    font-size: 18px;\n    font-weight: 500;\n    background-color: #930046;\n}\n.product_cart {\n    width: 7em !important;\n    padding: 1.5em;\n    height: 2.25em !important;\n}\n.add_product {\n    padding: 1.5em 0em 1.5em 3em;\n    height: 2.25em !important;\n    width: 12em !important;\n    padding-left: 0.4em;\n}\n\n\n/***********\nProduct_rating\n***********/\n.rating_r i:not(:last-of-type)\n{\n    margin-right: 4px;\n}\n.rating_r i::before\n{\n    font-family: 'icomoon';\n    content: \"\\E9D9\";\n    font-style: normal;\n    font-size: 16px;\n    color: #930046;\n}\n", ""]);
 
 // exports
 
@@ -33689,7 +33786,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,700,700i,900,900i&display=swap);", ""]);
 
 // module
-exports.push([module.i, "/* permet de rajouter la font \"icomoon\" */\n@font-face {\r\n    font-family: \"icomoon\";\r\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + ");\r\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + "?#iefix) format(\"embedded-opentype\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.ttf */ "./resources/fonts/icomoon.ttf")) + ") format(\"truetype\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.woff */ "./resources/fonts/icomoon.woff")) + ") format(\"woff\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.svg */ "./resources/fonts/icomoon.svg")) + "#icomoon) format(\"svg\");\r\n    font-weight: normal;\r\n    font-style: normal;\n}\r\n\r\n/***********\r\nGlobal\r\n***********/\ndiv\r\n{\r\n    display: block;\r\n    position: relative;\r\n    box-sizing: border-box;\n}\na, a:hover, a:visited, a:active, a:link\r\n{\r\n    text-decoration: none;\r\n    -webkit-font-smoothing: antialiased;\r\n    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;\r\n    text-shadow: rgba(0,0,0,.01) 0 0 1px;\n}\r\n\r\n\r\n/***********\r\nContainer\r\n***********/\n.super_container\r\n{\r\n    width: 100%;\r\n    overflow: hidden;\n}\n.super_container_inner\r\n{\r\n    transition: all 400ms ease;\n}\n.super_container_inner.active\r\n{\r\n    -webkit-transform: translateX(350px);\r\n    transform: translateX(350px);\n}\n.super_overlay\r\n{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100%;\r\n    background: rgba(0,0,0,0.75);\r\n    z-index: 101;\r\n    visibility: hidden;\r\n    opacity: 0;\r\n    transition: all 400ms ease;\n}\n.super_container_inner.active .super_overlay\r\n{\r\n    visibility: visible;\r\n    opacity: 1;\n}\r\n\r\n\r\n\r\n/***********\r\nProducts\r\n***********/\n.image {\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    width: 17%;\n}\n.products\r\n{\r\n    background: #FFFFFF;\r\n    padding-top: 72px;\r\n    padding-bottom: 82px;\n}\n.products_row\r\n{\r\n    margin-top: 32px;\n}\r\n\r\n\r\n/***********\r\nProduct\r\n***********/\n.product\r\n{\r\n    width: 321px;\r\n    overflow: hidden;\r\n    border-radius: 3px;\r\n    padding-top: 10px;\r\n    margin-bottom: 30px;\r\n    border: 1px solid #F0F0F0;\r\n    box-sizing: border-box;\r\n    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.09);\n}\n.product_name a:hover\r\n{\r\n    color: #bdbdbf;\n}\n.product_info\r\n{\r\n    padding-left: 25px;\r\n    padding-right: 25px;\r\n    padding-top: 18px;\r\n    padding-bottom: 10px;\n}\n.product_name a\r\n{\r\n    font-family: Montserrat;\r\n    font-weight: bold;\r\n    font-size: 20px;\r\n    line-height: 24px;\r\n    color: black;\n}\n.product_image {\r\n    margin-bottom: -40px;\n}\n.product_info.name {\r\n    height: 5.5em;\n}\n.product_info.price {\r\n    height:4.5em;\n}\n.product_info.year_format {\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    margin-top: -15px;\r\n    font-size: 20px;\r\n    display: flex;\r\n    align-items: center;\r\n    height: 2em;\r\n    color: #000000;\n}\n.product_price {\r\n    color: #930046;\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: bold;\r\n    font-size: 26px;\r\n    margin-left: 1px;\r\n    vertical-align: top;\n}\n.product_buttons > div\r\n{\r\n    width: 100%;\r\n    height: 100%;\n}\n.product_buttons > div > div\r\n{\r\n    width: 50%;\r\n    height: 100%;\r\n    transition: all 200ms ease;\n}\n.home_item_large .product_buttons > div > div\r\n{\r\n    border-top: solid 1px rgba(255,255,255,0.2);\n}\r\n\r\n\r\n/*taille du panier*/\n.product_button > div > div img {\r\n    padding-top: 3px;\r\n    max-width: 70%;\n}\n.home_item_large .product_buttons > div > div:hover\r\n{\r\n    background: rgba(255,255,255,0.1);\n}\n.product_buttons > div > div:first-of-type\r\n{\r\n    border-right: solid 1px #ededed;\n}\n.home_item_large .product_buttons > div > div:first-of-type\r\n{\r\n    border-right: solid 1px rgba(255,255,255,0.2);\n}\n.product_button\r\n{\r\n    cursor: pointer;\n}\n.product_button > div > div\r\n{\r\n    width: 36px;\r\n    height: 36px;\r\n    margin-top: 4px;\n}\n.favorite-heart {\r\n    top: -200px;\r\n    right: -250px;\n}\n.favorite-heart > img\r\n{\r\n    width: 40px;\n}\ndiv.product_button.product_cart, .add_product {\r\n    color: white;\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    line-height: 22px;\r\n    font-size: 18px;\r\n    font-weight: 500;\r\n    background-color: #930046;\n}\n.product_cart {\r\n    width: 7em !important;\r\n    padding: 1.5em;\r\n    height: 2.25em !important;\n}\n.add_product {\r\n    padding: 1.5em 0em 1.5em 3em;\r\n    height: 2.25em !important;\r\n    width: 12em !important;\r\n    padding-left: 0.4em;\n}\r\n\r\n\r\n/***********\r\nProduct_rating\r\n***********/\n.rating_r i:not(:last-of-type)\r\n{\r\n    margin-right: 4px;\n}\n.rating_r i::before\r\n{\r\n    font-family: 'icomoon';\r\n    content: \"\\E9D9\";\r\n    font-style: normal;\r\n    font-size: 16px;\r\n    color: #930046;\n}\r\n", ""]);
+exports.push([module.i, "/* permet de rajouter la font \"icomoon\" */\n@font-face {\n    font-family: \"icomoon\";\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + ");\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + "?#iefix) format(\"embedded-opentype\"),\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.ttf */ "./resources/fonts/icomoon.ttf")) + ") format(\"truetype\"),\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.woff */ "./resources/fonts/icomoon.woff")) + ") format(\"woff\"),\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.svg */ "./resources/fonts/icomoon.svg")) + "#icomoon) format(\"svg\");\n    font-weight: normal;\n    font-style: normal;\n}\n\n/***********\nGlobal\n***********/\ndiv\n{\n    display: block;\n    position: relative;\n    box-sizing: border-box;\n}\na, a:hover, a:visited, a:active, a:link\n{\n    text-decoration: none;\n    -webkit-font-smoothing: antialiased;\n    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;\n    text-shadow: rgba(0,0,0,.01) 0 0 1px;\n}\n\n\n/***********\nContainer\n***********/\n.super_container\n{\n    width: 100%;\n    overflow: hidden;\n}\n.super_container_inner\n{\n    transition: all 400ms ease;\n}\n.super_container_inner.active\n{\n    -webkit-transform: translateX(350px);\n    transform: translateX(350px);\n}\n.super_overlay\n{\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100%;\n    background: rgba(0,0,0,0.75);\n    z-index: 101;\n    visibility: hidden;\n    opacity: 0;\n    transition: all 400ms ease;\n}\n.super_container_inner.active .super_overlay\n{\n    visibility: visible;\n    opacity: 1;\n}\n\n\n\n/***********\nProducts\n***********/\n.image {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n    width: 17%;\n}\n.products\n{\n    background: #FFFFFF;\n    padding-top: 72px;\n    padding-bottom: 82px;\n}\n.products_row\n{\n    margin-top: 32px;\n}\n\n\n/***********\nProduct\n***********/\n.product\n{\n    width: 321px;\n    overflow: hidden;\n    border-radius: 3px;\n    padding-top: 10px;\n    margin-bottom: 30px;\n    border: 1px solid #F0F0F0;\n    box-sizing: border-box;\n    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.09);\n}\n.product_name a:hover\n{\n    color: #bdbdbf;\n}\n.product_info\n{\n    padding-left: 25px;\n    padding-right: 25px;\n    padding-top: 18px;\n    padding-bottom: 10px;\n}\n.product_name a\n{\n    font-family: Montserrat;\n    font-weight: bold;\n    font-size: 20px;\n    line-height: 24px;\n    color: black;\n}\n.product_image {\n    margin-bottom: -40px;\n}\n.product_info.name {\n    height: 5.5em;\n}\n.product_info.price {\n    height:4.5em;\n}\n.product_info.year_format {\n    font-family: Montserrat;\n    font-style: normal;\n    font-weight: 500;\n    margin-top: -15px;\n    font-size: 20px;\n    display: flex;\n    align-items: center;\n    height: 2em;\n    color: #000000;\n}\n.product_price {\n    color: #930046;\n    font-family: Montserrat;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 26px;\n    margin-left: 1px;\n    vertical-align: top;\n}\n.product_buttons > div\n{\n    width: 100%;\n    height: 100%;\n}\n.product_buttons > div > div\n{\n    width: 50%;\n    height: 100%;\n    transition: all 200ms ease;\n}\n.home_item_large .product_buttons > div > div\n{\n    border-top: solid 1px rgba(255,255,255,0.2);\n}\n\n\n/*taille du panier*/\n.product_button > div > div img {\n    padding-top: 3px;\n    max-width: 70%;\n}\n.home_item_large .product_buttons > div > div:hover\n{\n    background: rgba(255,255,255,0.1);\n}\n.product_buttons > div > div:first-of-type\n{\n    border-right: solid 1px #ededed;\n}\n.home_item_large .product_buttons > div > div:first-of-type\n{\n    border-right: solid 1px rgba(255,255,255,0.2);\n}\n.product_button\n{\n    cursor: pointer;\n}\n.product_button > div > div\n{\n    width: 36px;\n    height: 36px;\n    margin-top: 4px;\n}\n.favorite-heart {\n    top: -200px;\n    right: -250px;\n}\n.favorite-heart > img\n{\n    width: 40px;\n}\ndiv.product_button.product_cart, .add_product {\n    color: white;\n    font-family: Montserrat;\n    font-style: normal;\n    line-height: 22px;\n    font-size: 18px;\n    font-weight: 500;\n    background-color: #930046;\n}\n.product_cart {\n    width: 7em !important;\n    padding: 1.5em;\n    height: 2.25em !important;\n}\n.add_product {\n    padding: 1.5em 0em 1.5em 3em;\n    height: 2.25em !important;\n    width: 12em !important;\n    padding-left: 0.4em;\n}\n\n\n/***********\nProduct_rating\n***********/\n.rating_r i:not(:last-of-type)\n{\n    margin-right: 4px;\n}\n.rating_r i::before\n{\n    font-family: 'icomoon';\n    content: \"\\E9D9\";\n    font-style: normal;\n    font-size: 16px;\n    color: #930046;\n}\n", ""]);
 
 // exports
 
@@ -33709,7 +33806,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,700,700i,900,900i&display=swap);", ""]);
 
 // module
-exports.push([module.i, "/* permet de rajouter la font \"icomoon\" */\n@font-face {\r\n    font-family: \"icomoon\";\r\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + ");\r\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + "?#iefix) format(\"embedded-opentype\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.ttf */ "./resources/fonts/icomoon.ttf")) + ") format(\"truetype\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.woff */ "./resources/fonts/icomoon.woff")) + ") format(\"woff\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.svg */ "./resources/fonts/icomoon.svg")) + "#icomoon) format(\"svg\");\r\n    font-weight: normal;\r\n    font-style: normal;\n}\r\n\r\n/***********\r\nGlobal\r\n***********/\ndiv\r\n{\r\n    display: block;\r\n    position: relative;\r\n    box-sizing: border-box;\n}\na, a:hover, a:visited, a:active, a:link\r\n{\r\n    text-decoration: none;\r\n    -webkit-font-smoothing: antialiased;\r\n    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;\r\n    text-shadow: rgba(0,0,0,.01) 0 0 1px;\n}\r\n\r\n\r\n/***********\r\nContainer\r\n***********/\n.super_container\r\n{\r\n    width: 100%;\r\n    overflow: hidden;\n}\n.super_container_inner\r\n{\r\n    transition: all 400ms ease;\n}\n.super_container_inner.active\r\n{\r\n    -webkit-transform: translateX(350px);\r\n    transform: translateX(350px);\n}\n.super_overlay\r\n{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100%;\r\n    background: rgba(0,0,0,0.75);\r\n    z-index: 101;\r\n    visibility: hidden;\r\n    opacity: 0;\r\n    transition: all 400ms ease;\n}\n.super_container_inner.active .super_overlay\r\n{\r\n    visibility: visible;\r\n    opacity: 1;\n}\r\n\r\n\r\n\r\n/***********\r\nProducts\r\n***********/\n.image {\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    width: 17%;\n}\n.products\r\n{\r\n    background: #FFFFFF;\r\n    padding-top: 72px;\r\n    padding-bottom: 82px;\n}\n.products_row\r\n{\r\n    margin-top: 32px;\n}\r\n\r\n\r\n/***********\r\nProduct\r\n***********/\n.product\r\n{\r\n    width: 321px;\r\n    overflow: hidden;\r\n    border-radius: 3px;\r\n    padding-top: 10px;\r\n    margin-bottom: 30px;\r\n    border: 1px solid #F0F0F0;\r\n    box-sizing: border-box;\r\n    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.09);\n}\n.product_name a:hover\r\n{\r\n    color: #bdbdbf;\n}\n.product_info\r\n{\r\n    padding-left: 25px;\r\n    padding-right: 25px;\r\n    padding-top: 18px;\r\n    padding-bottom: 10px;\n}\n.product_name a\r\n{\r\n    font-family: Montserrat;\r\n    font-weight: bold;\r\n    font-size: 20px;\r\n    line-height: 24px;\r\n    color: black;\n}\n.product_image {\r\n    margin-bottom: -40px;\n}\n.product_info.name {\r\n    height: 5.5em;\n}\n.product_info.price {\r\n    height:4.5em;\n}\n.product_info.year_format {\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    margin-top: -15px;\r\n    font-size: 20px;\r\n    display: flex;\r\n    align-items: center;\r\n    height: 2em;\r\n    color: #000000;\n}\n.product_price {\r\n    color: #930046;\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: bold;\r\n    font-size: 26px;\r\n    margin-left: 1px;\r\n    vertical-align: top;\n}\n.product_buttons > div\r\n{\r\n    width: 100%;\r\n    height: 100%;\n}\n.product_buttons > div > div\r\n{\r\n    width: 50%;\r\n    height: 100%;\r\n    transition: all 200ms ease;\n}\n.home_item_large .product_buttons > div > div\r\n{\r\n    border-top: solid 1px rgba(255,255,255,0.2);\n}\r\n\r\n\r\n/*taille du panier*/\n.product_button > div > div img {\r\n    padding-top: 3px;\r\n    max-width: 70%;\n}\n.home_item_large .product_buttons > div > div:hover\r\n{\r\n    background: rgba(255,255,255,0.1);\n}\n.product_buttons > div > div:first-of-type\r\n{\r\n    border-right: solid 1px #ededed;\n}\n.home_item_large .product_buttons > div > div:first-of-type\r\n{\r\n    border-right: solid 1px rgba(255,255,255,0.2);\n}\n.product_button\r\n{\r\n    cursor: pointer;\n}\n.product_button > div > div\r\n{\r\n    width: 36px;\r\n    height: 36px;\r\n    margin-top: 4px;\n}\n.favorite-heart {\r\n    top: -200px;\r\n    right: -250px;\n}\n.favorite-heart > img\r\n{\r\n    width: 40px;\n}\ndiv.product_button.product_cart, .add_product {\r\n    color: white;\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    line-height: 22px;\r\n    font-size: 18px;\r\n    font-weight: 500;\r\n    background-color: #930046;\n}\n.product_cart {\r\n    width: 7em !important;\r\n    padding: 1.5em;\r\n    height: 2.25em !important;\n}\n.add_product {\r\n    padding: 1.5em 0em 1.5em 3em;\r\n    height: 2.25em !important;\r\n    width: 12em !important;\r\n    padding-left: 0.4em;\n}\r\n\r\n\r\n/***********\r\nProduct_rating\r\n***********/\n.rating_r i:not(:last-of-type)\r\n{\r\n    margin-right: 4px;\n}\n.rating_r i::before\r\n{\r\n    font-family: 'icomoon';\r\n    content: \"\\E9D9\";\r\n    font-style: normal;\r\n    font-size: 16px;\r\n    color: #930046;\n}\r\n", ""]);
+exports.push([module.i, "/* permet de rajouter la font \"icomoon\" */\n@font-face {\n    font-family: \"icomoon\";\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + ");\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + "?#iefix) format(\"embedded-opentype\"),\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.ttf */ "./resources/fonts/icomoon.ttf")) + ") format(\"truetype\"),\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.woff */ "./resources/fonts/icomoon.woff")) + ") format(\"woff\"),\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.svg */ "./resources/fonts/icomoon.svg")) + "#icomoon) format(\"svg\");\n    font-weight: normal;\n    font-style: normal;\n}\n\n/***********\nGlobal\n***********/\ndiv\n{\n    display: block;\n    position: relative;\n    box-sizing: border-box;\n}\na, a:hover, a:visited, a:active, a:link\n{\n    text-decoration: none;\n    -webkit-font-smoothing: antialiased;\n    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;\n    text-shadow: rgba(0,0,0,.01) 0 0 1px;\n}\n\n\n/***********\nContainer\n***********/\n.super_container\n{\n    width: 100%;\n    overflow: hidden;\n}\n.super_container_inner\n{\n    transition: all 400ms ease;\n}\n.super_container_inner.active\n{\n    -webkit-transform: translateX(350px);\n    transform: translateX(350px);\n}\n.super_overlay\n{\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100%;\n    background: rgba(0,0,0,0.75);\n    z-index: 101;\n    visibility: hidden;\n    opacity: 0;\n    transition: all 400ms ease;\n}\n.super_container_inner.active .super_overlay\n{\n    visibility: visible;\n    opacity: 1;\n}\n\n\n\n/***********\nProducts\n***********/\n.image {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n    width: 17%;\n}\n.products\n{\n    background: #FFFFFF;\n    padding-top: 72px;\n    padding-bottom: 82px;\n}\n.products_row\n{\n    margin-top: 32px;\n}\n\n\n/***********\nProduct\n***********/\n.product\n{\n    width: 321px;\n    overflow: hidden;\n    border-radius: 3px;\n    padding-top: 10px;\n    margin-bottom: 30px;\n    border: 1px solid #F0F0F0;\n    box-sizing: border-box;\n    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.09);\n}\n.product_name a:hover\n{\n    color: #bdbdbf;\n}\n.product_info\n{\n    padding-left: 25px;\n    padding-right: 25px;\n    padding-top: 18px;\n    padding-bottom: 10px;\n}\n.product_name a\n{\n    font-family: Montserrat;\n    font-weight: bold;\n    font-size: 20px;\n    line-height: 24px;\n    color: black;\n}\n.product_image {\n    margin-bottom: -40px;\n}\n.product_info.name {\n    height: 5.5em;\n}\n.product_info.price {\n    height:4.5em;\n}\n.product_info.year_format {\n    font-family: Montserrat;\n    font-style: normal;\n    font-weight: 500;\n    margin-top: -15px;\n    font-size: 20px;\n    display: flex;\n    align-items: center;\n    height: 2em;\n    color: #000000;\n}\n.product_price {\n    color: #930046;\n    font-family: Montserrat;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 26px;\n    margin-left: 1px;\n    vertical-align: top;\n}\n.product_buttons > div\n{\n    width: 100%;\n    height: 100%;\n}\n.product_buttons > div > div\n{\n    width: 50%;\n    height: 100%;\n    transition: all 200ms ease;\n}\n.home_item_large .product_buttons > div > div\n{\n    border-top: solid 1px rgba(255,255,255,0.2);\n}\n\n\n/*taille du panier*/\n.product_button > div > div img {\n    padding-top: 3px;\n    max-width: 70%;\n}\n.home_item_large .product_buttons > div > div:hover\n{\n    background: rgba(255,255,255,0.1);\n}\n.product_buttons > div > div:first-of-type\n{\n    border-right: solid 1px #ededed;\n}\n.home_item_large .product_buttons > div > div:first-of-type\n{\n    border-right: solid 1px rgba(255,255,255,0.2);\n}\n.product_button\n{\n    cursor: pointer;\n}\n.product_button > div > div\n{\n    width: 36px;\n    height: 36px;\n    margin-top: 4px;\n}\n.favorite-heart {\n    top: -200px;\n    right: -250px;\n}\n.favorite-heart > img\n{\n    width: 40px;\n}\ndiv.product_button.product_cart, .add_product {\n    color: white;\n    font-family: Montserrat;\n    font-style: normal;\n    line-height: 22px;\n    font-size: 18px;\n    font-weight: 500;\n    background-color: #930046;\n}\n.product_cart {\n    width: 7em !important;\n    padding: 1.5em;\n    height: 2.25em !important;\n}\n.add_product {\n    padding: 1.5em 0em 1.5em 3em;\n    height: 2.25em !important;\n    width: 12em !important;\n    padding-left: 0.4em;\n}\n\n\n/***********\nProduct_rating\n***********/\n.rating_r i:not(:last-of-type)\n{\n    margin-right: 4px;\n}\n.rating_r i::before\n{\n    font-family: 'icomoon';\n    content: \"\\E9D9\";\n    font-style: normal;\n    font-size: 16px;\n    color: #930046;\n}\n", ""]);
 
 // exports
 
@@ -33748,7 +33845,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/* ------------------\r\n  Image\r\n---------------------*/\n.slider-image[data-v-01aeca14] {\r\n    display: none;\r\n    background-size: cover;\r\n    width: 100%;\r\n    height: 690px;\n}\n.slider-image.active[data-v-01aeca14] {\r\n    display: block;\n}\r\n\r\n\r\n/* ------------------\r\n  Infos on slide\r\n---------------------*/\n@media screen and (min-width: 1200px) {\n.slider-image > div > .infos[data-v-01aeca14] {\r\n        left: 60px;\n}\n}\n.slider-image > div > .infos[data-v-01aeca14] {\r\n    background-color: rgba(255, 255, 255, 0.88);\r\n    height: 690px;\r\n    max-width: 515px;\r\n    padding-left: 6em;\r\n    padding-right: 6em;\n}\n.infos > p[data-v-01aeca14] {\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: 400;\r\n    font-size: 28px;\r\n    line-height: 34px;\n}\n.infos > h2[data-v-01aeca14] {\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: bold;\r\n    font-size: 35px;\r\n    text-transform: uppercase;\r\n    line-height: 43px;\r\n    padding-top: 4.8em;\r\n    padding-bottom: 0.5em;\n}\n.infos a[data-v-01aeca14] {\r\n    color: white !important;\n}\n.btn-inscription[data-v-01aeca14] {\r\n    margin-top: 1.7em;\r\n    background-color: #930046;\r\n    border-radius: 100px;\r\n    padding: 0.7em 2em 0.7em 2em;\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: bold;\r\n    font-size: 25px;\r\n    line-height: 30px;\r\n    text-align: center;\r\n    color: white;\r\n    border: none;\n}\n.btn-inscription[data-v-01aeca14]:hover, .btn-inscription[data-v-01aeca14]:focus {\r\n    background-color: #A6A6A6 !important;\n}\r\n\r\n/* ------------------\r\n  Features section\r\n---------------------*/\n@media screen and (min-width: 1200px) {\n.rect-features[data-v-01aeca14] {\r\n        height: 62px;\n}\n}\n.feature[data-v-01aeca14] {\r\n    font-family: Montserrat;\r\n    text-align: center;\r\n    background: #930046;\r\n    height: 100%;\n}\n.feature .feature-inner[data-v-01aeca14] {\r\n    padding: 20px 25px;\r\n    display: -ms-flex;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    height: 100%;\n}\n.feature h2[data-v-01aeca14] {\r\n    color: white;\r\n    font-style: normal;\r\n    font-weight: 400;\r\n    font-size: 20px;\r\n    line-height: 24px;\r\n    text-transform: uppercase;\r\n    display: inline-block;\n}\n.feature[data-v-01aeca14]:nth-child(1), .feature[data-v-01aeca14]:nth-child(2) {\r\n    border-right: solid 1.5px rgba(229,229,229, .5);\n}\n.feature.active[data-v-01aeca14] {\r\n    background: #DEDEDE;\n}\n.feature.active h2[data-v-01aeca14] {\r\n    color: black;\n}\n.feature a[data-v-01aeca14] {\r\n    color: white !important;\n}\n.feature.active a[data-v-01aeca14] {\r\n    color: black !important;\n}\n.feature-inner > h2[data-v-01aeca14]:hover {\r\n    font-weight: 500;\r\n    text-decoration: underline;\n}\r\n", ""]);
+exports.push([module.i, "/* ------------------\n  Image\n---------------------*/\n.slider-image[data-v-01aeca14] {\n    display: none;\n    background-size: cover;\n    width: 100%;\n    height: 690px;\n}\n.slider-image.active[data-v-01aeca14] {\n    display: block;\n}\n\n\n/* ------------------\n  Infos on slide\n---------------------*/\n@media screen and (min-width: 1200px) {\n.slider-image > div > .infos[data-v-01aeca14] {\n        left: 60px;\n}\n}\n.slider-image > div > .infos[data-v-01aeca14] {\n    background-color: rgba(255, 255, 255, 0.88);\n    height: 690px;\n    max-width: 515px;\n    padding-left: 6em;\n    padding-right: 6em;\n}\n.infos > p[data-v-01aeca14] {\n    font-family: Montserrat;\n    font-style: normal;\n    font-weight: 400;\n    font-size: 28px;\n    line-height: 34px;\n}\n.infos > h2[data-v-01aeca14] {\n    font-family: Montserrat;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 35px;\n    text-transform: uppercase;\n    line-height: 43px;\n    padding-top: 4.8em;\n    padding-bottom: 0.5em;\n}\n.infos a[data-v-01aeca14] {\n    color: white !important;\n}\n.btn-inscription[data-v-01aeca14] {\n    margin-top: 1.7em;\n    background-color: #930046;\n    border-radius: 100px;\n    padding: 0.7em 2em 0.7em 2em;\n    font-family: Montserrat;\n    font-style: normal;\n    font-weight: bold;\n    font-size: 25px;\n    line-height: 30px;\n    text-align: center;\n    color: white;\n    border: none;\n}\n.btn-inscription[data-v-01aeca14]:hover, .btn-inscription[data-v-01aeca14]:focus {\n    background-color: #A6A6A6 !important;\n}\n\n/* ------------------\n  Features section\n---------------------*/\n@media screen and (min-width: 1200px) {\n.rect-features[data-v-01aeca14] {\n        height: 62px;\n}\n}\n.feature[data-v-01aeca14] {\n    font-family: Montserrat;\n    text-align: center;\n    background: #930046;\n    height: 100%;\n}\n.feature .feature-inner[data-v-01aeca14] {\n    padding: 20px 25px;\n    display: -ms-flex;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    height: 100%;\n}\n.feature h2[data-v-01aeca14] {\n    color: white;\n    font-style: normal;\n    font-weight: 400;\n    font-size: 20px;\n    line-height: 24px;\n    text-transform: uppercase;\n    display: inline-block;\n}\n.feature[data-v-01aeca14]:nth-child(1), .feature[data-v-01aeca14]:nth-child(2) {\n    border-right: solid 1.5px rgba(229,229,229, .5);\n}\n.feature.active[data-v-01aeca14] {\n    background: #DEDEDE;\n}\n.feature.active h2[data-v-01aeca14] {\n    color: black;\n}\n.feature a[data-v-01aeca14] {\n    color: white !important;\n}\n.feature.active a[data-v-01aeca14] {\n    color: black !important;\n}\n.feature-inner > h2[data-v-01aeca14]:hover {\n    font-weight: 500;\n    text-decoration: underline;\n}\n", ""]);
 
 // exports
 
@@ -33864,38 +33961,6 @@ module.exports = function escape(url) {
     }
 
     return url
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/is-buffer/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/is-buffer/index.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-// The _isBuffer check is for Safari 5-7 support, because it's missing
-// Object.prototype.constructor. Remove this eventually
-module.exports = function (obj) {
-  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
-}
-
-function isBuffer (obj) {
-  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
-
-// For Node v0.10 support. Remove this eventually.
-function isSlowBuffer (obj) {
-  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
 
@@ -66777,7 +66842,7 @@ var render = function() {
                               "product_selection product_selection_selected year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3",
                             on: { click: _vm.set_choice }
                           },
-                          [_vm._v("2015")]
+                          [_vm._v(_vm._s(_vm.product.year))]
                         ),
                         _vm._v(" "),
                         _c(
@@ -66820,7 +66885,7 @@ var render = function() {
                               "product_selection product_selection_selected conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3",
                             on: { click: _vm.set_choice }
                           },
-                          [_vm._v("Carton de 12 unités")]
+                          [_vm._v(_vm._s(_vm.product.packaging_capacity))]
                         )
                       ]
                     )
@@ -66843,7 +66908,7 @@ var render = function() {
                               "product_selection_selected product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3",
                             on: { click: _vm.set_choice }
                           },
-                          [_vm._v("75 cl")]
+                          [_vm._v(_vm._s(_vm.product.format))]
                         )
                       ]
                     )
@@ -66917,7 +66982,7 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "Le Château Les Justices, en Sauternes, appartient à la famille Gonet-Médeville, surnommée \"l'antiquaire du Sauternes\", du fait de son Château Gilette qui défie le temps. En effet, ce nectar est mis en bouteilles seulement après une vingtaine d'années de vieillissement. Le vin du Château Les Justices en est une superbe introduction...\n                                "
+                        "Le Château Les Justices, en Sauternes, appartient à la famille Gonet-Médeville, surnommée \"l'antiquaire du Sauternes\", du fait de son Château Gilette qui défie le temps. En effet, ce nectar est mis en bouteilles seulement après une vingtaine d'années de vieillissement. Le vin du Château Les Justices en est une superbe introduction...\n                            "
                       )
                     ]
                   )
@@ -66931,7 +66996,7 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "Ceci est un petit test information\n                                "
+                        "Ceci est un petit test information\n                            "
                       )
                     ]
                   )
@@ -79974,8 +80039,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\projet-articulation\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\projet-articulation\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/christopheschranz/Documents/Cours/HEIG-2/devProdMed/ProjetArticulation/laravel/projet-articulation/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/christopheschranz/Documents/Cours/HEIG-2/devProdMed/ProjetArticulation/laravel/projet-articulation/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
