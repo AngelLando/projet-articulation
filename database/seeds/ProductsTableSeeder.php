@@ -24,7 +24,7 @@ class ProductsTableSeeder extends Seeder
             'slug' => str_slug('Château Meyney'),
             'format_id' => 2,
             'type_id' => 1,
-            'region_id' => 1,
+            'supplier_id' => 1,
             'price_id'=> 1],
 
             ['kind' => 'Vin rouge',
@@ -39,7 +39,7 @@ class ProductsTableSeeder extends Seeder
             'slug' => str_slug('Château Cambon la Pelouse'),
             'format_id' => 1,
             'type_id' => 2,
-            'region_id' => 1,
+            'supplier_id' => 1,
             'price_id'=> 1],
 
             ['kind' => 'Vin mousseux',
@@ -54,7 +54,7 @@ class ProductsTableSeeder extends Seeder
             'slug' => str_slug('Champagne Charles Mignon 1er Cru "Premium Reserve Brut"'),
             'format_id' => 3,
             'type_id' => 2,
-            'region_id' => 1,
+            'supplier_id' => 1,
             'price_id'=> 1],
 
             ['kind' => 'Vin blanc',
@@ -69,7 +69,7 @@ class ProductsTableSeeder extends Seeder
             'slug' => str_slug('Château Romer du Hayot'),
             'format_id' => 1,
             'type_id' => 1,
-            'region_id' => 1,
+            'supplier_id' => 1,
             'price_id'=> 1]
          ]);        
     }

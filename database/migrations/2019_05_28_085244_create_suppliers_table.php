@@ -14,12 +14,13 @@ class CreateSuppliersTable extends Migration
     public function up()
     {
         Schema::create('suppliers', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('name')->unique();
             $table->string('url_website');
-            $table->integer('country_id')->unsigned();
-            $table->foreign('country_id')
+            $table->integer('region_id')->unsigned();
+            $table->foreign('region_id')
                 ->references('id')
-                ->on('countries');
+                ->on('regions');
          });
     }
 
