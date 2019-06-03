@@ -45,13 +45,16 @@ class CartItemController extends Controller
             'quantity' => 'integer|max:'.$selectedProductStock,
         ]);
 
-        $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
+        if(Auth::check()) {
+            $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
 
-        $cartItem = CartItem::create([
-            'product_id' => $request->product_id,
-            'cart_id' => $cart->id,
-            'quantity' => $request->quantity
-        ]);
+            $cartItem = CartItem::create([
+                'product_id' => $request->product_id,
+                'cart_id' => $cart->id,
+                'quantity' => $request->quantity
+            ]);
+        }
+        
         return $selectedProductStock;
     }
 
