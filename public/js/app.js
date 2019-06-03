@@ -33722,7 +33722,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,700,700i,900,900i&display=swap);", ""]);
 
 // module
-exports.push([module.i, "/* permet de rajouter la font \"icomoon\" */\n@font-face {\r\n    font-family: \"icomoon\";\r\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + ");\r\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + "?#iefix) format(\"embedded-opentype\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.ttf */ "./resources/fonts/icomoon.ttf")) + ") format(\"truetype\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.woff */ "./resources/fonts/icomoon.woff")) + ") format(\"woff\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.svg */ "./resources/fonts/icomoon.svg")) + "#icomoon) format(\"svg\");\r\n    font-weight: normal;\r\n    font-style: normal;\n}\r\n\r\n/***********\r\nGlobal\r\n***********/\ndiv\r\n{\r\n    display: block;\r\n    position: relative;\r\n    box-sizing: border-box;\n}\na, a:hover, a:visited, a:active, a:link\r\n{\r\n    text-decoration: none;\r\n    -webkit-font-smoothing: antialiased;\r\n    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;\r\n    text-shadow: rgba(0,0,0,.01) 0 0 1px;\n}\r\n\r\n\r\n/***********\r\nContainer\r\n***********/\n.super_container\r\n{\r\n    width: 100%;\r\n    overflow: hidden;\n}\n.super_container_inner\r\n{\r\n    transition: all 400ms ease;\n}\n.super_container_inner.active\r\n{\r\n    -webkit-transform: translateX(350px);\r\n    transform: translateX(350px);\n}\n.super_overlay\r\n{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100%;\r\n    background: rgba(0,0,0,0.75);\r\n    z-index: 101;\r\n    visibility: hidden;\r\n    opacity: 0;\r\n    transition: all 400ms ease;\n}\n.super_container_inner.active .super_overlay\r\n{\r\n    visibility: visible;\r\n    opacity: 1;\n}\r\n\r\n\r\n\r\n/***********\r\nProducts\r\n***********/\n.image {\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    width: 17%;\n}\n.products\r\n{\r\n    background: #FFFFFF;\r\n    padding-top: 72px;\r\n    padding-bottom: 82px;\n}\n.products_row\r\n{\r\n    margin-top: 32px;\n}\r\n\r\n\r\n/***********\r\nProduct\r\n***********/\n.product\r\n{\r\n    width: 321px;\r\n    overflow: hidden;\r\n    border-radius: 3px;\r\n    padding-top: 10px;\r\n    margin-bottom: 30px;\r\n    border: 1px solid #F0F0F0;\r\n    box-sizing: border-box;\r\n    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.09);\n}\n.product_name a:hover\r\n{\r\n    color: #bdbdbf;\n}\n.product_info\r\n{\r\n    padding-left: 25px;\r\n    padding-right: 25px;\r\n    padding-top: 18px;\r\n    padding-bottom: 10px;\n}\n.product_name a\r\n{\r\n    font-family: Montserrat;\r\n    font-weight: bold;\r\n    font-size: 20px;\r\n    line-height: 24px;\r\n    color: black !important;\n}\n.product_image {\r\n    margin-bottom: -40px;\n}\n.product_info.name {\r\n    height: 5.5em;\n}\n.product_info.price {\r\n    height:4.5em;\n}\n.product_info.year_format {\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    margin-top: -15px;\r\n    font-size: 20px;\r\n    display: flex;\r\n    align-items: center;\r\n    height: 2em;\r\n    color: #000000;\n}\n.product_price {\r\n    color: #930046;\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: bold;\r\n    font-size: 26px;\r\n    margin-left: 1px;\r\n    vertical-align: top;\n}\n.product_buttons > div\r\n{\r\n    width: 100%;\r\n    height: 100%;\n}\n.product_buttons > div > div\r\n{\r\n    width: 50%;\r\n    height: 100%;\r\n    transition: all 200ms ease;\n}\n.home_item_large .product_buttons > div > div\r\n{\r\n    border-top: solid 1px rgba(255,255,255,0.2);\n}\r\n\r\n\r\n/*taille du panier*/\n.product_button > div > div img {\r\n    padding-top: 3px;\r\n    max-width: 70%;\n}\n.home_item_large .product_buttons > div > div:hover\r\n{\r\n    background: rgba(255,255,255,0.1);\n}\n.product_buttons > div > div:first-of-type\r\n{\r\n    border-right: solid 1px #ededed;\n}\n.home_item_large .product_buttons > div > div:first-of-type\r\n{\r\n    border-right: solid 1px rgba(255,255,255,0.2);\n}\n.product_button\r\n{\r\n    cursor: pointer;\n}\n.product_button > div > div\r\n{\r\n    width: 36px;\r\n    height: 36px;\r\n    margin-top: 4px;\n}\n.favorite-heart {\r\n    top: -200px;\r\n    right: -250px;\n}\n.favorite-heart > img\r\n{\r\n    width: 40px;\n}\ndiv.product_button.product_cart, .add_product {\r\n    color: white;\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    line-height: 22px;\r\n    font-size: 18px;\r\n    font-weight: 500;\r\n    background-color: #930046;\n}\n.product_cart {\r\n    width: 7em !important;\r\n    padding: 1.5em;\r\n    height: 2.25em !important;\n}\n.add_product {\r\n    padding: 1.5em 0em 1.5em 3em;\r\n    height: 2.25em !important;\r\n    width: 12em !important;\r\n    padding-left: 0.4em;\n}\r\n\r\n\r\n/***********\r\nProduct_rating\r\n***********/\n.rating_r i:not(:last-of-type)\r\n{\r\n    margin-right: 4px;\n}\n.rating_r i::before\r\n{\r\n    font-family: 'icomoon';\r\n    content: \"\\E9D9\";\r\n    font-style: normal;\r\n    font-size: 16px;\r\n    color: #930046;\n}\r\n", ""]);
+exports.push([module.i, "/* permet de rajouter la font \"icomoon\" */\n@font-face {\r\n    font-family: \"icomoon\";\r\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + ");\r\n    src: url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.eot */ "./resources/fonts/icomoon.eot")) + "?#iefix) format(\"embedded-opentype\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.ttf */ "./resources/fonts/icomoon.ttf")) + ") format(\"truetype\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.woff */ "./resources/fonts/icomoon.woff")) + ") format(\"woff\"),\r\n    url(" + escape(__webpack_require__(/*! ../../../fonts/icomoon.svg */ "./resources/fonts/icomoon.svg")) + "#icomoon) format(\"svg\");\r\n    font-weight: normal;\r\n    font-style: normal;\n}\r\n\r\n/***********\r\nGlobal\r\n***********/\ndiv\r\n{\r\n    display: block;\r\n    position: relative;\r\n    box-sizing: border-box;\n}\na, a:hover, a:visited, a:active, a:link\r\n{\r\n    text-decoration: none;\r\n    -webkit-font-smoothing: antialiased;\r\n    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;\r\n    text-shadow: rgba(0,0,0,.01) 0 0 1px;\n}\r\n\r\n\r\n/***********\r\nContainer\r\n***********/\n.super_container\r\n{\r\n    width: 100%;\r\n    overflow: hidden;\n}\n.super_container_inner\r\n{\r\n    transition: all 400ms ease;\n}\n.super_container_inner.active\r\n{\r\n    -webkit-transform: translateX(350px);\r\n    transform: translateX(350px);\n}\n.super_overlay\r\n{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100%;\r\n    background: rgba(0,0,0,0.75);\r\n    z-index: 101;\r\n    visibility: hidden;\r\n    opacity: 0;\r\n    transition: all 400ms ease;\n}\n.super_container_inner.active .super_overlay\r\n{\r\n    visibility: visible;\r\n    opacity: 1;\n}\r\n\r\n\r\n\r\n/***********\r\nProducts\r\n***********/\n.image {\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    width: 17%;\n}\n.products\r\n{\r\n    background: #FFFFFF;\r\n    padding-top: 72px;\r\n    padding-bottom: 82px;\n}\n.products_row\r\n{\r\n    margin-top: 32px;\n}\r\n\r\n\r\n/***********\r\nProduct\r\n***********/\n.product\r\n{\r\n    width: 321px;\r\n    overflow: hidden;\r\n    border-radius: 3px;\r\n    padding-top: 10px;\r\n    margin-bottom: 30px;\r\n    border: 1px solid #F0F0F0;\r\n    box-sizing: border-box;\r\n    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.09);\n}\n.product_name a:hover\r\n{\r\n    color: #bdbdbf;\n}\n.product_info\r\n{\r\n    padding-left: 25px;\r\n    padding-right: 25px;\r\n    padding-top: 18px;\r\n    padding-bottom: 10px;\n}\n.product_name a\r\n{\r\n    font-family: Montserrat;\r\n    font-weight: bold;\r\n    font-size: 20px;\r\n    line-height: 24px;\r\n    color: black !important;\n}\n.product_image {\r\n    margin-bottom: -40px;\n}\n.product_info.name {\r\n    height: 5.5em;\n}\n.product_info.price {\r\n    height:4.5em;\n}\n.product_info.year_format {\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    margin-top: -15px;\r\n    font-size: 20px;\r\n    display: flex;\r\n    align-items: center;\r\n    height: 2em;\r\n    color: #000000;\n}\n.product_price {\r\n    color: #930046;\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: bold;\r\n    font-size: 26px;\r\n    margin-left: 1px;\r\n    vertical-align: top;\n}\n.product_buttons > div\r\n{\r\n    width: 100%;\r\n    height: 100%;\n}\n.product_buttons > div > div\r\n{\r\n    width: 50%;\r\n    height: 100%;\r\n    transition: all 200ms ease;\n}\n.home_item_large .product_buttons > div > div\r\n{\r\n    border-top: solid 1px rgba(255,255,255,0.2);\n}\r\n\r\n\r\n/*taille du panier*/\n.product_button > div > div img {\r\n    padding-top: 3px;\r\n    max-width: 70%;\n}\n.choice_list {\r\n  background: #FFFFFF;\r\n  width:100%;\r\n  height: 100%;\r\n  border-style: solid;\r\n  border-color: #EDEDED;\r\nborder-width: 2.5px 0 2.5px 2.5px ;\r\n  height: 3.5em !important;\n}\n.home_item_large .product_buttons > div > div:hover\r\n{\r\n    background: rgba(255,255,255,0.1);\n}\n.product_buttons > div > div:first-of-type\r\n{\r\n    border-right: solid 1px #ededed;\n}\n.home_item_large .product_buttons > div > div:first-of-type\r\n{\r\n    border-right: solid 1px rgba(255,255,255,0.2);\n}\n.product_button\r\n{\r\n    cursor: pointer;\n}\n.product_button > div > div\r\n{\r\n    width: 36px;\r\n    height: 36px;\r\n    margin-top: 4px;\n}\n.favorite-heart {\r\n    top: -200px;\r\n    right: -250px;\n}\n.favorite-heart > img\r\n{\r\n    width: 40px;\n}\ndiv.product_button.product_cart, .add_product {\r\n    color: white;\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    line-height: 22px;\r\n    font-size: 18px;\r\n    font-weight: 500;\r\n    background-color: #930046;\n}\n.product_cart {\r\n    width: 7em !important;\r\n    padding: 1.5em;\r\n    height: 2.25em !important;\n}\n.add_product {\r\n    padding: 1.5em 0em 1.5em 3em;\r\n    height: 2.25em !important;\r\n    width: 12em !important;\r\n    padding-left: 0.4em;\n}\r\n\r\n\r\n/***********\r\nProduct_rating\r\n***********/\n.rating_r i:not(:last-of-type)\r\n{\r\n    margin-right: 4px;\n}\n.rating_r i::before\r\n{\r\n    font-family: 'icomoon';\r\n    content: \"\\E9D9\";\r\n    font-style: normal;\r\n    font-size: 16px;\r\n    color: #930046;\n}\r\n", ""]);
 
 // exports
 
@@ -66646,7 +66646,48 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm._m(2, true)
+                      _c("div", { staticClass: "product_buttons" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "text-right d-flex flex-row align-items-start justify-content-start"
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center"
+                              },
+                              [
+                                _c("select", { staticClass: "choice_list" }, [
+                                  _c(
+                                    "option",
+                                    {
+                                      domProps: {
+                                        value: product.packaging_capacity
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(product.packaging_capacity))]
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "product_button add_product text-center d-flex flex-column align-items-center justify-content-center"
+                              },
+                              [_vm._v("AJOUTER")]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(2, true)
+                          ]
+                        )
+                      ])
                     ])
                   ])
                 ])
@@ -66696,52 +66737,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "product_buttons" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "text-right d-flex flex-row align-items-start justify-content-start"
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                "product_button text-center d-flex flex-column align-items-center justify-content-center"
-            },
-            [_c("p", [_vm._v("quantité")])]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "product_button add_product text-center d-flex flex-column align-items-center justify-content-center"
-            },
-            [_vm._v("AJOUTER")]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "product_button product_cart text-center d-flex flex-column align-items-center justify-content-center"
-            },
-            [
-              _c("div", [
-                _c("div", [
-                  _c("img", {
-                    staticClass: "svg",
-                    attrs: { src: "images/cart.svg", alt: "" }
-                  })
-                ])
-              ])
-            ]
-          )
-        ]
-      )
-    ])
+    return _c(
+      "div",
+      {
+        staticClass:
+          "product_button product_cart text-center d-flex flex-column align-items-center justify-content-center"
+      },
+      [
+        _c("div", [
+          _c("div", [
+            _c("img", {
+              staticClass: "svg",
+              attrs: { src: "images/cart.svg", alt: "" }
+            })
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -66866,9 +66878,15 @@ var render = function() {
                         },
                         [
                           _c("select", { staticClass: "choice_list" }, [
-                            _c("option", { attrs: { value: "volvo" } }, [
-                              _vm._v(_vm._s(_vm.product.packaging_capacity))
-                            ])
+                            _c(
+                              "option",
+                              {
+                                domProps: {
+                                  value: _vm.product.packaging_capacity
+                                }
+                              },
+                              [_vm._v(_vm._s(_vm.product.packaging_capacity))]
+                            )
                           ])
                         ]
                       ),
