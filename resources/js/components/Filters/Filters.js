@@ -6,7 +6,8 @@ export default {
     },
     props : ['prod'],
     mounted () {
-        this.products = JSON.parse(this.prod);
+        let json = JSON.parse(this.prod);
+        this.products = json.products;
     },
 
 }
