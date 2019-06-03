@@ -1997,7 +1997,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ['prod'],
   mounted: function mounted() {
-    this.product = JSON.parse(this.prod);
+    var json = JSON.parse(this.prod);
+    this.product = json.product;
+    this.recommandations = json.recommandations;
   }
 });
 
