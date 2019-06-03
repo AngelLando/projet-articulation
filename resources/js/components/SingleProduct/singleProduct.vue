@@ -14,7 +14,7 @@
                                             <div><div><img src="images/favorite-heart-empty.svg" class="svg" alt=""><div>+</div></div></div>
                                         </div></div>!-->
                                         <div>
-                                            <div class="product_image"><img class="image" :src="product.path_image" alt=""><div class="share"><img src="images/share.svg" class="svg" alt=""><div class="favorite-heart"><img src="images/favorite-heart-empty.svg" class="svg" alt=""></div></div></div>
+                                            <div class="product_image"><img class="image" :src="product.path_image" alt=""><div class="share"><img src="images/share.svg" class="svg" alt=""></div><div class="favorite-heart"><img src="images/favorite-heart-empty.svg" class="svg" alt=""></div></div>
                                         </div>
                                     </div>
                                 </div>
@@ -33,70 +33,71 @@
                                             </div> -->
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
                                                 <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
-                                                <select class="choice_list" v-model="quantity">
+                                                    <select class="choice_list" v-model="quantity">
                                                         <option>50</option>
-                                                </select>
-                                                   
+                                                    </select>
+
                                                 </div>
 
                                                 <div @click="input(product.id)" class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
                                                 <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-                                                <div><div><img src="images/cart.svg" class="svg" alt=""></div></div>
+                                                    <div><div><img src="images/cart.svg" class="svg" alt=""></div></div>
+                                                </div>
+                                            </div>
+                                            <p class="error pt-2" v-if="errors.quantity">{{errors.quantity[0]}}</p>
+
+                                        </form>
+                                    </div>
+                                    <div class="selection">
+                                        <div class="selection_title pt-4"><p>Années pour ce vin :</p></div>
+                                        <div>
+                                            <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                                <div @click="set_choice" class="product_selection product_selection_selected year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.year}}</div>
+                                                <div @click="set_choice" class="product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2016</div>
+                                                <div @click="set_choice" class="product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2017</div>
+
                                             </div>
                                         </div>
-                                                                                     <p class="error pt-2" v-if="errors.quantity">{{errors.quantity[0]}}</p>
+                                        <div class="selection_title pt-4"><p>Condtionnements disponibles pour ce format :</p></div>
+                                        <div>
+                                            <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                                <div @click="set_choice" class="product_selection product_selection_selected conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.packaging_capacity}}</div>
 
-                                    </form>
-                                </div>
-                                <div class="selection">
-                                    <div class="selection_title pt-4"><p>Années pour ce vin :</p></div>
-                                    <div>
-                                        <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                            <div @click="set_choice" class="product_selection product_selection_selected year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.year}}</div>
-                                            <div @click="set_choice" class="product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2016</div>
-                                            <div @click="set_choice" class="product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2017</div>
-
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="selection_title pt-4"><p>Condtionnements disponibles pour ce format :</p></div>
-                                    <div>
-                                        <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                            <div @click="set_choice" class="product_selection product_selection_selected conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.packaging_capacity}}</div>
+                                        <div class="selection_title pt-4"><p>Formats disponibles :</p></div>
+                                        <div>
+                                            <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                                <div @click="set_choice" class="product_selection_selected product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.format}}</div>
 
-                                        </div>
-                                    </div>
-                                    <div class="selection_title pt-4"><p>Formats disponibles :</p></div>
-                                    <div>
-                                        <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                            <div @click="set_choice" class="product_selection_selected product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.format}}</div>
-
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class ="col-xl-12 "></div>
+                                <div class="row more_info ml-3 pt-5 pb-3">
+                                    <div class="description more_info_selected col-md-auto" @click="underline" v-on:click="isHiddenDescr=true; isHiddenInfo=false; isHiddenRating=false">Description</div>
+                                    <div class="information col-md-auto" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=true; isHiddenRating=false">Information</div>
+                                    <div class="rating col-md-auto" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=false; isHiddenRating=true">Avis (4)</div>
+                                </div>
+                                <div class="content content_description col-xl-12 ml-3" v-if="isHiddenDescr">Le Château Les Justices, en Sauternes, appartient à la famille Gonet-Médeville, surnommée "l'antiquaire du Sauternes", du fait de son Château Gilette qui défie le temps. En effet, ce nectar est mis en bouteilles seulement après une vingtaine d'années de vieillissement. Le vin du Château Les Justices en est une superbe introduction...
+                                </div>
+                                <div class="content content_information col-xl-12 ml-3" v-if="isHiddenInfo"><p >Cotation : {{product.quotation}}</p>
+                                    <p>Teneur en alcool : 
+                                    {{product.alcohol}}</p>
+                                    <p >Type : {{product.kind}}</p>
+                                </div>
+                                <div class="content content_rating col-xl-12 ml-3" v-if="isHiddenRating"><p>Titre <div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div></p><p>Contenu</p>
                             </div>
-                            <div class ="col-xl-12 "></div>
-                            <div class="row more_info ml-3 pt-5 pb-3">
-                                <div class="description more_info_selected col-md-auto" @click="underline" v-on:click="isHiddenDescr=true; isHiddenInfo=false; isHiddenRating=false">Description</div>
-                                <div class="information col-md-auto" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=true; isHiddenRating=false">Information</div>
-                                <div class="rating col-md-auto" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=false; isHiddenRating=true">Avis (4)</div>
-                            </div>
-                            <div class="content content_description col-xl-12 ml-3" v-if="isHiddenDescr">Le Château Les Justices, en Sauternes, appartient à la famille Gonet-Médeville, surnommée "l'antiquaire du Sauternes", du fait de son Château Gilette qui défie le temps. En effet, ce nectar est mis en bouteilles seulement après une vingtaine d'années de vieillissement. Le vin du Château Les Justices en est une superbe introduction...
-                            </div>
-                            <div class="content content_information col-xl-12 ml-3" v-if="isHiddenInfo"><p >Cotation : {{product.quotation}}</p>
-<p>Teneur en alcool : 
-{{product.alcohol}}</p>
-<p >Type : {{product.kind}}</p>
-                            </div>
-                            <div class="content content_rating col-xl-12 ml-3" v-if="isHiddenRating"><p>Titre <div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div></p><p>Contenu</p>
+                            <div class = "col-xl-12 text-center"><hr class="line ml-3 mt-4 mb-4"></div>
                         </div>
-                        <div class = "col-xl-12 text-center"><hr class="line ml-3 mt-4 mb-4"></div>
-                    </div>
 
+                    </div>
+                    <div class="similar_products"><p>D'autres produits similaires</p></div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </template>
 
 <script src="./singleProduct.js"></script>

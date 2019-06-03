@@ -20,9 +20,18 @@ Global
 ***********/
 
 
-a, a:hover, a:visited, a:active, a:link
+a, a:visited, a:active, a:link
 {
   text-decoration: none;
+  color: black;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+  text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+
+a:hover{
+    text-decoration: none;
+color: #828282;
   -webkit-font-smoothing: antialiased;
   -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
   text-shadow: rgba(0,0,0,.01) 0 0 1px;
@@ -41,6 +50,16 @@ margin-top:5px;
 /***********
 Container
 ***********/
+
+.similar_products{
+  margin-left:220px;
+font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 15px;
+line-height: 20px;
+color: #000000;
+}
 
 .super_container
 {
@@ -107,7 +126,6 @@ Products
 {
   background: #FFFFFF;
   padding-top: 20px;
-  padding-bottom: 20px;
 }
 
 
@@ -299,7 +317,6 @@ color: black;
 {
   width: 35px;
 }
-
 
 div.product_button.product_cart, .add_product {
   color: white;
