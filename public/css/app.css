@@ -10662,3 +10662,24 @@ a.text-dark:focus {
   }
 }
 
+nav.navbar {
+  background-color: #930046 !important;
+}
+
+nav.navbar > div,
+a {
+  color: #ffffff !important;
+}
+
+.dropdown-menu .dropdown-item {
+  color: #930046 !important;
+}
+
+.nav-item {
+  text-align: center;
+}
+
+.nav-link p {
+  padding-top: 1em;
+}
+
