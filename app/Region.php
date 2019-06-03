@@ -10,7 +10,7 @@ class Region extends Model
         return $this->belongsTo('App\Country');
     }
 
-    public function products() {
-        return $this->hasMany('App\Product');
+    public function suppliers() {
+        return $this->hasMany('App\Supplier');
     }
 }
