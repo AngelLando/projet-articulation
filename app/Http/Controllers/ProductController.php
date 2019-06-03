@@ -18,14 +18,16 @@ class ProductController extends Controller
         $all = ['products' => Product::all()];
 
         $products = $all['products'];
+        $tab = [];
         $allProducts = [];
         foreach ($products as $product) {
             $newProduct = $this->getAllData($product);
             array_push($allProducts, $newProduct);
         }
+        $tab['products'] = $allProducts;
 
         // CONVERT ARRAY TO JSON TO PASS DATAS
-        $json = json_encode($allProducts);
+        $json = json_encode($tab);
         return view('homepage')->with('products', $json);
     }
 
@@ -39,12 +41,13 @@ class ProductController extends Controller
                 ['id', '!=', $rawProduct->id]]
         )->get()->take(3);
         foreach ($recommandationProduct as $recommandation) {
-            $newRecommandation = $this->getAllData($rawProduct);
+            $newRecommandation = $this->getAllData($recommandation);
             array_push($recommandations, $newRecommandation);
         }
+
         $product = $this->getAllData($rawProduct);
         $products['product'] = $product;
-        $products['recommandations'] = $recommandations;
+        $products['products'] = $recommandations;
         $json = json_encode($products);
         return view('single')->with('products', $json);
     }
