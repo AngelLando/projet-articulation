@@ -62,4 +62,4 @@
 </template>
 
 <script src="./Catalog.js"></script>
-<style src="./Catalog.css"></style>
+<style src="./Catalog.css" scoped></style>

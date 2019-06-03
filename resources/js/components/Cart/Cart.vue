@@ -5,60 +5,54 @@
                 <div class="super_overlay"></div>
                 <div class="products">
                     <div class="container">
-                        <div class="row products_row">
+                     <div class ="pt-3 pb-1 cart_header row">
+                        <p class="header_title col-6">Produits</p>
+                        <p class="header_title col-1 text-right">Quantité</p>
+                        <p class="header_title col-2 text-left">Prix unitaire</p>
+                        <p class="header_title col-2 text-center">Total</p>
+                    </div>
+                    <div v-for="product in products"  class="">
+                        <div class ="pt-3 pb-1 cart_content row">
+                          <div class="product_cart_image pl-3"> <img  class="product_cart_image" :src="product.path_image" alt=""> </div> 
+                          <p class="cart_product_name col-6 row pl-5 mt-2">{{product.name}}</p>
+                          <div class="col-1 text-right product_quantity text-center ">
+                              <select  class="choice_list">
+                                <option :value="product.packaging_capacity">{{product.packaging_capacity}}</option>
+                            </select>
+                        </div><p class="multiply">X</p>
+                        <p class="cart_product_price col-2">CHF {{product.price}}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></p>
+                        <p class="cart_title col-2 text-center cart_product_price_total">CHF 46.-</p>
+                        <div><img src="images/delete.svg" class="svg" alt=""></div>
+                        <p class="cart_product_details">Carton de {{product.packaging_capacity}} unité<span v-if="(product.packaging_capacity>1)">s</span> - {{product.format}}</p>
 
-                            <!-- Product -->
-                            <div v-for="product in products"  class="col-xl-4 col-md-6">
-                                <div class="product">
-                                    <!--<div><div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-                                        <div><div><img src="images/favorite-heart-empty.svg" class="svg" alt=""><div>+</div></div></div>
-                                    </div></div>!-->
-                                    <div>
-                                        <div class="product_image"><img class="image" :src="product.path_image" alt=""><div class="favorite-heart"><img src="images/favorite-heart-empty.svg" class="svg" alt=""></div></div>
-                                    </div>
-                                    <div class="product_content">
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-7"></div>
+                        <p class="col-2 text-right cart_frais">TVA</p>
+                        <p class="col-2 text-center cart_frais_price">CHF 150.-</p>
+                        <div class="col-1"></div>
+                    </div>
+                      <div class="row pt-2">
+                    <div class="col-7"></div>
+                        <p class="col-2 text-right cart_frais">Livraison</p>
+                        <p class="col-2 text-center cart_frais_price">CHF 25.-</p>
+                        <div class="col-1"></div>
+                    </div>
+                      <div class="row pt-2">
+                    <div class="col-7"></div>
+                        <p class="col-2 text-right cart_frais_price_total">Total</p>
+                        <p class="col-2 text-center cart_frais_price_total">CHF 225.50</p>
+                        <div class="col-1"></div>
+                    </div>
 
-                                        <div class="product_info d-flex flex-row align-items-start justify-content-start">
-                                            <div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                        </div>
-                                        <div class="product_info year_format d-flex flex-row align-items-start justify-content-start">
-                                            <div>
-                                                <div>
-                                                    <div class="product_year">{{product.year}}</div>
-                                                </div>
-                                            </div>
-                                            <div class="ml-auto text-right">
-                                                <div class="product_format">{{product.format}}</div>
-                                            </div>
-                                        </div>
-                                        <div class="product_info name d-flex flex-row align-items-start justify-content-start">
-                                            <div class="product_name"><a :href="`produit/`+product.slug">{{ product.name }}</a></div>
-                                        </div>
-                                        <div class="product_info price d-flex flex-row align-items-start justify-content-start">
-                                            <div class="product_price text-right">CHF {{ product.price }}<span v-if="product.price % 1 === 0">.-</span></div>
-                                        </div>
-                                        <div class="product_buttons">
-                                            <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                <div class="product_button text-center d-flex flex-column align-items-center justify-content-center">
-                                                    <p>{{ product.quantity }}</p>
-                                                    <p v-if="product.error">{{product.error}}</p>
-                                                </div>
-                                                <div class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
-                                                <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-                                                    <div><div><img src="images/cart.svg" class="svg" alt=""></div></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script src="./Cart.js"></script>
-<style src="./Cart.css"></style>
+<style scoped src="./Cart.css"></style>

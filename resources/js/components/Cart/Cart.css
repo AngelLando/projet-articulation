@@ -20,14 +20,6 @@ Global
 ***********/
 
 
-div
-{
-    display: block;
-    position: relative;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
 
 a, a:hover, a:visited, a:active, a:link
 {
@@ -49,44 +41,6 @@ Container
 }
 
 
-.super_container_inner
-{
-    -webkit-transition: all 400ms ease;
-    -moz-transition: all 400ms ease;
-    -ms-transition: all 400ms ease;
-    -o-transition: all 400ms ease;
-    transition: all 400ms ease;
-}
-.super_container_inner.active
-{
-    -webkit-transform: translateX(350px);
-    -moz-transform: translateX(350px);
-    -ms-transform: translateX(350px);
-    -o-transform: translateX(350px);
-    transform: translateX(350px);
-}
-.super_overlay
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100%;
-    background: rgba(0,0,0,0.75);
-    z-index: 101;
-    visibility: hidden;
-    opacity: 0;
-    -webkit-transition: all 400ms ease;
-    -moz-transition: all 400ms ease;
-    -ms-transition: all 400ms ease;
-    -o-transition: all 400ms ease;
-    transition: all 400ms ease;
-}
-.super_container_inner.active .super_overlay
-{
-    visibility: visible;
-    opacity: 1;
-}
 
 
 
@@ -106,8 +60,8 @@ Products
 .products
 {
     background: #FFFFFF;
-    padding-top: 72px;
-    padding-bottom: 82px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 
@@ -121,184 +75,118 @@ Products
 Product
 ***********/
 
-.product
-{
-    width: 321px;
-    overflow: hidden;
-    border-radius: 3px;
-    padding-top: 10px;
-    margin-bottom: 30px;
-    border: 1px solid #F0F0F0;
-    box-sizing: border-box;
-    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.09);
+.cart_header {
+    background: #930046;
 }
 
-.product_name a:hover
-{
-    color: #bdbdbf;
-}
-
-
-.product_info
-{
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-top: 18px;
-    padding-bottom: 10px;
-}
-
-.product_name a
-{
+.header_title{
     font-family: Montserrat;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 24px;
-    color: black;
+font-style: normal;
+font-weight: bold;
+font-size: 15px;
+line-height: 15px;
+color: #FFFFFF;
+
 }
 
-
-.product_image {
-    margin-bottom: -40px;
+.product_cart{
+    height:100%;
 }
 
-
-.product_info.name {
-    height: 5.5em;
-}
-
-
-.product_info.price {
-    height:4.5em;
-}
-
-
-.product_info.year_format {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 500;
-    margin-top: -15px;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    height: 2em;
-    color: #000000;
-}
-
-
-.product_price {
-    color: #930046;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 26px;
-    margin-left: 1px;
-    vertical-align: top;
-}
-
-
-.product_buttons > div
-{
-    width: 100%;
-    height: 100%;
-}
-.product_buttons > div > div
-{
-    width: 50%;
-    height: 100%;
-    -webkit-transition: all 200ms ease;
-    -moz-transition: all 200ms ease;
-    -ms-transition: all 200ms ease;
-    -o-transition: all 200ms ease;
-    transition: all 200ms ease;
-}
-
-.home_item_large .product_buttons > div > div
-{
-    border-top: solid 1px rgba(255,255,255,0.2);
-}
-
-
-/*taille du panier*/
-.product_button > div > div img {
-    padding-top: 3px;
-    max-width: 70%;
-}
-
-.home_item_large .product_buttons > div > div:hover
-{
-    background: rgba(255,255,255,0.1);
-}
-.product_buttons > div > div:first-of-type
-{
-    border-right: solid 1px #ededed;
-}
-.home_item_large .product_buttons > div > div:first-of-type
-{
-    border-right: solid 1px rgba(255,255,255,0.2);
-}
-.product_button
-{
-    cursor: pointer;
-}
-.product_button > div > div
-{
-    width: 36px;
-    height: 36px;
-    margin-top: 4px;
-}
-
-
-.favorite-heart {
-    top: -200px;
-    right: -250px;
-}
-
-
-.favorite-heart > img
-{
+.product_cart_image{
+      display: block;
     width: 40px;
+        height: auto;
 }
 
-
-div.product_button.product_cart, .add_product {
-    color: white;
+.cart_product_name{
     font-family: Montserrat;
-    font-style: normal;
-    line-height: 22px;
-    font-size: 18px;
-    font-weight: 500;
-    background-color: #930046;
+font-style: normal;
+font-weight: bold;
+font-size: 20px;
+line-height: 25px;
+color: #000000;
 }
 
+.cart_content{
+padding-top:30px !important;
+border-bottom: 1px solid #D3D3D3;
 
-.product_cart {
-    width: 7em !important;
-    padding: 1.5em;
-    height: 2.25em !important;
 }
 
-.add_product {
-    padding: 1.5em 0em 1.5em 3em;
-    height: 2.25em !important;
-    width: 12em !important;
-    padding-left: 0.4em;
+.multiply{
+    font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 25px;
+line-height: 25px;
+text-align: center;
+color: #828282;
 }
 
-
-/***********
-Product_rating
-***********/
-
-
-.rating_r i:not(:last-of-type)
-{
-    margin-right: 4px;
+.cart_product_price {
+    font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 20px;
+line-height: 25px;
+color: #000000;
 }
-.rating_r i::before
-{
-    font-family: 'icomoon';
-    content: "\e9d9";
-    font-style: normal;
-    font-size: 16px;
-    color: #930046;
+
+.cart_product_price_total {
+    font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 20px;
+line-height: 25px;
+color: #930046;
+}
+
+.choice_list{
+     background: #FFFFFF;
+  width:100%;
+  height: 100%;
+  border-style: solid;
+  border-color: #EDEDED;
+border-width: 2.5px;
+  height: 2em !important;
+}
+.cart_product_details{
+    font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 15px;
+line-height: 20px;
+display: flex;
+align-items: center;
+color: #000000;
+}
+
+.cart_frais{
+font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 25px;
+text-align: right;
+color: #787878;
+}
+
+.cart_frais_price{
+    font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 25px;
+color: #828282;
+}
+
+.cart_frais_price_total{
+    font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 20px;
+line-height: 25px;
+color: #930046;
+
 }
