@@ -34,10 +34,9 @@ export default {
 			  })
 		  },
 		  input: function (test) {
-      localStorage.setItem('storedData', test);
-      console.log(localStorage.getItem('storedData'));
-      }
-	  }
+			localStorage.setItem('storedData', test);
+			console.log(localStorage.getItem('storedData'));
+      	}
 	},
 	props : ['prod'],
 	mounted () {
