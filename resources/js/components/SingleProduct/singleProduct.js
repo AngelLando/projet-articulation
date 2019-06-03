@@ -39,8 +39,9 @@ export default {
 	props : ['prod'],
 	mounted () {
 		let json = JSON.parse(this.prod);
+		console.log(json);
         this.product = json.product;
-        this.recommandations = json.recommandations;
+        this.products = json.products;
 	},
 
 }
