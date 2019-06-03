@@ -51,6 +51,42 @@ Route::post('/check', 'OrderController@store')->name('check');
 Route::post('/add', 'CartItemController@store')->name('add');
 
 
+// Pages Routes
+
+Route::get('/nos-primeurs', function()
+{
+    return View::make('pages.nos-primeurs');
+})->name('nos-primeurs');
+
+Route::get('/nos-vins', function()
+{
+    return View::make('pages.nos-vins');
+})->name('nos-vins');
+
+Route::get('/nouveautes', function()
+{
+    return View::make('pages.nouveautes');
+})->name('nouveautes');
+
+Route::get('/offres-speciales', function()
+{
+    return View::make('pages.offres-speciales');
+})->name('offres-speciales');
+
+Route::get('/promotions', function()
+{
+    return View::make('pages.promotions');
+})->name('promotions');
+
+
+
+
+
+
+
+
+
+
 /*
 Route::get('/{any}', function () {
     //return view('welcome');
