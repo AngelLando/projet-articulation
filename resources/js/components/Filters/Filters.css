@@ -18,6 +18,24 @@ Container
 }
 
 
+.content, .results_sort {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: #000000;
+    padding-left: 0em;
+}
+
+.results_sort {
+    flex-direction: row-reverse;
+}
+
+
+.results {
+    border-right: 1px solid #000000;
+}
+
 .super_container_inner
 {
     -webkit-transition: all 400ms ease;
@@ -57,6 +75,11 @@ Container
     opacity: 1;
 }
 
+
+.slider {
+    /* overwrite slider styles */
+    width: 200px;
+}
 
 
 /***********
