@@ -368,12 +368,18 @@ div.product_selection_selected{
 }
 
 .product_quantity{
-  width: 6em !important;
+  width: 5em !important;
 }
 
 .choice_list {
   background: #FFFFFF;
-border: 2.5px solid #EDEDED;
+  width:100%;
+  height: 100%;
+  border-style: solid;
+  border-color: #EDEDED;
+border-width: 2.5px 0 2.5px 2.5px ;
+  height: 2.8em !important;
+
 }
 
 .selection_title {
