@@ -67073,9 +67073,17 @@ var render = function() {
                       staticClass: "content content_information col-xl-12 ml-3"
                     },
                     [
-                      _vm._v(
-                        "Ceci est un petit test information\n                            "
-                      )
+                      _c("p", [
+                        _vm._v("Cotation : " + _vm._s(_vm.product.quotation))
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "Teneur en alcool : \n" + _vm._s(_vm.product.alcohol)
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Type : " + _vm._s(_vm.product.kind))])
                     ]
                   )
                 : _vm._e(),
