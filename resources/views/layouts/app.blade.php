@@ -23,7 +23,7 @@
     <div id="app">
       @include('includes.main-navbar')
       @include('includes.secondary-navbar')
-      <main class="py-4">
+      <main>
           @yield('content')
       </main>
     </div>
