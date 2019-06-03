@@ -1,18 +1,3 @@
-/**export default {
-	data() {
-		return {
-			product: [],
-			isHiddenDescr:true,
-			isHiddenInfo:false,
-			isHiddenRating:false,
-		}
-	},
-	mounted () {
-		axios.get('/projet-articulation/public/products/2').then(({data}) => this.product = data.products)
-	},
-}**/
-
-
 export default {
 	methods:{
 		underline: function(event){
@@ -26,8 +11,15 @@ export default {
 			$(clickedElement).addClass("product_selection_selected");
 			$(clickedElement).siblings().removeClass("product_selection_selected");
 			$(clickedElement).siblings().addClass("product_selection");
-		}
+		},
+		  input: function (test) {
+      localStorage.setItem('storedData', test);
+      console.log(localStorage.getItem('storedData'));
+  }
 	},
+	watch: {
+
+},
 	data() {
 		return {
 			product : [],
