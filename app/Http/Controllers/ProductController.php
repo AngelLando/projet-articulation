@@ -114,7 +114,7 @@ class ProductController extends Controller
         return ['product' => Product::where('id', $id)->firstOrFail()];
     }
 
-    public function getAllData($product)
+    public static function getAllData($product)
     {
         $newProduct = [];
         $newProduct['id'] = $product->id;
