@@ -6,7 +6,7 @@
                 <div class="products">
                     <div class="container">
                         <div class="row product_row">
-                            <div class ="breadcrumbs col-xl-12 mb-3 ml-3"><p>Nos vins > {{product.kind}} > {{product.name}}</p></div>
+                            <div class ="breadcrumbs col-xl-12 mb-4 ml-3"><a href="">Nos vins</a> ><a href=""> {{product.kind}}</a> > <a href="">{{product.name}}</a></div>
                             <!-- Product -->
                             <div class="col-xl-4">
                                 <div class="product">
@@ -38,23 +38,23 @@
                                         <div class="selection_title pt-4"><p>Années pour ce vin :</p></div>
                                         <div>
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                <div class="product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2015</div>
-                                                <div class="product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2016</div>
-                                                <div class="product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2017</div>
+                                                <div @click="set_choice" class="product_selection product_selection_selected year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2015</div>
+                                                <div @click="set_choice" class="product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2016</div>
+                                                <div @click="set_choice" class="product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2017</div>
 
                                             </div>
                                         </div>
                                         <div class="selection_title pt-4"><p>Condtionnements disponibles pour ce format :</p></div>
                                         <div>
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                <div class="product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">Carton de 12 unités</div>
+                                                <div @click="set_choice" class="product_selection product_selection_selected conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">Carton de 12 unités</div>
 
                                             </div>
                                         </div>
                                         <div class="selection_title pt-4"><p>Formats disponibles :</p></div>
                                         <div>
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                <div class="product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">75 cl</div>
+                                                <div @click="set_choice" class="product_selection_selected product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">75 cl</div>
 
                                             </div>
                                         </div>
