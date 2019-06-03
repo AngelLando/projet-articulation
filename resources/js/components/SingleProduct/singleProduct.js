@@ -24,18 +24,19 @@ export default {
 			$(clickedElement).siblings().addClass("product_selection");
 		},
 		submitCartItem (e) {
-			  this.cartItem  = {
-				  product_id: this.product.id,
-				  quantity: this.quantity
-			  };
-			  console.log(this.cartItem);
-			  axios.post('../add', this.cartItem).then(function (response) {
-				  console.log(response);
-			  })
+			  
 		  },
 		  input: function (test) {
 			localStorage.setItem('storedData', test);
 			console.log(localStorage.getItem('storedData'));
+			this.cartItem  = {
+				product_id: this.product.id,
+				quantity: this.quantity
+			};
+			console.log(this.cartItem);
+			axios.post('../add', this.cartItem).then(function (response) {
+				console.log(response);
+			})
       	}
 	},
 	props : ['prod'],
