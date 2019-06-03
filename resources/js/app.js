@@ -7,13 +7,10 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.component('products-catalog', require('./components/Catalog/Catalog.vue').default);
 Vue.component('products-single', require('./components/SingleProduct/singleProduct.vue').default);
-
-
 Vue.component('checkout-component', require('./components/Cart/Cart.vue').default);
-
 Vue.component('slider-homepage', require('./components/Slider/Slider.vue').default);
-
 Vue.component('address-component', require('./components/Address/Address.vue').default);
+Vue.component('filters-component', require('./components/Filters/Filters.vue').default);
 
 
 
