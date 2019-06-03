@@ -132,10 +132,13 @@ class ProductController extends Controller
         $newProduct['kind'] = $product->kind;
         $newProduct['year'] = $product->year;
         $newProduct['path_image'] = $product->path_image;
+        $newProduct['type'] = $product->type->name;
+        //$newProduct['suppliers'] = $product->region->country->suppliers;
         $newProduct['stock'] = $product->stock;
+        $newProduct['description'] = $product->description;
+        $newProduct['alcohol'] = $product->alcohol;
         $newProduct['format'] = $product->format->name;
-        //$newProduct['country'] = $product->region->country->name;
-        dd($product->region);
+        $newProduct['country'] = $product->region->country->name;
         $newProduct['quotation'] = $product->quotation;
         $newProduct['slug'] = $product->slug;
         $newProduct['price'] = $product->prices[0]->amount;
