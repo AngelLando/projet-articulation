@@ -34,7 +34,7 @@
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
                                                 <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
                                                 <select class="choice_list" v-model="quantity">
-                                                        <option :value="product.packaging_capacity">{{product.packaging_capacity}}</option>
+                                                        <option>10000</option>
                                                 </select>
                                                 </div>
                                                 <div @click="input(product.id)" class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
