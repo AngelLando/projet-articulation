@@ -1,13 +1,8 @@
-/**export default {
+export default {
 	data() {
 		return {
 			products : [],
 
-		}
-	},
-	methods:{
-		delete:function(){
-			console.log("test")
 		}
 	},
 	computed:{
@@ -24,4 +19,3 @@
 	},
 
 }
-**/
