@@ -129,7 +129,7 @@ Product
     margin-bottom: 30px;
     border: 1px solid #F0F0F0;
     box-sizing: border-box;
-    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.09);
+    box-shadow: 4px 5px 14px rgba(0, 0, 0, 0.09);
 }
 
 .product_name a:hover
