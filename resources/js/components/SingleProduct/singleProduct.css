@@ -28,6 +28,15 @@ a, a:hover, a:visited, a:active, a:link
   text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
 
+.error{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 15px;
+line-height: 20px;
+color: #000000;
+margin-top:5px;
+}
 
 /***********
 Container
