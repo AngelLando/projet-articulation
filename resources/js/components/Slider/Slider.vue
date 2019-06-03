@@ -34,7 +34,7 @@
         </section>
         <section class="features-section">
             <div class="container-fluid rect-features">
-                <div class="row">
+                <div class="row slider-options">
                     <div class="col-md-4 p-0 feature active">
                         <div id="btn-slide-1" class="feature-inner">
                             <h2><a href="">DÉGUSTATION</a></h2>

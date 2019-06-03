@@ -62,9 +62,11 @@ button.navbar-toggler {
 /*secondary nav styles*/
 
 nav.second-nav {
-  width: 100%;
-  height: 100%;
-  background-color: #f5f5f5;
+    z-index: 5;
+    width: 100%;
+    height: 54px;
+    background: #FFFFFF;
+    box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2);
 }
 
 

@@ -1,6 +1,4 @@
-/* ------------------
-  Image
----------------------*/
+
 
 .slider-image {
     display: none;
@@ -83,7 +81,7 @@
 ---------------------*/
 
 @media screen and (min-width: 1200px) {
-    .rect-features {
+    .slider-options {
         height: 62px;
     }
 }
@@ -114,6 +112,7 @@
 
 .feature h2 {
     color: white;
+    padding-top: 0.5em;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
