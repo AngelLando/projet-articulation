@@ -24,26 +24,25 @@
                                     <p class="product_name">{{product.name}}</p>
                                     <p class="product_price pb-2">CHF {{ product.price }}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></p>
                                     <div class="product_buttons">
-                                        <!--<form @submit.prevent="submitCartItem">
-                                            <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                        <form @submit.prevent="submitCartItem">
+<!--                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
                                                 <input name="quantity" type="number" value="1" v-model="quantity">
                                                 <button type="submit">
                                                     <div class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER<div><div><img src="images/cart.svg" class="svg" alt=""></div></div></div>
                                                 </button>
+                                            </div> -->
+                                            <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                                <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
+                                                <select class="choice_list" v-model="quantity">
+                                                        <option :value="product.packaging_capacity">{{product.packaging_capacity}}</option>
+                                                </select>
+                                                </div>
+                                                <div @click="input(product.id)" class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
+                                                <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                                <div><div><img src="images/cart.svg" class="svg" alt=""></div></div>
                                             </div>
-                                        </form>-->
-
-                                        <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                            <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
-                                              <select  class="choice_list">
-                                                <option :value="product.packaging_capacity">{{product.packaging_capacity}}</option>
-                                              </select>
-                                          </div>
-                                          <div @click="input(product.id)" class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
-                                          <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-                                            <div><div><img src="images/cart.svg" class="svg" alt=""></div></div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                                 <div class="selection">
                                     <div class="selection_title pt-4"><p>Années pour ce vin :</p></div>
