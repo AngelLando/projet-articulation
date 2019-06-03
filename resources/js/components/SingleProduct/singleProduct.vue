@@ -36,6 +36,7 @@
                                                 <select class="choice_list" v-model="quantity">
                                                         <option>10000</option>
                                                 </select>
+                                                    <p v-if="errors.quantity">{{errors.quantity[0]}}</p>
                                                 </div>
                                                 <div @click="input(product.id)" class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
                                                 <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">

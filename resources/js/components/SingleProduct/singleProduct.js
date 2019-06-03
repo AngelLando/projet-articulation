@@ -8,6 +8,7 @@ export default {
 			cartItem : '',
             product_id: '',
             quantity : '',
+			errors : {}
 		}
 	},
 	methods:{
@@ -34,9 +35,12 @@ export default {
 				quantity: this.quantity
 			};
 			console.log(this.cartItem);
-			axios.post('../add', this.cartItem).then(function (response) {
-				console.log(response);
-			})
+			axios.post('../add', this.cartItem)
+				.catch(error => {
+					this.errors = error.response.data.errors
+				}
+
+			)
       	}
 	},
 	props : ['prod'],
