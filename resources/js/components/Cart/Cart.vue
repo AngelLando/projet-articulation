@@ -21,7 +21,7 @@
                             </select>
                         </div><p class="multiply">X</p>
                         <p class="cart_product_price col-2">CHF {{product.price}}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></p>
-                        <p class="cart_title col-2 text-center cart_product_price_total">CHF 46.-</p>
+                        <p class="cart_title col-2 text-center cart_product_price_total">CHF {{product.price * product.packaging_capacity}}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></p>
                         <div><img src="images/delete.svg" class="svg" alt=""></div>
                         <p class="cart_product_details">Carton de {{product.packaging_capacity}} unité<span v-if="(product.packaging_capacity>1)">s</span> - {{product.format}}</p>
 
