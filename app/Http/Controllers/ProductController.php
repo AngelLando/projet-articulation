@@ -19,9 +19,10 @@ class ProductController extends Controller
         $products = $all['products'];
         $tab = [];
         $allProducts = [];
-        foreach ($products as $product) {
-            $newProduct = $this->getAllData($product);
-            array_push($allProducts, $newProduct);
+
+        foreach ($products as $key=>$product) {
+                $newProduct = $this->getAllData($products[$key]);
+                array_push($allProducts, $newProduct);
         }
         $tab['products'] = $allProducts;
 
@@ -38,6 +39,7 @@ class ProductController extends Controller
         $product = $this->getAllData($rawProduct);
         $products['product'] = $product;
         $products['products'] = $recommandations;
+
         $json = json_encode($products);
         return view('single')->with('products', $json);
     }
@@ -132,11 +134,11 @@ class ProductController extends Controller
         $newProduct['format'] = $product->format->name;
         $newProduct['quotation'] = $product->quotation;
         $newProduct['slug'] = $product->slug;
-        $newProduct['price'] = $product->prices[0]->amount;
-        $newProduct['tag'] = $product->tags[0]->name;
-        $newProduct['appellation'] = $product->appellations[0]->name;
+        $newProduct['price'] = $product->prices->first()['amount'];
+        $newProduct['tag'] = $product->tags;
+        $newProduct['appellation'] = $product->appellations;
         //$newProduct['productRating'] = $product->productRatings[0]->value;
-        $newProduct['packaging_capacity'] = $product->format->packagings[0]->capacity;
+        $newProduct['packaging_capacity'] = $product->format->packagings->first()->capacity;
         return $newProduct;
     }
 
