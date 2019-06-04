@@ -118,7 +118,7 @@ Products
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
+  width: 32%;
 
 }
 
@@ -196,6 +196,7 @@ border-top: 1px solid #D3D3D3;
 .product_image {
   margin-bottom:-85px;
   margin-top: -20px;
+    height: 35em;
 }
 
 
@@ -317,7 +318,7 @@ div
 }
 
 .share {
-  top: -105px;
+  top: -40px;
   right: -25px;
 }
 
