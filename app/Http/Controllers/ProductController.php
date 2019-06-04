@@ -142,7 +142,7 @@ class ProductController extends Controller
         $newProduct['tag'] = $product->tags;
         $newProduct['appellation'] = $product->appellations;
 
-        dd($newProduct['promotion'] = $product->promotions->amount);
+        dd($newProduct['promotion'] = $product->promotion['amount']);
         //$newProduct['productRating'] = $product->productRatings[0]->value;
         $newProduct['packaging_capacity'] = $product->format->packagings->first()->capacity;
         return $newProduct;
