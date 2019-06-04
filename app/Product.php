@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable=['kind','name','year', 'path_image', 'weight', 'stock', 'alcohol', 'quotation', 'slug', 'format_id', 'type_id', 'region_id'];
+    protected $fillable=['kind','name','year', 'description', 'price', 'path_image', 'weight', 'stock', 'alcohol', 'quotation', 'slug', 'format_id', 'type_id', 'region_id'];
 
     public function appellations() {
         return $this->belongsToMany('App\Appellation');
@@ -24,8 +24,8 @@ class Product extends Model
         return $this->hasMany('App\OrderItem');
     }
 
-    public function prices() {
-        return $this->belongsToMany('App\Price');
+    public function promotions() {
+        return $this->belongsTo('App\Price');
     }
 
     public function productRatings() {
