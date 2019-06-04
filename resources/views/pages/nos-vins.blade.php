@@ -2,9 +2,10 @@
 
 @section('content')
     <div id="app">
-      <div class="d-flex justify-content-center">
-          <div class="p-2"><h2>Nos vins</h2></div>
-
-        </div>
+        <filters-component prod="{{$products}}"></filters-component>
+        <products-catalog prod="{{$products}}"></products-catalog>
     </div>
 @endsection
+
+
+
