@@ -64,9 +64,9 @@
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option appellation_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Appellation</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
-                                            <li v-for="product in unique(products, 'appellation')" class="item_filter_btn chiller_cb" data-filter="*">
-                                                <input :id="product.appellation" type="checkbox">
-                                                <label :for="product.appellation">{{product.appellation}}</label>
+                                            <li v-for="appellation in appellations" class="item_filter_btn chiller_cb" data-filter="*">
+                                                <input :id="appellation.name" type="checkbox">
+                                                <label :for="appellation.name">{{appellation.name}}</label>
                                                 <span></span>
                                             </li>
                                         </ul>
@@ -74,9 +74,9 @@
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Catégorie</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
-                                            <li v-for="product in unique(products, 'tag')" class="item_filter_btn chiller_cb" data-filter="*">
-                                                <input :id="product.tag" type="checkbox">
-                                                <label :for="product.tag">{{product.tag}}</label>
+                                            <li v-for="tag in tags" class="item_filter_btn chiller_cb" data-filter="*">
+                                                <input :id="tag.name" type="checkbox">
+                                                <label :for="tag.name">{{tag.name}}</label>
                                                 <span></span>
                                             </li>
                                         </ul>

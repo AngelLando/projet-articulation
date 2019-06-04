@@ -1,8 +1,6 @@
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/antd.css'
-import { BFormGroup } from 'bootstrap-vue/es/components';
-import { BFormCheckboxGroup } from 'bootstrap-vue/es/components';
-import { BFormCheckbox } from 'bootstrap-vue/es/components';
+
 
 export default {
     data() {
@@ -10,6 +8,7 @@ export default {
             products : [],
             value_2: [10.70, 915.50],
             appellations: [],
+            tags: []
         }
     },
     components: {
@@ -20,15 +19,8 @@ export default {
     mounted () {
         let json = JSON.parse(this.prod);
         this.products = json.products;
-/*
-        var test= this.products;
-
-        this.products.foreach(function(product) {
-            appellations.push(product.appellation);
-        });*/
-
-        console.log(this.products.appellations);
-
+        this.appellations = json.appellations;
+        this.tags = json.tags;
     },
 
     computed: {
