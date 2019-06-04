@@ -30,6 +30,8 @@ export default {
       country3 : '',
       isHiddenShipTo:false,
       isHiddenBillTo:false,
+      isHiddenPromoCode:false,
+      isError:false,
     }
   },
     //props : ['prod'],
@@ -37,6 +39,16 @@ export default {
 
     },
     methods : {
+        checkPromoCode: function(){
+          var enteredCode = $('#promocode').val();
+          if (enteredCode=="cuki") {
+            this.isHiddenPromoCode=true;
+          return;
+          }else{
+            this.isError=true;
+          }
+ 
+    },
       submitAddress (isHiddenBillTo,isHiddenShipTo) {
         //  e.preventDefault();
         this.address1  = {
@@ -88,6 +100,7 @@ export default {
           console.log(response);
         })
       },
+
 
     },props : ['cart'],
 

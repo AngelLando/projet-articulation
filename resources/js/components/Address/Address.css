@@ -102,21 +102,29 @@ color: #000000;
 
 .submit_order{
     background: #930046;
-border-radius: 50px;
+border-radius: 10px;
 font-family: Montserrat;
-padding-top:8px;
-padding-bottom:8px;
-padding-left:18px;
-padding-right:18px;
+padding-top:12px;
+padding-bottom:12px;
 font-style: normal;
 font-weight: bold;
 font-size: 18px;
 line-height: 22px;
-display: flex;
+display: inline-block;
 align-items: center;
 text-align: center;
 
 color: #FFFFFF;
+}
+
+.error{
+    font-family: Montserrat;
+font-style: normal;
+text-align:center;
+font-size: 15px;
+line-height: 20px;
+color: #930046;
+
 }
 
 
@@ -130,8 +138,7 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .form-control{
-    border: 1px solid #930046;
-    border-radius:0;
+    border: 1px solid black;
 box-sizing: border-box;
 }
 
@@ -230,8 +237,32 @@ border-left: 1px solid #D3D3D3;
 border-bottom: 1px solid #D3D3D3;
 
 }
+
+.badge-pill{
+    background: #930046;
+}
+
+.price_total{
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 15px;
+line-height: 20px;
+color: #930046;
+}
 /***********
 Products
 ***********/
 
+.order{
+    font-family: Montserrat;
+}
 
+.btn_code{
+    background: #E9E9E9;
+}
+.btn_code:hover{
+        background: #930046;
+
+}
