@@ -8,7 +8,7 @@ export default {
     data() {
         return {
             products : [],
-            value_2: [10.77, 915.45],
+            value_2: [10.70, 915.50],
             appellations: [],
         }
     },

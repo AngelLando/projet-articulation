@@ -10,15 +10,11 @@
                             <!-- Product -->
                             <div class="col-xl-4">
                                 <div class="product">
-                                        <!--<div><div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-                                            <div><div><img src="images/favorite-heart-empty.svg" class="svg" alt=""><div>+</div></div></div>
-                                        </div></div>!-->
                                         <div>
-                                            <div class="product_image"><img class="image" :src="product.path_image" alt=""><div class="share"><img src="images/share.svg" class="svg" alt=""></div><div class="favorite-heart"><img src="images/favorite-heart-empty.svg" class="svg" alt=""></div></div>
+                                            <div class="product_image"><div class="favorite-heart"><img src="images/favorite-heart-empty.svg" alt=""></div><img class="image" :src="product.path_image" alt=""><div class="share"><img src="images/share.svg" alt=""></div></div>
                                         </div>
-                                    </div>
                                 </div>
-
+                            </div>
                                 <div class ="col-xl-5 ">
                                     <p class ="product_year ">{{product.kind}}</p>
                                     <p class="product_name">{{product.name}}</p>
