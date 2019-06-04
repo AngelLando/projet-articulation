@@ -213,7 +213,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="npa1">NPA</label>
-                                    <input type="number" id="npa1" name="npa1" v-model="npa1"  class="form-control">
+                                    <input type="number" id="npa1" name="npa1" v-model="npa3"  class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-3">
