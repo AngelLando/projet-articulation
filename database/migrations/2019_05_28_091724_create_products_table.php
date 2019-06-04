@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('kind');
             $table->string('name');
-            $table->string('year');
+            $table->integer('year');
             $table->longText('description');
             $table->string('path_image');
             $table->float('weight');
@@ -41,7 +41,8 @@ class CreateProductsTable extends Migration
             $table->foreign('price_id')
                 ->references('id')
                 ->on('prices');
-         });
+            $table->unique(['name', 'year', 'format_id', 'type_id', 'supplier_id'], 'product_unique');
+        });
     }
 
     /**
