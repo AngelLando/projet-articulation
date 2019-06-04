@@ -1,5 +1,12 @@
 <template>
     <div>
+
+
+        <div>Selected: <strong>{{ selected_kinds }}</strong></div>
+
+        <!--<VueFilters :secondValue.sync="selected_kinds"></VueFilters>!-->
+
+
         <div class="super_container">
             <div class="super_container_inner">
                 <div class="super_overlay"></div>
@@ -8,7 +15,7 @@
                         <div class="row products_row">
 
                             <!-- Product -->
-                            <div v-for="product in products"  class="col-xl-4 col-md-6">
+                            <div v-for="product in products"  v-if="(selected_kinds !== null | selected_kinds == product.kind)" class="col-xl-4 col-md-6">
                                 <div class="product">
                                     <!--<div><div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
                                         <div><div><img src="images/favorite-heart-empty.svg" class="svg" alt=""><div>+</div></div></div>

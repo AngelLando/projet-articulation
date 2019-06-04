@@ -3,12 +3,21 @@ import 'vue-slider-component/theme/antd.css'
 
 
 export default {
+
+    name: "component-filters",
+
     data() {
         return {
             products : [],
             value_2: [10.70, 915.50],
             appellations: [],
-            tags: []
+            tags: [],
+            selected_kinds: [],
+            selected_formats: [],
+            selected_packagings: [],
+            selected_appellations: [],
+            selected_tags: [],
+            selected_countries: []
         }
     },
     components: {
@@ -36,6 +45,12 @@ export default {
                 }
                 return output
             }
+        }
+    },
+
+    watch: {
+        selected_kinds : function(val){
+            this.$emit('update:secondValue', val)
         }
     }
 }
