@@ -1,6 +1,5 @@
 <!-- Footer -->
 <footer class="page-footer font-small bg-light pt-4">
-
   <!-- Footer Links -->
   <div class="container-fluid">
 
@@ -25,7 +24,6 @@
         </ul>
       </div>
       <!-- Grid column -->
-
       <!-- Grid column -->
       <div class="col py-3">
         <!-- Links -->
@@ -44,9 +42,6 @@
         </ul>
       </div>
       <!-- Grid column -->
-
-
-
       <!-- Grid column -->
       <div class="col py-3">
         <!-- Links -->
@@ -65,19 +60,15 @@
         </ul>
       </div>
       <!-- Grid column -->
-
       <!-- Grid column -->
       <div class="col py-3">
-
         <!-- Links -->
         <h5 class="text-uppercase">GAZZAR SA</h5>
 
         <p>Chemin du Dévent  1024 <br>Ecublens, Suisse</p>
         <p>tél : 021 691 86 71 <br> elie@gazzar.ch</p>
-
       </div>
       <!-- Grid column -->
-
     </div>
     <!-- Grid row -->
 
@@ -87,7 +78,6 @@
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3 mx-auto">
     <p>© 2019 Gazzar SA</p>
-
   </div>
   <!-- Copyright -->
 

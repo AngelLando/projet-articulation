@@ -1,7 +1,7 @@
 // Footer styles
 footer div.footer-copyright  {
   color: white;
-  background-color: #757575;
+  background-color: $footer-dark-grey;
 }
 
 footer a {
@@ -9,10 +9,6 @@ footer a {
 }
 
 footer a:hover {
-  color: #d4d4d4;
-}
-
-
-footer {
-  
+  color: $footer-light-grey;
+  text-decoration: none;
 }
