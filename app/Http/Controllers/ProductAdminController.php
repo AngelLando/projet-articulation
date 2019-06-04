@@ -136,6 +136,10 @@ class ProductAdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Product::destroy($id);
+
+        Session::flash('success', 'Le produit a été supprimé!');
+
+        return redirect()->route('products.index');
     }
 }
