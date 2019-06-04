@@ -9,15 +9,26 @@ export default {
         return {
             products : [],
             value_2: [10.77, 915.45],
+            appellations: [],
         }
     },
     components: {
         VueSlider
     },
+
     props : ['prod'],
     mounted () {
         let json = JSON.parse(this.prod);
         this.products = json.products;
+/*
+        var test= this.products;
+
+        this.products.foreach(function(product) {
+            appellations.push(product.appellation);
+        });*/
+
+        console.log(this.products.appellations);
+
     },
 
     computed: {

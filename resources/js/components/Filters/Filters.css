@@ -336,13 +336,42 @@ display: block;
 }
 
 
+.slider-price {
+    align-self: center;
+}
 
 
 
+.vue-slider {
+    width: 20em !important;
+}
 
 
+.price-filter-label {
+    align-self: center;
+}
 
 
+.price-filter {
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: bold;
+    color: #930046;
+    border: 1px solid #930046;
+    padding: 0.5em 1em 0.5em 1em;
+    width: 8.2em;
+    border-radius: 50px;
+    text-align: center;
+}
+
+
+.price-filter-min {
+    margin-right: 1em;
+}
+
+.price-filter-max {
+    margin-left: 1em;
+}
 
 
 
@@ -371,16 +400,7 @@ display: block;
     transition: width 0.1s;
     transition-delay: 0.2s;
 }
-.chiller_cb input:disabled ~ span {
-    background: #ececec;
-    border-color: #dcdcdc;
-}
-.chiller_cb input:disabled ~ label {
-    color: #dcdcdc;
-}
-.chiller_cb input:disabled ~ label:hover {
-    cursor: default;
-}
+
 .chiller_cb label {
     padding-left: 2rem;
     position: relative;

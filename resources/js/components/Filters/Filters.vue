@@ -10,7 +10,7 @@
                     <div class="container">
                         <div class="row product_row">
                             <div class="selection">
-                                <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                <div class="text-right d-flex row align-items-start justify-content-start">
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option type_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span class="filter_name">Type de vin</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
@@ -93,11 +93,15 @@
                                     </div>
                                 </div>
                                 <br>
-                                <div class="content col-xl-12">Prix :</div>
 
-                                <vue-slider v-model="value_2" :min="10.77" :max="915.45" :interval="0.01"/>
-                                <p>{{value_2[0]}}</p>
+                                <div class="row price_filter ml-3 pb-3">
 
+                                    <div class="price-filter-label content col-md-auto">Prix :</div>
+                                    <div class="price-filter price-filter-min col-md-auto"><span>CHF {{value_2[0]}}</span></div>
+                                    <div class="slider-price col-md-auto"><vue-slider v-model="value_2" :min="10.77" :max="915.45" :interval="0.01"/></div>
+                                    <div class="price-filter price-filter-max col-md-auto"><span>CHF {{value_2[1]}}</span></div>
+
+                                </div>
 
                                 <div class="row results_sort ml-3 pt-5 pb-3">
                                     <div class="sort col-md-auto">
