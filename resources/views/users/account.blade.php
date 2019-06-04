@@ -23,11 +23,11 @@
         {{ csrf_field() }}
         <div class="form-group">
             <label for="lastname">Nom</label>
-            <input type="text" name="lastname" class="form-control" value="{{ $user->person->lastname }}" id="username" placeholder="Nom">
+            <input type="text" name="lastname" class="form-control" value="{{ $user->person->lastname }}" id="lastname" placeholder="Nom">
         </div>
         <div class="form-group">
             <label for="firstname">Prénom</label>
-            <input type="text" name="firstname" class="form-control" value="{{ $user->person->firstname }}" id="username" placeholder="Prénom">
+            <input type="text" name="firstname" class="form-control" value="{{ $user->person->firstname }}" id="firstname" placeholder="Prénom">
         </div>
         <div class="form-group">
             <label for="gender">Genre</label>
