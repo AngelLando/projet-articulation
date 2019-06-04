@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->float('alcohol');
             $table->string('quotation');
             $table->string('slug')->unique()->nullable();
+            $table->timestamps();
             $table->integer('format_id')->unsigned();
             $table->foreign('format_id')
                 ->references('id')
