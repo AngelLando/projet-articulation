@@ -55,7 +55,8 @@ Route::get('/nos-primeurs', function() {
 })->name('nos-primeurs');
 
 Route::get('/nos-vins', function() {
-    return view('pages.nos-vins');
+    $data = App::call('App\Http\Controllers\ProductController@index');
+    return view('pages.nos-vins')->with('products', $data);
 })->name('nos-vins');
 
 Route::get('/nouveautes', function() {

@@ -141,7 +141,6 @@ class ProductController extends Controller
         $newProduct['slug'] = $product->slug;
         $newProduct['tag'] = $product->tags;
         $newProduct['appellation'] = $product->appellations;
-
         $newProduct['promotion'] = $product->promotion->amount;
         //$newProduct['productRating'] = $product->productRatings[0]->value;
         $newProduct['packaging_capacity'] = $product->format->packagings->first()->capacity;
