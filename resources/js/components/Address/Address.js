@@ -1,6 +1,8 @@
 export default {
   data() {
     return {
+      payment_method:'',
+      comment:'',
       address1 : '',
       firstname1: '',
       lastname1 : '',
