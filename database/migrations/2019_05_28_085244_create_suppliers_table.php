@@ -15,12 +15,13 @@ class CreateSuppliersTable extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('url_website');
             $table->integer('region_id')->unsigned();
             $table->foreign('region_id')
                 ->references('id')
                 ->on('regions');
+            $table->unique(['name', 'region_id']);
          });
     }
 

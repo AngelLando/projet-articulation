@@ -25,6 +25,7 @@ class CreateCartItemsTable extends Migration
                 ->references('id')
                 ->on('carts');
             $table->integer('quantity')->nullable();
+            $table->unique(['product_id', 'cart_id']);
          });
     }
 
