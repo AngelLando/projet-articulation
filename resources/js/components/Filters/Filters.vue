@@ -1,7 +1,12 @@
 <template>
 
     <div>
-
+        <div>Types : <strong>{{ selected_kinds }}</strong></div>
+        <div>Formats : <strong>{{ selected_formats }}</strong></div>
+        <div>Packaging : <strong>{{ selected_packagings }}</strong></div>
+        <div>Appellations : <strong>{{ selected_appellations }}</strong></div>
+        <div>Catégories : <strong>{{ selected_tags }}</strong></div>
+        <div>Pays : <strong>{{ selected_countries }}</strong></div>
 
         <div class="super_container">
             <div class="super_container_inner">
@@ -15,7 +20,7 @@
                                         <div class="filter_option type_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span class="filter_name">Type de vin</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <li v-for="product in unique(products, 'kind')" class="item_filter_btn chiller_cb" data-filter="*">
-                                                <input :id="product.kind" type="checkbox">
+                                                <input :id="product.kind" type="checkbox" :value="product.kind" v-model="selected_kinds">
                                                 <label :for="product.kind">{{product.kind}}</label>
                                                 <span></span>
                                             </li>
@@ -25,7 +30,7 @@
                                         <div class="filter_option format_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Format</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                             <ul>
                                                 <li v-for="product in unique(products, 'format')" class="item_filter_btn chiller_cb" data-filter="*">
-                                                    <input :id="product.format" type="checkbox">
+                                                    <input :id="product.format" type="checkbox" :value="product.format" v-model="selected_formats">
                                                     <label :for="product.format">{{product.format}}</label>
                                                     <span></span>
                                                 </li>
@@ -35,7 +40,7 @@
                                         <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Conditionnement</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <li v-for="product in unique(products, 'packaging_capacity')" class="item_filter_btn chiller_cb" data-filter="*">
-                                                <input :id="product.packaging_capacity" type="checkbox">
+                                                <input :id="product.packaging_capacity" type="checkbox" :value="product.packaging_capacity" v-model="selected_packagings">
                                                 <label :for="product.packaging_capacity">{{product.packaging_capacity}}</label>
                                                 <span></span>
                                             </li>
@@ -65,7 +70,7 @@
                                         <div class="filter_option appellation_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Appellation</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <li v-for="appellation in appellations" class="item_filter_btn chiller_cb" data-filter="*">
-                                                <input :id="appellation.name" type="checkbox">
+                                                <input :id="appellation.name" type="checkbox" :value="appellation.name" v-model="selected_appellations">
                                                 <label :for="appellation.name">{{appellation.name}}</label>
                                                 <span></span>
                                             </li>
@@ -75,7 +80,7 @@
                                         <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Catégorie</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <li v-for="tag in tags" class="item_filter_btn chiller_cb" data-filter="*">
-                                                <input :id="tag.name" type="checkbox">
+                                                <input :id="tag.name" type="checkbox" :value="tag.name" v-model="selected_tags">
                                                 <label :for="tag.name">{{tag.name}}</label>
                                                 <span></span>
                                             </li>
@@ -85,7 +90,7 @@
                                         <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Pays</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <li v-for="product in unique(products, 'country')" class="item_filter_btn chiller_cb" data-filter="*">
-                                                <input :id="product.country" type="checkbox">
+                                                <input :id="product.country" type="checkbox" :value="product.country" v-model="selected_countries">
                                                 <label :for="product.country">{{product.country}}</label>
                                                 <span></span>
                                             </li>
