@@ -19,6 +19,12 @@ Auth::routes();
 // GET
 Route::get('/home', 'HomeController@index')->name('home');
 
+<<<<<<< HEAD
+=======
+
+
+//=> JSON file
+>>>>>>> header
 Route::get('/products', 'ProductController@show');
 
 Route::get('/produit/{id}', [

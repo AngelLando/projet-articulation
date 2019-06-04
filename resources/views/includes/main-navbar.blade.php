@@ -1,7 +1,9 @@
-<div class="navbar-text ">
-  <a href="#">Inscription à la newsletter</a>
+<div class="row justify-content-center">
+  <div class="navbar-text main-nav">
+    <a href="#">Inscription à la newsletter</a>
+  </div>
 </div>
-<nav  class="navbar navbar-expand-md navbar-light shadow-sm ">
+<nav  class="navbar navbar-expand-md navbar-light shadow-sm">
     <!-- <div class="container"> -->
         <a class="navbar-brand" href="{{ url('/') }}">
             <!-- {{ config('app.name', 'Gazzar') }} -->
@@ -80,5 +82,6 @@
           </li>
         </ul>
     </div>
+
 <!-- </div> -->
 </nav> <!--  end of a principal nav -->

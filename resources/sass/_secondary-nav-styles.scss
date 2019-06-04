@@ -1,0 +1,40 @@
+/*secondary nav styles*/
+nav.navbar.navbar-expand-lg.navbar-light.secondary-nav ul.navbar-nav.mr-auto li.nav-item a.nav-link{
+  color: $black !important;
+}
+
+nav.navbar.navbar-expand-lg.navbar-light.secondary-nav ul.navbar-nav.mr-auto li.nav-item a.nav-link:hover,
+nav.navbar.navbar-expand-lg.navbar-light.secondary-nav ul.navbar-nav.mr-auto li.nav-item a.nav-link:focus {
+  font-weight: bold;
+}
+
+.active a {
+  font-weight: bold !important;
+}
+
+
+nav.navbar.navbar-expand-lg.navbar-light.secondary-nav {
+  background-color: #f5f5f5;
+  padding: 1em 4em ;
+}
+
+input.form-control.mr-sm-2.secondary-nav {
+  background-color: inherit;
+  border: none;
+  border-radius: 0;
+}
+
+input.form-control.mr-sm-2.secondary-nav:focus {
+  border: none;
+  box-shadow: none;
+}
+
+button.btn.my-2.my-sm-0.secondary-nav:focus {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+nav.secondary-nav form.form-inline {
+  border-bottom: 1px solid #ced4da;
+}
