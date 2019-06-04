@@ -35,12 +35,11 @@ class AddressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public static function store(Request $request, $nb)
+    public static function store(Request $request, $nb, $id)
     {
         $name = 'address'.$nb;
         if($request->$name == null) {
-            $nb = 1;
-            $name = 'address'.$nb;
+            return $id;
         }
         $id = Address::insertGetId([
             'street' => $request->$name['street'.$nb],
