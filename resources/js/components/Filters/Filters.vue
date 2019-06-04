@@ -1,6 +1,8 @@
 <template>
 
     <div>
+
+
         <div class="super_container">
             <div class="super_container_inner">
                 <div class="super_overlay"></div>
@@ -66,6 +68,11 @@
                                             </li>
                                         </ul>
                                     </div>
+
+
+
+
+
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Catégorie</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
@@ -101,6 +108,18 @@
                                     <div class="results col-md-auto">
                                         14 produits trouvés
                                     </div>
+                                </div>
+
+                                <div>
+                                    <b-form-checkbox-group
+
+                                        id="checkbox-group-1"
+                                        v-model="selected"
+                                        :options="options"
+                                        name="flavour-1"
+                                    ></b-form-checkbox-group>
+
+                                    <div>Selected: <strong>{{ selected }}</strong></div>
                                 </div>
                             </div>
                         </div>
