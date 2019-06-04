@@ -17,6 +17,7 @@ class CreateSuppliersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('url_website');
+            $table->timestamps();
             $table->integer('region_id')->unsigned();
             $table->foreign('region_id')
                 ->references('id')
