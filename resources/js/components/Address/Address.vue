@@ -5,7 +5,7 @@
                 <div class="super_overlay"></div>
                 <div class="products">
                     <div class="container pb-3">
-                     <div class ="pt-3 pb-1 checkout row">
+                       <div class ="pt-3 pb-1 checkout row">
                         <form @submit.prevent="submitAddress(isHiddenBillTo,isHiddenShipTo)" action="#" class=" row billing-form">
                             <div class="row align-items-end col-md-9">
                                 <div class="order_title col-md-12"><p>Adresse de commande</p></div>
@@ -17,6 +17,7 @@
                                           <select name="gender1" id="gender1" v-model="gender1" class="form-control" required>
                                             <option value="m">Mr</option>
                                             <option value="f">Mme</option>
+                                            <option value="other">/</option>
                                         </select>
                                     </div>
                                 </div>
@@ -88,6 +89,7 @@
                                               <select name="gender2" id="gender2" v-model="gender2" class="form-control" >
                                                 <option value="m">Mr</option>
                                                 <option value="f">Mme</option>
+                                                 <option value="other">/</option>
                                             </select>
                                         </div>
                                     </div>
@@ -144,12 +146,12 @@
                             </div>
                         </div>
                         <div class="item_filter_btn chiller_cb">
-                           <input id="billto" type="checkbox" name="optradio" v-on:click="isHiddenBillTo =!isHiddenBillTo"><label for="billto">Facturer à une autre adresse</label>
-                           <span></span>
-                       </div>
-                       <div class="row" v-if="isHiddenBillTo">
-                           <div class="order_title col-md-12"><p>Adresse de facturation</p></div>
-                           <div class="col-md-2">
+                         <input id="billto" type="checkbox" name="optradio" v-on:click="isHiddenBillTo =!isHiddenBillTo"><label for="billto">Facturer à une autre adresse</label>
+                         <span></span>
+                     </div>
+                     <div class="row" v-if="isHiddenBillTo">
+                         <div class="order_title col-md-12"><p>Adresse de facturation</p></div>
+                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="gender3">Préfixe</label>
                                 <div class="select-wrap">
@@ -157,6 +159,7 @@
                                   <select name="gender3" id="gender3" v-model="gender3" class="form-control">
                                     <option value="m">Mr</option>
                                     <option value="f">Mme</option>
+                                     <option value="other">/</option>
                                 </select>
                             </div>
                         </div>
@@ -215,6 +218,10 @@
             <div class="line_bottom pt-2"><p></p></div>
         </div>
     </div>
+    <div class=" col-md-12 row text-center ">
+    <button type="submit" class="text-center col-12 submit_order">Commander</button>
+
+</div>
 </div>
 <div class="col-md-3 order order-md-2 ml-2 mb-4">
   <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -262,15 +269,12 @@
     </div>
 </div>
 </form>
-            <div class="error mt-2" v-if="isError">Ce code promo n'est pas valide.</div>
+<div class="error mt-2" v-if="isError">Ce code promo n'est pas valide.</div>
 
 </div>
 </form><!-- END -->
 </div>
-<div class="row text-center mr-3">
-                <button type="submit" class="text-center col-9 submit_order">Commander</button>
 
-</div>
 </div>
 </div>
 </div>
