@@ -2,9 +2,18 @@
 
 @section('content')
 
-    @include('admin.includes.errors')
-
 <div class="container"><br>
+@if(Session::has('success'))
+    <div class="alert alert-success">
+        {{ Session::get('success') }}
+    </div>
+@endif
+
+@if(Session::has('info'))
+    <div class="alert alert-info">
+        {{ Session::get('info') }}
+    </div>
+@endif
     <div class="card">
         <div class="card-header">
             {{ $product->name }}
@@ -17,11 +26,11 @@
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col-4">
-                            <label for="category">Type</label>
-                            <select name="category_id" id="category" class="form-control">
-                                    <option value="{{ $product->kind }}" @if($product->kind == 'Vin rouge') selected @endif>Vin rouge</option>
-                                    <option value="{{ $product->kind }}" @if($product->kind == 'Vin blanc') selected @endif>Vin blanc</option>
-                                    <option value="{{ $product->kind }}" @if($product->kind == 'Vin mousseux') selected @endif>Vin mousseux</option>
+                            <label for="kind">Type</label>
+                            <select name="kind" id="kind" class="form-control">
+                                    <option value="Vin rouge" @if($product->kind == 'Vin rouge') selected @endif>Vin rouge</option>
+                                    <option value="Vin blanc" @if($product->kind == 'Vin blanc') selected @endif>Vin blanc</option>
+                                    <option value="Vin mousseux" @if($product->kind == 'Vin mousseux') selected @endif>Vin mousseux</option>
                             </select>
                         </div>
                         <div class="col-4">
@@ -30,7 +39,7 @@
                         </div>
                         <div class="col-4">
                             <label for="year">Année</label>
-                            <input type="text" name="year" class="form-control" value="{{ $product->year }}">
+                            <input type="number" name="year" class="form-control" value="{{ $product->year }}">
                         </div>
                     </div>
                 </div>

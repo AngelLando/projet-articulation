@@ -21,7 +21,13 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->year }}</td>
                     <td><a href="{{ route('produits.edit', ['id' => $product->id]) }}" class="btn btn-xs btn-warning">Modifier</a></td>
-                    <td><a href="{{ route('produits.destroy', ['id' => $product->id]) }}" class="btn btn-xs btn-danger">Supprimer</a></td>
+                    <td>
+                        <form action="{{ route('produits.destroy', ['id' => $product->id]) }}" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button class="btn btn-xs btn-danger" type="submit">Supprimer</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         @else
