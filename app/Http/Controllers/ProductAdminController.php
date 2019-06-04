@@ -7,6 +7,8 @@ use App\Product;
 use App\Format;
 use App\Type;
 use App\Supplier;
+use App\Promotion;
+use App\Packaging;
 use Illuminate\Http\Request;
 
 class ProductAdminController extends Controller
@@ -71,12 +73,13 @@ class ProductAdminController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-
         return view('admin.products.edit')->with('product', $product)
                                             ->with('products', Product::all())
                                             ->with('formats', Format::all())
                                             ->with('types', Type::all())
-                                            ->with('suppliers', Supplier::all());
+                                            ->with('suppliers', Supplier::all())
+                                            ->with('promotions', Promotion::all())
+                                            ->with('packagings', Packaging::all());
     }
 
     /**
@@ -88,7 +91,6 @@ class ProductAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validation des données
         $this->validate($request, [
             'kind' => '',
             'name' => '',
@@ -99,26 +101,34 @@ class ProductAdminController extends Controller
             'stock' => '',
             'alcohol' => '',
             'quotation' => '',
+            'format' => '',
+            'type' => '',
+            'supplier' => '',
+            'promotion' => '',
+            'packaging' => ''
         ]);
 
         $product = Product::find($id);
 
+        $product->kind = $request->kind;
+        $product->name = $request->name;
+        $product->year = $request->year;
+        $product->description = $request->description;
         if($request->hasFile('path_image')) {
             $path_image = $request->path_image;
             $rename = time() . $path_image->getClientOriginalName();
             $path_image->move('uploads/products', $rename);
             $product->path_image = 'uploads/products/' . $rename;
         }
-
-        $product->kind = $request->kind;
-        $product->name = $request->name;
-        $product->year = $request->year;
-        $product->description = $request->description;
         $product->weight = $request->weight;
         $product->stock = $request->stock;
         $product->alcohol = $request->alcohol;
         $product->quotation = $request->quotation;
         $product->slug = str_slug($request->name);
+        $product->format_id = $request->format;
+        $product->type_id = $request->type;
+        $product->supplier_id = $request->supplier;
+        $product->promotion_id = $request->promotion;
 
         $product->save();
 
