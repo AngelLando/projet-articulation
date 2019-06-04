@@ -49,8 +49,8 @@
                 </div>
                 <div class = "cart_buttons row">
                     <div class="col-6"></div>
-                       <div class=" col-3 continuer_achats text-center d-flex flex-column align-items-center justify-content-center mr-3"><a class="continuer_text" href=""><img src="images/polygon.svg" class="svg_button pr-2" alt="">Continuer mes achats</a></div>
-                       <div class=" col-2 commander text-center d-flex flex-column align-items-center justify-content-center mr-3"><a class="commander_text" href="">Commander</a></div>
+                       <div class=" col-3 continuer_achats text-center d-flex flex-column align-items-center justify-content-center mr-3"><a class="continuer_text" href="nos-vins"><img src="images/polygon.svg" class="svg_button pr-2" alt="">Continuer mes achats</a></div>
+                       <div class=" col-2 commander text-center d-flex flex-column align-items-center justify-content-center mr-3"><a class="commander_text" href="checkout">Commander</a></div>
                 </div>
             </div>
         </div>
