@@ -80,7 +80,7 @@
                                     <div class="information col-md-auto" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=true; isHiddenRating=false">Information</div>
                                     <div class="rating col-md-auto" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=false; isHiddenRating=true">Avis (4)</div>
                                 </div>
-                                <div class="content content_description col-xl-12 ml-3" v-if="isHiddenDescr">Le Château Les Justices, en Sauternes, appartient à la famille Gonet-Médeville, surnommée "l'antiquaire du Sauternes", du fait de son Château Gilette qui défie le temps. En effet, ce nectar est mis en bouteilles seulement après une vingtaine d'années de vieillissement. Le vin du Château Les Justices en est une superbe introduction...
+                                <div class="content content_description col-xl-12 ml-3" v-if="isHiddenDescr">{{product.description}}
                                 </div>
                                 <div class="content content_information col-xl-12 ml-3" v-if="isHiddenInfo"><p >Cotation : {{product.quotation}}</p>
                                     <p>Teneur en alcool : 
