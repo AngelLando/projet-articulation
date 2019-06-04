@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name')->nullable();
             $table->integer('year')->nullable();
             $table->longText('description')->nullable();
+            $table->float('price')->nullable();
             $table->string('path_image')->nullable();
             $table->float('weight')->nullable();
             $table->integer('stock')->nullable();
@@ -38,10 +39,6 @@ class CreateProductsTable extends Migration
             $table->foreign('supplier_id')
                 ->references('id')
                 ->on('suppliers');
-            $table->integer('price_id')->unsigned();
-            $table->foreign('price_id')
-                ->references('id')
-                ->on('prices');
             $table->unique(['name', 'year', 'format_id', 'type_id', 'supplier_id'], 'product_unique');
         });
     }

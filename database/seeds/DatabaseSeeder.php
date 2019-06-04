@@ -19,12 +19,11 @@ class DatabaseSeeder extends Seeder
         $this->call(FormatsTableSeeder::class);
         $this->call(PackagingTableSeeder::class);
         $this->call(FormatPackagingTableSeeder::class);
-        $this->call(PricesTableSeeder::class);
+        $this->call(PromotionTableSeeder::class);
         $this->call(TypesTableSeeder::class);
         $this->call(TagsTableSeeder::class);
         $this->call(AppellationsTableSeeder::class);
         $this->call(ProductsTableSeeder::class);
-        $this->call(PriceProductTableSeeder::class);
         $this->call(ProductTagTableSeeder::class);
         $this->call(AppellationProductTableSeeder::class);
         $this->call(ShippingCostsTableSeeder::class);
