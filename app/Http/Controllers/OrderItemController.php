@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\OrderItem;
+use App\Product;
 
 class OrderItemController extends Controller
 {
@@ -40,11 +41,17 @@ class OrderItemController extends Controller
             OrderItem::create([
                 'order_id' => $orderId,
                 'product_id' => $product['id'],
-                'quantity' => 1,
+                'quantity' => $product['quantity'],
                 'discount' => 0
             ]);
+
+            $prod = Product::where('id', $product['id'])->get()->first();
+            $stock = $prod->stock;
+            $quantity = $product['quantity'];
+            $newStock = $stock - $quantity;
+            $updatedProduct = Product::where('id', $product['id'])->update(['stock' => $newStock]);
         }
-     return 1;
+     return $updatedProduct;
     }
 
     /**
