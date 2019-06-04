@@ -10,44 +10,11 @@
 // Import sacondary Nav Styles
 @import 'secondary-nav-styles';
 
-<<<<<<< HEAD
- .dropdown-menu .dropdown-item {
-  color: #930046 ;
-}
-
-.nav-item {
-  text-align: center;
-}
-
- .nav-link p {
-  padding-top: 1em;
-}
-
- .nav-item {
-  margin: 0 1em;
-}
-
-/*secondary nav styles*/
-
-nav.second-nav {
-    z-index: 5;
-    width: 100%;
-    height: 54px;
-    background: #FFFFFF;
-    box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2);
-}
-=======
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 >>>>>>> header
 
-
-
-
-
 // Footer styles
-
-
 footer div.footer-copyright  {
   color: white;
   background-color: #757575;
