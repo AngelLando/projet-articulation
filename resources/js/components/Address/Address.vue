@@ -214,29 +214,62 @@
             </div>
             <div class="line_bottom pt-2"><p></p></div>
         </div>
-        <div class="row">
-            <div class="col-9"></div>
-            <button type="submit" class="submit_order">Commander</button>
-        </div>
     </div>
 </div>
-<div class="col-md-3 row line_left ml-4">
-    <div class="order_title"><p>Résumé commande</p></div>
-    <!-- ... 
-    <p class="col-6 price_content text-right fixed-top">Sous-total</p>
-        <p class="col-6 price_content">CHF 210.-</p>
-            <p class="col-6 price_content text-right">TVA</p>
-        <p class="col-6 price_content">CHF 16.-</p>
-            <p class=" text-right price_content col-6">Livraison</p>
-        <p class="col-6 price_content">CHF 21.50</p>
-            <p class="col-6 text-right price_content">Total</p>
-        <p class="col-6">CHF 237.50</p>
-    <div class="col-md-6"> </div>
-    <div class="col-md-6"></div>
-    -->
+<div class="col-md-3 order order-md-2 ml-2 mb-4">
+  <h4 class="d-flex justify-content-between align-items-center mb-3">
+    <span class="order_title">Votre panier</span>
+</h4>
+<ul class="list-group mb-3">
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+      <div>
+        <h6 class="my-0">Sous total</h6>
+        <small class="text-muted">Hors TVA et frais</small>
+    </div>
+    <span class="text-muted">CHF 120.-</span>
+</li>
+<li class="list-group-item d-flex justify-content-between lh-condensed">
+  <div>
+    <h6 class="my-0">TVA</h6>
+    <small class="text-muted">7.7%</small>
 </div>
+<span class="text-muted">CHF 8.-</span>
+</li>
+<li class="list-group-item d-flex justify-content-between lh-condensed">
+  <div>
+    <h6 class="my-0">Frais de livraison</h6>
+    <small class="text-muted">En Suisse</small>
+</div>
+<span class="text-muted">CHF 10.-</span>
+</li>
+<li v-if="isHiddenPromoCode" class="list-group-item d-flex justify-content-between bg-light">
+  <div class="text-success">
+    <h6 class="my-0">Code promo</h6>
+</div>
+<span class="text-success">CHF -10.-</span>
+</li>
+<li class="list-group-item d-flex justify-content-between">
+  <span>Total</span>
+  <p class="price_total">CHF 210.50</p>
+</li>
+</ul>
 
+<form @submit.prevent="checkPromoCode()" class="card p-2">
+    <div class="input-group">
+      <input type="text" class="form-control" id="promocode" placeholder="Code promo">
+      <div class="input-group-append">
+        <button  type="submit" class="btn btn_code btn-secondary">Appliquer</button>
+    </div>
+</div>
+</form>
+            <div class="error mt-2" v-if="isError">Ce code promo n'est pas valide.</div>
+
+</div>
 </form><!-- END -->
+</div>
+<div class="row text-center mr-3">
+                <button type="submit" class="text-center col-9 submit_order">Commander</button>
+
 </div>
 </div>
 </div>
