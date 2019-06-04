@@ -19,6 +19,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'ProductController@index')->name('products');
 
+
+
 //=> JSON file
 Route::get('/products', 'ProductController@show');
 

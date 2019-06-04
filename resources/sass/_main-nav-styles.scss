@@ -1,0 +1,51 @@
+/*principal nav styles*/
+
+div.navbar-text.main-nav  a {
+  // font-size: 1vw;
+  color: $black;
+}
+
+div.navbar-text.main-nav a:hover {
+  border-bottom: 1px solid $black;
+}
+
+nav.navbar.navbar-expand-md.navbar-light.shadow-sm {
+  background-color: $main-pink ;
+  padding: 1em 5em;
+}
+
+ nav.navbar-light a.navbar-brand {
+    color: $white !important;
+}
+
+ nav.navbar-light ul.navbar-nav > li.nav-item > a.nav-link {
+  color: $white !important;
+}
+
+nav.navbar-light ul.navbar-nav > li > .dropdown-menu > a.dropdown-item {
+  color: $main-pink;
+}
+
+nav.navbar-light ul.navbar-nav > li > .dropdown-menu > a.dropdown-item:hover{
+  font-weight: bold;
+}
+
+.dropdown-menu > a:hover,
+.dropdown-menu > a:focus {
+    color: $main-pink;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+
+.nav-item {
+  text-align: center;
+}
+
+ .nav-link p {
+  padding-top: 1em;
+}
+
+ .nav-item {
+  margin: 0 1em;
+}

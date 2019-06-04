@@ -4,90 +4,21 @@
 // Variables
 @import 'variables';
 
+// Import Main Nav Styles
+@import 'main-nav-styles';
+
+// Import sacondary Nav Styles
+@import 'secondary-nav-styles';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-/*principal nav styles*/
-
- div.navbar-text {
-  margin-left: 40%;
-  margin-right: 40%;
-  width: auto;
-  text-align: center;
-}
-
- div.navbar-text a {
-  font-size:1vw;
-  color: #000000;
-}
-
- div.navbar-text a:hover {
-  border-bottom: 1px solid #000000;
-}
-
- nav.navbar {
-  background-color: #930046 ;
-  padding: 1em 5em;
-}
-
- .navbar-light .navbar-brand {
-    color: #ffffff !important;
-}
-
- .navbar-light .navbar-nav .nav-link {
-  color: #ffffff !important;
-}
-/*
-button.navbar-toggler {
-  color: #ffffff !important;
-}
-*/
-
- .dropdown-menu .dropdown-item {
-  color: #930046 ;
-}
-
-.nav-item {
-  text-align: center;
-}
-
- .nav-link p {
-  padding-top: 1em;
-}
-
- .nav-item {
-  margin: 0 1em;
-}
-
-/*secondary nav styles*/
-
-nav.second-nav {
-  width: 100%;
-  height: 100%;
-  background-color: #f5f5f5;
-}
 
 
 
-nav.second-nav .form-inline .form-control {
-  background-color: inherit;
-  border-radius: 0;
-  border: 0;
-  // border-bottom: 1px solid #ced4da;
-}
 
-nav.second-nav form.form-inline {
-  border-bottom: 1px solid #ced4da;
-}
+// Footer styles
 
-nav.second-nav form.form-inline input.form-control:focus{
-  outline: 0 !important;
-}
-
-.second-nav .navbar-nav .nav-link {
-  font-size: 1vw;
-  color: #000000 !important;
-}
 
 footer div.footer-copyright  {
   color: white;
