@@ -27,8 +27,8 @@ export default {
 		submitCartItem (e) {
 			  
 		  },
-		  input: function (test) {
-			localStorage.setItem('storedData', test);
+		  input: function (productid) {
+			localStorage.setItem('storedData', productid);
 			console.log(localStorage.getItem('storedData'));
 			this.cartItem  = {
 				product_id: this.product.id,

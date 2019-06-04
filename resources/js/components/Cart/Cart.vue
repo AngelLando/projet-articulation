@@ -4,8 +4,8 @@
             <div class="super_container_inner">
                 <div class="super_overlay"></div>
                 <div class="products">
-                    <div class="container">
-                     <div class ="pt-3 pb-1 cart_header row">
+                    <div class="container pb-3">
+                       <div class ="pt-3 pb-1 cart_header row">
                         <p class="header_title col-6">Produits</p>
                         <p class="header_title col-1 text-right">Quantité</p>
                         <p class="header_title col-2 text-left">Prix unitaire</p>
@@ -27,30 +27,36 @@
 
                     </div>
                 </div>
-                <div class="row pt-2">
-                    <div class="col-7"></div>
+                <div class ="cart_prices">
+                    <div class="row pt-2">
+                        <div class="col-7"></div>
                         <p class="col-2 text-right cart_frais">TVA</p>
                         <p class="col-2 text-center cart_frais_price">CHF 150.-</p>
                         <div class="col-1"></div>
                     </div>
-                      <div class="row pt-2">
-                    <div class="col-7"></div>
+                    <div class="row pt-2">
+                        <div class="col-7"></div>
                         <p class="col-2 text-right cart_frais">Livraison</p>
                         <p class="col-2 text-center cart_frais_price">CHF 25.-</p>
                         <div class="col-1"></div>
                     </div>
-                      <div class="row pt-2">
-                    <div class="col-7"></div>
+                    <div class="row pt-2">
+                        <div class="col-7"></div>
                         <p class="col-2 text-right cart_frais_price_total">Total</p>
                         <p class="col-2 text-center cart_frais_price_total">CHF 225.50</p>
                         <div class="col-1"></div>
                     </div>
-
-                    </div>
+                </div>
+                <div class = "cart_buttons row">
+                    <div class="col-6"></div>
+                       <div class=" col-3 continuer_achats text-center d-flex flex-column align-items-center justify-content-center mr-3"><a class="continuer_text" href=""><img src="images/polygon.svg" class="svg_button pr-2" alt="">Continuer mes achats</a></div>
+                       <div class=" col-2 commander text-center d-flex flex-column align-items-center justify-content-center mr-3"><a class="commander_text" href="">Commander</a></div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 </template>
 
