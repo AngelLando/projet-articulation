@@ -3,7 +3,7 @@
         <div class="super_container">
             <div class="super_container_inner">
                 <div class="super_overlay"></div>
-                <div class="products">
+                <div class="products mb-5">
                     <div class="container pb-3">
                        <div class ="pt-3 pb-1 checkout row">
                         <form @submit.prevent="submitAddress(isHiddenBillTo,isHiddenShipTo)" action="#" class=" row billing-form">
@@ -217,7 +217,14 @@
             </div>
             <div class="line_bottom pt-2"><p></p></div>
         </div>
+
     </div>
+    <div class="col-md-12 line_bottom mb-4 pt-1 pb-4">
+<label class="pb-2 comment" v-model="comment" for="comment">Commentaire (optionnel)</label>
+
+<textarea id="comment" class="col-md-12" name="comment" placeholder="Ajouter un commentaire...">
+</textarea>
+</div>
     <div class=" col-md-12 row text-center ">
     <button type="submit" class="text-center col-12 submit_order">Commander</button>
 
@@ -235,7 +242,7 @@
     </div>
     <span class="text-muted">CHF 120.-</span>
 </li>
-<li class="list-group-item d-flex justify-content-between lh-condensed">
+<li class="list-group-item d-flex justify-content-between background_grey lh-condensed">
   <div>
     <h6 class="my-0">TVA</h6>
     <small class="text-muted">7.7%</small>
@@ -255,8 +262,8 @@
 </div>
 <span class="text-success">CHF -10.-</span>
 </li>
-<li class="list-group-item d-flex justify-content-between">
-  <span>Total</span>
+<li class="list-group-item d-flex justify-content-between background_grey">
+      <h6 class="my-0">Total</h6>
   <p class="price_total">CHF 210.50</p>
 </li>
 </ul>
@@ -270,6 +277,23 @@
 </div>
 </form>
 <div class="error mt-2" v-if="isError">Ce code promo n'est pas valide.</div>
+
+
+<div class="card p-2 mt-3 pl-4 pt-3 ">
+        <h6 class="my-0">Paiement</h6>
+
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                <label class="custom-control-label" v-model="payment_method" for="credit">Carte de crédit</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                <label class="custom-control-label" v-model="payment_method" for="paypal">Paypal</label>
+              </div>
+
+            </div>
+</div>
 
 </div>
 </form><!-- END -->

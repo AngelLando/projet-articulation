@@ -18,7 +18,12 @@
 /***********
 Global
 ***********/
-
+textarea{
+    background: #FFFFFF;
+border: 1px solid #000000;
+box-sizing: border-box;
+border-radius: 10px;
+}
 
 label{
 font-family: Montserrat;
@@ -136,6 +141,7 @@ button, input[type="submit"], input[type="reset"] {
     cursor: pointer;
     outline: inherit;
 }
+
 
 .form-control{
     border: 1px solid black;
@@ -265,4 +271,14 @@ Products
 .btn_code:hover{
         background: #930046;
 
+}
+
+.comment{
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 20px;
+line-height: 25px;
+color: #000000;
 }
