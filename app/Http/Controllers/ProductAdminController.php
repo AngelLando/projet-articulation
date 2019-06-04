@@ -76,8 +76,7 @@ class ProductAdminController extends Controller
                                             ->with('products', Product::all())
                                             ->with('formats', Format::all())
                                             ->with('types', Type::all())
-                                            ->with('suppliers', Supplier::all())
-                                            ->with('prices', Price::all());
+                                            ->with('suppliers', Supplier::all());
     }
 
     /**
