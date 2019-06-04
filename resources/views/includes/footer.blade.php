@@ -2,13 +2,13 @@
 <footer class="page-footer font-small bg-light pt-4">
 
   <!-- Footer Links -->
-  <div class="container-fluid text-center text-md-left">
+  <div class="container-fluid">
 
     <!-- Grid row -->
-    <div class="row">
+    <div class="row" style="padding: 0 10em;">
 
       <!-- Grid column -->
-      <div class="col-md-3 mb-md-0 mb-3">
+      <div class="col py-3" >
         <!-- Links -->
         <h5 class="text-uppercase">Actualités</h5>
 
@@ -27,7 +27,7 @@
       <!-- Grid column -->
 
       <!-- Grid column -->
-      <div class="col-md-3 mb-md-0 mb-3">
+      <div class="col py-3">
         <!-- Links -->
         <h5 class="text-uppercase">Aide</h5>
 
@@ -48,7 +48,7 @@
 
 
       <!-- Grid column -->
-      <div class="col-md-3 mb-md-0 mb-3">
+      <div class="col py-3">
         <!-- Links -->
         <h5 class="text-uppercase">À propos</h5>
 
@@ -67,7 +67,7 @@
       <!-- Grid column -->
 
       <!-- Grid column -->
-      <div class="col-md-3 mb-md-0 mb-3">
+      <div class="col py-3">
 
         <!-- Links -->
         <h5 class="text-uppercase">GAZZAR SA</h5>
@@ -85,7 +85,7 @@
   <!-- Footer Links -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center  py-3">
+  <div class="footer-copyright text-center py-3 mx-auto">
     <p>© 2019 Gazzar SA</p>
 
   </div>
