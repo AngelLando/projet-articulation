@@ -12,82 +12,82 @@
                             <div class="selection">
                                 <div class="text-right d-flex flex-row align-items-start justify-content-start">
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option type_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span class="filter_name">Type</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option type_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span class="filter_name">Type de vin</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
-                                            <li v-for="product in products" class="item_filter_btn" data-filter="*">
-                                                <input type="checkbox">
-                                                {{product.kind}}
+                                            <li v-for="product in unique(products, 'kind')" class="item_filter_btn chiller_cb" data-filter="*">
+                                                <input :id="product.kind" type="checkbox">
+                                                <label :for="product.kind">{{product.kind}}</label>
+                                                <span></span>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option format_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Format</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                             <ul>
-                                                <li v-for="product in products" class="item_filter_btn" data-filter="*">
-                                                    <input type="checkbox">
-                                                    {{product.format}}
+                                                <li v-for="product in unique(products, 'format')" class="item_filter_btn chiller_cb" data-filter="*">
+                                                    <input :id="product.format" type="checkbox">
+                                                    <label :for="product.format">{{product.format}}</label>
+                                                    <span></span>
                                                 </li>
-                                                <button class="btn-primary btn-apply-filter">test</button>
                                             </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Conditionnement</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
-                                            <li v-for="product in products" class="item_filter_btn" data-filter="*">
-                                                <input type="checkbox">
-                                                {{product.packaging_capacity}}
+                                            <li v-for="product in unique(products, 'packaging_capacity')" class="item_filter_btn chiller_cb" data-filter="*">
+                                                <input :id="product.packaging_capacity" type="checkbox">
+                                                <label :for="product.packaging_capacity">{{product.packaging_capacity}}</label>
+                                                <span></span>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option vintage_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Millésime</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">1947 - 1946</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">1983 - 1982</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">1985 - 1984</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">1995 - 1994</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">1997 - 1996</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">1999 - 1998</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">2003 - 2002</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">2005 - 2004</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">2007 - 2006</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">2009 - 2008</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">2011 - 2010</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">2013 - 2012</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">2015 - 2014</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">2017 - 2016</li>
-                                            <li class="item_filter_btn" data-filter="*"><input type="checkbox">2019 - 2018</li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-1" type="checkbox"><label for="mil-1">1946-1947</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-2" type="checkbox"><label for="mil-2">1982-1983</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-3" type="checkbox"><label for="mil-3">1984-1985</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-4" type="checkbox"><label for="mil-4">1994-1995</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-5" type="checkbox"><label for="mil-5">1996-1997</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-6" type="checkbox"><label for="mil-6">1998-1999</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-7" type="checkbox"><label for="mil-7">2002-2003</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-8" type="checkbox"><label for="mil-8">2004-2005</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-9" type="checkbox"><label for="mil-9">2006-2007</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-10" type="checkbox"><label for="mil-10">2008-2009</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-11" type="checkbox"><label for="mil-11">2010-2011</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-12" type="checkbox"><label for="mil-12">2012-2013</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-13" type="checkbox"><label for="mil-13">2014-2015</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-14" type="checkbox"><label for="mil-14">2016-2017</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-15" type="checkbox"><label for="mil-15">2018-2019</label><span></span></li>
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option appellation_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Appellation</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
-                                            <li v-for="product in products" class="item_filter_btn" data-filter="*">
-                                                <input type="checkbox">
-                                                {{product.appellation}}
+                                            <li v-for="product in unique(products, 'appellation')" class="item_filter_btn chiller_cb" data-filter="*">
+                                                <input :id="product.appellation" type="checkbox">
+                                                <label :for="product.appellation">{{product.appellation}}</label>
+                                                <span></span>
                                             </li>
                                         </ul>
                                     </div>
-
-
-
-
-
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Catégorie</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
-                                            <li v-for="product in products" class="item_filter_btn" data-filter="*">
-                                                <input type="checkbox">
-                                                {{product.tag}}
+                                            <li v-for="product in unique(products, 'tag')" class="item_filter_btn chiller_cb" data-filter="*">
+                                                <input :id="product.tag" type="checkbox">
+                                                <label :for="product.tag">{{product.tag}}</label>
+                                                <span></span>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Pays</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
-                                            <li v-for="product in products" class="item_filter_btn" data-filter="*">
-                                                <input type="checkbox">
-                                                {{product.country}}
+                                            <li v-for="product in unique(products, 'country')" class="item_filter_btn chiller_cb" data-filter="*">
+                                                <input :id="product.country" type="checkbox">
+                                                <label :for="product.country">{{product.country}}</label>
+                                                <span></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -96,11 +96,20 @@
                                 <div class="content col-xl-12">Prix :</div>
 
                                 <vue-slider v-model="value_2" :min="10.77" :max="915.45" :interval="0.01"/>
+                                <p>{{value_2[0]}}</p>
 
 
                                 <div class="row results_sort ml-3 pt-5 pb-3">
                                     <div class="sort col-md-auto">
-                                        liste
+                                        <select class="bootstrap-select">
+                                            <option value="1" selected="selected">Noms A-Z</option>
+                                            <option value="2">Noms Z-A</option>
+                                            <option value="3">Prix croissants</option>
+                                            <option value="4">Prix décroissants</option>
+                                            <option value="4">Ancienneté croissante</option>
+                                            <option value="4">Ancienneté décroissante</option>
+
+                                        </select>
                                     </div>
                                     <div class="sort col-md-auto">
                                         Trier par :
@@ -108,18 +117,6 @@
                                     <div class="results col-md-auto">
                                         14 produits trouvés
                                     </div>
-                                </div>
-
-                                <div>
-                                    <b-form-checkbox-group
-
-                                        id="checkbox-group-1"
-                                        v-model="selected"
-                                        :options="options"
-                                        name="flavour-1"
-                                    ></b-form-checkbox-group>
-
-                                    <div>Selected: <strong>{{ selected }}</strong></div>
                                 </div>
                             </div>
                         </div>

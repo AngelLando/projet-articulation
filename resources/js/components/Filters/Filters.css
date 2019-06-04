@@ -12,11 +12,24 @@ a, a:hover, a:visited, a:active, a:link
 Container
 ***********/
 
+
+.bootstrap-select {
+    font-weight: bold;
+    border: none;
+    background-color: #FFFFFF;
+
+}
+
+
 .super_container
 {
     width: 100%;
 }
 
+
+.sort {
+    margin-right: -1em;
+}
 
 .content, .results_sort {
     font-family: Montserrat;
@@ -282,7 +295,7 @@ div.filter_option.active{
     list-style:none;
     display: none;    opacity: 0;
     text-align: left;
-    background: #f6f8fa;
+    background: #FFFFFF;
     padding-right: 15px;
     padding-top: 13px;
     padding-bottom: 15px;
@@ -303,13 +316,15 @@ div.filter_option.active{
     font-family: Montserrat;
     font-size: 14px;
     font-weight: 400;
-    color: #bcbcbc;
+    color: black;
+    line-height: 1rem;
     -webkit-transition: all 200ms ease;
     -moz-transition: all 200ms ease;
     -ms-transition: all 200ms ease;
     -o-transition: all 200ms ease;
     transition: all 200ms ease;
 }
+
 .products_dropdown ul li:hover
 {
     color: #000000;
@@ -318,4 +333,79 @@ div.filter_option.active{
 .products_dropdown:hover > ul {
 display: block;
     opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.chiller_cb {
+    position: relative;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+}
+.chiller_cb input {
+    display: none;
+}
+.chiller_cb input:checked ~ span {
+    background: #930046;
+    border-color: #930046;
+}
+.chiller_cb input:checked ~ span:before {
+    width: 1rem;
+    height: 0.15rem;
+    transition: width 0.1s;
+    transition-delay: 0.3s;
+}
+.chiller_cb input:checked ~ span:after {
+    width: 0.4rem;
+    height: 0.15rem;
+    transition: width 0.1s;
+    transition-delay: 0.2s;
+}
+.chiller_cb input:disabled ~ span {
+    background: #ececec;
+    border-color: #dcdcdc;
+}
+.chiller_cb input:disabled ~ label {
+    color: #dcdcdc;
+}
+.chiller_cb input:disabled ~ label:hover {
+    cursor: default;
+}
+.chiller_cb label {
+    padding-left: 2rem;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    margin-bottom:0;
+}
+.chiller_cb span {
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid #ccc;
+    position: absolute;
+    left: 0;
+    transition: all 0.2s;
+    z-index: 1;
+    box-sizing: content-box;
+}
+.chiller_cb span:before {
+    transform: rotate(-55deg);
+    top: 1rem;
+    left: 0.37rem;
+}
+.chiller_cb span:after {
+    transform: rotate(35deg);
+    bottom: 0.35rem;
+    left: 0.2rem;
 }

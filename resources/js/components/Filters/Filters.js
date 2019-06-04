@@ -9,20 +9,10 @@ export default {
         return {
             products : [],
             value_2: [10.77, 915.45],
-            selected: [], // Must be an array reference!
-            options: [
-                { text: 'Orange', value: 'orange' },
-                { text: 'Apple', value: 'apple' },
-                { text: 'Pineapple', value: 'pineapple' },
-                { text: 'Grape', value: 'grape' }
-            ]
         }
     },
     components: {
-        VueSlider,
-        BFormGroup,
-        BFormCheckboxGroup,
-        BFormCheckbox
+        VueSlider
     },
     props : ['prod'],
     mounted () {
@@ -30,4 +20,19 @@ export default {
         this.products = json.products;
     },
 
+    computed: {
+        unique () {
+            return function (arr, key) {
+                var output = []
+                var usedKeys = {}
+                for (var i = 0; i < arr.length; i++) {
+                    if (!usedKeys[arr[i][key]]) {
+                        usedKeys[arr[i][key]] = true
+                        output.push(arr[i])
+                    }
+                }
+                return output
+            }
+        }
+    }
 }
