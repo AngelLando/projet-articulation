@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Cart;
 use App\Product;
@@ -17,22 +18,27 @@ class CartController extends Controller
      */
     public function index()
     {
-        $userId = 1;
+        if(Auth::check()) {
+            $userId = Auth::id();
 
-        $cart = ['cart' => Cart::where('user_id', $userId)->firstOrFail()];
-        $cartItems = $cart['cart']->cartItems;
-        $cart = [];
+            $cart = ['cart' => Cart::where('user_id', $userId)->firstOrFail()];
+            $cartItems = $cart['cart']->cartItems;
+            $cart = [];
 
-        foreach($cartItems as $cartItem) {
-            $product = ProductController::getById($cartItem->product_id);
-            $newProduct = ProductController::getAllData($product['product']);
-            //$newProduct['error'] = self::checkForAvailability($newProduct['quantity'], $newProduct['stock']);
-            array_push($cart, $newProduct);
+            foreach ($cartItems as $cartItem) {
+                $product = ProductController::getById($cartItem->product_id);
+                $newProduct = ProductController::getAllData($product['product']);
+                //$newProduct['error'] = self::checkForAvailability($newProduct['quantity'], $newProduct['stock']);
+                array_push($cart, $newProduct);
+            }
+
+            // CONVERT ARRAY TO JSON TO PASS DATAS
+            $json = json_encode($cart);
+            return view('cart')->with('cart', $json);
+        } else {
+            $json = json_encode(null);
+            return view('cart')->with('cart', $json);
         }
-
-        // CONVERT ARRAY TO JSON TO PASS DATAS
-        $json = json_encode($cart);
-        return view('cart')->with('cart', $json);
     }
 
     /**
@@ -103,24 +109,26 @@ class CartController extends Controller
 
     public function checkout()
     {
-        $userId = 1;
+        if(Auth::check()) {
+            $userId = Auth::id();
+            $cart = ['cart' => Cart::where('user_id', $userId)->firstOrFail()];
+            $cartItems = $cart['cart']->cartItems;
+            $cart = [];
 
-        $cart = ['cart' => Cart::where('user_id', $userId)->firstOrFail()];
+            foreach ($cartItems as $cartItem) {
+                $product = ProductController::getById($cartItem->product_id);
+                $newProduct = ProductController::getAllData($product['product']);
+                //$newProduct['error'] = self::checkForAvailability($newProduct['quantity'], $newProduct['stock']);
+                array_push($cart, $newProduct);
+            }
 
-        $cartItems = $cart['cart']->cartItems;
-        $cart = [];
-
-        foreach($cartItems as $cartItem) {
-            $product = ProductController::getById($cartItem->product_id);
-            $newProduct = ProductController::getAllData($product['product']);
-            //$newProduct['error'] = self::checkForAvailability($newProduct['quantity'], $newProduct['stock']);
-            array_push($cart, $newProduct);
+            // CONVERT ARRAY TO JSON TO PASS DATAS
+            $json = json_encode($cart);
+            return view('checkout')->with('cart', $json);
+        } else {
+            $json = json_encode(null);
+            return view('cart')->with('cart', $json);
         }
-
-        // CONVERT ARRAY TO JSON TO PASS DATAS
-        $json = json_encode($cart);
-        return view('checkout')->with('cart', $json);
-
     }
 
     public static function checkForAvailability ($quantity, $stock) {
