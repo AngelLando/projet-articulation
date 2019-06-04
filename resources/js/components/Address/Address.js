@@ -95,7 +95,7 @@ export default {
           address3 : this.address3,
           products : JSON.parse(this.cart),
         }
-        console.log(this.data)
+        console.log(this.data);
         axios.post('check', this.data).then(console.log('formulaire envoyé!')).then(function (response) {
           console.log(response);
         })
