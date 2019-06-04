@@ -304,18 +304,28 @@ color: black;
 }
 
 
-.favorite-heart {
-  top: -450px;
-  right: -235px;
+div
+{
+    position: relative;
 }
+
+
+
+.favorite-heart {
+  top: 35px;
+  right: -250px;
+}
+
 .share {
-  top: -70px;
+  top: -105px;
   right: -25px;
 }
 
+
+
 .favorite-heart > img
 {
-  width: 35px;
+  width: 40px;
 }
 
 div.product_button.product_cart, .add_product {

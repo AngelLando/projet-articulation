@@ -97,9 +97,9 @@
                                 <div class="row price_filter ml-3 pb-3">
 
                                     <div class="price-filter-label content col-md-auto">Prix :</div>
-                                    <div class="price-filter price-filter-min col-md-auto"><span>CHF {{value_2[0]}}</span></div>
-                                    <div class="slider-price col-md-auto"><vue-slider v-model="value_2" :min="10.77" :max="915.45" :interval="0.01"/></div>
-                                    <div class="price-filter price-filter-max col-md-auto"><span>CHF {{value_2[1]}}</span></div>
+                                    <div class="price-filter price-filter-min col-md-auto"><span>CHF {{value_2[0]}}</span><span v-if="value_2[0] % 1 === 0">.–</span><span v-if="(((value_2[0]*1000) % 1 === 0) && (value_2[0] % 1 !== 0))">0</span></div>
+                                    <div class="slider-price col-md-auto"><vue-slider v-model="value_2" :min="10.70" :max="915.50" :interval="0.10"/></div>
+                                    <div class="price-filter price-filter-max col-md-auto"><span>CHF {{value_2[1]}}</span><span v-if="value_2[1] % 1 === 0">.–</span><span v-if="(((value_2[1]*1000) % 1 === 0) && (value_2[1] % 1 !== 0))">0</span></div>
 
                                 </div>
 
