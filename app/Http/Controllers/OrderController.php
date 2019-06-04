@@ -39,13 +39,13 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         // Insert the order address in the database
-        $addressId1 = AddressController::store($request, $nb = '1');
+        $addressId1 = AddressController::store($request, $nb = '1', $id = null);
 
         // Insert the shipping address in the database
-        $addressId2 = AddressController::store($request, $nb = '2');
+        $addressId2 = AddressController::store($request, $nb = '2', $addressId1);
 
         // Insert the billing address in the database
-        $addressId3 = AddressController::store($request, $nb = '3');
+        $addressId3 = AddressController::store($request, $nb = '3', $addressId1);
 
         // Make the sum of all products' quantity and return the right shippingcost
        // $shippingCosts = ShippingCostController::getRigthShippingCost($request);
