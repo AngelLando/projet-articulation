@@ -91,6 +91,20 @@ nav.secondary-nav form.form-inline {
   border-bottom: 1px solid #ced4da;
 }
 
+footer div.footer-copyright {
+  color: white;
+  background-color: #757575;
+}
+
+footer a {
+  color: black;
+}
+
+footer a:hover {
+  color: #d4d4d4;
+  text-decoration: none;
+}
+
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -10751,18 +10765,5 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
-}
-
-> > > > > > > header footer div.footer-copyright {
-  color: white;
-  background-color: #757575;
-}
-
-footer a {
-  color: black;
-}
-
-footer a:hover {
-  color: #d4d4d4;
 }
 

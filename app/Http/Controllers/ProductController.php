@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Http\Controllers\AppellationController;
+use App\Http\Controllers\TypeController;
 
 class ProductController extends Controller
 {
@@ -25,6 +27,8 @@ class ProductController extends Controller
                 array_push($allProducts, $newProduct);
         }
         $tab['products'] = $allProducts;
+        $tab['appellations'] = AppellationController::index();
+        $tab['types'] = TypeController::index();
 
         // CONVERT ARRAY TO JSON TO PASS DATAS
         $json = json_encode($tab);
