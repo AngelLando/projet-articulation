@@ -118,6 +118,8 @@ class CartController extends Controller
             foreach ($cartItems as $cartItem) {
                 $product = ProductController::getById($cartItem->product_id);
                 $newProduct = ProductController::getAllData($product['product']);
+
+                $newProduct['quantity'] = $cartItem['quantity'];
                 //$newProduct['error'] = self::checkForAvailability($newProduct['quantity'], $newProduct['stock']);
                 array_push($cart, $newProduct);
             }
