@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.component('products-catalog', require('./components/Catalog/Catalog.vue').default);
+Vue.component('mini-products-catalog', require('./components/MiniCatalog/MiniCatalog.vue').default);
 Vue.component('cart-component', require('./components/Cart/Cart.vue').default);
 Vue.component('products-single', require('./components/SingleProduct/singleProduct.vue').default);
 Vue.component('checkout-component', require('./components/Cart/Cart.vue').default);

@@ -2,5 +2,5 @@
 
 @section('content')
 <products-single prod="{{$products}} "></products-single>
-<products-catalog prod="{{$products}}"></products-catalog>
+<mini-products-catalog prod="{{$products}}"></mini-products-catalog>
 @endsection
