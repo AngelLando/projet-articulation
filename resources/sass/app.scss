@@ -7,23 +7,11 @@
 // Import Main Nav Styles
 @import 'main-nav-styles';
 
-// Import sacondary Nav Styles
+// Import Secondary Nav Styles
 @import 'secondary-nav-styles';
+
+// Import Footer Styles
+@import 'footer-styles';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
->>>>>>> header
-
-// Footer styles
-footer div.footer-copyright  {
-  color: white;
-  background-color: #757575;
-}
-
-footer a {
-  color: black;
-}
-
-footer a:hover {
-  color: #d4d4d4;
-}

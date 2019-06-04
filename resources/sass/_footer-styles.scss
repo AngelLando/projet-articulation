@@ -1,0 +1,14 @@
+// Footer styles
+footer div.footer-copyright  {
+  color: white;
+  background-color: $footer-dark-grey;
+}
+
+footer a {
+  color: black;
+}
+
+footer a:hover {
+  color: $footer-light-grey;
+  text-decoration: none;
+}
