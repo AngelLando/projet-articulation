@@ -35,18 +35,21 @@ class AddressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public static function store(Request $request)
+    public static function store(Request $request, $nb)
     {
+        $name = 'address'.$nb;
+        if($request->$name == null) {
+            $nb = 1;
+            $name = 'address'.$nb;
+        }
         $id = Address::insertGetId([
-           'street' => $request->address['street'],
-            'npa' => $request->address['npa'],
-            'city' => $request->address['city'],
-            'region' => $request->address['region'],
-            'country' => $request->address['country'],
-            'person_id' => 1
-        ]);
+            'street' => $request->$name['street'.$nb],
+            'npa' => $request->$name['npa'.$nb],
+            'city' => $request->$name['city'.$nb],
+            'region' => $request->$name['region'.$nb],
+            'country' => $request->$name['country'.$nb],
+            'person_id' => 1]);
         return $id;
-
     }
 
     /**
