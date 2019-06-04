@@ -7,7 +7,6 @@ use App\Product;
 use App\Format;
 use App\Type;
 use App\Supplier;
-use App\Price;
 use Illuminate\Http\Request;
 
 class ProductAdminController extends Controller

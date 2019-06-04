@@ -25,7 +25,7 @@ class Product extends Model
     }
 
     public function promotions() {
-        return $this->belongsTo('App\Price');
+        return $this->belongsTo('App\Promotion');
     }
 
     public function productRatings() {
