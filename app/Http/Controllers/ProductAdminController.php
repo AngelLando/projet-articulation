@@ -120,6 +120,7 @@ class ProductAdminController extends Controller
         $product->stock = $request->stock;
         $product->alcohol = $request->alcohol;
         $product->quotation = $request->quotation;
+        $product->slug = str_slug($request->name);
 
         $product->save();
 
