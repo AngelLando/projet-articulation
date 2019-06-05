@@ -37,6 +37,12 @@ class OrderItemController extends Controller
     public static function store(Request $request, $orderId)
     {
         $products = $request->products;
+
+        /*
+        $request->validate([
+            'products.quantity' => 'min:1'
+        ]);*/
+
         foreach($products as $product) {
             OrderItem::create([
                 'order_id' => $orderId,

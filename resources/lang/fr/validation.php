@@ -155,6 +155,9 @@ return [
         'address1.country1' => [
             'required' => 'Le champ Pays est recquis.'
         ],
+        'products.quantity' => [
+            'min' => 'Désolé, mais vous devez au moins avoir 1 unité pour passer commande.'
+        ]
 
     ],
 
