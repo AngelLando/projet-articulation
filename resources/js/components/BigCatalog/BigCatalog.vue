@@ -1,11 +1,6 @@
 <template>
     <div>
-
-
-        <div>Types : <strong>{{ selected_kinds }}</strong></div>
-
-        <!--<VueFilters :secondValue.sync="selected_kinds"></VueFilters>!-->
-
+        
             <!--    FILTERS PART    !-->
 
         <div class="super_container">
@@ -152,7 +147,7 @@
                         <div class="row products_row">
 
                             <!-- Product -->
-                            <div v-for="product in products"  class="col-xl-4 col-md-6" v-if="product.price > value_2[0] && product.price < value_2[1]">
+                            <div v-for="product in products"  class="col-xl-4 col-md-6" v-if="((product.price > value_2[0] && product.price < value_2[1]) && (selected_kinds.length == 0 || selected_kinds.includes(product.kind)) && (selected_formats.length == 0 || selected_formats.includes(product.format)) && (selected_packagings.length == 0 || selected_packagings.includes(product.packaging_capacity)) && (selected_appellations.length == 0 || selected_appellations.includes(product.appellation)) && (selected_tags.length == 0 || selected_tags.includes(product.tag)) && (selected_countries.length == 0 || selected_countries.includes(product.country)))">
                                 <div class="product">
                                     <div>
                                         <div class="product_image"><img class="image" :src="product.path_image" alt=""><div class="favorite-heart"><img src="images/favorite-heart-empty.svg" class="svg" alt=""></div></div>
