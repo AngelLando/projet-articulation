@@ -34,11 +34,10 @@ class CartController extends Controller
 
             // CONVERT ARRAY TO JSON TO PASS DATAS
             $json = json_encode($cart);
-            return view('cart')->with('cart', $json);
         } else {
             $json = json_encode(null);
-            return view('cart')->with('cart', $json);
         }
+        return $json;
     }
 
     /**
@@ -126,11 +125,10 @@ class CartController extends Controller
 
             // CONVERT ARRAY TO JSON TO PASS DATAS
             $json = json_encode($cart);
-            return view('checkout')->with('cart', $json);
         } else {
             $json = json_encode(null);
-            return view('cart')->with('cart', $json);
         }
+        return $json;
     }
 
     public static function checkForAvailability ($quantity, $stock) {
