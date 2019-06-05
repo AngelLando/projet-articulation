@@ -240,12 +240,12 @@
         <h6 class="my-0">Sous total</h6>
         <small class="text-muted">Hors TVA et frais</small>
     </div>
-    <span class="text-muted">CHF 120.-</span>
+    <span class="text-muted " v-model="subtotal">CHF 120.-</span>
 </li>
 <li class="list-group-item d-flex justify-content-between background_grey lh-condensed">
   <div>
     <h6 class="my-0">TVA</h6>
-    <small class="text-muted">7.7%</small>
+    <small class="text-muted" v-model="tva">7.7%</small>
 </div>
 <span class="text-muted">CHF 8.-</span>
 </li>
@@ -254,17 +254,19 @@
     <h6 class="my-0">Frais de livraison</h6>
     <small class="text-muted">En Suisse</small>
 </div>
-<span class="text-muted">CHF 10.-</span>
+<span class="text-muted" v-model="delivery">CHF 10.-</span>
 </li>
 <li v-if="isHiddenPromoCode" class="list-group-item d-flex justify-content-between bg-light">
   <div class="text-success">
     <h6 class="my-0">Code promo</h6>
+          <small class="text-muted">cuki -10%</small>
 </div>
-<span class="text-success">CHF -10.-</span>
+<span class="text-success" v-model="promocode">- CHF {{rabais}}<span v-if="rabais % 1 === 0">.–</span><span v-if="(((rabais*1000) % 1 === 0) && (rabais % 1 !== 0))">0</span></span>
 </li>
+
 <li class="list-group-item d-flex justify-content-between background_grey">
       <h6 class="my-0">Total</h6>
-  <p class="price_total">CHF 210.50</p>
+  <p class="price_total" v-model="total">CHF {{total}}<span v-if="total % 1 === 0">.–</span><span v-if="(((total*1000) % 1 === 0) && (total % 1 !== 0))">0</span></p>
 </li>
 </ul>
 
