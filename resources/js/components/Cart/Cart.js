@@ -15,7 +15,7 @@ export default {
 		underline: function(event){
 		},
         deleteProduct : function (event) {
-			axios.delete('cartItem/' + event).catch(error => {
+			axios.delete('cartItem/' + event.id).catch(error => {
 				console.dir(error);
 			})
         }
