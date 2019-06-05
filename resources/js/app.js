@@ -4,6 +4,7 @@ import BootstrapVue from 'bootstrap-vue'
 window.Vue = require('vue');
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+var JSONStore = require('jsonstore-js');
 
 
 
