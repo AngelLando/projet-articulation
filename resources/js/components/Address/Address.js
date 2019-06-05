@@ -34,11 +34,11 @@ export default {
       isHiddenBillTo:false,
       isHiddenPromoCode:false,
       isError:false,
+        errors: {},
     }
   },
     //props : ['prod'],
     mounted () {
-
     },
     methods : {
         checkPromoCode: function(){
@@ -98,8 +98,8 @@ export default {
           products : JSON.parse(this.cart),
         }
         console.log(this.data);
-        axios.post('check', this.data).then(console.log('formulaire envoyé!')).then(function (response) {
-          console.log(response);
+        axios.post('check', this.data).catch(error => {
+          this.errors = error.response.data.errors
         })
       },
 
