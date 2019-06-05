@@ -1,6 +1,6 @@
 <template>
     <div>
-        
+
             <!--    FILTERS PART    !-->
 
         <div class="super_container">

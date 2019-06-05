@@ -26,8 +26,8 @@
 
 .slider-image > div > .infos {
     background-color: rgba(255, 255, 255, 0.88);
-    height: 690px;
-    max-width: 500px;
+    height: 33em;
+    max-width: 29em;
     padding-left: 6em;
     padding-right: 5em;
 }
