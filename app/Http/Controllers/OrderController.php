@@ -48,14 +48,14 @@ class OrderController extends Controller
         $addressId3 = AddressController::store($request, $nb = '3', $addressId1);
 
         // Make the sum of all products' quantity and return the right shippingcost
-       // $shippingCosts = ShippingCostController::getRigthShippingCost($request);
+        $shippingCosts = ShippingCostController::getRigthShippingCost($request);
 
         // Create the Order
         $orderId = Order::insertGetId([
             'address_id_1' => $addressId1,
             'address_id_2' => $addressId2,
             'address_id_3' => $addressId3,
-            'shipping_cost_id' => 1
+            'shipping_cost_id' => $shippingCosts
         ]);
 
         // Create all OrderItems needed
