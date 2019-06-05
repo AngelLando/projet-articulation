@@ -32,11 +32,6 @@ class ProductAdminController extends Controller
      */
     public function create()
     {
-        //if($categories->count() == 0 || $tags->count() == 0) {
-        //  Session::flash('info', 'You must have categories and tags before attempting to create a post!');
-        //  return redirect()->back();
-        //}
-
         return view('admin.products.create')->with('products', Product::all())
                                             ->with('formats', Format::all())
                                             ->with('types', Type::all())
@@ -104,17 +99,6 @@ class ProductAdminController extends Controller
         Session::flash('success', 'Le produit a été créé!');
 
         return redirect()->route('produits.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
