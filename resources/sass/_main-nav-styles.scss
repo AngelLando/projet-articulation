@@ -50,6 +50,14 @@ nav.navbar-light ul.navbar-nav > li > .dropdown-menu > a.dropdown-item:hover{
   margin: 0 1em;
 }
 
- nav {
+ nav.navbar-light {
      font-family: Montserrat;
  }
+
+ #navbarSupportedContent {
+     margin-bottom: -0.7em;
+ }
+
+.navbar-brand {
+    margin-bottom: -0.5em;
+}

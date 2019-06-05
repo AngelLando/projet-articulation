@@ -50,8 +50,16 @@ nav.navbar-light ul.navbar-nav > li > .dropdown-menu > a.dropdown-item:hover {
   margin: 0 1em;
 }
 
-nav {
+nav.navbar-light {
   font-family: Montserrat;
+}
+
+#navbarSupportedContent {
+  margin-bottom: -0.7em;
+}
+
+.navbar-brand {
+  margin-bottom: -0.5em;
 }
 
 /*secondary nav styles*/
@@ -93,6 +101,12 @@ button.btn.my-2.my-sm-0.secondary-nav:focus {
 
 nav.secondary-nav form.form-inline {
   border-bottom: 1px solid #ced4da;
+}
+
+nav.secondary-nav {
+  background: #FFFFFF;
+  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2);
+  height: 60px;
 }
 
 footer div.footer-copyright {
