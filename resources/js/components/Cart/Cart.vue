@@ -27,7 +27,7 @@
                     <p class="multiply">X</p>
                     <div class="col-2"><p class="cart_product_price">CHF {{product.price}}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></p></div>
                     <div class="col-2 text-center fix_cross"><p class="cart_product_price_total">CHF {{product.totalprice}}<span v-if="product.totalprice % 1 === 0">.–</span><span v-if="(((product.totalprice*1000) % 1 === 0) && (product.totalprice % 1 !== 0))">0</span></p></div>
-                    <div class=" col-1"><img src="images/delete.svg" class="svg" alt=""></div>
+                    <div class=" col-1"><img @click="deleteProduct(product)" src="images/delete.svg" class="svg" alt=""></div>
                 </div>
             </div>
 
