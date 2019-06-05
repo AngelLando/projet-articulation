@@ -250,7 +250,6 @@ color: #FFFFFF;
 border-bottom: 1px solid #D3D3D3;
 
 }
-
-.col-2 {
-    max-width: 15%;
+.fix_cross{
+    max-width: 150px;
 }
