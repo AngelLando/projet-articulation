@@ -25,24 +25,26 @@ export default {
 			$(clickedElement).siblings().removeClass("product_selection_selected");
 			$(clickedElement).siblings().addClass("product_selection");
 		},
-		submitCartItem (e) {
-
-		},
 		input: function (productid) {
 			this.cartItem  = {
 				product_id: this.product.id,
 				quantity: this.quantity
 			};
-			console.log(this.cartItem);
 			axios.post('../add', this.cartItem)
 			.catch(error => {
 				this.errors = error.response.data.errors
 				return;
 			})
-		var existing = localStorage.getItem('storedData');
-			existing = existing ? existing.split(',') : [];
-			existing.push(productid);
-			localStorage.setItem('storedData', existing.toString());
+
+			var local = localStorage.getItem('storedID');
+			local = local ? JSON.parse(local): {};
+			local['id']=this.product.id;
+			local['quantity']=this.quantity;
+			local['img']=this.product.path_image;
+			local['name']=this.product.name;
+			local['price']=this.product.price;
+			local['format']=this.product.format;
+			localStorage.setItem('storedID', JSON.stringify(local));
 		}
 	},
 	props : ['prod'],

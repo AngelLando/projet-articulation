@@ -25,6 +25,9 @@
     },
     "dependencies": {
         "bootstrap-vue": "^2.0.0-rc.22",
+        "json-storage": "^2.1.2",
+        "jsonstore-js": "^1.2.15",
+        "localStorage": "^1.0.4",
         "vue-range-slider": "^0.6.0",
         "vue-router": "^3.0.6",
         "vue-slider-component": "^3.0.32"

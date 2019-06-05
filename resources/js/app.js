@@ -5,8 +5,6 @@ window.Vue = require('vue');
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-
-
 Vue.component('my-account', require('./components/Account/Account.vue').default);
 Vue.component('big-catalog', require('./components/BigCatalog/BigCatalog.vue').default);
 Vue.component('mini-products-catalog', require('./components/MiniCatalog/MiniCatalog.vue').default);

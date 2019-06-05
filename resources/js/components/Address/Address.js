@@ -59,9 +59,6 @@ export default {
       });
       this.subtotal=subtotal
       this.tva = Math.round(this.tvaPercent*this.subtotal/100) ;
-      console.log(this.tva)
-      console.log(this.subtotal)
-      console.log(this.delivery)
       this.total = this.subtotal+this.tva+this.delivery;
     },
     beforeMount(){

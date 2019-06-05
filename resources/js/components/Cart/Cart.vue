@@ -11,18 +11,19 @@
                         <p class="header_title col-2 text-center">Prix</p>
                         <p class="header_title col-2 text-center">Total</p>
                     </div>
-                        <h1 v-if="products == null" style="color : red; text-size : 40px;">IL N'Y A PAS DE PRODUITS DANS VOTRE PANIER (BD) !</h1>
-                    <div v-for="product in products"  class="row line_bottom pb-4 pt-4">
+                                     
+
+                    <div  class="row line_bottom pb-4 pt-4">
                         <div class="col-1">
-                           <img  class="product_cart_image" :src="product.path_image" alt="">
+                           <img  class="product_cart_image" :src="product.img" alt="">
 
                        </div>
                        <div class="col-11 row">
                         <div class="col-12"><p class="cart_product_name">{{product.name}}</p></div>
-                        <div class="col-12"><p class="choice_packaging">Carton de {{product.packaging_capacity}} unité<span v-if="(product.packaging_capacity>1)">s</span> - {{product.format}}</p></div>
+                        <div class="col-12"><p class="choice_packaging">Carton de {{product.quantity}} unité<span v-if="(product.packaging_capacity>1)">s</span> - {{product.format}}</p></div>
                         <div class="col-5"></div>
                         <div class="col-2 text-right"> <select  class="choice_list">
-                            <option :value="product.packaging_capacity">{{product.packaging_capacity}}</option>
+                            <option :value="product.packaging_capacity">{{product.quantity}}</option>
                         </select>
                     </div>                            
                     <p class="multiply">X</p>
