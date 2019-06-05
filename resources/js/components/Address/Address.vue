@@ -227,9 +227,9 @@
 
     </div>
     <div class="col-md-12 line_bottom mb-4 pt-1 pb-4">
-<label class="pb-2 comment" v-model="comment" for="comment">Commentaire (optionnel)</label>
+<label class="pb-2 comment" for="comment">Commentaire (optionnel)</label>
 
-<textarea id="comment" class="col-md-12" name="comment" placeholder="Ajouter un commentaire...">
+<textarea id="comment" class="col-md-12" name="comment" placeholder="Ajouter un commentaire..." v-model="comment">
 </textarea>
 </div>
     <div class=" col-md-12 row text-center ">
@@ -268,7 +268,7 @@
     <h6 class="my-0">Code promo</h6>
           <small class="text-muted">cuki -10%</small>
 </div>
-<span class="text-success" v-model="promocode">- CHF {{rabais}}<span v-if="rabais % 1 === 0">.–</span><span v-if="(((rabais*1000) % 1 === 0) && (rabais % 1 !== 0))">0</span></span>
+<span class="text-success">- CHF {{rabais}}<span v-if="rabais % 1 === 0">.–</span><span v-if="(((rabais*1000) % 1 === 0) && (rabais % 1 !== 0))">0</span></span>
 </li>
 
 <li class="list-group-item d-flex justify-content-between background_grey">
@@ -279,7 +279,7 @@
 
 <form @submit.prevent="checkPromoCode()" class="card p-2">
     <div class="input-group">
-      <input type="text" class="form-control" id="promocode" placeholder="Code promo">
+      <input type="text" class="form-control" id="promocode" placeholder="Code promo" v-model="promocode">
       <div class="input-group-append">
         <button  type="submit" class="btn btn_code btn-secondary">Appliquer</button>
     </div>
@@ -293,12 +293,12 @@
 
             <div class="d-block my-3">
               <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" v-model="payment_method" for="credit">Carte de crédit</label>
+                <input id="credit" name="paymentMethod" v-model="payment_method" type="radio" class="custom-control-input" checked required value="Carte de crédit">
+                <label class="custom-control-label" for="credit">Carte de crédit</label>
               </div>
               <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" v-model="payment_method" for="paypal">Paypal</label>
+                <input id="paypal" name="paymentMethod" v-model="payment_method" type="radio" class="custom-control-input" required value="Paypal">
+                <label class="custom-control-label" for="paypal">Paypal</label>
               </div>
 
             </div>
