@@ -1,10 +1,10 @@
 <!-- Footer -->
-<footer class="page-footer font-small bg-light pt-4">
+<footer class="page-footer font-small pt-4">
   <!-- Footer Links -->
   <div class="container-fluid">
 
     <!-- Grid row -->
-    <div class="row" style="padding: 0 10em;">
+    <div class="row big-footer" style="padding: 0 10em;">
 
       <!-- Grid column -->
       <div class="col py-3" >
