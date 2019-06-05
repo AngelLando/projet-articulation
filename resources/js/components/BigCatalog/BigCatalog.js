@@ -54,6 +54,46 @@ export default {
         }
     },
 
+/*
+    methods: {
+        isInArray: function (event) {
+            products.foreach(function (product) {
+
+                console.log("test");
+            })
+        }
+    },*/
+
+    methods: {
+        isInArray: function (selection, produc_appell) {
+
+            const finalarray = [];
+
+            selection.forEach((s) => {
+
+                produc_appell.forEach((a) => {
+
+                    if (a.name === s) {
+
+                        console.log("tst")
+                        finalarray.push(a.name)
+                    }
+                });
+            })
+
+
+            console.log(finalarray);
+
+            if(finalarray.length > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+
+        }
+    },
+
+
 }
 
 
