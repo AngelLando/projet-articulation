@@ -35,12 +35,14 @@ export default {
 				quantity: this.quantity
 			};
 			console.log(this.cartItem);
-			axios.post('../add', this.cartItem)
-				.catch(error => {
-					this.errors = error.response.data.errors
-				}
+			axios.post('../add', this.cartItem).then(response => {
+				console.log(response)
+			})
+               /* .catch(error => {
+                    this.errors = error.response.data.errors
+                }
 
-			)
+			)*/
       	}
 	},
 	props : ['prod'],

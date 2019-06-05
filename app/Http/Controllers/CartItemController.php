@@ -46,16 +46,25 @@ class CartItemController extends Controller
         ]);
 
         if(Auth::check()) {
+            //Create or get the user's cart
             $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
 
-            $cartItem = CartItem::create([
-                'product_id' => $request->product_id,
-                'cart_id' => $cart->id,
-                'quantity' => $request->quantity
-            ]);
+            //Get a CartItem already existing with same product in the same cart
+            $similarCartItem = CartItem::where([['product_id', $request->product_id], ['cart_id', $cart->id]])->first();
+
+            //If it exists, update values, if not, store product
+            if($similarCartItem==null) {
+                $cartItem = CartItem::create([
+                    'product_id' => $request->product_id,
+                    'cart_id' => $cart->id,
+                    'quantity' => $request->quantity
+                ]);
+            } else {
+                $cartItem = CartItem::where('id', $similarCartItem->id)
+                   ->update(['quantity' => $request->quantity]);
+            }
         }
-        
-        return $selectedProductStock;
+        return $cartItem;
     }
 
     /**
