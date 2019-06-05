@@ -26,7 +26,8 @@ class CreateProductRatingsTable extends Migration
             $table->integer('product_id')->unsigned()->unique();
             $table->foreign('product_id')
                 ->references('id')
-                ->on('products');
+                ->on('products')
+                ->onDelete('cascade');;
             $table->unique(['user_id', 'product_id']);
          });
     }
