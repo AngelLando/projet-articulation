@@ -76,6 +76,7 @@ Product
 ***********/
 
 .cart_header {
+    padding-top: 10px;
     background: #930046;
 }
 
@@ -86,6 +87,7 @@ font-weight: bold;
 font-size: 15px;
 line-height: 15px;
 color: #FFFFFF;
+height: 8px;
 
 }
 
@@ -104,7 +106,7 @@ color: #FFFFFF;
 font-style: normal;
 font-weight: bold;
 font-size: 20px;
-line-height: 25px;
+line-height: 20px;
 color: #000000;
 }
 
@@ -129,7 +131,6 @@ color: #828282;
 font-style: normal;
 font-weight: bold;
 font-size: 20px;
-line-height: 25px;
 color: #000000;
 }
 
@@ -138,13 +139,24 @@ color: #000000;
 font-style: normal;
 font-weight: bold;
 font-size: 20px;
-line-height: 25px;
 color: #930046;
+}
+
+
+.choice_packaging{
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 15px;
+line-height: 20px;
+color: #000000;
+
 }
 
 .choice_list{
      background: #FFFFFF;
-  width:100%;
+  width:50%;
   height: 100%;
   border-style: solid;
   border-color: #EDEDED;
@@ -167,7 +179,6 @@ font-family: Montserrat;
 font-style: normal;
 font-weight: 500;
 font-size: 20px;
-line-height: 25px;
 text-align: right;
 color: #787878;
 }
@@ -177,7 +188,6 @@ color: #787878;
 font-style: normal;
 font-weight: 500;
 font-size: 20px;
-line-height: 25px;
 color: #828282;
 }
 
@@ -186,7 +196,6 @@ color: #828282;
 font-style: normal;
 font-weight: bold;
 font-size: 20px;
-line-height: 25px;
 color: #930046;
 
 }
@@ -230,7 +239,10 @@ line-height: 20px;
 display: flex;
 align-items: center;
 text-align: center;
-
 color: #FFFFFF;
+}
+
+.line_bottom{
+border-bottom: 1px solid #D3D3D3;
 
 }

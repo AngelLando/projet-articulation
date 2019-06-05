@@ -66,8 +66,7 @@ nav.navbar.navbar-expand-lg.navbar-light.secondary-nav ul.navbar-nav.mr-auto li.
 }
 
 nav.navbar.navbar-expand-lg.navbar-light.secondary-nav {
-  background: #FFFFFF;
-box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2);
+  background-color: #f5f5f5;
   padding: 1em 4em;
 }
 
