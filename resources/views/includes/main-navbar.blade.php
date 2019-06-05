@@ -73,13 +73,21 @@
           </li>
           @endguest
             <li class="nav-item">
-              <img src="{{ asset('images/favorite-heart-white.svg') }} " width="25" height="25" alt="Mes Préférés" >
+              <img src="{{ asset('images/favorite-heart-white.svg') }}" width="25" height="25" alt="Mes Préférés">
               <a class="nav-link" href="#" >MES PRÉFÉRÉS</a>
            </li>
            <li class="nav-item">
-            <img src="{{ asset('images/shopping-cart.svg') }} " width="25" height="25" alt="Login" ></a>
+            <img src="{{ asset('images/shopping-cart.svg') }}" width="25" height="25" alt="Panier"></a>
             <a class="nav-link" href="{{route('cart')}}">PANIER</a>
           </li>
+          @if(Auth::check())
+            @if(Auth::user()->admin)
+            <li class="nav-item">
+              <img src="{{ asset('images/administration.svg') }}" width="25" height="25" alt="Administration"></a>
+              <a class="nav-link" href="{{route('produits.index')}}">ADMINISTRATION</a>
+            </li>
+            @endif
+          @endif
         </ul>
     </div>
 
