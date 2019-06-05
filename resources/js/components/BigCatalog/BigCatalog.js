@@ -5,13 +5,9 @@ import 'vue-slider-component/theme/antd.css'
 
 export default {
 
-    name: "component-catalog",
-
-
     components: {
         VueSlider
     },
-
 
     data() {
         return {
@@ -24,10 +20,10 @@ export default {
             selected_packagings: [],
             selected_appellations: [],
             selected_tags: [],
-            selected_countries: []
+            selected_countries: [],
+            counter: '',
         }
     },
-
 
     props : ['prod'],
     mounted () {
@@ -53,16 +49,6 @@ export default {
             }
         }
     },
-
-/*
-    methods: {
-        isInArray: function (event) {
-            products.foreach(function (product) {
-
-                console.log("test");
-            })
-        }
-    },*/
 
     methods: {
         isInArray: function (selection, produc_appell) {

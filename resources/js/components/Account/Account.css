@@ -1,0 +1,55 @@
+.active {
+    text-decoration: underline !important;
+    color: #930046 !important;
+
+}
+
+
+.else {
+    cursor: pointer;
+}
+
+
+.account {
+    margin-top: 4em;
+    margin-bottom: 4em;
+}
+
+
+.content {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 20px;
+    color: #000000;
+}
+
+h2 {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.nav-account {
+    list-style: none;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.nav-account > li {
+    padding-top: 1em;
+}
+
+p {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+}
