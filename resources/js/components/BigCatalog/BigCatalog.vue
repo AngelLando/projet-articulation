@@ -176,11 +176,12 @@
                                         <div class="product_buttons">
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
                                                    <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
-                                              <select  class="choice_list">
+                                              <select  class="choice_list" v-model="quantity">
                                                 <option :value="product.packaging_capacity">{{product.packaging_capacity}}</option>
                                               </select>
-                                          </div>
-                                                <div class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
+                                                       <p class="error pt-2" v-if="errors.quantity">{{errors.quantity[0]}}</p>
+                                                   </div>
+                                                <div @click="input(product)" class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
                                                 <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
                                                     <div><div><img src="images/cart.svg" class="svg" alt=""></div></div>
                                                 </div>
