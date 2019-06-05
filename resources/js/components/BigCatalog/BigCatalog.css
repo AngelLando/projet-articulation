@@ -511,6 +511,7 @@ div.filter_option.active{
 
 .vue-slider {
     width: 20em !important;
+    bottom: 0.18em;
 }
 
 

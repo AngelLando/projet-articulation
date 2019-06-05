@@ -96,7 +96,7 @@
                                 </div>
                                 <br>
 
-                                <div class="row price_filter ml-3 pb-3">
+                                <div class="row price_filter pb-3">
 
                                     <div class="price-filter-label content col-md-auto">Prix :</div>
                                     <div class="price-filter price-filter-min col-md-auto"><span>CHF {{value_2[0]}}</span><span v-if="value_2[0] % 1 === 0">.–</span><span v-if="(((value_2[0]*1000) % 1 === 0) && (value_2[0] % 1 !== 0))">0</span></div>
@@ -147,7 +147,7 @@
                         <div class="row products_row">
 
                             <!-- Product -->
-                            <div v-for="product in products"  class="col-xl-4 col-md-6" v-if="((product.price > value_2[0] && product.price < value_2[1]) && (selected_kinds.length == 0 || selected_kinds.includes(product.kind)) && (selected_formats.length == 0 || selected_formats.includes(product.format)) && (selected_packagings.length == 0 || selected_packagings.includes(product.packaging_capacity)) && (selected_appellations.length == 0 || selected_appellations.includes(product.appellation)) && (selected_tags.length == 0 || selected_tags.includes(product.tag)) && (selected_countries.length == 0 || selected_countries.includes(product.country)))">
+                            <div v-for="product in products"  class="col-xl-4 col-md-6" v-if="(((selected_appellations.length == 0) || isInArray(selected_appellations, product.appellation) == 1) && (product.price > value_2[0] && product.price < value_2[1]) && (selected_kinds.length == 0 || selected_kinds.includes(product.kind)) && (selected_formats.length == 0 || selected_formats.includes(product.format)) && (selected_packagings.length == 0 || selected_packagings.includes(product.packaging_capacity)) && (selected_tags.length == 0 || selected_tags.includes(product.tag)) && (selected_countries.length == 0 || selected_countries.includes(product.country)))">
                                 <div class="product">
                                     <div>
                                         <div class="product_image"><img class="image" :src="product.path_image" alt=""><div class="favorite-heart"><img src="images/favorite-heart-empty.svg" class="svg" alt=""></div></div>
