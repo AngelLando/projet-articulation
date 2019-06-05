@@ -34,17 +34,31 @@ export default {
       isHiddenBillTo:false,
       isHiddenPromoCode:false,
       isError:false,
+      subtotal:120,
+      delivery:8,
+      tva:10,
+      total:'',
+      promocode:10,
+    rabais:'',
         errors: {},
     }
   },
     //props : ['prod'],
     mounted () {
     },
+    beforeMount(){
+        this.total= this.tva+this.subtotal+this.delivery;
+      
+    },
     methods : {
         checkPromoCode: function(){
           var enteredCode = $('#promocode').val();
           if (enteredCode=="cuki") {
             this.isHiddenPromoCode=true;
+this.total= this.tva+this.subtotal+this.delivery;
+this.rabais = this.total*this.promocode/100;
+this.total = this.total-this.rabais;
+      
           return;
           }else{
             this.isError=true;
