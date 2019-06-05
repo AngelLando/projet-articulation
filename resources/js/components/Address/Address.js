@@ -40,8 +40,12 @@ export default {
       tvaPercent:7.7,
       total:0,
       promocode:10,
+        promotion : false,
       rabais:'',
       errors: {},
+        comment:'',
+        payment_method: '',
+        discount: 10,
     }
   },
     //props : ['prod'],
@@ -66,12 +70,13 @@ export default {
     },
     methods : {
       checkPromoCode: function(){
-        var enteredCode = $('#promocode').val();
+        var enteredCode = this.promocode;
         if (enteredCode=="cuki") {
           this.isHiddenPromoCode=true;
           this.total= this.tva+this.subtotal+this.delivery;
-          this.rabais = this.total*this.promocode/100;
+          this.rabais = this.total*this.discount/100;
           this.total = this.total-this.rabais;
+          this.promotion = this.discount;
           return;
         }else{
           this.isError=true;
@@ -123,6 +128,9 @@ export default {
               address2 : this.address2,
               address3 : this.address3,
               products : JSON.parse(this.cart),
+                comment : this.comment,
+                payment_method : this.payment_method,
+                promotion: this.promotion
             }
             console.log(this.data);
             axios.post('check', this.data).catch(error => {

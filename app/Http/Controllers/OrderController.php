@@ -52,6 +52,11 @@ class OrderController extends Controller
 
         // Create the Order
         $orderId = Order::insertGetId([
+            'comment' => $request->comment,
+            //'delivery_method' => $request->delivery_method,
+            'tva' => 7.7,
+            'discount' => $request->promotion,
+            'payment_method' => $request->payment_method,
             'address_id_1' => $addressId1,
             'address_id_2' => $addressId2,
             'address_id_3' => $addressId3,
