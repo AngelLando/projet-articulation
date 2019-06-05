@@ -3,7 +3,7 @@
         <div class="row px20 pt0">
             <div class="col-md-3 hidden-xs hidden-sm block">
                 <nav class="static-menu serif h4 mb35">
-                    <p>Mon compte</p>
+                    <p>Mon compte test2</p>
                     <ul class="nav-account m0 p0">
                         <li class="mb20 active" @click="underline" v-on:click="showOrders=true; showInfos=false; showAdresses=false; showNewsletters=false; showFavs=false">
                             Mes commandes
@@ -25,6 +25,15 @@
             </div>
             <div class="content orders col-md-9 hidden-xs hidden-sm block" v-if="showOrders">
                 <h2>Mes commandes</h2>
+                <div class="container pt-3">
+                    <div class ="orders_header row">
+                        <p class="header_title col-3">Commande n°</p>
+                        <p class="header_title col-2 text-right">Date</p>
+                        <p class="header_title col-2 text-center">Montant</p>
+                        <p class="header_title col-3 text-center">État</p>
+                        <p class="header_title col-2 text-center">Paiement</p>
+                    </div>
+                </div>
                 <div>Pas de commande pour le moment.</div>
             </div>
             <div class="content infos col-md-9 hidden-xs hidden-sm block" v-if="showInfos">
