@@ -26,7 +26,7 @@
                     </div>                            
                     <p class="multiply">X</p>
                     <div class="col-2"><p class="cart_product_price">CHF {{product.price}}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></p></div>
-                    <div class="col-2 text-center"><p class="cart_product_price_total">CHF 210.-</p></div>
+                    <div class="col-2 text-center fix_cross"><p class="cart_product_price_total">CHF {{product.totalprice}}<span v-if="product.totalprice % 1 === 0">.–</span><span v-if="(((product.totalprice*1000) % 1 === 0) && (product.totalprice % 1 !== 0))">0</span></p></div>
                     <div class=" col-1"><img src="images/delete.svg" class="svg" alt=""></div>
                 </div>
             </div>
@@ -36,17 +36,17 @@
                 <div class="col-1"></div>
                 <div class="row col-11 pt-2">
                     <div class="col-7"></div>
-                    <p class="col-2 text-center cart_frais">TVA</p>
-                    <p class="col-2 text-right cart_frais_price">CHF 150.-</p>
+                    <p class="col-2 text-center cart_frais">TVA ({{tvaPercent}}%)</p>
+                    <p class="col-2 text-right cart_frais_price">CHF {{tva}}<span v-if="tva % 1 === 0">.–</span><span v-if="(((tva*1000) % 1 === 0) && (tva % 1 !== 0))">0</span></p>
                     <div class="col-1"></div>
                     
                     <div class="col-7"></div>
                     <p class="col-2 text-center cart_frais">Livraison</p>
-                    <p class="col-2 text-right cart_frais_price">CHF 25.-</p>
+                    <p class="col-2 text-right cart_frais_price">CHF {{livraison}}<span v-if="livraison % 1 === 0">.–</span><span v-if="(((livraison*1000) % 1 === 0) && (livraison % 1 !== 0))">0</span></p>
                     <div class="col-1"></div>
                     <div class="col-7"></div>
                     <p class="col-2 text-center cart_frais_price_total">Total</p>
-                    <p class="col-2 text-right cart_frais_price_total">CHF 225.-</p>
+                    <p class="col-2 text-right cart_frais_price_total">CHF {{finalPrice}}<span v-if="finalPrice % 1 === 0">.–</span><span v-if="(((finalPrice*1000) % 1 === 0) && (finalPrice % 1 !== 0))">0</span></p>
                     <div class="col-1"></div>
                 </div>
             </div>
