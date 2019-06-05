@@ -58,9 +58,9 @@ class ProductAdminController extends Controller
         $this->validate($request, [
             'kind' => 'required',
             'name' => 'required',
-            'year' => 'numeric',
+            'year' => 'required|numeric',
             'description' => '',
-            'price' => 'numeric',
+            'price' => 'required|numeric',
             'path_image' => 'required|file',
             'weight' => 'numeric',
             'stock' => 'numeric',
@@ -149,9 +149,9 @@ class ProductAdminController extends Controller
         $this->validate($request, [
             'kind' => 'required',
             'name' => 'required',
-            'year' => 'numeric',
+            'year' => 'required|numeric',
             'description' => '',
-            'price' => '',
+            'price' => 'required|numeric',
             'path_image' => '',
             'weight' => 'numeric',
             'stock' => 'numeric',
