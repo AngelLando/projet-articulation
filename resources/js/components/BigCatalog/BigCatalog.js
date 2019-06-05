@@ -74,26 +74,19 @@ export default {
                 produc_appell.forEach((a) => {
 
                     if (a.name === s) {
-
-                        console.log("tst")
                         finalarray.push(a.name)
                     }
                 });
             })
-
-
-            console.log(finalarray);
 
             if(finalarray.length > 0) {
                 return 1;
             } else {
                 return 0;
             }
-
         }
     },
-
-
+    
 }
 
 
