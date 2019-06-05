@@ -14,8 +14,6 @@
                                      
 
                     <div  class="row line_bottom pb-4 pt-4">
-                        <h1 v-if="products == null" style="color : red; text-size : 40px;">IL N'Y A PAS DE PRODUITS DANS VOTRE PANIER (BD) !</h1>
-                    <div v-for="product in products"  class="row line_bottom pb-4 pt-4">
                         <div class="col-1">
                            <img  class="product_cart_image" :src="product.img" alt="">
 
