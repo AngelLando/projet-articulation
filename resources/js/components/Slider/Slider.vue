@@ -53,8 +53,8 @@
                 </div>
             </div>
         </section>
-        <section>
-            <div class="similar_products"><p>D'autres produits similaires</p></div>
+        <section class="recommended-products">
+            <div class="recommendations"><p>Nos recommandations</p></div>
         </section>
     </div>
 </template>

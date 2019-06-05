@@ -6,9 +6,10 @@ export default {
 			isHiddenInfo:false,
 			isHiddenRating:false,
 			cartItem : '',
-            product_id: '',
-            quantity : '',
-			errors : {}
+			product_id: '',
+			quantity : '',
+			errors : {},
+			exception:false,
 		}
 	},
 	methods:{
@@ -25,31 +26,32 @@ export default {
 			$(clickedElement).siblings().addClass("product_selection");
 		},
 		submitCartItem (e) {
-			  
-		  },
-		  input: function (productid) {
-			localStorage.setItem('storedData', productid);
-			console.log(localStorage.getItem('storedData'));
+
+		},
+		input: function (productid) {
 			this.cartItem  = {
 				product_id: this.product.id,
 				quantity: this.quantity
 			};
 			console.log(this.cartItem);
 			axios.post('../add', this.cartItem)
-                .catch(error => {
-                    this.errors = error.response.data.errors
-                }
-
-			)
-      	}
+			.catch(error => {
+				this.errors = error.response.data.errors
+				return;
+			})
+		var existing = localStorage.getItem('storedData');
+			existing = existing ? existing.split(',') : [];
+			existing.push(productid);
+			localStorage.setItem('storedData', existing.toString());
+		}
 	},
 	props : ['prod'],
 	mounted () {
 		let json = JSON.parse(this.prod);
 		console.log(json);
-        this.product = json.product;
-        this.products = json.recommandations;
-        this.products = json.products;
+		this.product = json.product;
+		this.products = json.recommandations;
+		this.products = json.products;
 	},
 
 }
