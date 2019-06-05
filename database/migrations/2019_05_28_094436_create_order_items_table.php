@@ -21,7 +21,8 @@ class CreateOrderItemsTable extends Migration
                 ->on('orders');
             $table->foreign('product_id')
                 ->references('id')
-                ->on('products');
+                ->on('products')
+                ->onDelete('cascade');
             $table->integer('quantity');
             $table->float('discount');
          });
