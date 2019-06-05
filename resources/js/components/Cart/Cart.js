@@ -35,7 +35,6 @@ export default {
 		console.log(this.tva)
 				console.log(this.finalsubPrice)
 						console.log(this.livraison)
-
 	this.finalPrice = this.finalsubPrice+this.tva+this.livraison;
 	},
 	beforeMount(){

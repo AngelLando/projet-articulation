@@ -247,21 +247,21 @@
         <h6 class="my-0">Sous total</h6>
         <small class="text-muted">Hors TVA et frais</small>
     </div>
-    <span class="text-muted " v-model="subtotal">CHF 120.-</span>
+    <span class="text-muted " v-model="subtotal">CHF {{subtotal}}<span v-if="subtotal % 1 === 0">.–</span><span v-if="(((subtotal*1000) % 1 === 0) && (subtotal % 1 !== 0))">0</span></span>
 </li>
 <li class="list-group-item d-flex justify-content-between background_grey lh-condensed">
   <div>
     <h6 class="my-0">TVA</h6>
     <small class="text-muted" v-model="tva">7.7%</small>
 </div>
-<span class="text-muted">CHF 8.-</span>
+<span class="text-muted">CHF {{tva}}<span v-if="tva % 1 === 0">.–</span><span v-if="(((tva*1000) % 1 === 0) && (tva % 1 !== 0))">0</span></span>
 </li>
 <li class="list-group-item d-flex justify-content-between lh-condensed">
   <div>
     <h6 class="my-0">Frais de livraison</h6>
     <small class="text-muted">En Suisse</small>
 </div>
-<span class="text-muted" v-model="delivery">CHF 10.-</span>
+<span class="text-muted" v-model="delivery">CHF {{delivery}}<span v-if="delivery % 1 === 0">.–</span><span v-if="(((delivery*1000) % 1 === 0) && (delivery % 1 !== 0))">0</span></span>
 </li>
 <li v-if="isHiddenPromoCode" class="list-group-item d-flex justify-content-between bg-light">
   <div class="text-success">
