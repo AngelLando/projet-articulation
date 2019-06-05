@@ -24,7 +24,9 @@ export default {
             selected_packagings: [],
             selected_appellations: [],
             selected_tags: [],
-            selected_countries: []
+            selected_countries: [],
+            quantity : '',
+            errors : {}
         }
     },
 
@@ -84,8 +86,30 @@ export default {
             } else {
                 return 0;
             }
+        },
+        input: function (clickedProduct) {
+            this.cartItem  = {
+                product_id: clickedProduct.id,
+                quantity: this.quantity
+            };
+            console.log(this.cartItem);
+
+            axios.post('add', this.cartItem)
+                .catch(error => {
+                    this.errors = error.response.data.errors
+                    return;
+                }).then(response => {
+                console.log(response)
+            })
+
+            var existing = localStorage.getItem('storedData');
+            existing = existing ? existing.split(',') : [];
+            existing.push(clickedProduct.id);
+            localStorage.setItem('storedData', existing.toString());
         }
     },
+
+
     
 }
 
