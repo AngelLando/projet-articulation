@@ -7,11 +7,17 @@ export default {
 			finalsubPrice:0,
 			livraison:25,
 			finalPrice:0,
+			productToDelete: '',
 		}
 	},
 	methods:{
 		underline: function(event){
 		},
+        deleteProduct : function (event) {
+			axios.delete('cartItem/' + event).catch(error => {
+				console.dir(error);
+			})
+        }
 	},
 
 	computed:{

@@ -109,6 +109,6 @@ class CartItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        CartItem::destroy($id);
     }
 }
