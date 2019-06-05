@@ -8,11 +8,17 @@ export default {
 			livraison:25,
 			finalPrice:0,
 			product :JSON.parse(localStorage.getItem('storedID')),
+			productToDelete: '',
 		}
 	},
 	methods:{
 		underline: function(event){
 		},
+        deleteProduct : function (event) {
+			axios.delete('cartItem/' + event).catch(error => {
+				console.dir(error);
+			})
+        }
 	},
 
 	computed:{

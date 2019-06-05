@@ -9,6 +9,8 @@ use App\Type;
 use App\Supplier;
 use App\Promotion;
 use App\Packaging;
+use App\Appellation;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class ProductAdminController extends Controller
@@ -20,7 +22,7 @@ class ProductAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.products.index')->with('products', Product::all());
+        return view('admin.products.index')->with('products', Product::orderBy('created_at', 'desc')->paginate(5));
     }
 
     /**
@@ -30,16 +32,19 @@ class ProductAdminController extends Controller
      */
     public function create()
     {
-        // $categories = Category::all();
-
         //if($categories->count() == 0 || $tags->count() == 0) {
         //  Session::flash('info', 'You must have categories and tags before attempting to create a post!');
         //  return redirect()->back();
         //}
 
-        return view('admin.products.create');
-        // ->with('categories', $categories)
-        // ->with('tags', $tags);
+        return view('admin.products.create')->with('products', Product::all())
+                                            ->with('formats', Format::all())
+                                            ->with('types', Type::all())
+                                            ->with('suppliers', Supplier::all())
+                                            ->with('promotions', Promotion::all())
+                                            ->with('packagings', Packaging::all())
+                                            ->with('appellations', Appellation::all())
+                                            ->with('tags', Tag::all());
     }
 
     /**
@@ -50,7 +55,55 @@ class ProductAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'kind' => 'required',
+            'name' => 'required',
+            'year' => 'numeric',
+            'description' => '',
+            'price' => 'numeric',
+            'path_image' => 'required|file',
+            'weight' => 'numeric',
+            'stock' => 'numeric',
+            'alcohol' => 'numeric',
+            'quotation' => '',
+            'format' => 'required',
+            'type' => 'required',
+            'supplier' => 'required',
+            'promotion' => 'required',
+            'packagings' => 'required',
+            'appellations' => '',
+            'tags' => ''
+        ]);
+
+        $path_image = $request->path_image;
+        $rename = time().$path_image->getClientOriginalName();
+        $path_image->move('uploads/products', $rename);
+
+        $product = Product::create([
+            'kind' => $request->kind,
+            'name' => $request->name,
+            'year' => $request->year,
+            'description' => $request->description,
+            'price' => $request->price,
+            'path_image' => 'uploads/products/' . $rename,
+            'weight' => $request->weight,
+            'stock' => $request->stock,
+            'alcohol' => $request->alcohol,
+            'quotation' => $request->quotation,
+            'slug' => str_slug($request->name),
+            'format_id' => $request->format,
+            'type_id' => $request->type,
+            'supplier_id' => $request->supplier,
+            'promotion_id' => $request->promotion,
+        ]);
+
+        $product->format->packagings()->attach($request->packagings);
+        $product->appellations()->attach($request->appellations);
+        $product->tags()->attach($request->tags);
+
+        Session::flash('success', 'Le produit a été créé!');
+
+        return redirect()->route('produits.index');
     }
 
     /**
@@ -79,7 +132,9 @@ class ProductAdminController extends Controller
                                             ->with('types', Type::all())
                                             ->with('suppliers', Supplier::all())
                                             ->with('promotions', Promotion::all())
-                                            ->with('packagings', Packaging::all());
+                                            ->with('packagings', Packaging::all())
+                                            ->with('appellations', Appellation::all())
+                                            ->with('tags', Tag::all());
     }
 
     /**
@@ -92,20 +147,23 @@ class ProductAdminController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'kind' => '',
-            'name' => '',
-            'year' => '',
+            'kind' => 'required',
+            'name' => 'required',
+            'year' => 'numeric',
             'description' => '',
+            'price' => '',
             'path_image' => '',
-            'weight' => '',
-            'stock' => '',
-            'alcohol' => '',
+            'weight' => 'numeric',
+            'stock' => 'numeric',
+            'alcohol' => 'numeric',
             'quotation' => '',
-            'format' => '',
-            'type' => '',
-            'supplier' => '',
-            'promotion' => '',
-            'packaging' => ''
+            'format' => 'required',
+            'type' => 'required',
+            'supplier' => 'required',
+            'promotion' => 'required',
+            'packagings' => 'required',
+            'appellations' => '',
+            'tags' => ''
         ]);
 
         $product = Product::find($id);
@@ -114,6 +172,7 @@ class ProductAdminController extends Controller
         $product->name = $request->name;
         $product->year = $request->year;
         $product->description = $request->description;
+        $product->price = $request->price;
         if($request->hasFile('path_image')) {
             $path_image = $request->path_image;
             $rename = time() . $path_image->getClientOriginalName();
@@ -129,12 +188,15 @@ class ProductAdminController extends Controller
         $product->type_id = $request->type;
         $product->supplier_id = $request->supplier;
         $product->promotion_id = $request->promotion;
+        $product->format->packagings()->sync($request->packagings);
+        $product->appellations()->sync($request->appellations);
+        $product->tags()->sync($request->tags);
 
         $product->save();
 
         Session::flash('success', 'Produit mis à jour!');
 
-        return redirect()->back();
+        return redirect()->route('produits.index');
     }
 
     /**
@@ -149,6 +211,6 @@ class ProductAdminController extends Controller
 
         Session::flash('success', 'Le produit a été supprimé!');
 
-        return redirect()->route('products.index');
+        return redirect()->route('produits.index');
     }
 }

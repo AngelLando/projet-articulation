@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'user' . $i . '@heig-vd.ch',
                 'password' => Hash::make('password' . $i),
                 'birth_date' => '200' . $i . '-0' . $i . '-0' . $i,
+                'admin' => 1,
                 'person_id' => $i
             ]);
         }

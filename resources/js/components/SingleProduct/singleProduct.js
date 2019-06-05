@@ -25,9 +25,6 @@ export default {
 			$(clickedElement).siblings().removeClass("product_selection_selected");
 			$(clickedElement).siblings().addClass("product_selection");
 		},
-		submitCartItem (e) {
-
-		},
 		input: function (productid) {
 			this.cartItem  = {
 				product_id: this.product.id,

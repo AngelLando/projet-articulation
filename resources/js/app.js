@@ -7,6 +7,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 var JSONStore = require('jsonstore-js');
 
 
+
+Vue.component('my-account', require('./components/Account/Account.vue').default);
 Vue.component('big-catalog', require('./components/BigCatalog/BigCatalog.vue').default);
 Vue.component('mini-products-catalog', require('./components/MiniCatalog/MiniCatalog.vue').default);
 Vue.component('cart-component', require('./components/Cart/Cart.vue').default);

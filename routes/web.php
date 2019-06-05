@@ -58,6 +58,12 @@ Route::post('/check', 'OrderController@store')->name('check');
 
 Route::post('/add', 'CartItemController@store')->name('add');
 
+//Route::delete('/del', 'CartItemController@destroy')->name('del');
+
+Route::delete('/cartItem/{id}', [
+    'uses' => 'CartItemController@destroy'
+])->name('delCartItem');
+
 // Pages Routes
 
 Route::get('/nos-primeurs', function() {

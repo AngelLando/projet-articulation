@@ -17,7 +17,7 @@ class CreateAppellationProductTable extends Migration
             $table->integer('appellation_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->foreign('appellation_id')->references('id')->on('appellations');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
          });
     }
 

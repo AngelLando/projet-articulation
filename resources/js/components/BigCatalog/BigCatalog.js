@@ -5,13 +5,9 @@ import 'vue-slider-component/theme/antd.css'
 
 export default {
 
-    name: "component-catalog",
-
-
     components: {
         VueSlider
     },
-
 
     data() {
         return {
@@ -24,10 +20,13 @@ export default {
             selected_packagings: [],
             selected_appellations: [],
             selected_tags: [],
-            selected_countries: []
+            selected_countries: [],
+
+            quantity : '',
+            errors : {},
+            counter: '',
         }
     },
-
 
     props : ['prod'],
     mounted () {
@@ -54,16 +53,6 @@ export default {
         }
     },
 
-/*
-    methods: {
-        isInArray: function (event) {
-            products.foreach(function (product) {
-
-                console.log("test");
-            })
-        }
-    },*/
-
     methods: {
         isInArray: function (selection, produc_appell) {
 
@@ -84,8 +73,30 @@ export default {
             } else {
                 return 0;
             }
+        },
+        input: function (clickedProduct) {
+            this.cartItem  = {
+                product_id: clickedProduct.id,
+                quantity: this.quantity
+            };
+            console.log(this.cartItem);
+
+            axios.post('add', this.cartItem)
+                .catch(error => {
+                    this.errors = error.response.data.errors
+                    return;
+                }).then(response => {
+                console.log(response)
+            })
+
+            var existing = localStorage.getItem('storedData');
+            existing = existing ? existing.split(',') : [];
+            existing.push(clickedProduct.id);
+            localStorage.setItem('storedData', existing.toString());
         }
     },
+
+
     
 }
 
