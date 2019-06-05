@@ -81,6 +81,7 @@ Product
 }
 
 .header_title{
+        min-width: 90px;
     font-family: Montserrat;
 font-style: normal;
 font-weight: bold;
@@ -155,6 +156,7 @@ color: #000000;
 }
 
 .choice_list{
+    min-width: 50px;
      background: #FFFFFF;
   width:50%;
   height: 100%;
@@ -205,7 +207,8 @@ color: #930046;
     padding-top:10px;
         padding-bottom:10px;
     background: #DEDEDE;
-border-radius: 50px;
+border-radius: 15px;
+margin-left:-10px;
 }
 
 .continuer_text{
@@ -223,11 +226,12 @@ color: #FFFFFF;
 .commander{
 
 background: #930046;
-border-radius: 50px;
+border-radius: 15px;
+margin-left:10px;
 }
 
 .svg_button{
-    width:10%;
+    width:20px;
 }
 
 .commander_text{
@@ -245,4 +249,8 @@ color: #FFFFFF;
 .line_bottom{
 border-bottom: 1px solid #D3D3D3;
 
+}
+
+.col-2 {
+    max-width: 15%;
 }
