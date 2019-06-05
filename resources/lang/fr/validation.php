@@ -131,6 +131,31 @@ return [
             'integer' => 'La quantité indiquée doit être un nombre entier.',
             'max' => 'La quantité sélectionnée dépasse les stocks disponibles pour ce produit.'
         ],
+        'address1.street1' => [
+            'required' => 'Le champ Rue et numéro est recquis.'
+        ],
+        'address1.firstname1' => [
+            'required' => 'Le champ Prénom est recquis.'
+        ],
+        'address1.lastname1' => [
+            'required' => 'Le champ Nom de famille est recquis.'
+        ],
+        'address1.npa1' => [
+            'required' => 'Le champ NPA est recquis.',
+            'integer' => 'Le champ NPA doit être un nombre entier.',
+            'min' => 'Le champ NPA doit être supérieur à 1000.',
+            'max' => 'Le champ NPA doit être inférieur à 9999.'
+        ],
+        'address1.city1' => [
+            'required' => 'Le champ Localité est recquis.'
+        ],
+        'address1.region1' => [
+            'required' => 'Le champ Région est recquis.'
+        ],
+        'address1.country1' => [
+            'required' => 'Le champ Pays est recquis.'
+        ],
+
     ],
 
     /*

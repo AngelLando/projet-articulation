@@ -26,12 +26,14 @@
                                 <div class="form-group">
                                     <label for="firstname1">Prénom</label>
                                     <input type="text" id="firstname1" name="firstname1" v-model="firstname1" class="form-control" placeholder="" required>
+                                    <p class="error pt-2" v-if="errors['address1.firstname1']">{{errors['address1.firstname1'][0]}}</p>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="lastname1">Nom de famille</label>
                                     <input class= "form-control" type="text" id="lastname1" name="lastname1" v-model="lastname1" required>
+                                    <p class="error pt-2" v-if="errors['address1.lastname1']">{{errors['address1.lastname1'][0]}}</p>
                                 </div>
                             </div>
                             <div class="w-100"></div>
@@ -39,18 +41,21 @@
                                 <div class="form-group">
                                     <label for="street1">Rue et numéro</label>
                                     <input type="text" class="form-control" id="street1" name="street1" v-model="street1" required>
+                                    <p class="error pt-2" v-if="errors['address1.street1']">{{errors['address1.street1'][0]}}</p>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="npa1">NPA</label>
                                     <input type="number" id="npa1" name="npa1" v-model="npa1"  class="form-control" required>
+                                    <p class="error pt-2" v-if="errors['address1.npa1']">{{errors['address1.npa1'][0]}}</p>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="city1">Localité</label>
                                     <input type="text" id="city1" name="city1" v-model="city1" class="form-control" required>
+                                    <p class="error pt-2" v-if="errors['address1.city1']">{{errors['address1.city1'][0]}}</p>
                                 </div>
                             </div>
                             <div class="w-100"></div>
@@ -58,6 +63,7 @@
                                 <div class="form-group">
                                     <label for="region1">Région</label>
                                     <input type="text" id="region1" class="form-control" name="region1" v-model="region1" required>
+                                    <p class="error pt-2" v-if="errors['address1.region1']">{{errors['address1.region1'][0]}}</p>
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -69,7 +75,8 @@
                                         <option value="CH">Suisse</option>
                                         <option value="FR">France</option>
                                     </select>
-                                </div>
+                                        <p class="error pt-2" v-if="errors['address1.country1']">{{errors['address1.country1'][0]}}</p>
+                                    </div>
                             </div>
                         </div>
 
@@ -185,8 +192,8 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="npa1">NPA</label>
-                            <input type="number" id="npa1" name="npa1" v-model="npa1"  class="form-control">
+                            <label for="npa3">NPA</label>
+                            <input type="number" id="npa3" name="npa3" v-model="npa3"  class="form-control">
                         </div>
                     </div>
                     <div class="col-md-3">

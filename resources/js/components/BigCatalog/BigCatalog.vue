@@ -1,20 +1,17 @@
 <template>
-
     <div>
-        <div>Types : <strong>{{ selected_kinds }}</strong></div>
-        <div>Formats : <strong>{{ selected_formats }}</strong></div>
-        <div>Packaging : <strong>{{ selected_packagings }}</strong></div>
-        <div>Appellations : <strong>{{ selected_appellations }}</strong></div>
-        <div>Catégories : <strong>{{ selected_tags }}</strong></div>
-        <div>Pays : <strong>{{ selected_countries }}</strong></div>
+
+            <!--    FILTERS PART    !-->
 
         <div class="super_container">
             <div class="super_container_inner">
                 <div class="super_overlay"></div>
-                <div class="products">
+                <div class="products-filters">
                     <div class="container">
-                        <div class="row product_row">
+                        <div class="row filters_row">
                             <div class="selection">
+
+
                                 <div class="text-right d-flex row align-items-start justify-content-start">
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option type_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span class="filter_name">Type de vin</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
@@ -28,13 +25,13 @@
                                     </div>
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option format_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Format</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
-                                            <ul>
-                                                <li v-for="product in unique(products, 'format')" class="item_filter_btn chiller_cb" data-filter="*">
-                                                    <input :id="product.format" type="checkbox" :value="product.format" v-model="selected_formats">
-                                                    <label :for="product.format">{{product.format}}</label>
-                                                    <span></span>
-                                                </li>
-                                            </ul>
+                                        <ul>
+                                            <li v-for="product in unique(products, 'format')" class="item_filter_btn chiller_cb" data-filter="*">
+                                                <input :id="product.format" type="checkbox" :value="product.format" v-model="selected_formats">
+                                                <label :for="product.format">{{product.format}}</label>
+                                                <span></span>
+                                            </li>
+                                        </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Conditionnement</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
@@ -127,6 +124,70 @@
                                         14 produits trouvés
                                     </div>
                                 </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--    PRODUCTS PART    !-->
+
+
+        <div class="super_container">
+            <div class="super_container_inner">
+                <div class="super_overlay"></div>
+                <div class="products">
+                    <div class="container">
+                        <div class="row products_row">
+
+                            <!-- Product -->
+                            <div v-for="product in products"  class="col-xl-4 col-md-6" v-if="((product.price > value_2[0] && product.price < value_2[1]) && (selected_kinds.length == 0 || selected_kinds.includes(product.kind)) && (selected_formats.length == 0 || selected_formats.includes(product.format)) && (selected_packagings.length == 0 || selected_packagings.includes(product.packaging_capacity)) && (selected_appellations.length == 0 || selected_appellations.includes(product.appellation)) && (selected_tags.length == 0 || selected_tags.includes(product.tag)) && (selected_countries.length == 0 || selected_countries.includes(product.country)))">
+                                <div class="product">
+                                    <div>
+                                        <div class="product_image"><img class="image" :src="product.path_image" alt=""><div class="favorite-heart"><img src="images/favorite-heart-empty.svg" class="svg" alt=""></div></div>
+                                    </div>
+                                    <div class="product_content">
+
+                                        <div class="product_info d-flex flex-row align-items-start justify-content-start">
+                                            <div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                                        </div>
+                                        <div class="product_info year_format d-flex flex-row align-items-start justify-content-start">
+                                            <div>
+                                                <div>
+                                                    <div class="product_year">{{product.year}}</div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-auto text-right">
+                                                <div class="product_format">{{product.format}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="product_info name d-flex flex-row align-items-start justify-content-start">
+                                            <div class="product_name"><a :href="`produit/`+product.slug">{{ product.name }}</a></div>
+                                        </div>
+                                        <div class="product_info price d-flex flex-row align-items-start justify-content-start">
+                                            <div class="product_price text-right">CHF {{ product.price }}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></div>
+                                        </div>
+                                        <div class="product_buttons">
+                                            <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                                   <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
+                                              <select  class="choice_list">
+                                                <option :value="product.packaging_capacity">{{product.packaging_capacity}}</option>
+                                              </select>
+                                          </div>
+                                                <div class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
+                                                <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                                    <div><div><img src="images/cart.svg" class="svg" alt=""></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -136,8 +197,5 @@
     </div>
 </template>
 
-<script src="./Filters.js"></script>
-<style src="./Filters.css" scoped></style>
-
-
-
+<script src="./BigCatalog.js"></script>
+<style src="./BigCatalog.css" scoped></style>

@@ -32,11 +32,21 @@ Route::get('/user/account', [
 ]);
 
 // return JSON file
-Route::get('/', 'ProductController@index')->name('products');
+Route::get('/', function () {
+    $data = App::call('App\Http\Controllers\ProductController@index');
+    return view('homepage')->with('products', $data);
+})->name('products');
 
-Route::get('/checkout', 'CartController@checkout')->name('checkout');
+Route::get('/checkout', function () {
+    $data = App::call('App\Http\Controllers\CartController@checkout');
+    return view('checkout')->with('cart', $data);
+})->name('checkout');
 
-Route::get('/cart', 'CartController@index')->name('cart');
+Route::get('/cart', function () {
+    $data = App::call('App\Http\Controllers\CartController@index');
+    return view('cart')->with('cart', $data);
+})->name('cart');
+
 
 // POST
 Route::post('/user/account/update', [
@@ -51,7 +61,8 @@ Route::post('/add', 'CartItemController@store')->name('add');
 // Pages Routes
 
 Route::get('/nos-primeurs', function() {
-    return view('pages.nos-primeurs');
+    $data = App::call('App\Http\Controllers\ProductController@index');
+    return view('pages.nos-primeurs')->with('products', $data);
 })->name('nos-primeurs');
 
 Route::get('/nos-vins', function() {
@@ -60,15 +71,18 @@ Route::get('/nos-vins', function() {
 })->name('nos-vins');
 
 Route::get('/nouveautes', function() {
-    return view('pages.nouveautes');
+    $data = App::call('App\Http\Controllers\ProductController@index');
+    return view('pages.nouveautes')->with('products', $data);
 })->name('nouveautes');
 
 Route::get('/offres-speciales', function() {
-    return view('pages.offres-speciales');
+    $data = App::call('App\Http\Controllers\ProductController@index');
+    return view('pages.offres-speciales')->with('products', $data);
 })->name('offres-speciales');
 
 Route::get('/promotions', function() {
-    return view('pages.promotions');
+    $data = App::call('App\Http\Controllers\ProductController@index');
+    return view('pages.promotions')->with('products', $data);
 })->name('promotions');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {

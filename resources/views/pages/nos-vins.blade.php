@@ -2,8 +2,7 @@
 
 @section('content')
     <div id="app">
-        <filters-component prod="{{$products}}"></filters-component>
-        <products-catalog prod="{{$products}}"></products-catalog>
+        <big-catalog prod="{{$products}}"></big-catalog>
     </div>
 @endsection
 
