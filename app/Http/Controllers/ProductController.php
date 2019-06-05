@@ -32,7 +32,8 @@ class ProductController extends Controller
 
         // CONVERT ARRAY TO JSON TO PASS DATAS
         $json = json_encode($tab);
-        return view('homepage')->with('products', $json);
+        return $json;
+        //return view('homepage')->with('products', $json);
     }
 
     public function single($slug)
