@@ -1,10 +1,17 @@
-import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/antd.css'
+import VueSlider from "vue-slider-component";
 import 'vue-slider-component/theme/antd.css'
 
 
 export default {
 
-    name: "component-filters",
+    name: "component-catalog",
+
+
+    components: {
+        VueSlider
+    },
+
 
     data() {
         return {
@@ -20,13 +27,12 @@ export default {
             selected_countries: []
         }
     },
-    components: {
-        VueSlider
-    },
+
 
     props : ['prod'],
     mounted () {
         let json = JSON.parse(this.prod);
+        console.log(json);
         this.products = json.products;
         this.appellations = json.appellations;
         this.tags = json.tags;
@@ -48,9 +54,10 @@ export default {
         }
     },
 
-    watch: {
-        selected_kinds : function(val){
-            this.$emit('update:secondValue', val)
-        }
-    }
 }
+
+
+
+
+
+
