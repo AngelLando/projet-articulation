@@ -27,6 +27,9 @@ class UserController extends Controller
                     $anOrder['date']= $order->created_at;
                     $anOrder['discount'] = $order->discount;
                     $anOrder['products'] = [];
+                    $anOrder['shipping_status'] = $order->shipping_status;
+                    $anOrder['payment_status'] = $order->payment_status;
+                    $anOrder['shipping_costs'] = $order->shippingCost->amount;
                     $orderItems = $order->orderItems;
                     foreach($orderItems as $orderItem) {
                         //dd($orderItem->product);

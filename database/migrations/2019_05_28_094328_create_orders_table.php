@@ -21,7 +21,8 @@ class CreateOrdersTable extends Migration
             $table->string('payment_method')->nullable();
             $table->integer('gift')->nullable();
             $table->string('comment')->nullable();
-            $table->string('status')->nullable();
+            $table->string('shipping_status')->nullable();
+            $table->string('payment_status')->nullable();
             $table->timestamps();
             $table->integer('address_id_1')->unsigned();
             $table->foreign('address_id_1')

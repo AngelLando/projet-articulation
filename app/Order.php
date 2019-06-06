@@ -15,7 +15,7 @@ class Order extends Model
     }
 
     public function shippingCost() {
-        return $this->hasOne('App\ShippingCost');
+        return $this->belongsTo('App\ShippingCost');
     }
 
     public function orderItems() {
