@@ -29,7 +29,8 @@ export default {
 	},
 	
 	props : ['cart'],
-	/**mounted () {
+	mounted () {
+		/*
 		this.products = JSON.parse(this.cart);
 		var finalsubPrice= 0;
 				
@@ -39,8 +40,9 @@ export default {
 			finalsubPrice=finalsubPrice+product.totalprice;
 		});
 		this.finalsubPrice=finalsubPrice;
-	this.finalPrice = this.finalsubPrice+this.tva+this.livraison;
-	},**/
+	this.finalPrice = this.finalsubPrice+this.tva+this.livraison;*/
+		console.log(document.querySelector("meta[name='user-id']").getAttribute('content'));
+	},
 	beforeMount(){
 		this.product.totalprice=this.product.price*this.product.quantity;
 				//this.tva = Math.round(this.tvaPercent*this.this.product.totalprice/100);
