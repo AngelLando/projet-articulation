@@ -51,10 +51,10 @@ export default {
   mounted ()
   {
     let id = document.querySelector("meta[name='user-id']")
-    if (id != null) {
+    if (id != null && JSON.parse(this.cart) != null) {
       this.products = JSON.parse(this.cart);
 
-    } if(id == null) {
+    } else {
       this.products = JSON.parse(localStorage.getItem('storedID'));
     }
     var finalsubPrice= 0;

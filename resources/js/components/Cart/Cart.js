@@ -18,7 +18,12 @@ export default {
 				axios.delete('cartItem/' + event.id).catch(error => {
 					console.dir(error);
 				})
-			}else{
+                var test = JSON.parse(localStorage.getItem('storedID'));
+                var removeIndex = test.map(function(item) { return item.id; }).indexOf(event.id);
+                test.splice(removeIndex,1);
+                localStorage.setItem('storedID', JSON.stringify(test));
+                this.products = JSON.parse(localStorage.getItem('storedID'));
+            }else{
 				var test = JSON.parse(localStorage.getItem('storedID'));
 				var removeIndex = test.map(function(item) { return item.id; }).indexOf(event.id);
 				test.splice(removeIndex,1);
@@ -37,16 +42,10 @@ export default {
 	
 	props : ['cart'],
 	mounted () {
-		/*
-				
-		*/
 		let id = document.querySelector("meta[name='user-id']")
-		if (id != null) {
+		if (id != null && JSON.parse(this.cart) != null) {
 			this.products = JSON.parse(this.cart);
-			console.log(this.products)
-
-
-		} if(id == null) {
+		} else {
 			this.products = JSON.parse(localStorage.getItem('storedID'));
 		}
 		var finalsubPrice= 0;
