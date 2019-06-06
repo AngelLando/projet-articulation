@@ -130,6 +130,10 @@ button.btn-search:hover {
   border: none;
 }
 
+.second-nav {
+  padding-bottom: 0.5em;
+}
+
 footer div.footer-copyright {
   color: white;
   background-color: #757575;

@@ -10,6 +10,7 @@ export default {
 			quantity : '',
 			errors : {},
 			exception:false,
+			id: document.querySelector("meta[name='user-id']"),
 		}
 	},
 	methods:{
@@ -26,8 +27,20 @@ export default {
 			$(clickedElement).siblings().addClass("product_selection");
 		},
 		input: function (productid) {
-			let id = document.querySelector("meta[name='user-id']")
-			if (id != null) {
+			var local = localStorage.getItem('storedID');
+			local = local ? JSON.parse(local): [];
+			local.push({
+				"id":this.product.id,
+				"packaging_capacity":this.product.packaging_capacity,
+				"quantity":this.quantity,
+				"path_image":this.product.path_image,
+				"name":this.product.name,
+				"price": this.product.price,
+				"format":this.product.format,
+			})
+			localStorage.setItem('storedID', JSON.stringify(local));
+
+			if (this.id != null) {
 				this.cartItem  = {
 					product_id: this.product.id,
 					quantity: this.quantity
@@ -37,7 +50,7 @@ export default {
 					this.errors = error.response.data.errors
 					return;
 				})
-			} if(id == null) {
+			} if(this.id == null) {
 				var local = localStorage.getItem('storedID');
 				local = local ? JSON.parse(local): [];
 				var prodId = this.product.id

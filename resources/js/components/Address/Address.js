@@ -59,7 +59,6 @@ export default {
     }
     var finalsubPrice= 0;
     this.products.forEach(function(product) {
-      console.log(product)
       var finalPrice =  product.price*product.quantity;
       product.totalprice=finalPrice
       finalsubPrice=finalsubPrice+product.totalprice;
@@ -147,7 +146,6 @@ export default {
               }
             }
 
-            console.log(this.data);
             axios.post('check', this.data).catch(error => {
               this.errors = error.response.data.errors
             }).then(response => {
