@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Order;
 use Hash;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,40 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.account')->with('user', Auth::user());
+        $userAddress = Auth::user()->person->address->all();
+        //dd($userAddress);
+        $orderList = [];
+        foreach($userAddress as $address) {
+            $orders = Order::where(['address_id_1' => $address->id])->get();
+                foreach($orders as $order) {
+                    $anOrder = [];
+                    $anOrder['no']= $order->id;
+                    $anOrder['date']= $order->created_at;
+                    $anOrder['discount'] = $order->discount;
+                    $anOrder['products'] = [];
+                    $anOrder['shipping_status'] = $order->shipping_status;
+                    $anOrder['payment_status'] = $order->payment_status;
+                    $anOrder['shipping_costs'] = $order->shippingCost->amount;
+                    $orderItems = $order->orderItems;
+                    foreach($orderItems as $orderItem) {
+                        //dd($orderItem->product);
+                        $aProduct = [];
+                        $aProduct['name'] = $orderItem->product->name;
+                        $aProduct['price'] = $orderItem->product->price;
+                        $aProduct['format'] = $orderItem->product->format->name;
+                        $aProduct['packaging_type'] = $orderItem->product->format->packagings->first()['type'];
+                        $aProduct['packaging_capacity'] = $orderItem->product->format->packagings->first()['capacity'];
+                        $aProduct['image'] = $orderItem->product->path_image;
+                        $aProduct['quantity'] = $orderItem->quantity;
+                        $aProduct['discount'] = $orderItem->discount;
+                        array_push($anOrder['products'], $aProduct);
+                    }
+                    array_push($orderList, $anOrder);
+                }
+        }
+
+        $data = json_encode($orderList);
+        return view('users.account')->with('data', $data);
     }
 
     /**

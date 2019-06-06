@@ -7,16 +7,16 @@ export default {
             showAdresses: false,
             showNewsletters: false,
             showFavs: false,
-            showArrayLeft: false,
+          showArrayLeft: false,
             showArrayRight: true,
-
+          orders : [],
         }
     },
-
-
-    props : ['prod'],
+    props : ['data'],
     mounted () {
-
+        let json = JSON.parse(this.data)
+        console.log(json)
+        this.orders = json;
     },
 
 
