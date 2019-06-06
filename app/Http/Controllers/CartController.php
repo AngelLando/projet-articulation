@@ -33,6 +33,7 @@ class CartController extends Controller
                 foreach ($cartItems as $cartItem) {
                     $product = ProductController::getById($cartItem->product_id);
                     $newProduct = ProductController::getAllData($product['product']);
+                    $newProduct['quantity'] = $cartItem['quantity'];
                     //$newProduct['error'] = self::checkForAvailability($newProduct['quantity'], $newProduct['stock']);
                     array_push($cart, $newProduct);
                 }
@@ -116,22 +117,27 @@ class CartController extends Controller
     {
         if(Auth::check()) {
             $userId = Auth::id();
-            $cart = ['cart' => Cart::where('user_id', $userId)->firstOrFail()];
 
-            $cartItems = $cart['cart']->cartItems;
-            $cart = [];
+            $cart = ['cart' => Cart::where('user_id', $userId)->first()];
 
-            foreach ($cartItems as $cartItem) {
-                $product = ProductController::getById($cartItem->product_id);
-                $newProduct = ProductController::getAllData($product['product']);
+            if($cart['cart'] == null ) {
+                $json = json_encode(null);
+            } else {
 
-                $newProduct['quantity'] = $cartItem['quantity'];
-                //$newProduct['error'] = self::checkForAvailability($newProduct['quantity'], $newProduct['stock']);
-                array_push($cart, $newProduct);
+                $cartItems = $cart['cart']->cartItems;
+                $cart = [];
+
+                foreach ($cartItems as $cartItem) {
+                    $product = ProductController::getById($cartItem->product_id);
+                    $newProduct = ProductController::getAllData($product['product']);
+                    $newProduct['quantity'] = $cartItem['quantity'];
+                    //$newProduct['error'] = self::checkForAvailability($newProduct['quantity'], $newProduct['stock']);
+                    array_push($cart, $newProduct);
+                }
+
+                // CONVERT ARRAY TO JSON TO PASS DATAS
+                $json = json_encode($cart);
             }
-
-            // CONVERT ARRAY TO JSON TO PASS DATAS
-            $json = json_encode($cart);
         } else {
             $json = json_encode(null);
         }
@@ -146,3 +152,5 @@ class CartController extends Controller
         }
     }
 }
+
+
