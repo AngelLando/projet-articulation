@@ -15,6 +15,7 @@ class PromotionTableSeeder extends Seeder
             ['type'=> 'Aucune', 'amount' => 0],
             ['type'=> 'Offre de fin de lot', 'amount' => 10],
             ['type' => 'Offre spéciale', 'amount' => 20],
+            ['type' => 'Offre du mois', 'amount' => 30]
         ]);
     }
 }
