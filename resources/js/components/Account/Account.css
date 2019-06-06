@@ -2,14 +2,20 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300, 300i, 400,400i,500,500i,600, 600i, 700,700i,800, 800i, 900,900i&display=swap');
 
 
-.active {
+/******************
+
+NAVIGATION A GAUCHE
+
+******************/
+
+
+.nav-account li.active {
     text-decoration: underline !important;
-    color: #930046 !important;
+    color: #850038 !important;
 
 }
 
-
-.else {
+.nav-account li.else {
     cursor: pointer;
 }
 
@@ -17,13 +23,16 @@
 .account {
     margin-top: 4em;
     margin-bottom: 4em;
+    font-family: Montserrat;
 }
 
 
+.number_orders {
+    margin-top: 3em;
+}
+
 
 h2 {
-    font-family: Montserrat;
-    font-style: normal;
     font-weight: bold;
     font-size: 24px;
     line-height: 29px;
@@ -31,7 +40,6 @@ h2 {
 
 .nav-account {
     list-style: none;
-    font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -43,16 +51,21 @@ h2 {
 }
 
 .static-menu > p {
-    font-family: Montserrat;
-    font-style: normal;
+    margin-top: 0.2em;
     font-weight: bold;
     font-size: 18px;
     line-height: 22px;
 }
 
-p.header_title {
-    font-family: Montserrat;
-    font-style: normal;
+
+/************************
+
+EN-TÊTE TABLEAU COMMANDES
+
+************************/
+
+
+.orders_header p {
     font-weight: 500;
     font-size: 18px;
 }
@@ -60,6 +73,87 @@ p.header_title {
 .orders_header {
     background: #E9E9E9;
     height: 51px;
-    text-align: center;
     padding-top: 13px;
+}
+
+.orders_header > p:first-of-type {
+    padding-left: 4em;
+}
+
+
+div.text-left {
+    padding-top: 0.4em;
+    font-size: 18px;
+}
+
+.no-page {
+    padding-top: 0.5em;
+}
+
+.no-page > ul {
+    display: block;
+}
+
+.no-page ul li.else {
+    display: inline-block;
+    width: 1.7em;
+    border: solid 1px black;
+    text-align: center;
+}
+
+.no-page ul li.active {
+    display: inline-block;
+    background-color: #850038;
+    border: solid 1px #850038;
+    color: white;
+    width: 1.7em;
+    text-align: center;
+}
+
+
+.arrow-right, .arrow-left {
+    display: inline-block;
+    width: 1.7em;
+    text-align: center;
+    border: none;
+    width: 13px;
+}
+
+
+
+/*****************
+
+LIGNE DE COMMANDE
+
+*****************/
+
+
+.order_line {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border: solid 0.5px #D0D0D0;
+}
+
+
+.order_line p {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 22px;
+    padding-top: 0.5em;
+    height: 25px;
+}
+
+
+.order_line > p:first-of-type {
+    padding-left: 1.6em;
+}
+
+.order_line > p:nth-of-type(2) {
+    margin-left: -0.8em;
+    margin-right: 0.8em;
+
+}
+
+.down-arrow img {
+    width: 20px;
 }

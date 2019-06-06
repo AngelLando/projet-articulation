@@ -7,6 +7,9 @@ export default {
             showAdresses: false,
             showNewsletters: false,
             showFavs: false,
+            showArrayLeft: false,
+            showArrayRight: true,
+
         }
     },
 
@@ -25,7 +28,11 @@ export default {
             $(clickedElement).siblings().removeClass("active");
             $(clickedElement).siblings().addClass("else");
         },
+
     },
+
+
+
 
 
 }
