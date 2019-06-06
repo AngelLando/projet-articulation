@@ -8,7 +8,8 @@ export default {
 			livraison:25,
 			finalPrice:0,
 			productToDelete: '',
-			id:document.querySelector("meta[name='user-id']")
+			id:document.querySelector("meta[name='user-id']"),
+			emptyCart:true,
 		}
 	},
 	methods:{
@@ -18,32 +19,42 @@ export default {
 				axios.delete('cartItem/' + event.id).catch(error => {
 					console.dir(error);
 				})
-                var test = JSON.parse(localStorage.getItem('storedID'));
-                var removeIndex = test.map(function(item) { return item.id; }).indexOf(event.id);
-                test.splice(removeIndex,1);
-                localStorage.setItem('storedID', JSON.stringify(test));
-                this.products = JSON.parse(localStorage.getItem('storedID'));
-            }else{
-				var test = JSON.parse(localStorage.getItem('storedID'));
-				var removeIndex = test.map(function(item) { return item.id; }).indexOf(event.id);
-				test.splice(removeIndex,1);
-				localStorage.setItem('storedID', JSON.stringify(test));
+				var local = JSON.parse(localStorage.getItem('storedID'));
+				var removeIndex = local.map(function(item) { return item.id; }).indexOf(event.id);
+				local.splice(removeIndex,1);
+				localStorage.setItem('storedID', JSON.stringify(local));
 				this.products = JSON.parse(localStorage.getItem('storedID'));
+			}else{
+				var local = JSON.parse(localStorage.getItem('storedID'));
+				var removeIndex = local.map(function(item) { return item.id; }).indexOf(event.id);
+				local.splice(removeIndex,1);
+				localStorage.setItem('storedID', JSON.stringify(local));
+				this.products = JSON.parse(localStorage.getItem('storedID'));
+			}
+		},
+		checkLocalStorage:function(){
+			var local = JSON.parse(localStorage.getItem('storedID'))
+			if (local=="") {
+				this.emptyCart=false;
 			}
 		}
 	},
 
 	computed:{
-		total: function(){
-			return 34*$('option').text()
-		},
+
 
 	},
 	
 	props : ['cart'],
 	mounted () {
-		let id = document.querySelector("meta[name='user-id']")
-		if (id != null && JSON.parse(this.cart) != null) {
+
+		var local = JSON.parse(localStorage.getItem('storedID'))
+		if (local=="") {
+			this.emptyCart=false;
+			console.log(this.emptyCart)
+		}
+
+		if (this.id != null && JSON.parse(this.cart) != null) {
 			this.products = JSON.parse(this.cart);
 		} else {
 			this.products = JSON.parse(localStorage.getItem('storedID'));
@@ -57,6 +68,9 @@ export default {
 		this.finalsubPrice=finalsubPrice;
 		this.tva = Math.round(this.tvaPercent*this.finalsubPrice/100);
 		this.finalPrice = this.finalsubPrice+this.tva+this.livraison;
+
+
+
 	},
 	beforeMount(){
 

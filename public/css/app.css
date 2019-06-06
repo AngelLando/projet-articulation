@@ -62,6 +62,10 @@ nav.navbar-light {
   margin-bottom: -0.5em;
 }
 
+.newsletter {
+  margin-right: 0 !important;
+}
+
 /*secondary nav styles*/
 
 nav.navbar.navbar-expand-lg.navbar-light.secondary-nav ul.navbar-nav.mr-auto li.nav-item a.nav-link {
