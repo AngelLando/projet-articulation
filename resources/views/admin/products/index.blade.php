@@ -2,7 +2,6 @@
 @section('content')
 
 <div class="container"><br>
-@include('admin.menu')
 
 @if(Session::has('success'))
     <div class="alert alert-success">
