@@ -16,10 +16,8 @@ export default {
     props : ['data'],
     mounted () {
         let json = JSON.parse(this.data)
-        console.log(json)
         this.orders = json;
     },
-
 
     methods:{
         underline: function(event){
@@ -31,9 +29,4 @@ export default {
         },
 
     },
-
-
-
-
-
 }
