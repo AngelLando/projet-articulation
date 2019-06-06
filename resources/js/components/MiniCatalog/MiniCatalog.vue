@@ -19,7 +19,11 @@
                                     <div class="product_content">
 
                                         <div class="product_info d-flex flex-row align-items-start justify-content-start">
-                                            <div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
                                         </div>
                                         <div class="product_info year_format d-flex flex-row align-items-start justify-content-start">
                                             <div>
