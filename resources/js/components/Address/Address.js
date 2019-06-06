@@ -34,53 +34,55 @@ export default {
       isHiddenBillTo:false,
       isHiddenPromoCode:false,
       isError:false,
-      subtotal:0,
-      delivery:25,
+      finalsubPrice:0,
+      livraison:25,
       tva:0,
       tvaPercent:7.7,
-      total:0,
+      finalPrice:0,
       promocode:10,
-        promotion : false,
+      promotion : false,
       rabais:'',
       errors: {},
-        comment:'',
-        payment_method: '',
-        discount: 10,
+      comment:'',
+      payment_method: '',
+      discount: 10,
     }
   },
-    //props : ['prod'],
-    mounted () {
+    mounted ()
+    {
+    let id = document.querySelector("meta[name='user-id']")
+    if (id != null) {
       this.products = JSON.parse(this.cart);
-      var subtotal = 0;
-      this.products.forEach(function(product) {
-        var total =  product.price*product.packaging_capacity;
-        product.totalprice=total
-        subtotal=subtotal+product.totalprice;
-      });
-      this.subtotal=subtotal
-      this.tva = Math.round(this.tvaPercent*this.subtotal/100) ;
-      this.total = this.subtotal+this.tva+this.delivery;
-    },
-    beforeMount(){
-      this.total= this.tva+this.subtotal+this.delivery;
-      
-    },
-    methods : {
-      checkPromoCode: function(){
-        var enteredCode = this.promocode;
-        if (enteredCode=="cuki") {
-          this.isHiddenPromoCode=true;
-          this.total= this.tva+this.subtotal+this.delivery;
-          this.rabais = this.total*this.discount/100;
-          this.total = this.total-this.rabais;
-          this.promotion = this.discount;
-          return;
-        }else{
-          this.isError=true;
-        }
 
-      },
-      submitAddress (isHiddenBillTo,isHiddenShipTo) {
+    } if(id == null) {
+      this.products = JSON.parse(localStorage.getItem('storedID'));
+    }
+    var finalsubPrice= 0;
+    this.products.forEach(function(product) {
+      var finalPrice =  product.price*product.packaging_capacity;
+      product.totalprice=finalPrice
+      finalsubPrice=finalsubPrice+product.totalprice;
+    });
+    this.finalsubPrice=finalsubPrice;
+    this.tva = Math.round(this.tvaPercent*this.finalsubPrice/100);
+    this.finalPrice = this.finalsubPrice+this.tva+this.livraison;
+  },
+  methods : {
+    checkPromoCode: function(){
+      var enteredCode = this.promocode;
+      if (enteredCode=="cuki") {
+        this.isHiddenPromoCode=true;
+        this.finalPrice= this.tva+this.finalsubPrice+this.livraison;
+        this.rabais = this.finalPrice*this.discount/100;
+        this.finalPrice = this.finalPrice-this.rabais;
+        this.promotion = this.discount;
+        return;
+      }else{
+        this.isError=true;
+      }
+
+    },
+    submitAddress (isHiddenBillTo,isHiddenShipTo) {
         //  e.preventDefault();
         this.address1  = {
           firstname1: this.firstname1,
@@ -125,9 +127,9 @@ export default {
               address2 : this.address2,
               address3 : this.address3,
               products : JSON.parse(this.cart),
-                comment : this.comment,
-                payment_method : this.payment_method,
-                promotion: this.promotion
+              comment : this.comment,
+              payment_method : this.payment_method,
+              promotion: this.promotion
             }
             console.log(this.data);
             axios.post('check', this.data).catch(error => {
