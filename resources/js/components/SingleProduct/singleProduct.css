@@ -51,20 +51,25 @@ margin-top:5px;
 Container
 ***********/
 
-.similar_products{
-  margin-left:220px;
-font-family: Montserrat;
-font-style: normal;
-font-weight: bold;
-font-size: 15px;
-line-height: 20px;
-color: #000000;
+.similarities{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.similar_products {
+    margin-top: 4.5em;
+    margin-bottom: 1em;
 }
 
 .super_container
 {
   width: 100%;
   overflow: hidden;
+    margin-top: 3em;
 }
 
 
@@ -446,3 +451,7 @@ Product_rating
   font-size: 16px;
   color: #930046;
 }
+
+
+
+

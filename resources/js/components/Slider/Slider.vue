@@ -53,9 +53,11 @@
                 </div>
             </div>
         </section>
-        <section class="recommended-products">
-            <div class="recommendations"><p>Nos recommandations</p></div>
-        </section>
+        <div class="container pt45 pb70">
+            <div class="row px20 pt0 recommended-products">
+                <div class="col-md-5 hidden-xs hidden-sm block recommendations">Nos recommandations</div>
+            </div>
+        </div>
     </div>
 </template>
 

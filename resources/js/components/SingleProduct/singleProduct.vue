@@ -87,9 +87,12 @@
                             </div>
                             <div class = "col-xl-12 text-center"><hr class="line ml-3 mt-4 mb-4"></div>
                         </div>
-
+                        <div class="container pt45 pb70">
+                            <div class="row px20 pt0 similar_products">
+                                <div class="col-md-5 hidden-xs hidden-sm block similarities">D'autres produits similaires</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="similar_products"><p>D'autres produits similaires</p></div>
                 </div>
             </div>
         </div>
