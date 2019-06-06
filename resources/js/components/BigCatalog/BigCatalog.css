@@ -133,7 +133,7 @@ Product
 
 .product_name a:hover
 {
-    color: #bdbdbf;
+    color: #bdbdbf !important;
 }
 
 

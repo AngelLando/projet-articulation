@@ -38,29 +38,39 @@ export default {
 					return;
 				})
 			} if(id == null) {
-				//var local = JSON.parse(localStorage.getItem('storedID')) || [];
 				var local = localStorage.getItem('storedID');
 				local = local ? JSON.parse(local): [];
-				local.push({
-					"id":this.product.id,
-					"packaging_capacity":this.product.packaging_capacity,
-					"quantity":this.quantity,
-					"path_image":this.product.path_image,
-					"name":this.product.name,
-					"price": this.product.price,
-					"format":this.product.format,
-				})
-				localStorage.setItem('storedID', JSON.stringify(local));
+				var prodId = this.product.id
+				var q = parseInt(this.quantity, 10);
+				var alreadyExist = false;
+				local.forEach(function(element) {
+					if (element.id == prodId) {
+						alreadyExist=true;
+						var f = parseInt(element.quantity,10)
+						element.quantity = q+f;
+					}
+				});
+				if (alreadyExist==false) {
+					local.push({
+						"id":this.product.id,
+						"packaging_capacity":this.product.packaging_capacity,
+						"quantity":this.quantity,
+						"path_image":this.product.path_image,
+						"name":this.product.name,
+						"price": this.product.price,
+						"format":this.product.format,
+					})}
+					localStorage.setItem('storedID', JSON.stringify(local));
+				}
 			}
-		}
-	},
-	props : ['prod'],
-	mounted () {
-		let json = JSON.parse(this.prod);
-		this.product = json.product;
-		this.products = json.recommandations;
-		this.products = json.products;
-	},
+		},
+		props : ['prod'],
+		mounted () {
+			let json = JSON.parse(this.prod);
+			this.product = json.product;
+			this.products = json.recommandations;
+			this.products = json.products;
+		},
 
-}
+	}
 
