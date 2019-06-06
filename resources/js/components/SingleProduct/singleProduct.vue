@@ -6,7 +6,7 @@
                 <div class="products">
                     <div class="container">
                         <div class="row product_row">
-                            <div class ="breadcrumbs col-xl-12 mb-4 ml-3"><a href="">Nos vins</a> ><a href=""> {{product.kind}}</a> > <strong><a href="">{{product.name}}</a></strong></div>
+                            <div class ="breadcrumbs col-xl-12 mb-4 ml-3"><a href="nos-vins">Nos vins</a> ><a href=""> {{product.kind}}</a> > <strong><a href="">{{product.name}}</a></strong></div>
                             <!-- Product -->
                             <div class="col-xl-4">
                                 <div class="product">
@@ -30,7 +30,7 @@
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
                                                 <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
                                                     <select class="choice_list" v-model="quantity">
-                                                        <option>50</option>
+                                                        <option>10</option>
                                                     </select>
 
                                                 </div>
