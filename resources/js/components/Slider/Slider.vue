@@ -4,7 +4,7 @@
             <div>
                 <!--<div class="slider"><img class="image-slider" src="images/slider-image1.jpg" alt=""></div>!-->
                 <div id="slide1" class="slider-image active" style="background-image:url(images/slider-image1.jpg)">
-                    <div class="row">
+                    <div class="row row-image">
                         <div class="col-xl-6 col-lg-7 infos">
                             <h2>8 juin 2019</h2>
                             <p>Dégustation de vins italiens dans les montagnes neuchâteloises.</p>

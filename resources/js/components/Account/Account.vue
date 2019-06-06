@@ -52,9 +52,9 @@
                 </div>
                 <div class="container pt-3">
                     <div class="orders_header row">
-                        <p class="col-4">Commande n°</p>
-                        <p class="col-2 text-left">Date</p>
-                        <p class="col-2 text-left">Montant</p>
+                        <p class="col-4 col-xs-7">Commande n°</p>
+                        <p class="col-2 col-xs-1 text-left">Date</p>
+                        <p class="col-2 col-xs-1 text-left">Montant</p>
                         <p class="col-2 text-left">État</p>
                         <p class="col-2 text-left">Paiement</p>
                     </div>
