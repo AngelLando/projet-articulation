@@ -38,21 +38,18 @@ export default {
 					this.errors = error.response.data.errors
 					return;
 				})
-				console.log("produit ajouté à la BD")
 			} if(id == null) {
-				console.log('rien trouvé ')
 				//var local = JSON.parse(localStorage.getItem('storedID')) || [];
 				var local = localStorage.getItem('storedID');
-				console.log(local)
 				local = local ? JSON.parse(local): [];
-				console.log(local)
 				local.push({
 					"id":this.product.id,
 					"packaging_capacity":this.product.packaging_capacity,
-				"path_image":this.product.path_image,
-				"name":this.product.name,
-				"price": this.product.price,
-				"format":this.product.format,
+					"quantity":this.quantity,
+					"path_image":this.product.path_image,
+					"name":this.product.name,
+					"price": this.product.price,
+					"format":this.product.format,
 				})
 				/**local['id']=this.product.id;
 				local['quantity']=this.quantity;
@@ -61,7 +58,6 @@ export default {
 				local['price']=this.product.price;
 				local['format']=this.product.format;**/
 				localStorage.setItem('storedID', JSON.stringify(local));
-				console.log("produit ajouté au localStorage")
 			}
 
 
@@ -70,7 +66,6 @@ export default {
 	props : ['prod'],
 	mounted () {
 		let json = JSON.parse(this.prod);
-		console.log(json);
 		this.product = json.product;
 		this.products = json.recommandations;
 		this.products = json.products;

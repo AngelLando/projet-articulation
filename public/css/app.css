@@ -11,7 +11,7 @@ div.navbar-text.main-nav a:hover {
 }
 
 nav.navbar.navbar-expand-md.navbar-light.shadow-sm {
-  background-color: #930046;
+  background-color: #850038;
   padding: 1em 5em;
 }
 
@@ -24,7 +24,7 @@ nav.navbar-light ul.navbar-nav > li.nav-item > a.nav-link {
 }
 
 nav.navbar-light ul.navbar-nav > li > .dropdown-menu > a.dropdown-item {
-  color: #930046;
+  color: #850038;
 }
 
 nav.navbar-light ul.navbar-nav > li > .dropdown-menu > a.dropdown-item:hover {
@@ -33,7 +33,7 @@ nav.navbar-light ul.navbar-nav > li > .dropdown-menu > a.dropdown-item:hover {
 
 .dropdown-menu > a:hover,
 .dropdown-menu > a:focus {
-  color: #930046;
+  color: #850038;
   background-color: #f5f5f5;
   cursor: pointer;
 }

@@ -33,13 +33,16 @@ export default {
 		let id = document.querySelector("meta[name='user-id']")
 		if (id != null) {
 			this.products = JSON.parse(this.cart);
+						console.log(this.products)
+
 
 		} if(id == null) {
 			this.products = JSON.parse(localStorage.getItem('storedID'));
 		}
 		var finalsubPrice= 0;
 		this.products.forEach(function(product) {
-			var total =  product.price*product.packaging_capacity;
+			console.log(product.quantity)
+			var total =  product.price*product.quantity;
 			product.totalprice=total
 			finalsubPrice=finalsubPrice+product.totalprice;
 		});
