@@ -113,37 +113,6 @@ class CartController extends Controller
         //
     }
 
-    public function checkout()
-    {
-        if(Auth::check()) {
-            $userId = Auth::id();
-
-            $cart = ['cart' => Cart::where('user_id', $userId)->first()];
-
-            if($cart['cart'] == null ) {
-                $json = json_encode(null);
-            } else {
-
-                $cartItems = $cart['cart']->cartItems;
-                $cart = [];
-
-                foreach ($cartItems as $cartItem) {
-                    $product = ProductController::getById($cartItem->product_id);
-                    $newProduct = ProductController::getAllData($product['product']);
-                    $newProduct['quantity'] = $cartItem['quantity'];
-                    //$newProduct['error'] = self::checkForAvailability($newProduct['quantity'], $newProduct['stock']);
-                    array_push($cart, $newProduct);
-                }
-
-                // CONVERT ARRAY TO JSON TO PASS DATAS
-                $json = json_encode($cart);
-            }
-        } else {
-            $json = json_encode(null);
-        }
-        return $json;
-    }
-
     public static function checkForAvailability ($quantity, $stock) {
         if ($quantity > $stock) {
             return 'Erreur, il ne reste que '.$stock.' unités dans notre stock. Veuillez s\'il vous plaît diminuer la quantité demandée';
