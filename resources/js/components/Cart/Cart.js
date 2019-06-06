@@ -18,11 +18,20 @@ export default {
 				console.log(event.id)
 				axios.delete('cartItem/' + event.id).catch(error => {
 					console.dir(error);
-				})
+				}).then(response => { console.log(response)})
+                var test = JSON.parse(localStorage.getItem('storedID'));
+                var removeIndex = test.map(function(item) { return item.id; }).indexOf(event.id);
+                test.splice(removeIndex,1);
+                localStorage.setItem('storedID', JSON.stringify(test));
+                this.products = JSON.parse(localStorage.getItem('storedID'));
+            }else{
 				var local = JSON.parse(localStorage.getItem('storedID'));
 				var removeIndex = local.map(function(item) { return item.id; }).indexOf(event.id);
 				local.splice(removeIndex,1);
 				localStorage.setItem('storedID', JSON.stringify(local));
+
+				})
+
 				this.products = JSON.parse(localStorage.getItem('storedID'));
 			}else{
 				var local = JSON.parse(localStorage.getItem('storedID'));
@@ -55,6 +64,7 @@ export default {
 		}
 
 		if (this.id != null && JSON.parse(this.cart) != null) {
+
 			this.products = JSON.parse(this.cart);
 		} else {
 			this.products = JSON.parse(localStorage.getItem('storedID'));
