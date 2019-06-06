@@ -33,7 +33,7 @@ Route::get('/user/account', [
 
 // return JSON file
 Route::get('/', function () {
-    $data = App::call('App\Http\Controllers\ProductController@index');
+    $data = App::call('App\Http\Controllers\ProductController@index', [$id = null]);
     return view('homepage')->with('products', $data);
 })->name('products');
 
@@ -67,27 +67,27 @@ Route::delete('/cartItem/{id}', [
 // Pages Routes
 
 Route::get('/nos-primeurs', function() {
-    $data = App::call('App\Http\Controllers\ProductController@index');
+    $data = App::call('App\Http\Controllers\ProductController@index', [$id = 'Primeur']);
     return view('pages.nos-primeurs')->with('products', $data);
 })->name('nos-primeurs');
 
 Route::get('/nos-vins', function() {
-    $data = App::call('App\Http\Controllers\ProductController@index');
+    $data = App::call('App\Http\Controllers\ProductController@index', [$id = null]);
     return view('pages.nos-vins')->with('products', $data);
 })->name('nos-vins');
 
 Route::get('/nouveautes', function() {
-    $data = App::call('App\Http\Controllers\ProductController@index');
+    $data = App::call('App\Http\Controllers\ProductController@index', [$id = 'Nouveautés']);
     return view('pages.nouveautes')->with('products', $data);
 })->name('nouveautes');
 
 Route::get('/offres-speciales', function() {
-    $data = App::call('App\Http\Controllers\ProductController@index');
+    $data = App::call('App\Http\Controllers\ProductController@index', [$id = 'Offre spéciale']);
     return view('pages.offres-speciales')->with('products', $data);
 })->name('offres-speciales');
 
 Route::get('/promotions', function() {
-    $data = App::call('App\Http\Controllers\ProductController@index');
+    $data = App::call('App\Http\Controllers\ProductController@index', [$id = 'Offre du mois']);
     return view('pages.promotions')->with('products', $data);
 })->name('promotions');
 

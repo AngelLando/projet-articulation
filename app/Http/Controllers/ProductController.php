@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Tag;
+use App\Type;
 use App\Http\Controllers\AppellationController;
 use App\Http\Controllers\TagsController;
 
@@ -15,16 +17,42 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $all = ['products' => Product::all()];
-        $products = $all['products'];
+        $products = Product::all();
+        if ($id != null) {
+            foreach ($products as $key => $val) {
+                switch ($id) {
+                    case ($id == 'Offre spéciale') :
+                        if ($val->promotion->type != 'Offre spéciale') {
+                            unset($products[$key]);
+                        }
+                        break;
+                    case ($id == 'Nouveautés') :
+                        if ($val->createdAt != 'Offres spéciales') {
+                            unset($products[$key]);
+                        }
+                        break;
+                    case ($id == 'Primeur') :
+                        if ($val->type->name != 'Primeur') {
+                            unset($products[$key]);
+                        }
+                        break;
+                    case ($id == 'Offre du mois') :
+                        if ($val->promotion->type != 'Offre du mois') {
+                            unset($products[$key]);
+                        }
+                        break;
+                }
+            }
+        }
+
         $tab = [];
         $allProducts = [];
 
-        foreach ($products as $key=>$product) {
-                $newProduct = $this->getAllData($products[$key]);
-                array_push($allProducts, $newProduct);
+        foreach ($products as $key => $product) {
+            $newProduct = $this->getAllData($products[$key]);
+            array_push($allProducts, $newProduct);
         }
         $tab['products'] = $allProducts;
         $tab['appellations'] = AppellationController::index();
@@ -148,8 +176,9 @@ class ProductController extends Controller
         return $newProduct;
     }
 
-    public function getRecommandations ($rawProduct) {
-        $recommandations =[];
+    public function getRecommandations($rawProduct)
+    {
+        $recommandations = [];
         $recommandationProduct = Product::where([
                 ['kind', $rawProduct->kind],
                 ['id', '!=', $rawProduct->id]]
