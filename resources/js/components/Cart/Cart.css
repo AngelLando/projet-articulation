@@ -41,7 +41,16 @@ Container
 }
 
 
-
+.empty{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 15px;
+line-height: 20px;
+display: flex;
+align-items: center;
+color: #000000;
+}
 
 
 /***********
