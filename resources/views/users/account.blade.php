@@ -3,6 +3,6 @@
 
 @section('content')
     <div id="app">
-        <my-account></my-account>
+        <my-account data="{{$data}}"></my-account>
     </div>
 @endsection
