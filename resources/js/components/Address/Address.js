@@ -150,6 +150,8 @@ export default {
             console.log(this.data);
             axios.post('check', this.data).catch(error => {
               this.errors = error.response.data.errors
+            }).then(response => {
+              console.log(response)
             })
           },
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Order;
+use App\Person;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShippingCostController;
@@ -38,35 +40,56 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+
+        if (Auth::check()) {
+            $personId = Auth::user()->person->id;
+        } else {
+            $name = 'address1';
+            if ($request->$name['gender1'] == 'm') {
+                $prefix = 'M';
+            } elseif ($request->$name['gender1'] == 'f') {
+                $prefix = 'Mme';
+            } else {
+                $prefix = null;
+            }
+            $personId = Person::insertGetId([
+                'firstname' => $request->$name['firstname1'],
+                'lastname' => $request->$name['lastname1'],
+                'prefix' => $prefix,
+                'gender' => $request->$name['gender1'],
+            ]);
+        }
+
         // Insert the order address in the database
-        $addressId1 = AddressController::store($request, $nb = '1', $id = null);
+         $addressId1 = AddressController::store($request, $nb = '1', $id = null, $personId);
 
-        // Insert the shipping address in the database
-        $addressId2 = AddressController::store($request, $nb = '2', $addressId1);
+         // Insert the shipping address in the database
+         $addressId2 = AddressController::store($request, $nb = '2', $addressId1, $personId);
 
-        // Insert the billing address in the database
-        $addressId3 = AddressController::store($request, $nb = '3', $addressId1);
+         // Insert the billing address in the database
+         $addressId3 = AddressController::store($request, $nb = '3', $addressId1, $personId);
 
-        // Make the sum of all products' quantity and return the right shippingcost
-        $shippingCosts = ShippingCostController::getRigthShippingCost($request);
+         // Make the sum of all products' quantity and return the right shippingcost
+         $shippingCosts = ShippingCostController::getRigthShippingCost($request);
 
-        // Create the Order
-        $orderId = Order::insertGetId([
-            'comment' => $request->comment,
-            //'delivery_method' => $request->delivery_method,
-            'tva' => 7.7,
-            'discount' => $request->promotion,
-            'payment_method' => $request->payment_method,
-            'address_id_1' => $addressId1,
-            'address_id_2' => $addressId2,
-            'address_id_3' => $addressId3,
-            'shipping_cost_id' => $shippingCosts
-        ]);
+         // Create the Order
+         $orderId = Order::insertGetId([
+             'comment' => $request->comment,
+             //'delivery_method' => $request->delivery_method,
+             'tva' => 7.7,
+             'discount' => $request->promotion,
+             'payment_method' => $request->payment_method,
+             'address_id_1' => $addressId1,
+             'address_id_2' => $addressId2,
+             'address_id_3' => $addressId3,
+             'shipping_cost_id' => $shippingCosts
+         ]);
 
-        // Create all OrderItems needed
-        $orderItems = OrderItemController::store($request, $orderId);
+         // Create all OrderItems needed
+         $orderItems = OrderItemController::store($request, $orderId);
 
-        // return OrderId
+         // return OrderId
+
         return $orderItems;
     }
 

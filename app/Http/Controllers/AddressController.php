@@ -35,7 +35,7 @@ class AddressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public static function store(Request $request, $nb, $id)
+    public static function store(Request $request, $nb, $id, $personId)
     {
         $name = 'address'.$nb;
         if($request->$name == null) {
@@ -56,7 +56,7 @@ class AddressController extends Controller
             'city' => $request->$name['city'.$nb],
             'region' => $request->$name['region'.$nb],
             'country' => $request->$name['country'.$nb],
-            'person_id' => 1]);
+            'person_id' => $personId]);
         return $id;
     }
 
