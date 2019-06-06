@@ -21,10 +21,10 @@ export default {
             selected_appellations: [],
             selected_tags: [],
             selected_countries: [],
-
             quantity : '',
             errors : {},
             counter: '',
+            cartItem : ''
         }
     },
 
@@ -81,7 +81,7 @@ export default {
                     product_id: clickedProduct.id,
                     quantity: this.quantity
                 };
-                axios.post('../add', this.cartItem)
+                axios.post('add', this.cartItem)
                 .catch(error => {
                     this.errors = error.response.data.errors
                     return;

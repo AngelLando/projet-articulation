@@ -20,7 +20,16 @@ export default {
                 product_id: clickedProduct.id,
                 quantity: this.quantity
             };
-            axios.post('../add', this.cartItem)
+            let href = window.location.pathname;
+            let path = href.split('/');
+            let url;
+               if(path[path.length-2] == 'produit') {
+                url = '../add'
+               } else {
+                   url = 'add'
+               }
+
+            axios.post(url, this.cartItem)
             .catch(error => {
                 this.errors = error.response.data.errors
                 return;
