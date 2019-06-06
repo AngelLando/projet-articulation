@@ -88,6 +88,7 @@ div.text-left {
 
 .no-page {
     padding-top: 0.5em;
+    padding-left: 8.3em
 }
 
 .no-page > ul {
@@ -99,6 +100,7 @@ div.text-left {
     width: 1.7em;
     border: solid 1px black;
     text-align: center;
+    display: none;
 }
 
 .no-page ul li.active {
@@ -120,6 +122,9 @@ div.text-left {
 }
 
 
+.arrow-right {
+    display: none;
+}
 
 /*****************
 
@@ -157,3 +162,4 @@ LIGNE DE COMMANDE
 .down-arrow img {
     width: 20px;
 }
+

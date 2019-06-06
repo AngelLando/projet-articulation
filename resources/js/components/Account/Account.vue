@@ -44,8 +44,8 @@
                     <nav class="no-page col-md-auto text-left">
                         <ul>
                             <span class="arrow-left"><img src="images/left-arrow.svg" v-if="showArrayLeft" alt=""></span>
-                            <li class="active" @click="underline" v-on:click="showArrayLeft=false; showArrayRight=true" >1</li>
-                            <li class="else" @click="underline" v-on:click="showArrayLeft=true; showArrayRight=false" >2</li>
+                            <li class="active">1</li> <!--  @click="underline" v-on:click="showArrayLeft=false; showArrayRight=true"  !-->
+                            <li class="else" >2</li> <!--   @click="underline" v-on:click="showArrayLeft=true; showArrayRight=false"   !-->
                             <span class="arrow-right"><img src="images/right-arrow.svg" v-if="showArrayRight" alt=""></span>
                         </ul>
                     </nav>
@@ -58,26 +58,17 @@
                         <p class="col-2 text-left">État</p>
                         <p class="col-2 text-left">Paiement</p>
                     </div>
-                    <div class="order_line row">
+                    <div v-for="order in orders" class="order_line row">
                         <p class="col-1 down-arrow else"><img src="images/down-arrow.svg" alt=""></p>
-                        <p class="col-3">10701058609848</p>
+                        <p class="col-3">{{order.no}}</p>
                         <p class="col-2 text-left">11.03.19</p>
                         <p class="col-2 text-left">CHF 108.00</p>
                         <p class="col-2 text-left">Livrée</p>
                         <p class="col-2 text-left">Réglé</p>
                     </div>
-                </div>
 
-                <div class="container pt-3">
-                    <div v-for="order in orders" class =" row">
-                        <p class="header_title col-3">{{order.no}}</p>
-                        <p class="header_title col-2 text-right">{{order.date}}</p>
-                        <p class="header_title col-2 text-center">{{order.no}}</p>
-                        <p class="header_title col-3 text-center">{{order.no}}</p>
-                        <p class="header_title col-2 text-center">Paiement</p>
-                    </div>
                 </div>
-                <div v-if="orders == null">Pas de commande pour le moment.</div>
+                <div v-if="orders.length == 0">Pas de commande pour le moment.</div>
 
             </div>
             <div class="content infos col-md-9 hidden-xs hidden-sm block" v-if="showInfos">
