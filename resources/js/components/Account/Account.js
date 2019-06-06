@@ -10,6 +10,7 @@ export default {
           showArrayLeft: false,
             showArrayRight: true,
           orders : [],
+            test: [],
         }
     },
     props : ['data'],
