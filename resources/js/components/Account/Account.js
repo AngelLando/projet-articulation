@@ -7,7 +7,9 @@ export default {
             showAdresses: false,
             showNewsletters: false,
             showFavs: false,
-            orders : [],
+          showArrayLeft: false,
+            showArrayRight: true,
+          orders : [],
         }
     },
     props : ['data'],
@@ -26,7 +28,11 @@ export default {
             $(clickedElement).siblings().removeClass("active");
             $(clickedElement).siblings().addClass("else");
         },
+
     },
+
+
+
 
 
 }

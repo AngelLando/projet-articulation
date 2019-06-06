@@ -185,7 +185,7 @@ Product
 
 
 .product_price {
-    color: #930046;
+    color: #850038;
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
@@ -276,7 +276,7 @@ div.product_button.product_cart, .add_product {
     line-height: 22px;
     font-size: 18px;
     font-weight: 500;
-    background-color: #930046;
+    background-color: #850038;
 }
 
 
@@ -309,5 +309,5 @@ Product_rating
     content: "\e9d9";
     font-style: normal;
     font-size: 16px;
-    color: #930046;
+    color: #850038;
 }

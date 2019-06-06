@@ -184,7 +184,7 @@ Product
 
 
 .product_price {
-    color: #930046;
+    color: #850038;
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
@@ -275,7 +275,7 @@ div.product_button.product_cart, .add_product {
     line-height: 22px;
     font-size: 18px;
     font-weight: 500;
-    background-color: #930046;
+    background-color: #850038;
 }
 
 
@@ -308,7 +308,7 @@ Product_rating
     content: "\e9d9";
     font-style: normal;
     font-size: 16px;
-    color: #930046;
+    color: #850038;
 }
 
 
@@ -406,14 +406,14 @@ div.filter_option{
 }
 
 div.filter_option:hover{
-    background: #930046;
+    background: #850038;
     color:white;
-    border: 1px solid #930046;
+    border: 1px solid #850038;
 
 }
 
 div.filter_option.active{
-    background: #930046;
+    background: #850038;
     color:white;
 
 }
@@ -444,7 +444,7 @@ div.filter_option.active{
 
 {
     margin-top: 1.7em;
-    background-color: #930046;
+    background-color: #850038;
     border-radius: 100px;
     padding: 0.3em 1em 0.3em 1em;
     font-family: Montserrat;
@@ -524,8 +524,8 @@ div.filter_option.active{
     font-family: Montserrat;
     font-size: 18px;
     font-weight: bold;
-    color: #930046;
-    border: 1px solid #930046;
+    color: #850038;
+    border: 1px solid #850038;
     padding: 0.5em 1em 0.5em 1em;
     width: 8.3em;
     border-radius: 50px;
@@ -552,8 +552,8 @@ div.filter_option.active{
     display: none;
 }
 .chiller_cb input:checked ~ span {
-    background: #930046;
-    border-color: #930046;
+    background: #850038;
+    border-color: #850038;
 }
 .chiller_cb input:checked ~ span:before {
     width: 1rem;

@@ -106,7 +106,7 @@ color: #000000;
 }
 
 .submit_order{
-    background: #930046;
+    background: #850038;
 border-radius: 10px;
 font-family: Montserrat;
 padding-top:12px;
@@ -128,7 +128,7 @@ font-style: normal;
 text-align:center;
 font-size: 15px;
 line-height: 20px;
-color: #930046;
+color: #850038;
 
 }
 
@@ -158,8 +158,8 @@ box-sizing: border-box;
     display: none;
 }
 .chiller_cb input:checked ~ span {
-    background: #930046;
-    border-color: #930046;
+    background: #850038;
+    border-color: #850038;
 }
 .chiller_cb input:checked ~ span:before {
     width: 1rem;
@@ -245,7 +245,7 @@ border-bottom: 1px solid #D3D3D3;
 }
 
 .badge-pill{
-    background: #930046;
+    background: #850038;
 }
 
 .price_total{
@@ -255,7 +255,7 @@ font-style: normal;
 font-weight: bold;
 font-size: 15px;
 line-height: 20px;
-color: #930046;
+color: #850038;
 }
 /***********
 Products
@@ -269,7 +269,7 @@ Products
     background: #E9E9E9;
 }
 .btn_code:hover{
-        background: #930046;
+        background: #850038;
 
 }
 
