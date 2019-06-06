@@ -76,9 +76,21 @@ EN-TÊTE TABLEAU COMMANDES
     padding-top: 13px;
 }
 
-.orders_header > p:first-of-type {
-    padding-left: 4em;
+
+
+@media screen and (min-width: 1200px) {
+    .orders_header > p:first-of-type {
+        padding-left: 4em;
+    }
 }
+
+@media screen and (max-width: 800px) {
+    .orders_header > p:nth-of-type(4), .orders_header > p:nth-of-type(5) {
+        display: none;
+    }
+}
+
+
 
 
 div.text-left {

@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div class="row newsletter justify-content-center">
   <div class="navbar-text main-nav">
     <a href="#">Inscription à la newsletter</a>
   </div>
