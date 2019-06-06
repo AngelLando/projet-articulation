@@ -247,7 +247,7 @@
         <h6 class="my-0">Sous total</h6>
         <small class="text-muted">Hors TVA et frais</small>
     </div>
-    <span class="text-muted " v-model="subtotal">CHF {{subtotal}}<span v-if="subtotal % 1 === 0">.–</span><span v-if="(((subtotal*1000) % 1 === 0) && (subtotal % 1 !== 0))">0</span></span>
+    <span class="text-muted " v-model="finalsubPrice">CHF {{finalsubPrice}}<span v-if="finalsubPrice % 1 === 0">.–</span><span v-if="(((finalsubPrice*1000) % 1 === 0) && (finalsubPrice % 1 !== 0))">0</span></span>
 </li>
 <li class="list-group-item d-flex justify-content-between background_grey lh-condensed">
   <div>
@@ -261,7 +261,7 @@
     <h6 class="my-0">Frais de livraison</h6>
     <small class="text-muted">En Suisse</small>
 </div>
-<span class="text-muted" v-model="delivery">CHF {{delivery}}<span v-if="delivery % 1 === 0">.–</span><span v-if="(((delivery*1000) % 1 === 0) && (delivery % 1 !== 0))">0</span></span>
+<span class="text-muted" v-model="livraison">CHF {{livraison}}<span v-if="livraison % 1 === 0">.–</span><span v-if="(((livraison*1000) % 1 === 0) && (livraison % 1 !== 0))">0</span></span>
 </li>
 <li v-if="isHiddenPromoCode" class="list-group-item d-flex justify-content-between bg-light">
   <div class="text-success">
@@ -273,7 +273,7 @@
 
 <li class="list-group-item d-flex justify-content-between background_grey">
       <h6 class="my-0">Total</h6>
-  <p class="price_total" v-model="total">CHF {{total}}<span v-if="total % 1 === 0">.–</span><span v-if="(((total*1000) % 1 === 0) && (total % 1 !== 0))">0</span></p>
+  <p class="price_total" v-model="finalPrice">CHF {{finalPrice}}<span v-if="finalPrice % 1 === 0">.–</span><span v-if="(((finalPrice*1000) % 1 === 0) && (finalPrice % 1 !== 0))">0</span></p>
 </li>
 </ul>
 
@@ -293,11 +293,11 @@
 
             <div class="d-block my-3">
               <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" v-model="payment_method" type="radio" class="custom-control-input" checked required value="Carte de crédit">
+                <input id="credit" name="paymentMethod" v-model="payment_method" type="radio" class="custom-control-input"  required value="Carte de crédit">
                 <label class="custom-control-label" for="credit">Carte de crédit</label>
               </div>
               <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" v-model="payment_method" type="radio" class="custom-control-input" required value="Paypal">
+                <input id="paypal" name="paymentMethod" v-model="payment_method" type="radio" class="custom-control-input" checked required value="Paypal">
                 <label class="custom-control-label" for="paypal">Paypal</label>
               </div>
 

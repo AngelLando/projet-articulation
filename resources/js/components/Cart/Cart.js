@@ -7,13 +7,10 @@ export default {
 			finalsubPrice:0,
 			livraison:25,
 			finalPrice:0,
-			product :JSON.parse(localStorage.getItem('storedID')),
 			productToDelete: '',
 		}
 	},
 	methods:{
-		underline: function(event){
-		},
 		deleteProduct : function (event) {
 			axios.delete('cartItem/' + event.id).catch(error => {
 				console.dir(error);
@@ -35,13 +32,10 @@ export default {
 		*/
 		let id = document.querySelector("meta[name='user-id']")
 		if (id != null) {
-			console.log("test")
 			this.products = JSON.parse(this.cart);
 
 		} if(id == null) {
-			console.log("d")
 			this.products = JSON.parse(localStorage.getItem('storedID'));
-			console.log(this.products)
 		}
 		var finalsubPrice= 0;
 		this.products.forEach(function(product) {
