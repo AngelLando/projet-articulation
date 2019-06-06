@@ -34,7 +34,16 @@
                         <p class="header_title col-2 text-center">Paiement</p>
                     </div>
                 </div>
-                <div>Pas de commande pour le moment.</div>
+                <div class="container pt-3">
+                    <div v-for="order in orders" class =" row">
+                        <p class="header_title col-3">{{order.no}}</p>
+                        <p class="header_title col-2 text-right">{{order.date}}</p>
+                        <p class="header_title col-2 text-center">{{order.no}}</p>
+                        <p class="header_title col-3 text-center">{{order.no}}</p>
+                        <p class="header_title col-2 text-center">Paiement</p>
+                    </div>
+                </div>
+                <div v-if="orders == null">Pas de commande pour le moment.</div>
             </div>
             <div class="content infos col-md-9 hidden-xs hidden-sm block" v-if="showInfos">
                 <h2>Mes informations</h2>
