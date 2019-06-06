@@ -21,14 +21,16 @@ class CartController extends Controller
         if (Auth::check()) {
             $userId = Auth::id();
 
-            $cart = ['cart' => Cart::where('user_id', $userId)->first()];
+            $cart = Cart::where('user_id', $userId)->first();
+            if ($cart == null) {
+                $json = json_encode(null);
 
-            if ($cart['cart'] == null) {
+            } elseif ($cart->cartItems == null) {
                 $json = json_encode(null);
-            } elseif ($cart['cart']->cartItem == null) {
-                $json = json_encode(null);
+                dd($json);
+
             } else {
-                $cartItems = $cart['cart']->cartItems;
+                $cartItems = $cart->cartItems;
                 $cart = [];
 
                 foreach ($cartItems as $cartItem) {
@@ -45,6 +47,7 @@ class CartController extends Controller
         } else {
             $json = json_encode(null);
         }
+
         return $json;
     }
 

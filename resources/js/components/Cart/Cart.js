@@ -17,7 +17,7 @@ export default {
 				console.log(event.id)
 				axios.delete('cartItem/' + event.id).catch(error => {
 					console.dir(error);
-				})
+				}).then(response => { console.log(response)})
                 var test = JSON.parse(localStorage.getItem('storedID'));
                 var removeIndex = test.map(function(item) { return item.id; }).indexOf(event.id);
                 test.splice(removeIndex,1);
@@ -43,6 +43,7 @@ export default {
 	props : ['cart'],
 	mounted () {
 		let id = document.querySelector("meta[name='user-id']")
+		console.log(JSON.parse(this.cart))
 		if (id != null && JSON.parse(this.cart) != null) {
 			this.products = JSON.parse(this.cart);
 		} else {

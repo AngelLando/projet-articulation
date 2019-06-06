@@ -33,7 +33,7 @@ class CartItemController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,10 +42,10 @@ class CartItemController extends Controller
         $selectedProductStock = Product::where('id', $request->product_id)->firstOrFail()->stock;
 
         $this->validate($request, [
-            'quantity' => 'integer|max:'.$selectedProductStock,
+            'quantity' => 'integer|max:' . $selectedProductStock,
         ]);
 
-        if(Auth::check()) {
+        if (Auth::check()) {
             //Create or get the user's cart
             $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
 
@@ -53,7 +53,7 @@ class CartItemController extends Controller
             $similarCartItem = CartItem::where([['product_id', $request->product_id], ['cart_id', $cart->id]])->first();
 
             //If it exists, update values, if not, store product
-            if($similarCartItem==null) {
+            if ($similarCartItem == null) {
                 $cartItem = CartItem::create([
                     'product_id' => $request->product_id,
                     'cart_id' => $cart->id,
@@ -61,7 +61,7 @@ class CartItemController extends Controller
                 ]);
             } else {
                 $cartItem = CartItem::where('id', $similarCartItem->id)
-                   ->update(['quantity' => $request->quantity]);
+                    ->update(['quantity' => $request->quantity]);
             }
         }
         return $cartItem;
@@ -70,7 +70,7 @@ class CartItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -81,7 +81,7 @@ class CartItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -92,8 +92,8 @@ class CartItemController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -104,11 +104,17 @@ class CartItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        CartItem::destroy($id);
+        if (Auth::check()) {
+            $cart = Cart::where('user_id', Auth::id())->first();
+            $cartItemId = $cart->cartItems->where('product_id', $id)->first()->id;
+            CartItem::destroy($cartItemId);
+        } else {
+            return null;
+        }
     }
 }
