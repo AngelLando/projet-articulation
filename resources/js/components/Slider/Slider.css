@@ -150,20 +150,15 @@
 }
 
 .recommendations{
-    margin-left:220px;
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 18px;
     line-height: 20px;
     color: #000000;
 }
 
 .recommended-products {
-    margin-top: 5em;
+    margin-top: 4.5em;
     margin-bottom: 1em;
-}
-
-.recommended-products {
-    margin-left: -0.6em;
 }
