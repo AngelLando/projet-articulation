@@ -41,7 +41,6 @@ nav.secondary-nav form.form-inline {
 
 
 nav.secondary-nav {
-    background: #FFFFFF;
     box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2) !important;
     height: 60px;
     font-weight: 400;
@@ -65,5 +64,31 @@ button.btn-search:hover {
 }
 
 .second-nav {
-    padding-bottom: 0.5em;
+    padding-top: 0.5em
 }
+
+
+@media screen and (max-width: 640px) {
+    .second-nav-list, .search-bar {
+        background-color: #f8f9fa;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .btn-search > img {
+        display: none;
+    };
+    .search-bar {
+        height: 40px;
+    };
+}
+
+
+
+
+.second-nav-toggler {
+    margin-top: -0.3em;
+}
+
+
+

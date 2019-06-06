@@ -5,7 +5,7 @@
 </div>
 <nav  class="navbar navbar-expand-md navbar-light shadow-sm">
     <!-- <div class="container"> -->
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand first-nav" href="{{ url('/') }}">
             <!-- {{ config('app.name', 'Gazzar') }} -->
             <img src="{{ asset('images/gazzar-logo.svg') }} " width="200" height="auto" alt="">
         </a>
