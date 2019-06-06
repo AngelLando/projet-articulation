@@ -41,7 +41,12 @@ export default {
 		});
 		this.finalsubPrice=finalsubPrice;
 	this.finalPrice = this.finalsubPrice+this.tva+this.livraison;*/
-		console.log(document.querySelector("meta[name='user-id']").getAttribute('content'));
+		let id = document.querySelector("meta[name='user-id']")
+		if (id != null) {
+			console.log(id.getAttribute('content'))
+		} if(id == null) {
+			console.log('rien trouvé ')
+		}
 	},
 	beforeMount(){
 		this.product.totalprice=this.product.price*this.product.quantity;
