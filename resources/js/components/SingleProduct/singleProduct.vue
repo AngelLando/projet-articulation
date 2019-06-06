@@ -83,7 +83,13 @@
                                     {{product.alcohol}}</p>
                                     <p >Type : {{product.kind}}</p>
                                 </div>
-                                <div class="content content_rating col-xl-12 ml-3" v-if="isHiddenRating"><p>Titre <div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div></p><p>Contenu</p>
+                                <div class="content content_rating col-xl-12 ml-3" v-if="isHiddenRating"><p>Titre</p>
+                                <p><i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i></p>
+                                <p>Contenu</p>
                             </div>
                             <div class = "col-xl-12 text-center"><hr class="line ml-3 mt-4 mb-4"></div>
                         </div>

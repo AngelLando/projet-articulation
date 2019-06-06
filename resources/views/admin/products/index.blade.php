@@ -1,15 +1,15 @@
 @extends('layouts.app')
-
 @section('content')
 
 <div class="container"><br>
+
 @if(Session::has('success'))
     <div class="alert alert-success">
         {{ Session::get('success') }}
     </div>
 @endif
 
-    <h1>Vos produits <a href="{{ route('produits.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau produit</button></a></h1>
+    <h1>Produits <a href="{{ route('produits.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau produit</button></a></h1>
     <table class="table table-hover">
         <thead>
             <th></th>

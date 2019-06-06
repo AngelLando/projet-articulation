@@ -94,5 +94,6 @@ Route::get('/promotions', function() {
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
     Route::resource('produits', 'ProductAdminController');
+    Route::resource('formats', 'FormatAdminController');
 
 });

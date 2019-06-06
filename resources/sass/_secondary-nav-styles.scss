@@ -54,3 +54,12 @@ nav.secondary-nav {
 .nav.navbar.navbar-expand-lg.navbar-light.secondary-nav {
     z-index: 5;
 }
+
+button.btn-search {
+    border: none;
+}
+
+button.btn-search:hover {
+    background-color: transparent !important;
+    border: none;
+}
