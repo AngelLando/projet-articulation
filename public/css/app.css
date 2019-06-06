@@ -121,6 +121,15 @@ nav.secondary-nav {
   z-index: 5;
 }
 
+button.btn-search {
+  border: none;
+}
+
+button.btn-search:hover {
+  background-color: transparent !important;
+  border: none;
+}
+
 footer div.footer-copyright {
   color: white;
   background-color: #757575;
