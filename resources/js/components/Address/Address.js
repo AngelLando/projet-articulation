@@ -48,8 +48,8 @@ export default {
       discount: 10,
     }
   },
-    mounted ()
-    {
+  mounted ()
+  {
     let id = document.querySelector("meta[name='user-id']")
     if (id != null) {
       this.products = JSON.parse(this.cart);
@@ -59,7 +59,8 @@ export default {
     }
     var finalsubPrice= 0;
     this.products.forEach(function(product) {
-      var finalPrice =  product.price*product.packaging_capacity;
+      console.log(product)
+      var finalPrice =  product.price*product.quantity;
       product.totalprice=finalPrice
       finalsubPrice=finalsubPrice+product.totalprice;
     });
@@ -122,15 +123,30 @@ export default {
             else{
               this.address3=null;
             }
-            this.data = {
-              address1 : this.address1,
-              address2 : this.address2,
-              address3 : this.address3,
-              products : JSON.parse(this.cart),
-              comment : this.comment,
-              payment_method : this.payment_method,
-              promotion: this.promotion
+                let id = document.querySelector("meta[name='user-id']")
+            if (id!=null) {
+              this.data = {
+                address1 : this.address1,
+                address2 : this.address2,
+                address3 : this.address3,
+                products : JSON.parse(this.cart),
+                comment : this.comment,
+                payment_method : this.payment_method,
+                promotion: this.promotion
+              }
+
+            }else{
+              this.data = {
+                address1 : this.address1,
+                address2 : this.address2,
+                address3 : this.address3,
+                products : JSON.parse(localStorage.getItem('storedID')),
+                comment : this.comment,
+                payment_method : this.payment_method,
+                promotion: this.promotion
+              }
             }
+
             console.log(this.data);
             axios.post('check', this.data).catch(error => {
               this.errors = error.response.data.errors

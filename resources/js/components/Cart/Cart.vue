@@ -22,7 +22,7 @@
                         <div class="col-12"><p class="choice_packaging">Carton de {{product.packaging_capacity}} unité<span v-if="(product.packaging_capacity>1)">s</span> - {{product.format}}</p></div>
                         <div class="col-5"></div>
                         <div class="col-2 text-right"> <select  class="choice_list">
-                            <option :value="product.packaging_capacity">{{product.packaging_capacity}}</option>
+                            <option :value="product.quantity">{{product.quantity}}</option>
                         </select>
                     </div>                            
                     <p class="multiply">X</p>
