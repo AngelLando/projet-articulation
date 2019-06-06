@@ -47,4 +47,10 @@ nav.secondary-nav {
     font-weight: 400;
     font-size: 16px;
     text-align: center;
+    z-index: 5;
+}
+
+
+.nav.navbar.navbar-expand-lg.navbar-light.secondary-nav {
+    z-index: 5;
 }
