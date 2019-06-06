@@ -26,7 +26,6 @@ export default {
 			$(clickedElement).siblings().addClass("product_selection");
 		},
 		input: function (productid) {
-
 			let id = document.querySelector("meta[name='user-id']")
 			if (id != null) {
 				this.cartItem  = {
@@ -51,16 +50,8 @@ export default {
 					"price": this.product.price,
 					"format":this.product.format,
 				})
-				/**local['id']=this.product.id;
-				local['quantity']=this.quantity;
-				local['img']=this.product.path_image;
-				local['name']=this.product.name;
-				local['price']=this.product.price;
-				local['format']=this.product.format;**/
 				localStorage.setItem('storedID', JSON.stringify(local));
 			}
-
-
 		}
 	},
 	props : ['prod'],
