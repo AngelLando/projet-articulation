@@ -38,7 +38,7 @@ Route::get('/', function () {
 })->name('products');
 
 Route::get('/checkout', function () {
-    $data = App::call('App\Http\Controllers\CartController@checkout');
+    $data = App::call('App\Http\Controllers\CartController@index');
     return view('checkout')->with('cart', $data);
 })->name('checkout');
 
