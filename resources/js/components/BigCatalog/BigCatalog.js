@@ -21,6 +21,7 @@ export default {
             selected_appellations: [],
             selected_tags: [],
             selected_countries: [],
+            selected_years: [],
             quantity : '',
             errors : {},
             counter: '',
@@ -55,25 +56,44 @@ export default {
 
     methods: {
         isInArray: function (selection, produc_appell) {
-
             const finalarray = [];
-
             selection.forEach((s) => {
-
                 produc_appell.forEach((a) => {
-
                     if (a.name === s) {
                         finalarray.push(a.name)
                     }
                 });
             })
-
             if(finalarray.length > 0) {
                 return 1;
             } else {
                 return 0;
             }
         },
+
+
+        transform: function (selection, product) {
+            const intArray = [];
+            const resultArray = [];
+
+            selection.forEach((s) => {
+                intArray.push(parseInt(s, 10))
+                intArray.push((parseInt(s, 10))+1)
+            })
+
+            intArray.forEach((i) => {
+                    if (product.year == i) {
+                        resultArray.push(product.year)
+                    }
+            })
+            if(resultArray.length > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        },
+
+
         input: function (clickedProduct) {
             if (this.id != null) {
                 this.cartItem  = {
@@ -109,11 +129,8 @@ export default {
                   "format":clickedProduct.format,
               })}
                 localStorage.setItem('storedID', JSON.stringify(local));
-
             }
         },
-
-
 
     }
 
