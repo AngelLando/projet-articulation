@@ -62,8 +62,13 @@ export default {
     })}
     localStorage.setItem('storedID', JSON.stringify(local));
     
-  }
-}
+  },
+      setQuantity:function(product){
+            this.quantity = event.target.value;
+        },
+},
+    
+
 
 }
 

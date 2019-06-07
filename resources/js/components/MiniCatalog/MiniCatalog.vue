@@ -10,9 +10,6 @@
                             <!-- Product -->
                             <div v-for="product in products"  class="col-xl-4 col-md-6">
                                 <div class="product">
-                                    <!--<div><div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-                                        <div><div><img src="images/favorite-heart-empty.svg" class="svg" alt=""><div>+</div></div></div>
-                                    </div></div>!-->
                                     <div>
                                         <div class="product_image"><img class="image" :src="product.path_image" alt=""><div class="favorite-heart" v-on:click="showHeartEmpty=false; showHeartFull=true;" v-if="showHeartEmpty"><img src="images/favorite-heart-empty.svg" class="svg" alt=""></div><div class="favorite-heart" v-on:click="showHeartEmpty=true; showHeartFull=false;" v-if="showHeartFull"><img src="images/favorite-heart-full.svg" class="svg" alt=""></div></div>
                                     </div>
@@ -43,17 +40,15 @@
                                         </div>
                                         <div class="product_buttons">
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                   <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
-                                              <select  class="choice_list" v-model="quantity">
-                                                <option :value="product.packaging_capacity" >{{product.packaging_capacity}}</option>
-                                              </select>
-                                                       <p class="error pt-2" v-if="errors.quantity">{{errors.quantity[0]}}</p>
+                                             <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
+                                                <input type="number" class="choice_list text-center" placeholder= "1" min="1" :max="product.stock" @click="setQuantity(product)">
 
-                                                   </div>
-                                                <div @click="input(product)" class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
-                                                <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-                                                    <div><div><img src="images/cart.svg" class="svg" alt=""></div></div>
-                                                </div>
+                                                <p class="error pt-2" v-if="errors.quantity">{{errors.quantity[0]}}</p>
+
+                                            </div>
+                                            <div @click="input(product)" class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
+                                            <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                                <div><div><img src="images/cart.svg" class="svg" alt=""></div></div>
                                             </div>
                                         </div>
                                     </div>
@@ -65,6 +60,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script src="./MiniCatalog.js"></script>
