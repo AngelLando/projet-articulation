@@ -1,36 +1,35 @@
 <template>
     <div>
         <section class="slider">
-            <!--<div class="slider"><img class="image-slider" src="images/slider-image1.jpg" alt=""></div>!-->
-            <div id="slide1" class="container-fluid slider-image active" style="background-image:url(images/slider-image1.png)" v-if="showSlide1">
+            <div id="slide1" class="container-fluid slider-image" style="background-image:url(images/slider-image1.png)" v-if="showSlide1">
                 <div class="row row-image">
                     <div class="col-md-4 p-0 infos">
                         <div class="infos-inside">
                             <h2>8 juin 2019</h2>
                             <p class="descr">Dégustation de vins italiens dans les montagnes neuchâteloises.</p>
-                            <button class="btn-primary btn-inscription"><a href="#" class="site-btn sb-line">Inscription</a></button>
+                            <button class="btn-primary btn-inscription">Inscription</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="slide2" class="container-fluid rect-features slider-image" style="background-image:url(images/slider-image2.png)" v-if="showSlide2">
+            <div id="slide2" class="container-fluid slider-image" style="background-image:url(images/slider-image2.png)" v-if="showSlide2">
                 <div class="row row-image">
                     <div class="col-md-4 p-0 infos">
                         <div class="infos-inside">
                             <h2>Jusqu'au 30 juin</h2>
                             <p class="descr">Profitez de réductions exceptionnelles sur les offres du mois !</p>
-                            <button class="btn-primary btn-inscription"><a href="#" class="site-btn sb-line">Découvrir</a></button>
+                            <button class="btn-primary btn-inscription">Découvrir</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="slide3" class="container-fluid rect-features slider-image" style="background-image:url(images/slider-image3.png)" v-if="showSlide3">
+            <div id="slide3" class="container-fluid slider-image" style="background-image:url(images/slider-image3.png)" v-if="showSlide3">
                 <div class="row row-image">
                     <div class="col-md-4 p-0 infos">
                         <div class="infos-inside">
                             <h2>Les favoris</h2>
                             <p class="descr">Découvrez les vins qui rencontrent le plus de succès dans notre catalogue.</p>
-                            <button class="btn-primary btn-inscription"><a href="#" class="site-btn sb-line">Découvrir</a></button>
+                            <button class="btn-primary btn-inscription">Découvrir</button>
                         </div>
                     </div>
                 </div>
@@ -39,19 +38,19 @@
         <section class="features-section">
             <div class="container-fluid rect-features">
                 <div class="row slider-options">
-                    <div class="col-md-4 p-0 feature active">
-                        <div id="btn-slide-1" class="feature-inner" @click="changeClass">
-                            <h2 class="feature-btn active" v-on:click="showSlide1=true; showSlide2=false; showSlide3=false">DÉGUSTATION</h2>
+                    <div class="col-md-4 p-0 feature" @click="changeClass" v-on:click="showSlide1=true; showSlide2=false; showSlide3=false" v-bind:class="{active: showSlide1}">
+                        <div id="btn-slide-1" class="feature-inner">
+                            <h2 class="feature-btn">DÉGUSTATION</h2>
                         </div>
                     </div>
-                    <div class="col-md-4 p-0 feature">
-                        <div id="btn-slide-2" class="feature-inner" @click="changeClass">
-                            <h2 class="feature-btn" @click="changeClass" v-on:click="showSlide1=false; showSlide2=true; showSlide3=false">OFFRES DU MOIS</h2>
+                    <div class="col-md-4 p-0 feature" @click="changeClass" v-on:click="showSlide1=false; showSlide2=true; showSlide3=false" v-bind:class="{active: showSlide2}">
+                        <div id="btn-slide-2" class="feature-inner">
+                            <h2 class="feature-btn">OFFRES DU MOIS</h2>
                         </div>
                     </div>
-                    <div class="col-md-4 p-0 feature">
-                        <div id="btn-slide-3"  class="feature-inner" @click="changeClass">
-                            <h2 class="feature-btn" v-on:click="showSlide1=false; showSlide2=false; showSlide3=true">COUPS DE COEUR</h2>
+                    <div class="col-md-4 p-0 feature" @click="changeClass" v-on:click="showSlide1=false; showSlide2=false; showSlide3=true" v-bind:class="{active: showSlide3}">
+                        <div id="btn-slide-3" class="feature-inner">
+                            <h2 class="feature-btn" >COUPS DE COEUR</h2>
                         </div>
                     </div>
                 </div>
