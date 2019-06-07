@@ -2,11 +2,7 @@
 
 @section('content')
     <div class="promotions" id="app">
-        <div class="container  ">
-            <div class="row px20  title_container">
-                <div class="col-md-5 hidden-xs hidden-sm block title pt-2">Promotions</div>
-            </div>
-        </div>
+
         <big-catalog prod="{{$products}}"></big-catalog>
     </div>
 @endsection

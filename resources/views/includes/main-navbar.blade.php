@@ -21,7 +21,7 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Languages -->
                 <li class="nav-item dropdown">
-                  <img src="{{ asset('images/select-language-button.svg') }} " width="25" height="25" alt="Languages" >
+                  <img src="{{ asset('images/select-language-button.svg') }} " class="icon" width="23" height="23" alt="Languages" >
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     FR
                   </a>
@@ -36,7 +36,7 @@
                 <!-- Authentication Links -->
           @guest
           <li class="nav-item dropdown">
-            <img src="{{ asset('images/user.svg') }} " width="25" height="25" alt="Login" >
+            <img src="{{ asset('images/user.svg') }} " width="23" height="23" class="icon"alt="Login" >
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MON COMPTE</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('login') }}">{{ __('Se connecter') }}</a>
@@ -49,7 +49,7 @@
 
           @else
           <li class="nav-item dropdown">
-            <img src="{{ asset('images/user.svg') }} " width="25" height="25" alt="Login" >
+            <img src="{{ asset('images/user.svg') }} " width="23" height="23" class="icon"  alt="Login" >
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
                   {{ Auth::user()->username }} <span class="caret"></span>
@@ -73,17 +73,17 @@
           </li>
           @endguest
             <li class="nav-item">
-              <img src="{{ asset('images/favorite-heart-white.svg') }}" width="25" height="25" alt="Mes Préférés">
+              <img src="{{ asset('images/favorite-heart-white.svg') }}" width="23" height="23" class="icon"   alt="Mes Préférés">
               <a class="nav-link" href="#" >MES PRÉFÉRÉS</a>
            </li>
            <li class="nav-item">
-            <img src="{{ asset('images/shopping-cart.svg') }}" width="25" height="25" alt="Panier"></a>
+            <img src="{{ asset('images/shopping-cart.svg') }}" class="icon" width="23" height="23" alt="Panier"></a>
             <a class="nav-link" href="{{route('cart')}}">PANIER</a>
           </li>
           @if(Auth::check())
             @if(Auth::user()->admin)
             <li class="nav-item">
-              <img src="{{ asset('images/administration.svg') }}" width="25" height="25" alt="Administration"></a>
+              <img src="{{ asset('images/administration.svg') }}"class="icon" width="23" height="23" alt="Administration"></a>
               <a class="nav-link" href="{{route('produits.index')}}">ADMINISTRATION</a>
             </li>
             @endif

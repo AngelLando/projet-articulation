@@ -14,7 +14,7 @@
 
                                 <div class="text-right d-flex row align-items-start justify-content-start">
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option type_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span class="filter_name">Type de vin</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option type_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span class="filter_name">Type de vin</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <li v-for="product in unique(products, 'kind')" class="item_filter_btn chiller_cb" data-filter="*">
                                                 <input :id="product.kind" type="checkbox" :value="product.kind" v-model="selected_kinds">
@@ -24,7 +24,7 @@
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option format_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Format</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option format_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Format</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <li v-for="product in unique(products, 'format')" class="item_filter_btn chiller_cb" data-filter="*">
                                                 <input :id="product.format" type="checkbox" :value="product.format" v-model="selected_formats">
@@ -34,7 +34,7 @@
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Conditionnement</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Conditionnement</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <li v-for="product in unique(products, 'packaging_capacity')" class="item_filter_btn chiller_cb" data-filter="*">
                                                 <input :id="product.packaging_capacity" type="checkbox" :value="product.packaging_capacity" v-model="selected_packagings">
@@ -44,7 +44,7 @@
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option vintage_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Millésime</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option vintage_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Millésime</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-1" value=1946 type="checkbox" v-model="selected_years"><label for="mil-1">1946-1947</label><span></span></li>
                                             <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-2" value=1982 type="checkbox" v-model="selected_years"><label for="mil-2">1982-1983</label><span></span></li>
@@ -64,7 +64,7 @@
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option appellation_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Appellation</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option appellation_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Appellation</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <li v-for="appellation in appellations" class="item_filter_btn chiller_cb" data-filter="*">
                                                 <input :id="appellation.name" type="checkbox" :value="appellation.name" v-model="selected_appellations">
@@ -74,7 +74,7 @@
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Catégorie</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Catégorie</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <li v-for="tag in tags" class="item_filter_btn chiller_cb" data-filter="*">
                                                 <input :id="tag.name" type="checkbox" :value="tag.name" v-model="selected_tags">
@@ -84,7 +84,7 @@
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Pays</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Pays</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <li v-for="product in unique(products, 'country')" class="item_filter_btn chiller_cb" data-filter="*">
                                                 <input :id="product.country" type="checkbox" :value="product.country" v-model="selected_countries">
