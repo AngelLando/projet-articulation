@@ -75,6 +75,31 @@ class ProductsTableSeeder extends Seeder
             'type_id' => 1,
             'supplier_id' => 1,
             'promotion_id' => 1]
-         ]);        
+         ]);
+/*
+        DB::table('products')->delete();
+
+        $json = File::get('database/data/products.json');
+        $products = json_decode($json);
+
+        foreach($products as $data) {
+            DB::table('products')->insert([
+                'kind' => 'Vin blanc',
+                'name' => $data->name,
+                'description' => $data->description,
+                'price' => $data->price,
+                'year' => $data->year,
+                'path_image' => $data->path_image,
+                'weight' =>$data->weight,
+                'stock' => $data->stock,
+                'alcohol' => $data->alcohol,
+                'quotation' => $data->quotation,
+                'slug' => str_slug($data->slug),
+                'format_id' => $data->format_id,
+                'type_id' => $data->type_id,
+                'supplier_id' => $data->supplier_id,
+                'promotion_id' => $data->promotion_id
+            ]);
+        }*/
     }
 }

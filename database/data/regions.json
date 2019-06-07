@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Bordeaux",
+    "country_id": 4
+  },
+  {
+    "name": "Alsace",
+    "country_id": 4
+  },
+  {
+    "name": "Champagne",
+    "country_id": 4
+  },
+  {
+    "name": "Veneto",
+    "country_id": 1
+  },
+  {
+    "name": "Bourgogne",
+    "country_id": 4
+  },
+  {
+    "name": "Sud-Ouest",
+    "country_id": 4
+  },
+  {
+    "name": "Loire",
+    "country_id": 4
+  },
+  {
+    "name": "Toscana",
+    "country_id": 1
+  },
+  {
+    "name": "Galilée",
+    "country_id": 6
+  },
+  {
+    "name": "Valais",
+    "country_id": 2
+  },
+  {
+    "name": "Piemonte",
+    "country_id": 1
+  },
+  {
+    "name": "Rhône",
+    "country_id": 2
+  },
+  {
+    "name": "Languedoc",
+    "country_id": 4
+  },
+  {
+    "name": "Beaujolais",
+    "country_id": 4
+  },
+  {
+    "name": "Campania",
+    "country_id": 1
+  },
+  {
+    "name": "Ribera del Duero",
+    "country_id": 1
+  },
+  {
+    "name": "Sicilia",
+    "country_id": 1
+  },
+  {
+    "name": "Rioja",
+    "country_id": 3
+  },
+  {
+    "name": "Vaud",
+    "country_id": 2
+  },
+  {
+    "name": "Chili",
+    "country_id": 5
+  },
+  {
+    "name": "Campo de Borja",
+    "country_id": 1
+  }
+]
