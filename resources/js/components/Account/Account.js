@@ -7,16 +7,28 @@ export default {
             showAdresses: false,
             showNewsletters: false,
             showFavs: false,
-          showArrayLeft: false,
+            showArrayLeft: false,
             showArrayRight: true,
-          orders : [],
+            orders : [],
             test: [],
+            id:document.querySelector("meta[name='user-id']"),
+
         }
     },
     props : ['data'],
     mounted () {
         let json = JSON.parse(this.data)
         this.orders = json;
+
+        if (this.id != null) {
+            var local = JSON.parse(localStorage.getItem('storedID'))
+            if (local!="") {
+                /**if (JSON.parse(this.cart)!=null) {
+
+                }**/
+            }
+
+        }
     },
 
     methods:{

@@ -54,7 +54,7 @@ export default {
 	mounted () {
 
 
-		if (this.id != null && JSON.parse(this.cart) != null) {
+		if (this.id != null) {
 			this.products = JSON.parse(this.cart);
 		} else {
 			var local = JSON.parse(localStorage.getItem('storedID'))
@@ -72,9 +72,6 @@ export default {
 		this.finalsubPrice=finalsubPrice;
 		this.tva = Math.round(this.tvaPercent*this.finalsubPrice/100);
 		this.finalPrice = this.finalsubPrice+this.tva+this.livraison;
-
-
-
 	},
 	beforeMount(){
 
