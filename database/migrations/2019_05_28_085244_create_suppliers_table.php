@@ -16,7 +16,7 @@ class CreateSuppliersTable extends Migration
         Schema::create('suppliers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('url_website');
+            $table->string('url_website')->nullable();
             $table->timestamps();
             $table->integer('region_id')->unsigned();
             $table->foreign('region_id')

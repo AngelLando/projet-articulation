@@ -46,7 +46,7 @@ class CreateProductsTable extends Migration
             $table->foreign('promotion_id')
                 ->references('id')
                 ->on('promotions');
-            $table->unique(['name', 'year', 'format_id', 'type_id', 'supplier_id'], 'product_unique');
+            //$table->unique(['name', 'year', 'format_id', 'type_id', 'supplier_id'], 'product_unique');
         });
     }
 
