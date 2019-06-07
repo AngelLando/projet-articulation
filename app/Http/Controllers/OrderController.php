@@ -9,6 +9,7 @@ use App\Person;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShippingCostController;
+use Mail;
 
 class OrderController extends Controller
 {
@@ -88,6 +89,8 @@ class OrderController extends Controller
          // Create all OrderItems needed
          $orderItems = OrderItemController::store($request, $orderId);
 
+         $form = Order::sendForm($request);
+
          // return OrderId
 
         return $orderItems;
@@ -138,5 +141,12 @@ class OrderController extends Controller
         //
     }
 
+    public function sendForm($request) {
 
+        Mail::send('viewEmailOrder', $request->all(), function($message){
+            $message->to('')->subject('Laravel (Contact)');
+        });
+        return 'Ok';
+
+    }
 }
