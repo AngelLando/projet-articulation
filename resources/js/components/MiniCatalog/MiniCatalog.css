@@ -112,7 +112,6 @@ Product
 
 .product
 {
-    width: 321px;
     overflow: hidden;
     border-radius: 3px;
     padding-top: 10px;
@@ -121,6 +120,22 @@ Product
     box-sizing: border-box;
     box-shadow: 4px 5px 14px rgba(0, 0, 0, 0.09);
 }
+
+@media screen and (min-width: 1200px) {
+    .product {
+        width: 321px;
+    }
+}
+
+
+@media screen and (max-width: 1200px) {
+    .product {
+        margin-right: 4em !important;
+        margin-left: 4em !important;
+    }
+}
+
+
 
 .product_name a:hover
 {
@@ -247,10 +262,33 @@ border-width: 2.5px 0 2.5px 2.5px ;
 }
 
 
-.favorite-heart {
-    top: -200px;
-    right: -250px;
+@media screen and (min-width: 1200px) {
+    .favorite-heart {
+        top: -200px;
+        right: -250px;
+    }
 }
+
+
+/* for safari browser*/
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+    .favorite-heart {
+        top: -195px;
+        right: -235px;
+    }
+}
+
+
+/* for safari browser*/
+@media not all and (min-resolution:.001dpcm) {
+    @media {
+        .favorite-heart {
+            top: -215px;
+            right: -275px;
+        }
+    }
+}
+
 
 
 .favorite-heart > img
