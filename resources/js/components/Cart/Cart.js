@@ -22,6 +22,10 @@ export default {
 				var removeIndex = local.map(function(item) { return item.id; }).indexOf(event.id);
 				local.splice(removeIndex,1);
 				localStorage.setItem('storedID', JSON.stringify(local));
+				Vue.set(event, 'id',null)
+						if (this.products=="") {
+				this.emptyCart=false;
+			}
 				//this.products = JSON.parse(localStorage.getItem('storedID'));
 				//si le local storage est différent de la BD, cette ligne fout la merde parce qu'on lui dit d'utiliser comme liste de produit le LocalStorage mais si il n'y a rien dedans c'est le bordel!
 				// par exemple, si trop de temps passe, si il change de navigateur, si il reset le local storage, etc. C'est ce qui m'est arrivé et pour ça que j'ai cru qu'on ne pouvait plus delete.
@@ -52,10 +56,12 @@ export default {
 
 	props : ['cart'],
 	mounted () {
-
-
 		if (this.id != null) {
 			this.products = JSON.parse(this.cart);
+			if (this.products=="") {
+				this.emptyCart=false;
+			}
+
 		} else {
 			var local = JSON.parse(localStorage.getItem('storedID'))
 			if (local=="") {
