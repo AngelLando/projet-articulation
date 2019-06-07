@@ -70,6 +70,9 @@ export default {
                 return 0;
             }
         },
+        setQuantity:function(product){
+            this.quantity = event.target.value;
+        },
 
 
         transform: function (selection, product) {
