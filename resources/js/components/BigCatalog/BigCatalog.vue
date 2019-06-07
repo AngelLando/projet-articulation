@@ -46,21 +46,21 @@
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option vintage_filter text-center d-flex flex-column align-items-center justify-content-center mr-3"><span>Millésime</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-1" type="checkbox"><label for="mil-1">1946-1947</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-2" type="checkbox"><label for="mil-2">1982-1983</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-3" type="checkbox"><label for="mil-3">1984-1985</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-4" type="checkbox"><label for="mil-4">1994-1995</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-5" type="checkbox"><label for="mil-5">1996-1997</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-6" type="checkbox"><label for="mil-6">1998-1999</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-7" type="checkbox"><label for="mil-7">2002-2003</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-8" type="checkbox"><label for="mil-8">2004-2005</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-9" type="checkbox"><label for="mil-9">2006-2007</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-10" type="checkbox"><label for="mil-10">2008-2009</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-11" type="checkbox"><label for="mil-11">2010-2011</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-12" type="checkbox"><label for="mil-12">2012-2013</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-13" type="checkbox"><label for="mil-13">2014-2015</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-14" type="checkbox"><label for="mil-14">2016-2017</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-15" type="checkbox"><label for="mil-15">2018-2019</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-1" value=1946 type="checkbox" v-model="selected_years"><label for="mil-1">1946-1947</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-2" value=1982 type="checkbox" v-model="selected_years"><label for="mil-2">1982-1983</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-3" value=1984 type="checkbox" v-model="selected_years"><label for="mil-3">1984-1985</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-4" value="1994" type="checkbox" v-model="selected_years"><label for="mil-4">1994-1995</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-5" value="1996" type="checkbox" v-model="selected_years"><label for="mil-5">1996-1997</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-6" value="1998" type="checkbox" v-model="selected_years"><label for="mil-6">1998-1999</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-7" value="2002" type="checkbox" v-model="selected_years"><label for="mil-7">2002-2003</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-8" value="2004" type="checkbox" v-model="selected_years"><label for="mil-8">2004-2005</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-9" value="2006" type="checkbox" v-model="selected_years"><label for="mil-9">2006-2007</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-10" value="2008" type="checkbox" v-model="selected_years"><label for="mil-10">2008-2009</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-11" value="2010" type="checkbox" v-model="selected_years"><label for="mil-11">2010-2011</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-12" value=2012 type="checkbox" v-model="selected_years"><label for="mil-12">2012-2013</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-13" value="2014" type="checkbox" v-model="selected_years"><label for="mil-13">2014-2015</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-14" value="2016" type="checkbox" v-model="selected_years"><label for="mil-14">2016-2017</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input id="mil-15" value="2018" type="checkbox" v-model="selected_years"><label for="mil-15">2018-2019</label><span></span></li>
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
@@ -147,7 +147,7 @@
                         <div class="row products_row">
 
                             <!-- Product -->
-                            <div v-for="product in products"  class="col-xl-4 col-md-6" v-if="(((selected_appellations.length == 0) || isInArray(selected_appellations, product.appellation) == 1) && ((selected_tags.length == 0) || isInArray(selected_tags, product.tag) == 1) && (product.price > value_2[0] && product.price < value_2[1]) && (selected_kinds.length == 0 || selected_kinds.includes(product.kind)) && (selected_formats.length == 0 || selected_formats.includes(product.format)) && (selected_packagings.length == 0 || selected_packagings.includes(product.packaging_capacity)) && (selected_countries.length == 0 || selected_countries.includes(product.country)))">
+                            <div v-for="product in products"  class="col-xl-4 col-md-6" v-if="(((selected_years.length == 0) || transform(selected_years, product) == 1) && ((selected_appellations.length == 0) || isInArray(selected_appellations, product.appellation) == 1) && ((selected_tags.length == 0) || isInArray(selected_tags, product.tag) == 1) && (product.price > value_2[0] && product.price < value_2[1]) && (selected_kinds.length == 0 || selected_kinds.includes(product.kind)) && (selected_formats.length == 0 || selected_formats.includes(product.format)) && (selected_packagings.length == 0 || selected_packagings.includes(product.packaging_capacity)) && (selected_countries.length == 0 || selected_countries.includes(product.country)))">
                                 <div class="product">
                                     <div>
                                         <div class="product_image"><img class="image" :src="product.path_image" alt=""><div class="favorite-heart"><img src="images/favorite-heart-empty.svg" class="svg" alt=""></div></div>
