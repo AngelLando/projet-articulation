@@ -27,15 +27,17 @@ class CreateProductsTable extends Migration
             $table->string('quotation')->nullable();
             $table->string('slug')->unique()->nullable();
             $table->timestamps();
-            $table->integer('format_id')->unsigned();
+            $table->integer('format_id')->unsigned()->nullable();
             $table->foreign('format_id')
                 ->references('id')
-                ->on('formats');
-            $table->integer('type_id')->unsigned();
+                ->on('formats')
+                ->onDelete('cascade');
+            $table->integer('type_id')->unsigned()->nullable();
             $table->foreign('type_id')
                 ->references('id')
-                ->on('types');
-            $table->integer('supplier_id')->unsigned();
+                ->on('types')
+                ->onDelete('cascade');
+            $table->integer('supplier_id')->unsigned()->nullable();
             $table->foreign('supplier_id')
                 ->references('id')
                 ->on('suppliers')

@@ -16,8 +16,8 @@ class CreateFormatPackagingTable extends Migration
         Schema::create('format_packaging', function (Blueprint $table) {
             $table->integer('format_id')->unsigned();
             $table->integer('packaging_id')->unsigned();
-            $table->foreign('format_id')->references('id')->on('formats');
-            $table->foreign('packaging_id')->references('id')->on('packagings');
+            $table->foreign('format_id')->references('id')->on('formats')->onDelete('cascade');
+            $table->foreign('packaging_id')->references('id')->on('packagings')->onDelete('cascade');
          });
     }
 
