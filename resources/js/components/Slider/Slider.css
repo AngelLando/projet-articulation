@@ -1,4 +1,7 @@
 
+/* ------------------
+  IMAGES ON SLIDER
+---------------------*/
 
 .slider-image {
     background-size: cover;
@@ -7,8 +10,13 @@
     padding: 0;
 }
 
+.row-image {
+    margin: 0;
+}
+
+
 /* ------------------
-  Infos on slide
+  INFOS (ON SLIDE)
 ---------------------*/
 
 
@@ -40,10 +48,9 @@
 @media screen and (min-width: 1200px) {
     .slider-image > div > .infos {
         left: 3.5vw;
-        max-width: 29.8vw !important;
+        max-width: 29.85vw !important;
     }
 }
-
 
 
 .slider-image > div > .infos {
@@ -59,7 +66,6 @@
     line-height: 30px;
 }
 
-
 .infos-inside > h2 {
     font-family: Montserrat;
     font-style: normal;
@@ -69,11 +75,6 @@
     line-height: 40px;
     padding-top: 3em;
     padding-bottom: 0.5em;
-}
-
-
-.infos-inside a {
-    color: white !important;
 }
 
 .btn-inscription {
@@ -96,8 +97,9 @@
     background-color: #A6A6A6 !important;
 }
 
+
 /* ------------------
-  Features section
+  FEATURES SECTION
 ---------------------*/
 
 @media screen and (min-width: 1200px) {
@@ -113,10 +115,7 @@
     height: 100%;
 }
 
-
-
 .feature .feature-inner {
-    /*padding: 20px 25px;*/
     display: -ms-flex;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -141,23 +140,37 @@
     display: inline-block;
 }
 
-.feature:nth-child(1), .feature:nth-child(2) {
-    border-right: solid 1.5px rgba(229,229,229, .5);
+
+@media screen and (min-width: 1200px) {
+    .feature:nth-child(1), .feature:nth-child(2) {
+        border-right: solid 1.5px rgba(222,222,222, .2);
+    }
 }
 
 
-.feature-btn.active {
-    font-weigth: bold !important;
+.feature.active {
+    background-color: #DEDEDE;
 }
 
-.feature-btn.else {
-    color: white;
+.feature.active h2 {
+    color: black;
 }
 
 
 .feature-inner:hover h2 {
-    font-weight: 600;
+    font-weight: 500;
+    cursor: pointer;
 }
+
+.feature:hover {
+    cursor: pointer;
+}
+
+
+/* ------------------
+  RECOMMENDATIONS SECTION
+---------------------*/
+
 
 .recommendations{
     font-family: Montserrat;
@@ -171,8 +184,4 @@
 .recommended-products {
     margin-top: 4.5em;
     margin-bottom: 1em;
-}
-
-.row-image {
-    margin: 0;
 }

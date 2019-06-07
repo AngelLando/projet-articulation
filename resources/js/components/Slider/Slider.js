@@ -8,16 +8,16 @@ export default {
             showSlide3: false,
         }
     },
-
+/*
     methods:{
         changeClass: function(event){
             var clickedElement = event.target;
-            $(".feature").removeClass("active");
-            $(".feature").addClass("else");
+            $(".feature-inner").removeClass("active");
+            $(".feature-inner").addClass("else");
             $(clickedElement).addClass("active");
             $(clickedElement).removeClass("else");
         },
-    },
+    },*/
 
 }
 
