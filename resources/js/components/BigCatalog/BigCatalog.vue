@@ -6,9 +6,9 @@
         <div class="super_container">
             <div class="super_container_inner">
                 <div class="super_overlay"></div>
-                <div class="products-filters">
+                <div class="products-filters mt-3">
                     <div class="container">
-                        <div class="row filters_row">
+                        <div class="row filters_row text-center">
                             <div class="selection">
 
 
@@ -105,7 +105,7 @@
 
                                 </div>
 
-                                <div class="row results_sort ml-3 pt-5 pb-3">
+                                <div class="row results_sort ml-3 pt-4 pb-1">
                                     <div class="sort col-md-auto">
                                         <select class="bootstrap-select">
                                             <option value="1" selected="selected">Noms A-Z</option>
