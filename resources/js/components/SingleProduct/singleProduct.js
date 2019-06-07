@@ -27,18 +27,6 @@ export default {
 			$(clickedElement).siblings().addClass("product_selection");
 		},
 		input: function (productid) {
-			var local = localStorage.getItem('storedID');
-			local = local ? JSON.parse(local): [];
-			local.push({
-				"id":this.product.id,
-				"packaging_capacity":this.product.packaging_capacity,
-				"quantity":this.quantity,
-				"path_image":this.product.path_image,
-				"name":this.product.name,
-				"price": this.product.price,
-				"format":this.product.format,
-			})
-			localStorage.setItem('storedID', JSON.stringify(local));
 
 			if (this.id != null) {
 				this.cartItem  = {
@@ -50,31 +38,30 @@ export default {
 					this.errors = error.response.data.errors
 					return;
 				})
-			} if(this.id == null) {
-				var local = localStorage.getItem('storedID');
-				local = local ? JSON.parse(local): [];
-				var prodId = this.product.id
-				var q = parseInt(this.quantity, 10);
-				var alreadyExist = false;
-				local.forEach(function(element) {
-					if (element.id == prodId) {
-						alreadyExist=true;
-						var f = parseInt(element.quantity,10)
-						element.quantity = q+f;
-					}
-				});
-				if (alreadyExist==false) {
-					local.push({
-						"id":this.product.id,
-						"packaging_capacity":this.product.packaging_capacity,
-						"quantity":this.quantity,
-						"path_image":this.product.path_image,
-						"name":this.product.name,
-						"price": this.product.price,
-						"format":this.product.format,
-					})}
-					localStorage.setItem('storedID', JSON.stringify(local));
+			}
+			var local = localStorage.getItem('storedID');
+			local = local ? JSON.parse(local): [];
+			var prodId = this.product.id
+			var q = parseInt(this.quantity, 10);
+			var alreadyExist = false;
+			local.forEach(function(element) {
+				if (element.id == prodId) {
+					alreadyExist=true;
+					var f = parseInt(element.quantity,10)
+					element.quantity = q+f;
 				}
+			});
+			if (alreadyExist==false) {
+				local.push({
+					"id":this.product.id,
+					"packaging_capacity":this.product.packaging_capacity,
+					"quantity":this.quantity,
+					"path_image":this.product.path_image,
+					"name":this.product.name,
+					"price": this.product.price,
+					"format":this.product.format,
+				})}
+				localStorage.setItem('storedID', JSON.stringify(local));
 			}
 		},
 		props : ['prod'],
