@@ -7,9 +7,10 @@
 <h2>Bonjour !</h2>
 <p>Résumé de la dernière facture :</p>
 <ul>
-    <li><strong>Nom</strong> : {{$addresse1}}</li>
-    <li><strong>Email</strong> : {{$email}}</li>
-    <!--<li><strong>Message</strong> : {{$texte}}</li>-->
+    Nom et prénom : {{$data['firstname1']}} {{$data['lastname1']}}
+</ul>
+<ul>
+
 </ul>
 </body>
 </html>
