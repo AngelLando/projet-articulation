@@ -29,7 +29,8 @@ class ProductController extends Controller
                         }
                         break;
                     case ($id == 'Nouveautés') :
-                        if ($val->createdAt != 'Offres spéciales') {
+                        $myDate = date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "-1 month" ) );
+                        if ($val->created_at < $myDate) {
                             unset($products[$key]);
                         }
                         break;
