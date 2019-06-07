@@ -11,9 +11,16 @@ class RegionsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('regions')->insert([
-            'name' => 'Bourgogne',
-            'country_id' => 1,
-        ]);
+        DB::table('regions')->delete();
+
+        $json = File::get('database/data/regions.json');
+        $data = json_decode($json);
+
+        foreach($data as $appellation) {
+            DB::table('regions')->insert([
+                'name' => $appellation->name,
+                'country_id' => $appellation->country_id,
+            ]);
+        }
     }
 }
