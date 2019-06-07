@@ -47,6 +47,7 @@ export default {
       comment:'',
       payment_method: '',
       discount: 10,
+        email : '',
       id:document.querySelector("meta[name='user-id']"),
     }
   },
@@ -95,6 +96,7 @@ export default {
           city1: this.city1,
           region1: this.region1,
           country1: this.country1,
+            email : this.email,
         };
         console.log(this.address1)
         if (isHiddenShipTo) {
@@ -147,10 +149,12 @@ export default {
                 promotion: this.promotion
               }
             }
+            console.log(this.data);
 
             axios.post('check', this.data).catch(error => {
               this.errors = error.response.data.errors
             }).then(response => {
+              console.log(response);
 
               //supprimer local storage
                 window.location.href = "confirmation";

@@ -240,7 +240,7 @@
        </div>
 
        <div v-if="isHiddenMail">
-        <input placeholder="votre e-mail..." type="email" name="mail" id="mail" class="form-control mt-1">
+        <input placeholder="votre e-mail..." type="email" name="mail" id="mail" class="form-control mt-1" v-model="email">
     </div>
 </div>
 <div class=" col-md-12 row text-center ">
