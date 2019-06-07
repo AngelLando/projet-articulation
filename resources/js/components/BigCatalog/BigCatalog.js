@@ -55,6 +55,19 @@ export default {
     },
 
     methods: {
+
+        toggleHeart: function(event){
+            var clickedElement = event.target;
+
+            if($(clickedElement).hasClass("full")) {
+                $(clickedElement).addClass("empty");
+                $(clickedElement).removeClass("full");
+            } else {
+                $(clickedElement).addClass("full");
+                $(clickedElement).removeClass("empty");
+            }
+        },
+
         isInArray: function (selection, produc_appell) {
             const finalarray = [];
             selection.forEach((s) => {

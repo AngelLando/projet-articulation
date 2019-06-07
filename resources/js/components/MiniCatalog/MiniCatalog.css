@@ -262,6 +262,15 @@ border-width: 2.5px 0 2.5px 2.5px ;
 }
 
 
+div.favorite-heart.empty {
+    content:url('/public/images/favorite-heart-empty.svg');
+}
+
+div.favorite-heart.full {
+    content:url('/public/images/favorite-heart-full.svg');
+}
+
+
 @media screen and (min-width: 1200px) {
     .favorite-heart {
         top: -200px;
@@ -290,9 +299,7 @@ border-width: 2.5px 0 2.5px 2.5px ;
 }
 
 
-
-.favorite-heart > img
-{
+.favorite-heart {
     width: 40px;
 }
 
