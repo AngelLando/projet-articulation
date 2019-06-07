@@ -3,13 +3,13 @@
   <!-- Footer Links -->
   <div class="container-fluid">
 
-    <!-- Grid row -->
-    <div class="row big-footer" style="padding: 0 10em;">
 
-      <!-- Grid column -->
+    <div class="row big-footer">
+
+
       <div class="col py-3" >
         <!-- Links -->
-        <h5 class="text-uppercase">Actualités</h5>
+        <h5 class="text-uppercase footer-title">Actualités</h5>
 
         <ul class="list-unstyled">
           <li>
@@ -23,11 +23,10 @@
           </li>
         </ul>
       </div>
-      <!-- Grid column -->
-      <!-- Grid column -->
+
       <div class="col py-3">
         <!-- Links -->
-        <h5 class="text-uppercase">Aide</h5>
+        <h5 class="text-uppercase footer-title">Aide</h5>
 
         <ul class="list-unstyled">
           <li>
@@ -41,11 +40,10 @@
           </li>
         </ul>
       </div>
-      <!-- Grid column -->
-      <!-- Grid column -->
+
       <div class="col py-3">
         <!-- Links -->
-        <h5 class="text-uppercase">À propos</h5>
+        <h5 class="text-uppercase footer-title">À propos</h5>
 
         <ul class="list-unstyled">
           <li>
@@ -59,27 +57,18 @@
           </li>
         </ul>
       </div>
-      <!-- Grid column -->
-      <!-- Grid column -->
-      <div class="col py-3">
-        <!-- Links -->
-        <h5 class="text-uppercase">GAZZAR SA</h5>
 
+      <div class="col py-3">
+        <h5 class="">Gazzar SA</h5>
         <p>Chemin du Dévent  1024 <br>Ecublens, Suisse</p>
         <p>tél : 021 691 86 71 <br> elie@gazzar.ch</p>
       </div>
-      <!-- Grid column -->
     </div>
-    <!-- Grid row -->
 
   </div>
-  <!-- Footer Links -->
 
-  <!-- Copyright -->
   <div class="footer-copyright text-center py-3 mx-auto">
-    <p>© 2019 Gazzar SA</p>
+    <p class="copyright">© 2019 Gazzar SA</p>
   </div>
-  <!-- Copyright -->
 
 </footer>
-<!-- Footer -->

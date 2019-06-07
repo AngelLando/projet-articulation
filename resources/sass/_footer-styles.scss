@@ -1,7 +1,13 @@
 // Footer styles
 footer div.footer-copyright  {
   color: white;
-  background-color: $footer-dark-grey;
+    text-align: left;
+  background-color: #494849;
+    height: 63px;
+}
+
+p.copyright {
+    padding-top: 0.32em;
 }
 
 
@@ -15,11 +21,27 @@ footer a {
 }
 
 footer a:hover {
-  color: $footer-light-grey;
+  color: white;
   text-decoration: none;
 }
 
 
 .page-footer {
-    background-color: #F0F0F0;
+    background-color: #a9a8a9;
+}
+
+h5.footer-title {
+    font-weight: 600;
+}
+
+@media screen and (min-width: 1200px) {
+    .big-footer {
+        padding: 0 10em;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .big-footer {
+        padding: 0 3.4em;
+    }
 }
