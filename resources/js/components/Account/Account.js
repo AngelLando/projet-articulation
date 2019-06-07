@@ -20,6 +20,7 @@ export default {
     mounted () {
         let json = JSON.parse(this.data)
         this.orders = json;
+
         if (this.id != null) {
             var local = JSON.parse(localStorage.getItem('storedID'))
             if (local=="" || local==null) {
