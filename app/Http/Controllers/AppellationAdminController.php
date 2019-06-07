@@ -15,7 +15,7 @@ class AppellationAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.appellations.index')->with('appellations', Appellation::orderBy('created_at', 'desc')->paginate(5));
+        return view('admin.appellations.index')->with('appellations', Appellation::orderBy('created_at', 'desc')->paginate(10));
     }
 
     /**

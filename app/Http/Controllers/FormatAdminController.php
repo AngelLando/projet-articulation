@@ -15,7 +15,7 @@ class FormatAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.formats.index')->with('formats', Format::orderBy('created_at', 'desc')->paginate(5));
+        return view('admin.formats.index')->with('formats', Format::orderBy('created_at', 'desc')->paginate(10));
     }
 
     /**
