@@ -42,8 +42,9 @@ class OrderItemController extends Controller
         $request->validate([
             'products.quantity' => 'min:1'
         ]);*/
-
+        $productsArray = [];
         foreach($products as $product) {
+
             OrderItem::create([
                 'order_id' => $orderId,
                 'product_id' => $product['id'],
@@ -56,8 +57,14 @@ class OrderItemController extends Controller
             $quantity = $product['quantity'];
             $newStock = $stock - $quantity;
             $updatedProduct = Product::where('id', $product['id'])->update(['stock' => $newStock]);
+
+            $prodArray = [
+                'product' => $prod,
+                'quantity' => $quantity
+            ];
+            array_push($productsArray, $prodArray);
         }
-     return $updatedProduct;
+     return $productsArray;
     }
 
     /**

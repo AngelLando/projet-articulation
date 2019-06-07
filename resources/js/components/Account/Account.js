@@ -20,6 +20,8 @@ export default {
         let json = JSON.parse(this.data)
         this.orders = json;
 
+        console.log(json)
+
         if (this.id != null) {
             var local = JSON.parse(localStorage.getItem('storedID'))
             if (local!="") {

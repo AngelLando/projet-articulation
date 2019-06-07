@@ -6,11 +6,35 @@
 <body>
 <h2>Bonjour !</h2>
 <p>Résumé de la dernière facture :</p>
-<ul>
-    Nom et prénom : {{$data['firstname1']}} {{$data['lastname1']}}
+<ul>Prénom : {{$billing['firstname']}}
 </ul>
 <ul>
+    Nom : {{$billing['lastname']}}
+</ul>
+<ul>
+    Rue : {{$billing['street']}}
+</ul>
+<ul>
+    NPA : {{$billing['npa']}}
+</ul>
+<ul>
+    Localité : {{$billing['city']}}
+</ul>
+<ul>
+    Pays : {{$billing['country']}}
+</ul>
+<div>
+    Produits :
+    @foreach ($billing['products'] as $product)
+        <div>
+            <p> Produit : {{$product['product']['name']}} </p>
+            <p> Quantité : {{$product['quantity']}} </p>
 
-</ul>
+        </div>
+    @endforeach
+
+</div>
+
+
 </body>
 </html>
