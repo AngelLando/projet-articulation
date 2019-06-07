@@ -1,38 +1,36 @@
 <template>
     <div>
         <section class="slider">
-            <div>
-                <!--<div class="slider"><img class="image-slider" src="images/slider-image1.jpg" alt=""></div>!-->
-                <div id="slide1" class="slider-image active" style="background-image:url(images/slider-image1.png)" v-if="showSlide1">
-                    <div class="row row-image">
-                        <div class="col-md-4 p-0 infos">
-                            <div class="infos-inside">
-                                <h2>8 juin 2019</h2>
-                                <p class="descr">Dégustation de vins italiens dans les montagnes neuchâteloises.</p>
-                                <button class="btn-primary btn-inscription"><a href="#" class="site-btn sb-line">Inscription</a></button>
-                            </div>
+            <!--<div class="slider"><img class="image-slider" src="images/slider-image1.jpg" alt=""></div>!-->
+            <div id="slide1" class="container-fluid slider-image active" style="background-image:url(images/slider-image1.png)" v-if="showSlide1">
+                <div class="row row-image">
+                    <div class="col-md-4 p-0 infos">
+                        <div class="infos-inside">
+                            <h2>8 juin 2019</h2>
+                            <p class="descr">Dégustation de vins italiens dans les montagnes neuchâteloises.</p>
+                            <button class="btn-primary btn-inscription"><a href="#" class="site-btn sb-line">Inscription</a></button>
                         </div>
                     </div>
                 </div>
-                <div id="slide2" class="slider-image" style="background-image:url(images/slider-image2.png)" v-if="showSlide2">
-                    <div class="row">
-                        <div class="col-md-4 p-0 infos">
-                            <div class="infos-inside">
-                                <h2>Jusqu'au 30 juin</h2>
-                                <p class="descr">Profitez de réductions exceptionnelles sur les offres du mois !</p>
-                                <button class="btn-primary btn-inscription"><a href="#" class="site-btn sb-line">Découvrir</a></button>
-                            </div>
+            </div>
+            <div id="slide2" class="container-fluid rect-features slider-image" style="background-image:url(images/slider-image2.png)" v-if="showSlide2">
+                <div class="row row-image">
+                    <div class="col-md-4 p-0 infos">
+                        <div class="infos-inside">
+                            <h2>Jusqu'au 30 juin</h2>
+                            <p class="descr">Profitez de réductions exceptionnelles sur les offres du mois !</p>
+                            <button class="btn-primary btn-inscription"><a href="#" class="site-btn sb-line">Découvrir</a></button>
                         </div>
                     </div>
                 </div>
-                <div id="slide3" class="slider-image" style="background-image:url(images/slider-image3.png)" v-if="showSlide3">
-                    <div class="row">
-                        <div class="col-md-4 p-0 infos">
-                            <div class="infos-inside">
-                                <h2>Les favoris</h2>
-                                <p class="descr">Découvrez les vins qui rencontrent le plus de succès dans notre catalogue.</p>
-                                <button class="btn-primary btn-inscription"><a href="#" class="site-btn sb-line">Découvrir</a></button>
-                            </div>
+            </div>
+            <div id="slide3" class="container-fluid rect-features slider-image" style="background-image:url(images/slider-image3.png)" v-if="showSlide3">
+                <div class="row row-image">
+                    <div class="col-md-4 p-0 infos">
+                        <div class="infos-inside">
+                            <h2>Les favoris</h2>
+                            <p class="descr">Découvrez les vins qui rencontrent le plus de succès dans notre catalogue.</p>
+                            <button class="btn-primary btn-inscription"><a href="#" class="site-btn sb-line">Découvrir</a></button>
                         </div>
                     </div>
                 </div>
