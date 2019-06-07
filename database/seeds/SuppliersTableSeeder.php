@@ -11,6 +11,7 @@ class SuppliersTableSeeder extends Seeder
      */
     public function run()
     {
+        /*
         DB::table('suppliers')->insert([
             ['region_id' => 1, 'name' => 'Antinori', 'url_website' => 'https://www.antinori.it/it/'],
             ['region_id' => 1, 'name' => 'Giovanni Manzone', 'url_website' => 'http://www.manzonegiovanni.com/'],
@@ -18,6 +19,18 @@ class SuppliersTableSeeder extends Seeder
             ['region_id' => 1, 'name' => 'Artisans Vignerons d’Yvorne', 'url_website' => 'https://www.avy.ch/'],
             ['region_id' => 1, 'name' => 'Bodegas El Coto', 'url_website' => 'http://www.cotodeimaz.com/'],
             ['region_id' => 1, 'name' => 'Borsao', 'url_website' => 'https://bodegasborsao.com/']
-        ]);
+        ]);*/
+
+        DB::table('suppliers')->delete();
+
+        $json = File::get('database/data/suppliers.json');
+        $data = json_decode($json);
+
+        foreach($data as $suppliers) {
+            DB::table('suppliers')->insert([
+                'name' => $suppliers->name,
+                'region_id' => $suppliers->region_id,
+            ]);
+        }
     }
 }

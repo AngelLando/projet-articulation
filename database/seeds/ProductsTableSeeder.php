@@ -11,7 +11,7 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('products')->insert([
+        /*DB::table('products')->insert([
             ['kind' => 'Vin rouge',
             'name' => 'Château Meyney',
             'description' => "Le Château Meyney fut, à ses origines, en 1662, un couvent. Qu'il vienne de St-Julien, de Pauillac ou de St-Estèphe, le visiteur aperçoit, sur sa droite, presque sur les rives de la Gironde, un ensemble de belles constructions qui évoque un cloître. Le vignoble s'étend sur 51 hectares. Celui-ci se compose de belles croupes argilo-graveleuses, et c'est peut-être le voisinage du fleuve, qui donne au paysage une sorte de grandeur et de sérénité. Le domaine demeura pendant plusieurs générations dans la même famille, avant d'échoir, en 1919, à Désiré Cordier.",
@@ -76,30 +76,37 @@ class ProductsTableSeeder extends Seeder
             'supplier_id' => 1,
             'promotion_id' => 1]
          ]);
-/*
+*/
         DB::table('products')->delete();
 
         $json = File::get('database/data/products.json');
         $products = json_decode($json);
-
-        foreach($products as $data) {
-            DB::table('products')->insert([
-                'kind' => 'Vin blanc',
-                'name' => $data->name,
-                'description' => $data->description,
-                'price' => $data->price,
-                'year' => $data->year,
-                'path_image' => $data->path_image,
-                'weight' =>$data->weight,
-                'stock' => $data->stock,
-                'alcohol' => $data->alcohol,
-                'quotation' => $data->quotation,
-                'slug' => str_slug($data->slug),
-                'format_id' => $data->format_id,
-                'type_id' => $data->type_id,
-                'supplier_id' => $data->supplier_id,
-                'promotion_id' => $data->promotion_id
-            ]);
-        }*/
+        $ref = [];
+        foreach ($products as $data) {
+            if ($data->supplier_id != "" && $data->year != null && property_exists($data, 'path_image')) {
+                        $prod = [];
+                        DB::table('products')->insert([
+                            'kind' => 'Vin blanc',
+                            'name' => $data->name,
+                            'description' => $data->description,
+                            'price' => $data->price,
+                            'year' => $data->year,
+                            'path_image' => $data->path_image,
+                            'weight' => $data->weight,
+                            'stock' => $data->stock,
+                            'alcohol' => $data->alcohol,
+                            'quotation' => $data->quotation,
+                            'slug' => str_slug($data->slug . '-' . $data->format_id),
+                            'format_id' => $data->format_id,
+                            'type_id' => $data->type_id,
+                            'supplier_id' => $data->supplier_id,
+                            'promotion_id' => $data->promotion_id
+                        ]);
+                        $prod['name'] = $data->name;
+                        $prod['year'] = $data->year;
+                        $prod['format_id'] = $data->format_id;
+                        array_push($ref, $prod);
+            }
+        }
     }
 }
