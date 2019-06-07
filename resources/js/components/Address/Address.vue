@@ -5,7 +5,7 @@
                 <div class="super_overlay"></div>
                 <div class="products mb-5">
                     <div class="container pb-3">
-                       <div class ="pt-3 pb-1 checkout row">
+                     <div class ="pt-3 pb-1 checkout row">
                         <form @submit.prevent="submitAddress(isHiddenBillTo,isHiddenShipTo)" action="#" class=" row billing-form">
                             <div class="row align-items-end col-md-9">
                                 <div class="order_title col-md-12"><p>Adresse de commande</p></div>
@@ -75,8 +75,8 @@
                                         <option value="CH">Suisse</option>
                                         <option value="FR">France</option>
                                     </select>
-                                        <p class="error pt-2" v-if="errors['address1.country1']">{{errors['address1.country1'][0]}}</p>
-                                    </div>
+                                    <p class="error pt-2" v-if="errors['address1.country1']">{{errors['address1.country1'][0]}}</p>
+                                </div>
                             </div>
                         </div>
 
@@ -96,7 +96,7 @@
                                               <select name="gender2" id="gender2" v-model="gender2" class="form-control" >
                                                 <option value="m">Mr</option>
                                                 <option value="f">Mme</option>
-                                                 <option value="other">/</option>
+                                                <option value="other">/</option>
                                             </select>
                                         </div>
                                     </div>
@@ -153,12 +153,12 @@
                             </div>
                         </div>
                         <div class="item_filter_btn chiller_cb">
-                         <input id="billto" type="checkbox" name="optradio" v-on:click="isHiddenBillTo =!isHiddenBillTo"><label for="billto">Facturer à une autre adresse</label>
-                         <span></span>
-                     </div>
-                     <div class="row" v-if="isHiddenBillTo">
-                         <div class="order_title col-md-12"><p>Adresse de facturation</p></div>
-                         <div class="col-md-2">
+                           <input id="billto" type="checkbox" name="optradio" v-on:click="isHiddenBillTo =!isHiddenBillTo"><label for="billto">Facturer à une autre adresse</label>
+                           <span></span>
+                       </div>
+                       <div class="row" v-if="isHiddenBillTo">
+                           <div class="order_title col-md-12"><p>Adresse de facturation</p></div>
+                           <div class="col-md-2">
                             <div class="form-group">
                                 <label for="gender3">Préfixe</label>
                                 <div class="select-wrap">
@@ -166,7 +166,7 @@
                                   <select name="gender3" id="gender3" v-model="gender3" class="form-control">
                                     <option value="m">Mr</option>
                                     <option value="f">Mme</option>
-                                     <option value="other">/</option>
+                                    <option value="other">/</option>
                                 </select>
                             </div>
                         </div>
@@ -226,13 +226,24 @@
         </div>
 
     </div>
-    <div class="col-md-12 line_bottom mb-4 pt-1 pb-4">
-<label class="pb-2 comment" for="comment">Commentaire (optionnel)</label>
+    <div class="col-md-12 line_bottom mb-2 pt-1 pb-4">
+        <label class="pb-2 comment" for="comment">Commentaire (optionnel)</label>
 
-<textarea id="comment" class="col-md-12" name="comment" placeholder="Ajouter un commentaire..." v-model="comment">
-</textarea>
+        <textarea id="comment" class="col-md-12" name="comment" placeholder="Ajouter un commentaire..." v-model="comment">
+        </textarea>
+    </div>
+
+    <div class="col-md-12 line_bottom mb-4 pt-1 pb-2" v-if="id==null">
+      <div class="item_filter_btn chiller_cb">
+       <input id="mailto" type="checkbox" name="optradio" v-on:click="isHiddenMail =!isHiddenMail"><label for="mailto">Recevoir la facture par mail</label>
+       <span></span>
+       </div>
+
+       <div v-if="isHiddenMail">
+        <input placeholder="votre e-mail..." type="email" name="mail" id="mail" class="form-control mt-1">
+    </div>
 </div>
-    <div class=" col-md-12 row text-center ">
+<div class=" col-md-12 row text-center ">
     <button type="submit" class="text-center col-12 submit_order">Commander</button>
 
 </div>
@@ -266,13 +277,13 @@
 <li v-if="isHiddenPromoCode" class="list-group-item d-flex justify-content-between bg-light">
   <div class="text-success">
     <h6 class="my-0">Code promo</h6>
-          <small class="text-muted">cuki -10%</small>
+    <small class="text-muted">cuki -10%</small>
 </div>
 <span class="text-success">- CHF {{rabais}}<span v-if="rabais % 1 === 0">.–</span><span v-if="(((rabais*1000) % 1 === 0) && (rabais % 1 !== 0))">0</span></span>
 </li>
 
 <li class="list-group-item d-flex justify-content-between background_grey">
-      <h6 class="my-0">Total</h6>
+  <h6 class="my-0">Total</h6>
   <p class="price_total" v-model="finalPrice">CHF {{finalPrice}}<span v-if="finalPrice % 1 === 0">.–</span><span v-if="(((finalPrice*1000) % 1 === 0) && (finalPrice % 1 !== 0))">0</span></p>
 </li>
 </ul>
@@ -289,19 +300,19 @@
 
 
 <div class="card p-2 mt-3 pl-4 pt-3 ">
-        <h6 class="my-0">Paiement</h6>
+    <h6 class="my-0">Paiement</h6>
 
-            <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" v-model="payment_method" type="radio" class="custom-control-input"  required value="Carte de crédit">
-                <label class="custom-control-label" for="credit">Carte de crédit</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" v-model="payment_method" type="radio" class="custom-control-input" checked required value="Paypal">
-                <label class="custom-control-label" for="paypal">Paypal</label>
-              </div>
+    <div class="d-block my-3">
+      <div class="custom-control custom-radio">
+        <input id="credit" name="paymentMethod" v-model="payment_method" type="radio" class="custom-control-input"  required value="Carte de crédit">
+        <label class="custom-control-label" for="credit">Carte de crédit</label>
+    </div>
+    <div class="custom-control custom-radio">
+        <input id="paypal" name="paymentMethod" v-model="payment_method" type="radio" class="custom-control-input" checked required value="Paypal">
+        <label class="custom-control-label" for="paypal">Paypal</label>
+    </div>
 
-            </div>
+</div>
 </div>
 
 </div>
