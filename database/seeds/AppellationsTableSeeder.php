@@ -11,13 +11,15 @@ class AppellationsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('appellations')->insert([
-            ['name'=>'Aloxe-Corton'],
-            ['name'=>'Barolo'],
-            ['name'=>'Beaune'],
-            ['name'=>'Chinon'],
-            ['name'=>'Etna'],
-            ['name'=>'Féchy']
-        ]);
+        DB::table('appellations')->delete();
+
+        $json = File::get('database/data/appellations.json');
+        $data = json_decode($json);
+
+        foreach($data as $appellation) {
+            DB::table('appellations')->insert([
+               'name' => $appellation->name
+            ]);
+        }
     }
 }
