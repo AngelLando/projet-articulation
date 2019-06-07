@@ -41,7 +41,6 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-
         if (Auth::check()) {
             $personId = Auth::user()->person->id;
         } else {
@@ -62,51 +61,56 @@ class OrderController extends Controller
         }
 
         // Insert the order address in the database
-         $addressId1 = AddressController::store($request, $nb = '1', $id = null, $personId);
+        $addressId1 = AddressController::store($request, $nb = '1', $id = null, $personId);
 
-         // Insert the shipping address in the database
-         $addressId2 = AddressController::store($request, $nb = '2', $addressId1, $personId);
+        // Insert the shipping address in the database
+        $addressId2 = AddressController::store($request, $nb = '2', $addressId1, $personId);
 
-         // Insert the billing address in the database
-         $addressId3 = AddressController::store($request, $nb = '3', $addressId1, $personId);
+        // Insert the billing address in the database
+        $addressId3 = AddressController::store($request, $nb = '3', $addressId1, $personId);
 
-         // Make the sum of all products' quantity and return the right shippingcost
-         $shippingCosts = ShippingCostController::getRigthShippingCost($request);
+        // Make the sum of all products' quantity and return the right shippingcost
+        $shippingCosts = ShippingCostController::getRigthShippingCost($request);
 
-         // Create the Order
-         $orderId = Order::insertGetId([
-             'comment' => $request->comment,
-             //'delivery_method' => $request->delivery_method,
-             'tva' => 7.7,
-             'discount' => $request->promotion,
-             'payment_method' => $request->payment_method,
-             'address_id_1' => $addressId1,
-             'address_id_2' => $addressId2,
-             'address_id_3' => $addressId3,
-             'shipping_cost_id' => $shippingCosts
-         ]);
+        // Create the Order
+        $orderId = Order::insertGetId([
+            'comment' => $request->comment,
+            //'delivery_method' => $request->delivery_method,
+            'tva' => 7.7,
+            'discount' => $request->promotion,
+            'payment_method' => $request->payment_method,
+            'address_id_1' => $addressId1,
+            'address_id_2' => $addressId2,
+            'address_id_3' => $addressId3,
+            'shipping_cost_id' => $shippingCosts
+        ]);
 
-         // Create all OrderItems needed
-         $productTab = OrderItemController::store($request, $orderId);
+        // Create all OrderItems needed
+        $productTab = OrderItemController::store($request, $orderId);
 
+        $bill = [
+            'firstname' => $request->address1['firstname1'],
+            'lastname' => $request->address1['lastname1'],
+            //'email' => $request->email['email'],
+            'street' => $request->address1['street1'],
+            'npa' => $request->address1['npa1'],
+            'city' => $request->address1['city1'],
+            'country' => $request->address1['country1'],
+            'products' => $productTab,
+        ];
 
+        // DELETE CART FROM DATABASE
+        if (Auth::check()) {
+            $cartItems = Auth::user()->cart->cartItems->all();
+            foreach ($cartItems as $cartItem) {
+                $cartItem->destroy($cartItem->id);
+            }
+            $cart = Auth::user()->cart->first();
+            $cart->destroy($cart->id);
+        }
+        // return OrderId
 
-         $bill = [
-             'firstname' => $request->address1['firstname1'],
-             'lastname' => $request->address1['lastname1'],
-             //'email' => $request->email['email'],
-             'street' => $request->address1['street1'],
-             'npa' => $request->address1['npa1'],
-             'city' => $request->address1['city1'],
-             'country' => $request->address1['country1'],
-             'products' => $productTab,
-         ];
-
-         $this->sendForm($bill);
-
-         // return OrderId
-
-        return 1;
+        return $cart;
     }
 
     /**
@@ -154,9 +158,10 @@ class OrderController extends Controller
         //
     }
 
-    public function sendForm($bill) {
+    public function sendForm($bill)
+    {
         $billing = $bill;
-        Mail::send('viewEmailOrder', ['billing' => $billing], function($message){
+        Mail::send('viewEmailOrder', ['billing' => $billing], function ($message) {
             $message->to('test@info.ch')->subject('Votre dernière facture 🍷 | Gazzar.ch');
         });
     }
