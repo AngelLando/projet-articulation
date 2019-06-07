@@ -16,7 +16,7 @@
                             <p class="header_title col-2 text-center">Total</p>
                         </div>
 
-                        <div  class="row line_bottom pb-4 pt-4" v-for="product in products">
+                        <div  class="row line_bottom pb-4 pt-4" v-for="product in products" v-if="product.id!=null">
                             <div class="col-1">
                              <img  class="product_cart_image" :src="product.path_image" alt="">
 

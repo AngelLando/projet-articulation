@@ -87,13 +87,26 @@ class OrderController extends Controller
          ]);
 
          // Create all OrderItems needed
-         $orderItems = OrderItemController::store($request, $orderId);
+         $productTab = OrderItemController::store($request, $orderId);
 
-         $form = Order::sendForm($request);
+
+
+         $bill = [
+             'firstname' => $request->address1['firstname1'],
+             'lastname' => $request->address1['lastname1'],
+             //'email' => $request->email['email'],
+             'street' => $request->address1['street1'],
+             'npa' => $request->address1['npa1'],
+             'city' => $request->address1['city1'],
+             'country' => $request->address1['country1'],
+             'products' => $productTab,
+         ];
+
+         $this->sendForm($bill);
 
          // return OrderId
 
-        return $orderItems;
+        return 1;
     }
 
     /**
@@ -141,12 +154,10 @@ class OrderController extends Controller
         //
     }
 
-    public function sendForm($request) {
-
-        Mail::send('viewEmailOrder', $request->all(), function($message){
-            $message->to('')->subject('Laravel (Contact)');
+    public function sendForm($bill) {
+        $billing = $bill;
+        Mail::send('viewEmailOrder', ['billing' => $billing], function($message){
+            $message->to('test@info.ch')->subject('Votre dernière facture 🍷 | Gazzar.ch');
         });
-        return 'Ok';
-
     }
 }
