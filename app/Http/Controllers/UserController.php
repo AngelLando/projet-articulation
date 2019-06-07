@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Order;
+use App\Http\Controllers\CartController;
 use Hash;
 use Illuminate\Http\Request;
 
@@ -48,8 +49,14 @@ class UserController extends Controller
                 }
         }
 
-        $data = json_encode($orderList);
-        return view('users.account')->with('data', $data);
+        $cart = CartController::index();
+        $data = [
+            'orderList' => $orderList,
+            'cart' => $cart
+        ];
+
+        $datas = json_encode($data);
+        return view('users.account')->with('data', $datas);
     }
 
     /**

@@ -16,7 +16,7 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public static function index()
     {
         if (Auth::check()) {
             $userId = Auth::id();
