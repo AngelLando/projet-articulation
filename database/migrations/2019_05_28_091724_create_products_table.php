@@ -38,7 +38,8 @@ class CreateProductsTable extends Migration
             $table->integer('supplier_id')->unsigned();
             $table->foreign('supplier_id')
                 ->references('id')
-                ->on('suppliers');
+                ->on('suppliers')
+                ->onDelete('cascade');
             $table->integer('promotion_id')->unsigned()->nullable();
             $table->foreign('promotion_id')
                 ->references('id')
