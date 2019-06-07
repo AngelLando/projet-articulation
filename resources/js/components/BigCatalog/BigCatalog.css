@@ -117,6 +117,7 @@ Product
     .product {
         width: 321px;
     }
+
 }
 
 
@@ -125,6 +126,7 @@ Product
         margin-right: 4em !important;
         margin-left: 4em !important;
     }
+
 }
 
 
@@ -393,7 +395,6 @@ Code ajouté
 .products-filters
 {
     background: #FFFFFF;
-    padding-top: 20px;
     padding-bottom: 20px;
 }
 
@@ -412,11 +413,15 @@ li.item_filter_btn {
     width: 400px;
 }
 
+.arrow_right{
+    display:inline-block !important;
+}
+
 div.filter_option{
     cursor: pointer;
     padding:10px;
-    padding-left: 25px;
-    padding-right:25px;
+    padding-left: 17px;
+    padding-right:17px;
     background: #FFFFFF;
     border: 1px solid #000000;
     box-sizing: border-box;
@@ -424,8 +429,8 @@ div.filter_option{
     font-family: Montserrat;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 15px;
+    line-height: 17px;
     /* identical to box height */
     display: flex;
     align-items: center;
@@ -554,7 +559,7 @@ div.filter_option.active{
     font-weight: bold;
     color: #850038;
     border: 1px solid #850038;
-    padding: 0.5em 1em 0.5em 1em;
+    padding: 0.3em 0.3em 0.3em 0.3em;
     width: 8.3em;
     border-radius: 50px;
     text-align: center;
