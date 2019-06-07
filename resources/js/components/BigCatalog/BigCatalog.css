@@ -363,8 +363,59 @@ Code ajouté
 }
 
 
-.sort {
-    margin-right: -1em;
+
+@media screen and (min-width: 1200px) {
+    .sort {
+        margin-right: -1em;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .sort {
+        width: 6.5em;
+        font-size: 14px;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .sort_by {
+        width: 11em;
+        font-size: 14px;
+    }
+}
+
+
+@media screen and (max-width: 1200px) {
+    .results_sort, .price_filter, .all_filters {
+        margin: auto;
+    };
+
+}
+
+@media screen and (max-width: 1200px) {
+    .super_container.filters {
+        padding-left: 2em;
+    }
+}
+
+
+@media screen and (max-width: 1200px) {
+    .filters {
+        padding-left: 0.5em;
+    }
+    .filter_option {
+        margin-top: 0.2em;
+        margin-bottom: 0.2em;
+    }
+}
+
+
+@media screen and (min-width: 1200px) {
+    .filters {
+        padding-left: 4em;
+    }
 }
 
 
@@ -383,8 +434,30 @@ Code ajouté
 }
 
 
-.results {
-    border-right: 1px solid #000000;
+@media screen and (max-width: 1200px) {
+    .results_sort {
+        padding-right: 7.5em;
+        margin-left: 0 !important;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .results {
+        width: 7em;
+        font-size: 14px;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+
+
+
+
+@media screen and (min-width: 1200px) {
+    .results {
+        border-right: 1px solid #000000;
+    }
 }
 
 
@@ -544,9 +617,19 @@ div.filter_option.active{
     align-self: center;
 }
 
-.vue-slider {
-    width: 20em !important;
-    bottom: 0.18em;
+
+@media screen and (min-width: 1200px) {
+    .vue-slider {
+        width: 20em;
+        bottom: 0.18em;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .slider-price {
+        width: 10em;
+        bottom: 0.18em;
+    }
 }
 
 
@@ -557,14 +640,27 @@ div.filter_option.active{
 
 .price-filter {
     font-family: Montserrat;
-    font-size: 18px;
     font-weight: bold;
     color: #850038;
     border: 1px solid #850038;
     padding: 0.3em 0.3em 0.3em 0.3em;
-    width: 8.3em;
     border-radius: 50px;
     text-align: center;
+}
+
+
+@media screen and (min-width: 1200px) {
+    .price-filter {
+        width: 8.3em;
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .price-filter {
+        width: 6.5em;
+        font-size: 14px;
+    }
 }
 
 
