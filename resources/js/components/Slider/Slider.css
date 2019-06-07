@@ -143,27 +143,17 @@
 }
 
 
-.feature.active {
-    background: #DEDEDE;
+.feature-btn.active {
+    font-weigth: bold !important;
+}
+
+.feature-btn.else {
+    color: white;
 }
 
 
-.feature.active h2 {
-    color: black;
-}
-
-.feature a {
-    color: white !important;
-}
-
-.feature.active a {
-    color: black !important;
-}
-
-
-.feature-inner > h2:hover {
-    font-weight: 500;
-    text-decoration: underline;
+.feature-inner:hover h2 {
+    font-weight: 600;
 }
 
 .recommendations{
