@@ -38,6 +38,9 @@ export default {
 					return;
 				})
 			}
+			if (this.quantity>this.product.stock || this.quantity<=0) {
+				console.log("erreur")
+			}else{
 			var local = localStorage.getItem('storedID');
 			local = local ? JSON.parse(local): [];
 			var prodId = this.product.id
@@ -61,6 +64,7 @@ export default {
 					"format":this.product.format,
 				})}
 				localStorage.setItem('storedID', JSON.stringify(local));
+				}
 			}
 		},
 		props : ['prod'],
