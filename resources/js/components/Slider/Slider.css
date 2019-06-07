@@ -1,10 +1,9 @@
 
 
 .slider-image {
-    display: none;
     background-size: cover;
     width: 100%;
-    height: 500px;
+    height: 35em;
 }
 
 .slider-image.active {
@@ -17,22 +16,39 @@
 ---------------------*/
 
 
+.descr {
+    height: 120px;
+}
+
+.infos-inside {
+    padding-left: 3.5em;
+    padding-right: 3.5em;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .slider-image > div > .infos {
+        width: 100%;
+    }
+}
+
+
 @media screen and (min-width: 1200px) {
     .slider-image > div > .infos {
         left: 60px;
+        max-width: 30.65vw;
     }
 }
 
 
 .slider-image > div > .infos {
     background-color: rgba(255, 255, 255, 0.88);
-    height: 33em;
-    max-width: 29em;
+    height: 35em;
     padding-left: 6em;
     padding-right: 5em;
 }
 
-.infos > p {
+.infos-inside > p {
     font-family: Montserrat;
     font-style: normal;
     font-weight: 400;
@@ -41,7 +57,7 @@
 }
 
 
-.infos > h2 {
+.infos-inside > h2 {
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
@@ -53,7 +69,7 @@
 }
 
 
-.infos a {
+.infos-inside a {
     color: white !important;
 }
 
@@ -61,6 +77,7 @@
     margin-top: 1.7em;
     background-color: #850038;
     border-radius: 100px;
+    width: 10em;
     padding: 0.7em 2em 0.7em 2em;
     font-family: Montserrat;
     font-style: normal;
