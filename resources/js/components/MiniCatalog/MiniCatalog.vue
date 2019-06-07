@@ -11,7 +11,7 @@
                             <div v-for="product in products"  class="col-xl-4 col-md-6">
                                 <div class="product">
                                     <div>
-                                        <div class="product_image"><img class="image" :src="product.path_image" alt=""><div class="favorite-heart" v-on:click="showHeartEmpty=false; showHeartFull=true;" v-if="showHeartEmpty"><img src="images/favorite-heart-empty.svg" class="svg" alt=""></div><div class="favorite-heart" v-on:click="showHeartEmpty=true; showHeartFull=false;" v-if="showHeartFull"><img src="images/favorite-heart-full.svg" class="svg" alt=""></div></div>
+                                        <div class="product_image"><img class="image" :src="product.path_image" alt=""><div class="favorite-heart empty" @click="toggleHeart"></div></div>
                                     </div>
                                     <div class="product_content">
 

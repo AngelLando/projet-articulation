@@ -38,17 +38,17 @@
         <section class="features-section">
             <div class="container-fluid rect-features">
                 <div class="row slider-options">
-                    <div class="col-md-4 p-0 feature" @click="changeClass" v-on:click="showSlide1=true; showSlide2=false; showSlide3=false" v-bind:class="{active: showSlide1}">
+                    <div class="col-md-4 p-0 feature" v-on:click="showSlide1=true; showSlide2=false; showSlide3=false" v-bind:class="{active: showSlide1}">
                         <div id="btn-slide-1" class="feature-inner">
                             <h2 class="feature-btn">DÉGUSTATION</h2>
                         </div>
                     </div>
-                    <div class="col-md-4 p-0 feature" @click="changeClass" v-on:click="showSlide1=false; showSlide2=true; showSlide3=false" v-bind:class="{active: showSlide2}">
+                    <div class="col-md-4 p-0 feature" v-on:click="showSlide1=false; showSlide2=true; showSlide3=false" v-bind:class="{active: showSlide2}">
                         <div id="btn-slide-2" class="feature-inner">
                             <h2 class="feature-btn">OFFRES DU MOIS</h2>
                         </div>
                     </div>
-                    <div class="col-md-4 p-0 feature" @click="changeClass" v-on:click="showSlide1=false; showSlide2=false; showSlide3=true" v-bind:class="{active: showSlide3}">
+                    <div class="col-md-4 p-0 feature" v-on:click="showSlide1=false; showSlide2=false; showSlide3=true" v-bind:class="{active: showSlide3}">
                         <div id="btn-slide-3" class="feature-inner">
                             <h2 class="feature-btn" >COUPS DE COEUR</h2>
                         </div>
