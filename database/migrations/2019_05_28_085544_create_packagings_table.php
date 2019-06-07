@@ -17,6 +17,7 @@ class CreatePackagingsTable extends Migration
             $table->increments('id');
             $table->string('type');
             $table->string('capacity');
+            $table->timestamps();
          });
     }
 
