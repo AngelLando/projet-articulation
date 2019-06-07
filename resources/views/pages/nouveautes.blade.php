@@ -11,7 +11,7 @@
 <style>
 
     .new_wines {
-        padding-top: 2em;
+        padding-top: 4em;
     }
 
     .title{

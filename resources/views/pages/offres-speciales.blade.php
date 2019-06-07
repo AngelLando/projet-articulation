@@ -11,7 +11,7 @@
 <style>
 
     .special_offers {
-        padding-top: 2em;
+        padding-top: 4em;
     }
 
     .title {

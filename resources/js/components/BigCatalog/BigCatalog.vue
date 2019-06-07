@@ -3,16 +3,16 @@
 
         <!--    FILTERS PART    !-->
 
-        <div class="super_container">
+        <div class="super_container filters">
             <div class="super_container_inner">
                 <div class="super_overlay"></div>
                 <div class="products-filters mt-3">
                     <div class="container">
-                        <div class="row filters_row text-center">
+                        <div class="row filters_row">
                             <div class="selection">
 
 
-                                <div class="text-right d-flex row align-items-start justify-content-start">
+                                <div class="text-right d-flex all_filters row align-items-start justify-content-start">
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option type_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span class="filter_name">Type de vin</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
@@ -98,16 +98,16 @@
 
                                 <div class="row price_filter pb-3">
 
-                                    <div class="price-filter-label content col-md-auto">Prix :</div>
-                                    <div class="price-filter price-filter-min col-md-auto"><span>CHF {{value_2[0]}}</span><span v-if="value_2[0] % 1 === 0">.–</span><span v-if="(((value_2[0]*1000) % 1 === 0) && (value_2[0] % 1 !== 0))">0</span></div>
-                                    <div class="slider-price col-md-auto"><vue-slider v-model="value_2" :min="10.70" :max="915.50" :interval="0.10"/></div>
-                                    <div class="price-filter price-filter-max col-md-auto"><span>CHF {{value_2[1]}}</span><span v-if="value_2[1] % 1 === 0">.–</span><span v-if="(((value_2[1]*1000) % 1 === 0) && (value_2[1] % 1 !== 0))">0</span></div>
+                                    <div class="price-filter-label content col-md-1 col-sm-1">Prix :</div>
+                                    <div class="price-filter price-filter-min col-md-2 col-sm-1"><span>CHF {{value_2[0]}}</span><span v-if="value_2[0] % 1 === 0">.–</span><span v-if="(((value_2[0]*1000) % 1 === 0) && (value_2[0] % 1 !== 0))">0</span></div>
+                                    <div class="slider-price col-md-4 col-sm-2"><vue-slider v-model="value_2" :min="10.70" :max="915.50" :interval="0.10"/></div>
+                                    <div class="price-filter price-filter-max col-md-2 col-sm-1"><span>CHF {{value_2[1]}}</span><span v-if="value_2[1] % 1 === 0">.–</span><span v-if="(((value_2[1]*1000) % 1 === 0) && (value_2[1] % 1 !== 0))">0</span></div>
 
                                 </div>
 
                                 <div class="row results_sort ml-3 pt-4 pb-1">
-                                    <div class="sort col-md-auto">
-                                        <select class="bootstrap-select">
+                                    <div class="sort col-md-auto col-sm-3">
+                                        <select class="bootstrap-select sort_by">
                                             <option value="1" selected="selected">Noms A-Z</option>
                                             <option value="2">Noms Z-A</option>
                                             <option value="3">Prix croissants</option>
@@ -117,7 +117,7 @@
 
                                         </select>
                                     </div>
-                                    <div class="sort col-md-auto">
+                                    <div class="sort col-md-auto col-sm-1">
                                         Trier par :
                                     </div>
                                     <div class="results col-md-auto">
