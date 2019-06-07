@@ -33,8 +33,11 @@ export default {
 		},
 		adjustTotalPrice:function(){
 			var finalsubPrice= 0;
+			console.log(this.products)
 			this.products.forEach(function(product) {
-				finalsubPrice=finalsubPrice+product.totalprice;
+			var total =  product.price*product.quantity;
+			product.totalprice=total
+			finalsubPrice=finalsubPrice+product.totalprice;
 			});
 			this.finalsubPrice=finalsubPrice;
 			this.tva = Math.round(this.tvaPercent*this.finalsubPrice/100);
@@ -54,18 +57,20 @@ export default {
 				if (this.products=="") {
 					this.emptyCart=false;
 				}
+				this.adjustTotalPrice();
+
 			}else{
 				var local = JSON.parse(localStorage.getItem('storedID'));
 				var removeIndex = local.map(function(item) { return item.id; }).indexOf(event.id);
 				local.splice(removeIndex,1);
 				localStorage.setItem('storedID', JSON.stringify(local));
 				this.products = JSON.parse(localStorage.getItem('storedID'));
+				this.adjustTotalPrice();
 			}
 		},
 		checkLocalStorage:function(){
 			var local = JSON.parse(localStorage.getItem('storedID'))
 			if (this.id==null) {
-				console.log(local)
 				if (local=="" || local==null) {
 					this.emptyCart=false;
 
