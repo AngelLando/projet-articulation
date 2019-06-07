@@ -10,21 +10,36 @@ export default {
 			productToDelete: '',
 			id:document.querySelector("meta[name='user-id']"),
 			emptyCart:true,
-			quantity:''
 		}
 	},
 	methods:{
-		adjustPrice: function(event){
-			var test = $('.choice_list').val()
-			event.quantity = test;
+		adjustPrice: function(product){
+			var local = localStorage.getItem('storedID'),
+			local = local ? JSON.parse(local): [];
+			var test =event.target.value
+			product.quantity = test;
 			var finalsubPrice= 0;
-			console.log(event.quantity)
-			var total = event.price*event.quantity;
-			event.totalprice=total
-			finalsubPrice=finalsubPrice+event.totalprice;
-			//this.finalsubPrice=finalsubPrice;
-			//this.tva = Math.round(this.tvaPercent*this.finalsubPrice/100);
-			//this.finalPrice = this.finalsubPrice+this.tva+this.livraison;
+			var total = product.price*product.quantity;
+			product.totalprice=total
+			this.adjustTotalPrice();
+
+			var prodId = product.id
+			local.forEach(function(element) {
+				if (element.id == prodId) {
+					element.quantity = test;
+				}
+			});
+			localStorage.setItem('storedID', JSON.stringify(local));
+		},
+		adjustTotalPrice:function(){
+			var finalsubPrice= 0;
+			this.products.forEach(function(product) {
+				finalsubPrice=finalsubPrice+product.totalprice;
+			});
+			this.finalsubPrice=finalsubPrice;
+			this.tva = Math.round(this.tvaPercent*this.finalsubPrice/100);
+			this.finalPrice = this.finalsubPrice+this.tva+this.livraison;
+
 		},
 		deleteProduct : function (event) {
 			if (this.id != null) {
@@ -39,10 +54,6 @@ export default {
 				if (this.products=="") {
 					this.emptyCart=false;
 				}
-				//this.products = JSON.parse(localStorage.getItem('storedID'));
-				//si le local storage est différent de la BD, cette ligne fout la merde parce qu'on lui dit d'utiliser comme liste de produit le LocalStorage mais si il n'y a rien dedans c'est le bordel!
-				// par exemple, si trop de temps passe, si il change de navigateur, si il reset le local storage, etc. C'est ce qui m'est arrivé et pour ça que j'ai cru qu'on ne pouvait plus delete.
-				// pour l'instant, la fonction delete marche mais il faut recharger pour qu'elle soit effective.
 			}else{
 				var local = JSON.parse(localStorage.getItem('storedID'));
 				var removeIndex = local.map(function(item) { return item.id; }).indexOf(event.id);
@@ -61,6 +72,9 @@ export default {
 				}
 			}
 		}
+	},
+	setQuantity:function(){
+		console.log("a implémenter")
 	},
 
 	computed:{
