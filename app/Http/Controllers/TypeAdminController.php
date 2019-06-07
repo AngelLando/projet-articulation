@@ -15,7 +15,7 @@ class TypeAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.types.index')->with('types', Type::orderBy('created_at', 'desc')->paginate(5));
+        return view('admin.types.index')->with('types', Type::orderBy('created_at', 'desc')->paginate(10));
     }
 
     /**

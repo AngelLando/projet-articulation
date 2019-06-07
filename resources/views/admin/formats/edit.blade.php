@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@include('admin.includes.menu')
 
 <div class="container"><br>
 @if(Session::has('success'))
@@ -30,7 +31,7 @@
                 </div>
                 <div class="form-group">
                     <div class="text-center">
-                        <button class="btn btn-primary" type="submit">Mettre à jour le format</button>
+                        <button class="btn btn-primary" type="submit">Mettre à jour le conditionnement</button>
                     </div>
                 </div>
             </form>

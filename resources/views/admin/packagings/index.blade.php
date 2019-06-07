@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@include('admin.includes.menu')
 
 <div class="container"><br>
 
@@ -9,7 +10,7 @@
     </div>
 @endif
 
-    <h1>Packagings <a href="{{ route('conditionnements.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau packaging</button></a></h1>
+    <h1>Conditionnements <a href="{{ route('conditionnements.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau conditionnement</button></a></h1>
     <table class="table table-hover">
         <thead>
             <th>Nom</th>

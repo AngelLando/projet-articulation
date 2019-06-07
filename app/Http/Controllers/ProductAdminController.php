@@ -22,7 +22,7 @@ class ProductAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.products.index')->with('products', Product::orderBy('created_at', 'desc')->paginate(5));
+        return view('admin.products.index')->with('products', Product::orderBy('created_at', 'desc')->paginate(10));
     }
 
     /**

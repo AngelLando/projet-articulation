@@ -15,7 +15,7 @@ class PromotionAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.promotions.index')->with('promotions', Promotion::orderBy('created_at', 'desc')->paginate(5));
+        return view('admin.promotions.index')->with('promotions', Promotion::orderBy('created_at', 'desc')->paginate(10));
     }
 
     /**

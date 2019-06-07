@@ -1,11 +1,12 @@
 @extends('layouts.app')
 @section('content')
+@include('admin.includes.menu')
 
 <div class="container"><br>
 
     <div class="card">
         <div class="card-header">
-            Création d'un nouveau packaging
+            Création d'un nouveau conditionnement
         </div>
 
         <div class="card-body">
@@ -31,7 +32,7 @@
                 </div>
                 <div class="form-group">
                     <div class="text-center">
-                        <button class="btn btn-primary" type="submit">Créer le packaging</button>
+                        <button class="btn btn-primary" type="submit">Créer le conditionnement</button>
                     </div>
                 </div>
             </form>

@@ -15,7 +15,7 @@ class PackagingAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.packagings.index')->with('packagings', Packaging::orderBy('created_at', 'desc')->paginate(5));
+        return view('admin.packagings.index')->with('packagings', Packaging::orderBy('created_at', 'desc')->paginate(10));
     }
 
     /**
@@ -46,7 +46,7 @@ class PackagingAdminController extends Controller
             'capacity' => $request->capacity
         ]);
 
-        Session::flash('success', 'Le packaging a été créé!');
+        Session::flash('success', 'Le conditionnement a été créé!');
 
         return redirect()->route('conditionnements.index');
     }
@@ -93,7 +93,7 @@ class PackagingAdminController extends Controller
         $packaging->capacity = $request->capacity;
         $packaging->save();
 
-        Session::flash('success', 'Packaging mise à jour!');
+        Session::flash('success', 'Conditionnement mis à jour!');
 
         return redirect()->route('conditionnements.index');
     }
@@ -108,7 +108,7 @@ class PackagingAdminController extends Controller
     {
         Packaging::destroy($id);
 
-        Session::flash('success', 'Le packaging a été supprimé!');
+        Session::flash('success', 'Le conditionnement a été supprimé!');
 
         return redirect()->route('conditionnements.index');
     }
