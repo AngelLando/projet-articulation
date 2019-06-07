@@ -33,6 +33,7 @@ export default {
       isHiddenShipTo:false,
       isHiddenBillTo:false,
       isHiddenPromoCode:false,
+            isHiddenMail:false,
       isError:false,
       finalsubPrice:0,
       livraison:25,
