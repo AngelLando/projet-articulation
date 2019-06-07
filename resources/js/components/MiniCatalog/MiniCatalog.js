@@ -6,6 +6,9 @@ export default {
       quantity : '',
       errors : {},
       id:document.querySelector("meta[name='user-id']"),
+        showHeartEmpty: true,
+        showHeartFull: false,
+        aClicked: true
     }
   },
   props : ['prod'],

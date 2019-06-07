@@ -9,6 +9,15 @@ export default {
         }
     },
 
+    methods:{
+        changeClass: function(event){
+            var clickedElement = event.target;
+            $(".feature").removeClass("active");
+            $(".feature").addClass("else");
+            $(clickedElement).addClass("active");
+            $(clickedElement).removeClass("else");
+        },
+    },
 
 }
 

@@ -12,6 +12,7 @@ export default {
             orders : [],
             test: [],
             id:document.querySelector("meta[name='user-id']"),
+            products:[],
 
         }
     },
@@ -22,23 +23,51 @@ export default {
 
         if (this.id != null) {
             var local = JSON.parse(localStorage.getItem('storedID'))
-            if (local!="") {
-                /**if (JSON.parse(this.cart)!=null) {
+            if (local=="" || local==null) {
+            }else{
 
-                }**/
+               if (json.cart!="null") {
+                console.log("local storage + BD")
+                this.products=JSON.parse(localStorage.getItem('storedID')),
+                this.products.forEach(function(product) {
+                    var cartItem  = {
+                        product_id: product.id,
+                        quantity: product.quantity
+                    };
+                    axios.post('../add', cartItem)
+                    .catch(error => {
+                        this.errors = error.response.data.errors
+                        return;
+                    })
+                });
+                // on merge ici
+            }else{
+                console.log("seulement local")
+                this.products=JSON.parse(localStorage.getItem('storedID')),
+                this.products.forEach(function(product) {
+                    var cartItem  = {
+                        product_id: product.id,
+                        quantity: product.quantity
+                    };
+                    axios.post('../add', cartItem)
+                    .catch(error => {
+                        this.errors = error.response.data.errors
+                        return;
+                    })
+                });
             }
-
         }
+    }
+},
+
+methods:{
+    underline: function(event){
+        var clickedElement = event.target;
+        $(clickedElement).addClass("active");
+        $(clickedElement).removeClass("else");
+        $(clickedElement).siblings().removeClass("active");
+        $(clickedElement).siblings().addClass("else");
     },
 
-    methods:{
-        underline: function(event){
-            var clickedElement = event.target;
-            $(clickedElement).addClass("active");
-            $(clickedElement).removeClass("else");
-            $(clickedElement).siblings().removeClass("active");
-            $(clickedElement).siblings().addClass("else");
-        },
-
-    },
+},
 }

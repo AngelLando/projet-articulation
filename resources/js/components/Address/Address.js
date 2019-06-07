@@ -46,12 +46,12 @@ export default {
       comment:'',
       payment_method: '',
       discount: 10,
+      id:document.querySelector("meta[name='user-id']"),
     }
   },
   mounted ()
   {
-    let id = document.querySelector("meta[name='user-id']")
-    if (id != null && JSON.parse(this.cart) != null) {
+    if (this.id != null && JSON.parse(this.cart) != null) {
       this.products = JSON.parse(this.cart);
 
     } else {
@@ -85,8 +85,9 @@ export default {
     submitAddress (isHiddenBillTo,isHiddenShipTo) {
         //  e.preventDefault();
         this.address1  = {
-          firstname1: this.firstname1,
           lastname1: this.lastname1,
+                    firstname1: this.firstname1,
+
           gender1: this.gender1,
           street1: this.street1,
           npa1: this.npa1,
@@ -94,6 +95,7 @@ export default {
           region1: this.region1,
           country1: this.country1,
         };
+        console.log(this.address1)
         if (isHiddenShipTo) {
           this.address2  = {
             firstname2: this.firstname2,
@@ -122,8 +124,7 @@ export default {
             else{
               this.address3=null;
             }
-                let id = document.querySelector("meta[name='user-id']")
-            if (id!=null) {
+            if (this.id!=null) {
               this.data = {
                 address1 : this.address1,
                 address2 : this.address2,

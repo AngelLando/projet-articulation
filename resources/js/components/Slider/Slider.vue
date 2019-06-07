@@ -42,18 +42,18 @@
             <div class="container-fluid rect-features">
                 <div class="row slider-options">
                     <div class="col-md-4 p-0 feature active">
-                        <div id="btn-slide-1" class="feature-inner">
-                            <h2 v-on:click="showSlide1=true; showSlide2=false; showSlide3=false">DÉGUSTATION</h2>
+                        <div id="btn-slide-1" class="feature-inner" @click="changeClass">
+                            <h2 class="feature-btn active" v-on:click="showSlide1=true; showSlide2=false; showSlide3=false">DÉGUSTATION</h2>
                         </div>
                     </div>
-                    <div id="btn-slide-2" class="col-md-4 p-0 feature">
-                        <div class="feature-inner">
-                            <h2 v-on:click="showSlide1=false; showSlide2=true; showSlide3=false">OFFRES DU MOIS</h2>
+                    <div class="col-md-4 p-0 feature">
+                        <div id="btn-slide-2" class="feature-inner" @click="changeClass">
+                            <h2 class="feature-btn" @click="changeClass" v-on:click="showSlide1=false; showSlide2=true; showSlide3=false">OFFRES DU MOIS</h2>
                         </div>
                     </div>
-                    <div id="btn-slide-3" class="col-md-4 p-0 feature">
-                        <div class="feature-inner">
-                            <h2 v-on:click="showSlide1=false; showSlide2=false; showSlide3=true">COUPS DE COEUR</h2>
+                    <div class="col-md-4 p-0 feature">
+                        <div id="btn-slide-3"  class="feature-inner" @click="changeClass">
+                            <h2 class="feature-btn" v-on:click="showSlide1=false; showSlide2=false; showSlide3=true">COUPS DE COEUR</h2>
                         </div>
                     </div>
                 </div>
