@@ -60,8 +60,9 @@ class CartItemController extends Controller
                     'quantity' => $request->quantity
                 ]);
             } else {
+                $actualQuantity = CartItem::where('id', $similarCartItem->id)->first()->quantity;
                 $cartItem = CartItem::where('id', $similarCartItem->id)
-                    ->update(['quantity' => $request->quantity]);
+                    ->update(['quantity' => $request->quantity + $actualQuantity]);
             }
         }
         return $cartItem;
