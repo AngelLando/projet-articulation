@@ -89,7 +89,14 @@ class OrderController extends Controller
          // Create all OrderItems needed
          $orderItems = OrderItemController::store($request, $orderId);
 
-         $form = Order::sendForm($request);
+         $data = [
+             'firstname' => $request->address1['firstname1'],
+             'lastname' => $request->address1['lastname1'],
+             //'email' => $request->email['email'],
+             ''
+         ];
+
+         $this->sendForm($data);
 
          // return OrderId
 
@@ -141,12 +148,9 @@ class OrderController extends Controller
         //
     }
 
-    public function sendForm($request) {
-
-        Mail::send('viewEmailOrder', $request->all(), function($message){
-            $message->to('')->subject('Laravel (Contact)');
+    public function sendForm($data) {
+        Mail::send('viewEmailOrder', $data, function($message){
+            $message->to('test@info.ch')->subject('Votre dernière facture | Gazzar.ch )');
         });
-        return 'Ok';
-
     }
 }
