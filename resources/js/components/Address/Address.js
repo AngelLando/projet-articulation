@@ -150,6 +150,7 @@ export default {
             axios.post('check', this.data).catch(error => {
               this.errors = error.response.data.errors
             }).then(response => {
+              //supprimer local storage
               console.log(response)
             })
           },

@@ -27,7 +27,6 @@ export default {
 			$(clickedElement).siblings().addClass("product_selection");
 		},
 		input: function (productid) {
-
 			if (this.id != null) {
 				this.cartItem  = {
 					product_id: this.product.id,
