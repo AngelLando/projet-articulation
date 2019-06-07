@@ -16,7 +16,7 @@ class CreateAppellationProductTable extends Migration
         Schema::create('appellation_product', function (Blueprint $table) {
             $table->integer('appellation_id')->unsigned();
             $table->integer('product_id')->unsigned();
-            $table->foreign('appellation_id')->references('id')->on('appellations');
+            $table->foreign('appellation_id')->references('id')->on('appellations')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
          });
     }
