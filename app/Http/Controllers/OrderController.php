@@ -105,7 +105,7 @@ class OrderController extends Controller
             foreach ($cartItems as $cartItem) {
                 $cartItem->destroy($cartItem->id);
             }
-            $cart = Auth::user()->cart->first();
+            $cart = Auth::user()->cart->where('user_id', Auth::id())->first();
             $cart->destroy($cart->id);
         }
         // return OrderId
