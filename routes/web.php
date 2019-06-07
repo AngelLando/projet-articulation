@@ -101,3 +101,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     Route::resource('tags', 'TagAdminController');
 
 });
+
+Route::get('/confirmation', function () {
+    return view ('confirmation');
+})->name('confirmation');

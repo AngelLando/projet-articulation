@@ -13,6 +13,8 @@ Vue.component('products-single', require('./components/SingleProduct/singleProdu
 Vue.component('checkout-component', require('./components/Cart/Cart.vue').default);
 Vue.component('slider-homepage', require('./components/Slider/Slider.vue').default);
 Vue.component('address-component', require('./components/Address/Address.vue').default);
+Vue.component('confirmation-component', require('./components/Confirmation/Confirmation.vue').default);
+
 
 
 //Ici, on monte juste le tout ensemble. On lui dit: tu prends le App.vue (c'est notre base avec header footer) et tu lui montes à la div app le router avec les components.
