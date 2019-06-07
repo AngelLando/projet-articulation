@@ -97,5 +97,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     Route::resource('formats', 'FormatAdminController');
     Route::resource('types', 'TypeAdminController');
     Route::resource('fournisseurs', 'SupplierAdminController');
+    Route::resource('promotions', 'PromotionAdminController');
 
 });
