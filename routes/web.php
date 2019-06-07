@@ -100,6 +100,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     Route::resource('promotions', 'PromotionAdminController');
     Route::resource('tags', 'TagAdminController');
     Route::resource('appellations', 'AppellationAdminController');
+    Route::resource('conditionnements', 'PackagingAdminController');
 
 });
 
