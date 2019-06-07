@@ -29,9 +29,8 @@
                                             </div> -->
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
                                                 <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
-                                                    <select class="choice_list" v-model="quantity">
-                                                        <option>10</option>
-                                                    </select>
+                                             
+                                                    <input type="number" class="choice_list text-center" v-model="quantity" min="1" :max="product.stock">
 
                                                 </div>
 
@@ -57,7 +56,7 @@
                                         <div class="selection_title pt-4"><p>Condtionnements disponibles pour ce format :</p></div>
                                         <div>
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                <div @click="set_choice" class="product_selection product_selection_selected conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.packaging_capacity}}</div>
+                                                <div @click="set_choice" class="product_selection product_selection_selected conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">Caisse de {{product.packaging_capacity}} bouteilles</div>
 
                                             </div>
                                         </div>
