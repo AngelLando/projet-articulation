@@ -107,10 +107,18 @@ class OrderController extends Controller
             }
             $cart = Auth::user()->cart->where('user_id', Auth::id())->first();
             $cart->destroy($cart->id);
-        }
-        // return OrderId
 
-        return $cart;
+            $bill['email'] = Auth::user()->email;
+            $this->sendForm($bill);
+        }
+
+        if($request->address1['email'] != null) {
+            $bill['email'] = $request->address1['email'];
+            $this->sendForm($bill);
+        }
+
+
+        return $bill;
     }
 
     /**
@@ -161,8 +169,9 @@ class OrderController extends Controller
     public function sendForm($bill)
     {
         $billing = $bill;
-        Mail::send('viewEmailOrder', ['billing' => $billing], function ($message) {
-            $message->to('test@info.ch')->subject('Votre dernière facture 🍷 | Gazzar.ch');
+        $email = $bill['email'];
+        Mail::send('viewEmailOrder', ['billing' => $billing], function ($message) use ($email) {
+            $message->to($email)->subject('Votre dernière facture 🍷 | Gazzar.ch');
         });
     }
 }
