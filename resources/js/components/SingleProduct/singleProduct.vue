@@ -30,7 +30,7 @@
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
                                                 <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
                                              
-                                                    <input type="number" class="choice_list text-center" v-model="quantity" min="1" :max="product.stock">
+                                                    <input type="number" class="choice_list text-center" placeholder= "1" v-model="quantity" min="1" :max="product.stock">
 
                                                 </div>
 
