@@ -12,12 +12,14 @@ class FormatsTableSeeder extends Seeder
     public function run()
     {
         DB::table('formats')->insert([
-            ['name'=> 'Demies'],
-            ['name'=> '75cl'],
-            ['name'=> 'Magnums'],
-            ['name'=> 'Double Magnums'],
-            ['name'=> 'Impériale'],
-            ['name'=> 'Bouteilles Vaudoises']
+            ['name'=> 'Demies (D)'],
+            ['name'=> '75 cl'],
+            ['name' => '50 cl'],
+            ['name'=> 'Magnums (M)'],
+            ['name'=> 'Double Magnums (dM)'],
+            ['name'=> 'Impériale (Im)'],
+            ['name'=> 'Bouteilles Vaudoises (70)'],
+
         ]);
     }
 }

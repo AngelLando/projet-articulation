@@ -14,7 +14,11 @@ class CountriesTableSeeder extends Seeder
         DB::table('countries')->insert([
             ['code' => 'IT', 'name' => 'Italie'],
             ['code' => 'CH', 'name' => 'Suisse'],
-            ['code' => 'ES', 'name' => 'Espagne']
+            ['code' => 'ES', 'name' => 'Espagne'],
+            ['code' => 'FR', 'name' => 'France'],
+            ['code' => 'CL', 'name' => 'Chili'],
+            ['code' => 'IL', 'name' => 'Israel'],
+            ['code' => 'NZ', 'name' => 'Nouvelle-Zélande'],
         ]);
     }
 }
