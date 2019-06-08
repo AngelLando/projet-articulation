@@ -85,7 +85,7 @@ Products
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 17%;
+    height: 215px;
 
 }
 
@@ -151,7 +151,7 @@ Product
 {
     font-family: Montserrat;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 24px;
     color: black !important;
 }
@@ -177,7 +177,7 @@ Product
     font-style: normal;
     font-weight: 500;
     margin-top: -15px;
-    font-size: 20px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     height: 2em;
