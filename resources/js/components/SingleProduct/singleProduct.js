@@ -7,7 +7,7 @@ export default {
 			isHiddenRating:false,
 			cartItem : '',
 			product_id: '',
-			quantity : '',
+			quantity : 1,
 			errors : {},
 			exception:false,
 			id: document.querySelector("meta[name='user-id']"),
@@ -59,7 +59,6 @@ export default {
 			if (this.quantity>this.product.stock || this.quantity<=0) {
 				console.log("erreur")
 			}else{
-
                 var clickedElement = event.target;
                 $(clickedElement).addClass("item-added");
                 setTimeout(function () {
