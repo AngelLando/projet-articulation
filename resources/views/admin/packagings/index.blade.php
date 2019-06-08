@@ -10,7 +10,7 @@
     </div>
 @endif
 
-    <h1>Conditionnements <a href="{{ route('conditionnements.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau conditionnement</button></a></h1>
+    <h1 class="big-title">Conditionnements <a href="{{ route('conditionnements.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau conditionnement</button></a></h1>
     <table class="table table-hover">
         <thead>
             <th>Nom</th>

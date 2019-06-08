@@ -10,7 +10,7 @@
     </div>
 @endif
 
-    <h1>Fournisseurs <a href="{{ route('fournisseurs.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau fournisseur</button></a></h1>
+    <h1 class="big-title">Fournisseurs <a href="{{ route('fournisseurs.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau fournisseur</button></a></h1>
     <table class="table table-hover">
         <thead>
             <th>Nom</th>

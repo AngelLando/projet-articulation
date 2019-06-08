@@ -15,7 +15,7 @@
                                         </div>
                                 </div>
                             </div>
-                                <div class ="col-xl-5 ">
+                                <div class ="col-xl-7 ">
                                     <p class ="product_year ">{{product.kind}}</p>
                                     <p class="product_name">{{product.name}}</p>
                                     <p class="product_price pb-2">CHF {{ product.price }}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></p>
@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="content content_information col-xl-12 ml-3" v-if="isHiddenInfo"><p >Cotation : {{product.quotation}}</p>
                                     <p>Teneur en alcool : 
-                                    {{product.alcohol}}</p>
+                                    {{product.alcohol}} %</p>
                                     <p >Type : {{product.kind}}</p>
                                 </div>
                                 <div class="content content_rating col-xl-12 ml-3" v-if="isHiddenRating"><p>Titre</p>

@@ -10,7 +10,7 @@
     </div>
 @endif
 
-    <h1>Tags <a href="{{ route('tags.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau tag</button></a></h1>
+    <h1 class="big-title">Tags <a href="{{ route('tags.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau tag</button></a></h1>
     <table class="table table-hover">
         <thead>
             <th>Nom</th>

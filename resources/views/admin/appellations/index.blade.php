@@ -10,7 +10,7 @@
     </div>
 @endif
 
-    <h1>Appellations <a href="{{ route('appellations.create') }}"><button type="button" class="btn btn-primary float-right">Créer une nouvelle appellation</button></a></h1>
+    <h1 class="big-title">Appellations <a href="{{ route('appellations.create') }}"><button type="button" class="btn btn-primary float-right">Créer une nouvelle appellation</button></a></h1>
     <table class="table table-hover">
         <thead>
             <th>Nom</th>

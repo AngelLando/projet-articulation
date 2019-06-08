@@ -10,7 +10,7 @@
     </div>
 @endif
 
-    <h1>Formats <a href="{{ route('formats.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau format</button></a></h1>
+    <h1 class="big-title">Formats <a href="{{ route('formats.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau format</button></a></h1>
     <table class="table table-hover">
         <thead>
             <th>Nom</th>
