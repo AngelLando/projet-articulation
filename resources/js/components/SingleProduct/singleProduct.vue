@@ -11,7 +11,7 @@
                             <div class="col-xl-4">
                                 <div class="product">
                                         <div>
-                                            <div class="product_image"><div class="favorite-heart"><img src="images/favorite-heart-empty.svg" alt=""></div><img class="image" :src="product.path_image" alt=""><div class="share"><img src="images/share.svg" alt=""></div></div>
+                                            <div class="product_image"><div class="favorite-heart empty" @click="toggleHeart"></div><img class="image" :src="product.path_image" alt=""><div class="share"></div></div>
                                         </div>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
 
                                                 <div @click="input(product.id)" class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
                                                 <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-                                                    <div><div><img src="images/cart.svg" class="svg" alt=""></div></div>
+                                                    <div class="cart"></div>
                                                 </div>
                                             </div>
                                             <p class="error pt-2" v-if="errors.quantity">{{errors.quantity[0]}}</p>
@@ -66,7 +66,7 @@
                                 <div class="row more_info ml-3 pt-5 pb-3">
                                     <div class="description more_info_selected col-md-auto" @click="underline" v-on:click="isHiddenDescr=true; isHiddenInfo=false; isHiddenRating=false">Description</div>
                                     <div class="information col-md-auto" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=true; isHiddenRating=false">Information</div>
-                                    <div class="rating col-md-auto" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=false; isHiddenRating=true">Avis (4)</div>
+                                    <div class="rating col-md-auto" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=false; isHiddenRating=true">Avis (1)</div>
                                 </div>
                                 <div class="content content_description col-xl-12 ml-3" v-if="isHiddenDescr">{{product.description}}
                                 </div>
@@ -75,13 +75,13 @@
                                     {{product.alcohol}} %</p>
                                     <p >Type : {{product.kind}}</p>
                                 </div>
-                                <div class="content content_rating col-xl-12 ml-3" v-if="isHiddenRating"><p>Titre</p>
+                                <div class="content content_rating col-xl-12 ml-3" v-if="isHiddenRating"><p>Excellent !!</p>
                                 <p><i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i></p>
-                                <p>Contenu</p>
+                                <i class="fas fa-star"></i></p>
+                                <p>Ce vin est de loin mon favori parmi tout le catalogue, je le recommande à 100 % ! Il se prête à toutes les occasions, ni trop sucré, ni trop sec, la perfection. </p>
                             </div>
                             <div class = "col-xl-12 text-center"><hr class="line ml-3 mt-4 mb-4"></div>
                         </div>
