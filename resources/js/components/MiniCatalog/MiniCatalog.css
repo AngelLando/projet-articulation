@@ -279,11 +279,11 @@ div.favorite-heart.full {
 }
 
 
-/* for safari browser*/
+/* for chrome browser*/
 @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
     @media screen and (max-width: 1200px) {
         .favorite-heart {
-            top: -195px;
+            top: -205px;
             right: -235px;
         }
     }
@@ -294,7 +294,7 @@ div.favorite-heart.full {
 @media not all and (min-resolution:.001dpcm) {
     @media screen and (max-width: 1200px) {
         .favorite-heart {
-            top: -215px;
+            top: -200px;
             right: -275px;
         }
     }
