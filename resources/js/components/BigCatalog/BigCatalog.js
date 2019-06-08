@@ -25,7 +25,7 @@ export default {
             quantity : '',
             errors : {},
             start : ['1'],
-            counter: 1,
+            counter: 0,
             cartItem : '',
             id: document.querySelector("meta[name='user-id']"),
         }
@@ -37,6 +37,11 @@ export default {
         this.products = json.products;
         this.appellations = json.appellations;
         this.tags = json.tags;
+         this.$nextTick(() => {
+          var numItems = document.getElementsByClassName("counter").length;
+            this.counter=numItems;
+  })
+
     },
 
     computed: {
@@ -58,17 +63,20 @@ export default {
 
     },
 
+
     methods: {
 
-        /* --> cause une loop, pas la bonne solution d'appeler une méthode
         increments: function() {
-            this.counter = this.counter+1;
-            return ''
-        },*/
+        },
 
 
         reStartCounter: function () {
-            this.counter == 0;;
+       this.$nextTick(() => {
+          var numItems = document.getElementsByClassName("counter").length;
+            this.counter=numItems;
+  })
+
+
         },
 
 
