@@ -11,12 +11,12 @@
                             <div class="col-xl-4">
                                 <div class="product">
                                         <div>
-                                            <div class="product_image"><div class="favorite-heart empty" @click="toggleHeart"></div><img class="image" :src="product.path_image" alt=""><div class="share"></div></div>
+                                            <div class="product_image"><div class="favorite-heart empty" @click="toggleHeart"></div><img class="image" :src="product.path_image" alt=""><div class="share_container"><a class="share" @click="sendMail"></a></div></div>
                                         </div>
                                 </div>
                             </div>
                                 <div class ="col-xl-7 ">
-                                    <p class ="product_year ">{{product.kind}}</p>
+                                    <p class ="product_kind ">{{product.kind}}</p>
                                     <p class="product_name">{{product.name}}</p>
                                     <p class="product_price pb-2">CHF {{ product.price }}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></p>
                                     <div class="product_buttons">
