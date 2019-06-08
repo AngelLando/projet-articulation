@@ -44,6 +44,13 @@ export default {
 			$(clickedElement).siblings().addClass("product_selection");
 		},
 		input: function (productid) {
+
+            var clickedElement = event.target;
+            $(clickedElement).addClass("item-added");
+            setTimeout(function () {
+                $(clickedElement).removeClass('item-added');
+            }, 2000);
+
 			if (this.id != null) {
 				this.cartItem  = {
 					product_id: this.product.id,
