@@ -100,7 +100,7 @@
 
                                     <div class="price-filter-label content col-md-1 col-sm-1">Prix :</div>
                                     <div class="price-filter price-filter-min col-md-2 col-sm-1"><span>CHF {{value_2[0]}}</span><span v-if="value_2[0] % 1 === 0">.–</span><span v-if="(((value_2[0]*1000) % 1 === 0) && (value_2[0] % 1 !== 0))">0</span></div>
-                                    <div class="slider-price col-md-4 col-sm-2"><vue-slider @click="reStartCounter" v-model="value_2" :min="10.70" :max="915.50" :interval="0.10"/></div>
+                                    <div @click="reStartCounter" class="slider-price col-md-4 col-sm-2"><vue-slider v-model="value_2" :min="10.70" :max="915.50" :interval="0.10"/></div>
                                     <div class="price-filter price-filter-max col-md-2 col-sm-1"><span>CHF {{value_2[1]}}</span><span v-if="value_2[1] % 1 === 0">.–</span><span v-if="(((value_2[1]*1000) % 1 === 0) && (value_2[1] % 1 !== 0))">0</span></div>
 
                                 </div>

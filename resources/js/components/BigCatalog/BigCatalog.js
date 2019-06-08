@@ -37,10 +37,10 @@ export default {
         this.products = json.products;
         this.appellations = json.appellations;
         this.tags = json.tags;
-         this.$nextTick(() => {
-          var numItems = document.getElementsByClassName("counter").length;
+        this.$nextTick(() => {
+            var numItems = document.getElementsByClassName("counter").length;
             this.counter=numItems;
-  })
+        })
 
     },
 
@@ -71,12 +71,11 @@ export default {
 
 
         reStartCounter: function () {
-       this.$nextTick(() => {
-          var numItems = document.getElementsByClassName("counter").length;
-            this.counter=numItems;
-  })
-
-
+            this.$nextTick(() => {
+                var numItems = document.getElementsByClassName("counter").length;
+                this.counter=numItems;
+            })
+            b
         },
 
 
