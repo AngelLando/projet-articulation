@@ -30,13 +30,14 @@ export default {
       city3 : '',
       region3 : '',
       country3 : '',
+      emptyCart:true,
       isHiddenShipTo:false,
       isHiddenBillTo:false,
       isHiddenPromoCode:false,
-            isHiddenMail:false,
+      isHiddenMail:false,
       isError:false,
       finalsubPrice:0,
-      livraison:25,
+      livraison:0,
       tva:0,
       tvaPercent:7.7,
       finalPrice:0,
@@ -47,16 +48,24 @@ export default {
       comment:'',
       payment_method: '',
       discount: 10,
-        email : '',
+      email : '',
       id:document.querySelector("meta[name='user-id']"),
     }
   },
   mounted ()
   {
-    if (this.id != null && JSON.parse(this.cart) != null) {
+    if (this.id != null) {
       this.products = JSON.parse(this.cart);
+      if (this.products==null || this.products=="") {
+        this.emptyCart=false;
+      }
 
     } else {
+      var local = JSON.parse(localStorage.getItem('storedID'))
+
+      if (local=="" || local==null) {
+        this.emptyCart=false;
+      } 
       this.products = JSON.parse(localStorage.getItem('storedID'));
     }
     var finalsubPrice= 0;
@@ -67,6 +76,7 @@ export default {
     });
     this.finalsubPrice=finalsubPrice;
     this.tva = Math.round(this.tvaPercent*this.finalsubPrice/100);
+    this.calculateDelivery();
     this.finalPrice = this.finalsubPrice+this.tva+this.livraison;
   },
   methods : {
@@ -84,11 +94,26 @@ export default {
       }
 
     },
+    calculateDelivery:function(){
+      var nbBouteilles=0;
+      this.products.forEach(function(element) {
+        nbBouteilles=nbBouteilles+parseInt(element.quantity, 10);;
+      })
+      if (nbBouteilles<13) {
+        this.livraison=30;
+      }
+      if (nbBouteilles>13&&nbBouteilles<36) {
+        this.livraison=20;
+      }
+      if (nbBouteilles>35) {
+        this.livraison=0;
+      }
+    },
     submitAddress (isHiddenBillTo,isHiddenShipTo) {
         //  e.preventDefault();
         this.address1  = {
           lastname1: this.lastname1,
-                    firstname1: this.firstname1,
+          firstname1: this.firstname1,
 
           gender1: this.gender1,
           street1: this.street1,
@@ -96,7 +121,7 @@ export default {
           city1: this.city1,
           region1: this.region1,
           country1: this.country1,
-            email : this.email,
+          email : this.email,
         };
         console.log(this.address1)
         if (isHiddenShipTo) {
@@ -158,7 +183,7 @@ export default {
               console.log(response);
 
               //supprimer local storage
-                window.location.href = "confirmation";
+              window.location.href = "confirmation";
             })
           },
 

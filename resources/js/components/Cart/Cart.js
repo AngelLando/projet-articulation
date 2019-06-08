@@ -5,7 +5,7 @@ export default {
 			tvaPercent:7.7,
 			tva:0,
 			finalsubPrice:0,
-			livraison:25,
+			livraison:0,
 			finalPrice:0,
 			productToDelete: '',
 			id:document.querySelector("meta[name='user-id']"),
@@ -13,6 +13,21 @@ export default {
 		}
 	},
 	methods:{
+		calculateDelivery:function(){
+			var nbBouteilles=0;
+			this.products.forEach(function(element) {
+				nbBouteilles=nbBouteilles+parseInt(element.quantity, 10);;
+			})
+			if (nbBouteilles<13) {
+				this.livraison=30;
+			}
+				if (nbBouteilles>13&&nbBouteilles<36) {
+				this.livraison=20;
+			}
+				if (nbBouteilles>35) {
+				this.livraison=0;
+			}
+			},
 		adjustPrice: function(product){
 			var local = localStorage.getItem('storedID'),
 			local = local ? JSON.parse(local): [];
@@ -20,7 +35,7 @@ export default {
 			product.quantity = test;
 			var finalsubPrice= 0;
 			var total = product.price*product.quantity;
-			product.totalprice=total
+			product.totalprice=total;
 			this.adjustTotalPrice();
 
 			var prodId = product.id
@@ -33,7 +48,6 @@ export default {
 		},
 		adjustTotalPrice:function(){
 			var finalsubPrice= 0;
-			console.log(this.products)
 			this.products.forEach(function(product) {
 			var total =  product.price*product.quantity;
 			product.totalprice=total
@@ -41,7 +55,7 @@ export default {
 			});
 			this.finalsubPrice=finalsubPrice;
 			this.tva = Math.round(this.tvaPercent*this.finalsubPrice/100);
-			console.log(this.finalPrice)
+						this.calculateDelivery();
 			this.finalPrice = this.finalsubPrice+this.tva+this.livraison;
 
 		},
@@ -114,6 +128,8 @@ export default {
 		});
 		this.finalsubPrice=finalsubPrice;
 		this.tva = Math.round(this.tvaPercent*this.finalsubPrice/100);
+					this.calculateDelivery();
+
 		this.finalPrice = this.finalsubPrice+this.tva+this.livraison;
 	},
 	beforeMount(){

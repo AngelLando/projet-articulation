@@ -262,3 +262,12 @@ border-bottom: 1px solid #D3D3D3;
 .fix_cross{
     max-width: 150px;
 }
+
+.cross{
+    width:20px;
+}
+
+
+.cross:hover {
+    cursor:pointer;
+}
