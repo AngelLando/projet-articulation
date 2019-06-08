@@ -14,6 +14,12 @@ export default {
 		}
 	},
 	methods:{
+
+        sendMail: function(){
+            var name = this.product.slug;
+            window.location.href = "mailto:?subject=Belle découverte&body=Cher ami-e, je te recommande ce vin que j'apprécie beaucoup : http://pingouin1.heig-vd.ch/six/produit/" +name+ ". Belle découverte et à bientôt.";
+        },
+
         toggleHeart: function(event){
             var clickedElement = event.target;
 
