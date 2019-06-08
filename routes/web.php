@@ -91,6 +91,14 @@ Route::get('/promotions', function() {
     return view('pages.promotions')->with('products', $data);
 })->name('promotions');
 
+Route::get('/a-propos', function () {
+    return view ('pages.a-propos');
+})->name('a-propos');
+
+Route::get('/conditions-generales-de-vente', function () {
+    return view ('pages.cgv');
+})->name('conditions-generales-de-vente');
+
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
     Route::resource('produits', 'ProductAdminController');

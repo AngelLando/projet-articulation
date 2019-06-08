@@ -1,95 +1,50 @@
 <template>
-    <div class="account container pt45 pb70">
-        <div class="row px20 pt0">
-            <div class="col-md-3 hidden-xs hidden-sm block">
-                <nav class="static-menu serif h4 mb35">
-                    <p>Mon compte test2</p>
-                    <ul class="nav-account m0 p0">
-                        <li class="mb20 active" @click="underline" v-on:click="showOrders=true; showInfos=false; showAdresses=false; showNewsletters=false; showFavs=false">
-                            Mes commandes
-                        </li>
-                        <li class="mb20 else" @click="underline" v-on:click="showOrders=false; showInfos=true; showAdresses=false; showNewsletters=false; showFavs=false">
-                            Mes informations
-                        </li>
-                        <li class="mb20 else" @click="underline" v-on:click="showOrders=false; showInfos=false; showAdresses=true; showNewsletters=false; showFavs=false">
-                            Mes adresses
-                        </li>
-                        <li class="mb20 else" @click="underline" v-on:click="showOrders=false; showInfos=false; showAdresses=false; showNewsletters=true; showFavs=false">
-                            Mes newsletters
-                        </li>
-                        <li class="mb20 else" @click="underline" v-on:click="showOrders=false; showInfos=false; showAdresses=false; showNewsletters=false; showFavs=true">
-                            Mes préférés
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="content orders col-md-9 hidden-xs hidden-sm block" v-if="showOrders">
-                <h2>Mes commandes</h2>
+    <div>
+        <div class="container about-us">
+            <div class="row p-b-148">
+                <div class="about-us-text1 col-md-7 col-lg-6">
+                    <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
+                        <h3 class="mtext-111 cl2 p-b-16">
+                            Qui sommes-nous ?
+                        </h3>
+                        <br>
 
-                <div class="row number_orders">
-
-                    <div class="col-md-auto text-left ">
-                        Afficher
+                        <p class="stext-113 cl6 p-b-26">
+                            Soucieuse de qualité et leader en termes de prix, la maison de vins Gazzar met à votre disposition un savoir-faire acquis sur plusieurs générations. Depuis 1973, l’entreprise familiale travaille dans l’exigence renouvelée du détail qui fait l’art d’un grand vin. Parmi l’étendue considérable de l’offre, notre tâche est de sélectionner pour vous des vins de légende, mais également de rechercher des vins hors des sentiers battus. Nous favorisons ainsi des producteurs artisanaux, respectueux de la nature et des écosystèmes et partageons avec eux cette passion des grands vins. Nous prenons le soin de déguster tous les vins que nous vous proposons, garantissant ainsi l’excellence et un conseil personnel.
+                        </p>
                     </div>
-                    <div class="number_list col-md-auto">
-                        <select class="browser-default custom-select">
-                            <option selected value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                        </select>
-                    </div>
-                    <div class="col-6 text-left">
-                        commandes par page
-                    </div>
-                    <nav class="no-page col-md-auto text-left">
-                        <ul>
-                            <span class="arrow-left"><img src="images/left-arrow.svg" v-if="showArrayLeft" alt=""></span>
-                            <li class="active">1</li> <!--  @click="underline" v-on:click="showArrayLeft=false; showArrayRight=true"  !-->
-                            <li class="else" >2</li> <!--   @click="underline" v-on:click="showArrayLeft=true; showArrayRight=false"   !-->
-                            <span class="arrow-right"><img src="images/right-arrow.svg" v-if="showArrayRight" alt=""></span>
-                        </ul>
-                    </nav>
                 </div>
-                <div class="container pt-3">
-                    <div class="orders_header row">
-                        <p class="col-4 col-xs-7">Commande n°</p>
-                        <p class="col-2 col-xs-1 text-left">Date</p>
-                        <p class="col-2 col-xs-1 text-left">Montant</p>
-                        <p class="col-2 text-left">État</p>
-                        <p class="col-2 text-left">Paiement</p>
+
+                <div class="about-us-image col-11 col-md-5 col-lg-6 m-lr-auto">
+                    <div class="how-bor1 ">
+                        <div class="hov-img0">
+                            <img src="images/domaine-vignoble.jpg" alt="IMG">
+                        </div>
                     </div>
-                    <div v-for="order in orders" class="order_line row">
-                        <p class="col-1 down-arrow else"><img src="images/down-arrow.svg" alt=""></p>
-                        <p class="col-3">{{order.no}}</p>
-                        <p class="col-2 text-left">11.03.19</p>
-                        <p class="col-2 text-left">CHF 108.00</p>
-                        <p class="col-2 text-left">Livrée</p>
-                        <p class="col-2 text-left">Réglé</p>
-                    </div>
+                </div>
+            </div>
+            <div class="row p-b-148">
+                <div class="col">
+
+                    <p class="stext-113 cl6 p-b-26">
+                        Du fait de la dimension familiale de notre entreprise, nous sommes en mesure de limiter nos coûts et de répercuter ces économies réalisées sur nos tarifs, faisant ainsi bénéficier nos clients. De la sorte, nous proposons l’achat de Bordeaux en primeurs au meilleur prix. Etant donné que nous ne vendons pas de vin au détail, notre clientèle accède à des tarifs de grossistes, en vigueur dès l’achat de 12 bouteilles. C’est cet héritage que la maison Gazzar souhaite partager, en vous ouvrant l’univers des vins à des prix privilégiés.
+                    </p>
+                        <p class="stext-113 cl6 p-b-26">
+                            Nous sommes ouverts pour vous accueillir : <b>
+                            <br>lundi – vendredi de 7h30 à 12h00 et de 14h00 à 17h30.</b>
+                        </p>
 
                 </div>
-                <div v-if="orders.length == 0">Pas de commande pour le moment.</div>
-
-            </div>
-            <div class="content infos col-md-9 hidden-xs hidden-sm block" v-if="showInfos">
-                <h2>Mes informations</h2>
-                <div>Rien de fait pour le moment :)</div>
-            </div>
-            <div class="content addresses col-md-9 hidden-xs hidden-sm block" v-if="showAdresses">
-                <h2>Mes adresses</h2>
-                <div>Rien de fait non plus pour le moment :)</div>
-            </div>
-            <div class="content newsletters col-md-9 hidden-xs hidden-sm block" v-if="showNewsletters">
-                <h2>Mes newsletters</h2>
-                <div>Pas de newsletter pour le proto :)</div>
-            </div>
-            <div class="content favorites col-md-9 hidden-xs hidden-sm block" v-if="showFavs">
-                <h2>Mes préférés</h2>
-                <div>Pas de wishlist pour le proto :)</div>
             </div>
         </div>
     </div>
 </template>
 
-<script src="./Account.js"></script>
-<style src="./Account.css" scoped></style>
+<script src="./AboutUs.js"></script>
+<style src="./AboutUs.css" scoped></style>
+
+
+
+
+
+
