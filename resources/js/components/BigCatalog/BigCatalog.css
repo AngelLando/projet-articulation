@@ -129,8 +129,28 @@ Product
 
 }
 
+.item-added ~.product_cart {
+    background-color: rgba(133, 0, 56, 0.3) !important;
+}
+
+.item-added {
+
+}
 
 
+.added {
+    display: none;
+}
+
+
+.item-added ~ .added {
+    display: flex !important;
+    background-color: rgba(133, 0, 56, 0.3) !important;
+}
+
+.item-added {
+    display: none !important;
+}
 
 
 .product_name a:hover

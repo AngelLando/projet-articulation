@@ -330,6 +330,31 @@ div.product_button.product_cart, .add_product {
 }
 
 
+.item-added ~.product_cart {
+    background-color: rgba(133, 0, 56, 0.3) !important;
+}
+
+.item-added {
+
+}
+
+
+.added {
+    display: none;
+}
+
+
+.item-added ~ .added {
+    display: flex !important;
+    background-color: rgba(133, 0, 56, 0.3) !important;
+}
+
+.item-added {
+    display: none !important;
+}
+
+
+
 /***********
 Product_rating
 ***********/

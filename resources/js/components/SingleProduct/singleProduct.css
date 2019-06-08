@@ -10,12 +10,27 @@ Global
 
 
 .item-added {
-    background-color: rgba(133, 0, 56, 0.3) !important;
+
 }
 
 .item-added ~.product_cart {
     background-color: rgba(133, 0, 56, 0.3) !important;
 }
+
+.added {
+    display: none;
+}
+
+
+.item-added ~ .added {
+    display: flex !important;
+    background-color: rgba(133, 0, 56, 0.3) !important;
+}
+
+.item-added {
+    display: none !important;
+}
+
 
 a, a:visited, a:active, a:link
 {

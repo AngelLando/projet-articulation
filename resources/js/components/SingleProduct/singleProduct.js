@@ -63,7 +63,7 @@ export default {
                 $(clickedElement).addClass("item-added");
                 setTimeout(function () {
                     $(clickedElement).removeClass('item-added');
-                }, 2000);
+                }, 1500);
 
                 var local = localStorage.getItem('storedID');
                 local = local ? JSON.parse(local): [];

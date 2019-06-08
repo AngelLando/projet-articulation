@@ -175,10 +175,11 @@
                                     <div class="product_buttons">
                                         <div class="text-right d-flex flex-row align-items-start justify-content-start">
                                            <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
-                                            <input type="number" class="choice_list text-center" placeholder= "1" min="1" :max="product.stock" @click="setQuantity(product)">
+                                            <input type="number" class="choice_list text-center" placeholder="1" min="1" v-model="quantity" :max="product.stock" @click="setQuantity(product)">
                                             <p class="error pt-2" v-if="errors.quantity">{{errors.quantity[0]}}</p>
                                         </div>
                                         <div @click="input(product)" class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
+                                        <div class="product_button add_product added text-center flex-column align-items-center justify-content-center">AJOUTÉ</div>
                                         <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
                                             <div><div><img src="images/cart.svg" class="svg" alt=""></div></div>
                                         </div>
