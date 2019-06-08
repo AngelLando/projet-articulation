@@ -16,13 +16,11 @@ nav.navbar.navbar-expand-md.navbar-light.shadow-sm {
 }
 
 nav.navbar-light a.navbar-brand {
-  color: #ffffff ;
+  color: #ffffff !important;
 }
 
 nav.navbar-light ul.navbar-nav > li.nav-item > a.nav-link {
-  color: #ffffff ;
-    font-size:15px;
-
+  color: #ffffff !important;
 }
 
 nav.navbar-light ul.navbar-nav > li > .dropdown-menu > a.dropdown-item {
