@@ -24,7 +24,8 @@ export default {
             selected_years: [],
             quantity : '',
             errors : {},
-            counter: '',
+            start : ['1'],
+            counter: 1,
             cartItem : '',
             id: document.querySelector("meta[name='user-id']"),
         }
@@ -51,10 +52,25 @@ export default {
                 }
                 return output
             }
-        }
+        },
+
+
+
     },
 
     methods: {
+
+        /* --> cause une loop, pas la bonne solution d'appeler une méthode
+        increments: function() {
+            this.counter = this.counter+1;
+            return ''
+        },*/
+
+
+        reStartCounter: function () {
+            this.counter == 0;;
+        },
+
 
         toggleHeart: function(event){
             var clickedElement = event.target;
@@ -83,6 +99,7 @@ export default {
                 return 0;
             }
         },
+
         setQuantity:function(product){
             this.quantity = event.target.value;
         },
