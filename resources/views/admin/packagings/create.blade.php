@@ -2,7 +2,7 @@
 @section('content')
 @include('admin.includes.menu')
 
-<div class="container"><br>
+<div class="container packagings-creator"><br>
 
     <div class="card">
         <div class="card-header">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group">
                     <div class="text-center">
-                        <button class="btn btn-primary" type="submit">Créer le conditionnement</button>
+                        <button class="btn btn-primary btn-create-packaging" type="submit">Créer le conditionnement</button>
                     </div>
                 </div>
             </form>
@@ -40,3 +40,16 @@
     </div>
 </div><br>
 @endsection
+
+<style>
+
+    .packagings-creator {
+        padding: 3em 0;
+    }
+
+    .btn-create-packaging {
+        background-color: #850038 !important;
+        border-color: #850038 !important;
+    }
+
+</style>

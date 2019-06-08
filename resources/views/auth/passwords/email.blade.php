@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container send-email-pwd">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card mt-5 mb-5">
@@ -33,7 +33,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-reset-pwd">
                                     {{ __('Envoyer un lien de réinitialisation') }}
                                 </button>
                             </div>
@@ -45,3 +45,26 @@
     </div>
 </div>
 @endsection
+
+
+
+<style>
+
+    .send-email-pwd {
+        padding: 4em 0;
+        height: 54%;
+    }
+
+    .btn-reset-pwd {
+        background-color: #850038 !important;
+        border-color: #850038 !important;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active  {
+        -webkit-box-shadow: 0 0 0 30px #eeecef inset !important;
+    }
+
+</style>

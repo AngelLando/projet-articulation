@@ -2,7 +2,7 @@
 @section('content')
 @include('admin.includes.menu')
 
-<div class="container"><br>
+<div class="container packagings-index"><br>
 
 @if(Session::has('success'))
     <div class="alert alert-success">
@@ -10,8 +10,8 @@
     </div>
 @endif
 
-    <h1 class="big-title">Conditionnements <a href="{{ route('conditionnements.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau conditionnement</button></a></h1>
-    <table class="table table-hover">
+    <h1 class="big-title">Conditionnements <a href="{{ route('conditionnements.create') }}"><button type="button" class="btn btn-add-new-packaging btn-primary float-right">Créer un nouveau conditionnement</button></a></h1>
+    <table class="table table-hover table-packagings">
         <thead>
             <th>Nom</th>
             <th>Capacité</th>
@@ -24,12 +24,12 @@
             <tr>
                 <td>{{ $packaging->type }}</td>
                 <td>{{ $packaging->capacity }}</td>
-                <td><a href="{{ route('conditionnements.edit', ['id' => $packaging->id]) }}" class="btn btn-xs btn-warning">Modifier</a></td>
+                <td><a href="{{ route('conditionnements.edit', ['id' => $packaging->id]) }}" class="btn btn-xs btn-edit btn-warning">Modifier</a></td>
                 <td>
                     <form action="{{ route('conditionnements.destroy', ['id' => $packaging->id]) }}" method="post">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <button class="btn btn-xs btn-danger" type="submit">Supprimer</button>
+                        <button class="btn btn-xs btn-danger btn-delete" type="submit">Supprimer</button>
                     </form>
                 </td>
             </tr>
@@ -46,3 +46,31 @@
     </div>
 </div>
 @endsection
+
+<style>
+
+    .packagings-index {
+        padding: 3em 0;
+    }
+
+    .btn-edit {
+        background-color: #bcbabc !important;
+        border-color: #bcbabc !important;
+        color: white !important;
+    }
+
+    .btn-delete {
+        background-color: rgba(133, 0, 56, 0.6) !important;
+        border-color: rgba(133, 0, 56, 0.1) !important;
+    }
+
+    .table-packagings {
+        margin-top: 3em;
+    }
+
+    .btn-add-new-packaging {
+        background-color: #850038 !important;
+        border-color: #850038 !important;
+    }
+
+</style>

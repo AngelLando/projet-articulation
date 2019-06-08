@@ -2,7 +2,7 @@
 @section('content')
 @include('admin.includes.menu')
 
-<div class="container mb-3"><br>
+<div class="container products-creator mb-3"><br>
 @if(Session::has('success'))
     <div class="alert alert-success">
         {{ Session::get('success') }}
@@ -194,7 +194,7 @@
                 </div>
                 <div class="form-group">
                     <div class="text-center">
-                        <button class="btn btn-primary" type="submit">Créer le produit</button>
+                        <button class="btn btn-primary btn-create-product" type="submit">Créer le produit</button>
                     </div>
                 </div>
             </form>
@@ -202,3 +202,17 @@
     </div>
 </div><br>
 @endsection
+
+
+<style>
+
+    .products-creator {
+        padding: 3em 0;
+    }
+
+    .btn-create-product {
+        background-color: #850038 !important;
+        border-color: #850038 !important;
+    }
+
+</style>
