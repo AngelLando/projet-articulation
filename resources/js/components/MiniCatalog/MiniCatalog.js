@@ -4,7 +4,7 @@ export default {
         return {
             products : [],
             product_id : '',
-            quantity : '',
+            quantity : 1,
             errors : {},
             id:document.querySelector("meta[name='user-id']"),
         }
@@ -55,6 +55,13 @@ export default {
             if (this.quantity>clickedProduct.stock || this.quantity<=0) {
                 console.log("erreur")
             } else {
+
+                var clickedElement = event.target;
+                $(clickedElement).addClass("item-added");
+                setTimeout(function () {
+                    $(clickedElement).removeClass('item-added');
+                }, 1500);
+
                 var local = localStorage.getItem('storedID');
                 local = local ? JSON.parse(local): [];
                 var prodId = clickedProduct.id

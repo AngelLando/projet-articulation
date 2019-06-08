@@ -22,7 +22,7 @@ export default {
             selected_tags: [],
             selected_countries: [],
             selected_years: [],
-            quantity : '',
+            quantity : 1,
             errors : {},
             start : ['1'],
             counter: 0,
@@ -149,6 +149,12 @@ export default {
    if (this.quantity>clickedProduct.stock || this.quantity<=0) {
                 console.log("erreur")
             }else{
+           var clickedElement = event.target;
+           $(clickedElement).addClass("item-added");
+           setTimeout(function () {
+               $(clickedElement).removeClass('item-added');
+           }, 1500);
+
             var local = localStorage.getItem('storedID');
             local = local ? JSON.parse(local): [];
             var prodId = clickedProduct.id
