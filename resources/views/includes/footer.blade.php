@@ -11,7 +11,7 @@
         <!-- Links -->
         <h5 class="text-uppercase footer-title">Actualités</h5>
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled list-links">
           <li>
             <a href="#!">S’inscrire à la newsletter</a>
           </li>
@@ -28,7 +28,7 @@
         <!-- Links -->
         <h5 class="text-uppercase footer-title">Aide</h5>
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled list-links">
           <li>
             <a href="#!">Contact</a>
           </li>
@@ -45,7 +45,7 @@
         <!-- Links -->
         <h5 class="text-uppercase footer-title">À propos</h5>
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled list-links">
           <li>
             <a href="{{route('a-propos')}}">Qui sommes-nous ?</a>
           </li>
@@ -58,7 +58,7 @@
         </ul>
       </div>
 
-      <div class="col py-3">
+      <div class="col address py-3">
         <h5 class="">Gazzar SA</h5>
         <p>Chemin du Dévent  1024 <br>Ecublens, Suisse</p>
         <p>tél : 021 691 86 71 <br> elie@gazzar.ch</p>

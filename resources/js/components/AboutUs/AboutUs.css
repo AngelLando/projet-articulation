@@ -22,25 +22,47 @@
     z-index: 1;
 }
 
-.how-bor2::before,
-.how-bor1::before {
-    content: "";
-    display: block;
-    position: absolute;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    border: 3px solid #850038;
+
+@media screen and (min-width: 1200px) {
+    .how-bor2::before,
+    .how-bor1::before {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        border: 3px solid #850038;
+    }
 }
+
+
+
+@media screen and (max-width: 1200px) {
+    .hov-img0 img {
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+}
+
 
 .how-bor1::before {
     bottom: -21px;
     left: -21px;
 }
 
-.about-us-text1 {
-    padding-right: 3em;
+@media screen and (min-width: 1200px) {
+    .about-us-text1 {
+        padding-right: 3em;
+    }
 }
+
+@media screen and (max-width: 1200px) {
+    .about-us-image {
+        margin: auto;
+    }
+}
+
 
 .about-us-image {
     margin-top: -1em;
