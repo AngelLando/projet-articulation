@@ -45,12 +45,6 @@ export default {
 		},
 		input: function (productid) {
 
-            var clickedElement = event.target;
-            $(clickedElement).addClass("item-added");
-            setTimeout(function () {
-                $(clickedElement).removeClass('item-added');
-            }, 2000);
-
 			if (this.id != null) {
 				this.cartItem  = {
 					product_id: this.product.id,
@@ -65,32 +59,40 @@ export default {
 			if (this.quantity>this.product.stock || this.quantity<=0) {
 				console.log("erreur")
 			}else{
-			var local = localStorage.getItem('storedID');
-			local = local ? JSON.parse(local): [];
-			var prodId = this.product.id
-			var q = parseInt(this.quantity, 10);
-			var alreadyExist = false;
-			local.forEach(function(element) {
-				if (element.id == prodId) {
-					alreadyExist=true;
-					var f = parseInt(element.quantity,10)
-					element.quantity = q+f;
-				}
-			});
-			if (alreadyExist==false) {
-				local.push({
-					"id":this.product.id,
-					"packaging_capacity":this.product.packaging_capacity,
-					"quantity":this.quantity,
-					"path_image":this.product.path_image,
-					"name":this.product.name,
-					"price": this.product.price,
-					"format":this.product.format,
-				})}
+
+                var clickedElement = event.target;
+                $(clickedElement).addClass("item-added");
+                setTimeout(function () {
+                    $(clickedElement).removeClass('item-added');
+                }, 2000);
+
+                var local = localStorage.getItem('storedID');
+                local = local ? JSON.parse(local): [];
+                var prodId = this.product.id
+                var q = parseInt(this.quantity, 10);
+                var alreadyExist = false;
+                local.forEach(function(element) {
+                    if (element.id == prodId) {
+                        alreadyExist=true;
+                        var f = parseInt(element.quantity,10)
+                        element.quantity = q+f;
+                    }
+			    });
+			    if (alreadyExist==false) {
+                    local.push({
+                        "id":this.product.id,
+                        "packaging_capacity":this.product.packaging_capacity,
+                        "quantity":this.quantity,
+                        "path_image":this.product.path_image,
+                        "name":this.product.name,
+                        "price": this.product.price,
+                        "format":this.product.format,
+				    })
+			    }
 				localStorage.setItem('storedID', JSON.stringify(local));
-				}
-			}
-		},
+            }
+        }
+    },
 		props : ['prod'],
 		mounted () {
 			let json = JSON.parse(this.prod);
@@ -99,5 +101,5 @@ export default {
 			this.products = json.products;
 		},
 
-	}
+}
 
