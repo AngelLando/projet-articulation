@@ -75,7 +75,7 @@ export default {
                 var numItems = document.getElementsByClassName("counter").length;
                 this.counter=numItems;
             })
-            b
+
         },
 
 
