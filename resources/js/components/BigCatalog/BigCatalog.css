@@ -390,8 +390,7 @@ Code ajouté
 @media screen and (max-width: 1200px) {
     .results_sort, .price_filter, .all_filters {
         margin: auto;
-    };
-
+    }
 }
 
 @media screen and (max-width: 1200px) {

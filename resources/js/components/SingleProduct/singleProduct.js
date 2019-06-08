@@ -14,6 +14,17 @@ export default {
 		}
 	},
 	methods:{
+        toggleHeart: function(event){
+            var clickedElement = event.target;
+
+            if($(clickedElement).hasClass("full")) {
+                $(clickedElement).addClass("empty");
+                $(clickedElement).removeClass("full");
+            } else {
+                $(clickedElement).addClass("full");
+                $(clickedElement).removeClass("empty");
+            }
+        },
 		underline: function(event){
 			var clickedElement = event.target;
 			$(clickedElement).addClass("more_info_selected");
