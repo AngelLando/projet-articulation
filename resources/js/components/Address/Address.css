@@ -263,11 +263,19 @@ Products
 }
 
 .comment{
-
 font-family: Montserrat;
 font-style: normal;
 font-weight: bold;
 font-size: 20px;
 line-height: 25px;
+color: #000000;
+}
+
+.empty{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 15px;
+line-height: 20px;
 color: #000000;
 }

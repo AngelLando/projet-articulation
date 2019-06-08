@@ -4,8 +4,11 @@
             <div class="super_container_inner">
                 <div class="super_overlay"></div>
                 <div class="products mb-5">
-                    <div class="container pb-3">
-                     <div class ="pt-3 pb-1 checkout row">
+                    
+                    <div class="container pb-3 pt-3" >
+                           <div v-if="!emptyCart" class="empty text-center">Vous n'avez pas de produit dans votre panier actuellement.
+                        </div>
+                     <div class ="pt-3 pb-1 checkout row" v-if="emptyCart">
                         <form @submit.prevent="submitAddress(isHiddenBillTo,isHiddenShipTo)" action="#" class=" row billing-form">
                             <div class="row align-items-end col-md-9">
                                 <div class="order_title col-md-12"><p>Adresse de commande</p></div>
@@ -279,12 +282,12 @@
     <h6 class="my-0">Code promo</h6>
     <small class="text-muted">cuki -10%</small>
 </div>
-<span class="text-success">- CHF {{rabais}}<span v-if="rabais % 1 === 0">.–</span><span v-if="(((rabais*1000) % 1 === 0) && (rabais % 1 !== 0))">0</span></span>
+<span class="text-success">- CHF {{rabais}}<span class="text-success" v-if="rabais % 1 === 0">.–</span><span class="text-success" v-if="(((rabais*1000) % 1 === 0) && (rabais % 1 !== 0))">0</span></span>
 </li>
 
 <li class="list-group-item d-flex justify-content-between background_grey">
   <h6 class="my-0">Total</h6>
-  <p class="price_total" v-model="finalPrice">CHF {{finalPrice}}<span v-if="finalPrice % 1 === 0">.–</span><span v-if="(((finalPrice*1000) % 1 === 0) && (finalPrice % 1 !== 0))">0</span></p>
+  <p class="price_total" v-model="finalPrice">CHF {{finalPrice}}<span class="price_total" v-if="finalPrice % 1 === 0">.–</span><span class="price_total" v-if="(((finalPrice*1000) % 1 === 0) && (finalPrice % 1 !== 0))">0</span></p>
 </li>
 </ul>
 
