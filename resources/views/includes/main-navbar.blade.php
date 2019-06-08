@@ -7,7 +7,7 @@
     <!-- <div class="container"> -->
         <a class="navbar-brand first-nav" href="{{ url('/') }}">
             <!-- {{ config('app.name', 'Gazzar') }} -->
-            <img src="{{ asset('images/gazzar-logo.svg') }} " width="200" height="auto" alt="">
+            <img class="logo" src="{{ asset('images/logo.svg') }} " width="200" height="auto" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
