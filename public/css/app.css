@@ -66,6 +66,12 @@ nav.navbar-light {
   margin-right: 0 !important;
 }
 
+.navbar-brand img {
+  margin-top: -0.3em;
+  margin-bottom: 0.2em !important;
+  width: 150px;
+}
+
 /*secondary nav styles*/
 
 nav.navbar.navbar-expand-lg.navbar-light.secondary-nav ul.navbar-nav.mr-auto li.nav-item a.nav-link {
