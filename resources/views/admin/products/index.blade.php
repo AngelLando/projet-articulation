@@ -10,7 +10,7 @@
     </div>
     @endif
 
-    <h1>Produits <a href="{{ route('produits.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau produit</button></a></h1>
+    <h1 class="big-title">Produits <a href="{{ route('produits.create') }}"><button type="button" class="btn btn-primary float-right">Créer un nouveau produit</button></a></h1>
     <table class="table table-hover">
         <thead>
             <th></th>

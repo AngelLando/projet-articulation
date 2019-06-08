@@ -2,7 +2,7 @@
 @section('content')
 @include('admin.includes.menu')
 
-<div class="container"><br>
+<div class="container mb-3"><br>
 @if(Session::has('success'))
     <div class="alert alert-success">
         {{ Session::get('success') }}
@@ -22,7 +22,7 @@
 @endif
 
     <div class="card">
-        <div class="card-header">
+        <div class="card-header title">
             Création d'un nouveau produit
         </div>
 

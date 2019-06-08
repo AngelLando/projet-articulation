@@ -10,7 +10,7 @@
     </div>
 @endif
 
-    <h1>Promotions <a href="{{ route('promotions.create') }}"><button type="button" class="btn btn-primary float-right">Créer une nouvelle promotion</button></a></h1>
+    <h1 class="big-title">Promotions <a href="{{ route('promotions.create') }}"><button type="button" class="btn btn-primary float-right">Créer une nouvelle promotion</button></a></h1>
     <table class="table table-hover">
         <thead>
             <th>Nom</th>

@@ -1,0 +1,25 @@
+*{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+}
+
+
+
+.title{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 22px;
+color: #000000;
+}
+
+.big-title{
+font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 30px;
+line-height: 35px;
+color: #000000;
+}
