@@ -2,7 +2,7 @@
 @section('content')
 @include('admin.includes.menu')
 
-<div class="container"><br>
+<div class="container products-editor"><br>
 @if(Session::has('success'))
     <div class="alert alert-success">
         {{ Session::get('success') }}
@@ -213,7 +213,7 @@
                 </div>
                 <div class="form-group">
                     <div class="text-center">
-                        <button class="btn btn-primary" type="submit">Mettre à jour le produit</button>
+                        <button class="btn btn-primary btn-edit-product" type="submit">Mettre à jour le produit</button>
                     </div>
                 </div>
             </form>
@@ -221,3 +221,16 @@
     </div>
 </div><br>
 @endsection
+
+<style>
+
+    .products-editor {
+        padding: 3em 0;
+    }
+
+    .btn-edit-product {
+        background-color: #850038 !important;
+        border-color: #850038 !important;
+    }
+
+</style>

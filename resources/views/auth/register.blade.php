@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container new-account-form">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card mt-5 mb-5">
@@ -63,7 +63,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-register">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -75,3 +75,25 @@
     </div>
 </div>
 @endsection
+
+
+
+<style>
+
+    .new-account-form {
+        padding: 4em 0;
+    }
+
+    .btn-register {
+        background-color: #850038 !important;
+        border-color: #850038 !important;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active  {
+        -webkit-box-shadow: 0 0 0 30px #eeecef inset !important;
+    }
+
+</style>

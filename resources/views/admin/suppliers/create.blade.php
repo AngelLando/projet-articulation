@@ -2,7 +2,7 @@
 @section('content')
 @include('admin.includes.menu')
 
-<div class="container"><br>
+<div class="container suppliers-creator"><br>
 
     <div class="card">
         <div class="card-header">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                     <div class="text-center">
-                        <button class="btn btn-primary" type="submit">Créer le fournisseur</button>
+                        <button class="btn btn-primary btn-create-supplier" type="submit">Créer le fournisseur</button>
                     </div>
                 </div>
             </form>
@@ -52,3 +52,16 @@
     </div>
 </div><br>
 @endsection
+
+<style>
+
+    .suppliers-creator {
+        padding: 3em 0;
+    }
+
+    .btn-create-supplier {
+        background-color: #850038 !important;
+        border-color: #850038 !important;
+    }
+
+</style>

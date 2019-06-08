@@ -2,7 +2,7 @@
 @section('content')
 @include('admin.includes.menu')
 
-<div class="container"><br>
+<div class="container tags-creator"><br>
 
     <div class="card">
         <div class="card-header">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <div class="text-center">
-                        <button class="btn btn-primary" type="submit">Créer le tag</button>
+                        <button class="btn btn-primary btn-create-tag" type="submit">Créer le tag</button>
                     </div>
                 </div>
             </form>
@@ -33,3 +33,16 @@
     </div>
 </div><br>
 @endsection
+
+<style>
+
+    .tags-creator {
+        padding: 3em 0;
+    }
+
+    .btn-create-tag {
+        background-color: #850038 !important;
+        border-color: #850038 !important;
+    }
+
+</style>

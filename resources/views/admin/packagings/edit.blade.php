@@ -2,7 +2,7 @@
 @section('content')
 @include('admin.includes.menu')
 
-<div class="container"><br>
+<div class="container packagings-editor"><br>
 @if(Session::has('success'))
     <div class="alert alert-success">
         {{ Session::get('success') }}
@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <div class="text-center">
-                        <button class="btn btn-primary" type="submit">Mettre à jour le packaging</button>
+                        <button class="btn btn-primary btn-edit-packaging" type="submit">Mettre à jour le packaging</button>
                     </div>
                 </div>
             </form>
@@ -46,3 +46,16 @@
     </div>
 </div><br>
 @endsection
+
+<style>
+
+    .packagings-editor {
+        padding: 3em 0;
+    }
+
+    .btn-edit-packaging {
+        background-color: #850038 !important;
+        border-color: #850038 !important;
+    }
+
+</style>

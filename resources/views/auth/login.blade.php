@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container login-form">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card mt-5 mb-5">
@@ -53,12 +53,12 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-login">
                                     {{ __('Se connecter') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link btn-forgot-password" href="{{ route('password.request') }}">
                                         {{ __('Mot de passe oublié ?') }}
                                     </a>
                                 @endif
@@ -71,3 +71,28 @@
     </div>
 </div>
 @endsection
+
+
+<style>
+
+    .btn-forgot-password {
+        color: #850038 !important;
+    }
+
+    .login-form {
+        padding: 4em 0;
+    }
+
+    .btn-login {
+        background-color: #850038 !important;
+        border-color: #850038 !important;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active  {
+        -webkit-box-shadow: 0 0 0 30px #eeecef inset !important;
+    }
+
+</style>
