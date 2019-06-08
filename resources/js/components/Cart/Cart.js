@@ -69,6 +69,7 @@ export default {
 				local.splice(removeIndex,1);
 				localStorage.setItem('storedID', JSON.stringify(local));
 				Vue.set(event, 'id',null)
+				Vue.set(event,'quantity',null)
 				Vue.set(event,'price',null)
 				
 				if (this.products=="" || this.products==null) {

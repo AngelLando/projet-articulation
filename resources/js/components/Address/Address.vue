@@ -6,7 +6,7 @@
                 <div class="products mb-5">
                     
                     <div class="container pb-3 pt-3" >
-                           <div v-if="!emptyCart" class="empty text-center">Vous n'avez pas de produit dans votre panier actuellement.
+                           <div v-if="!emptyCart" class="mt-5 empty text-center">Vous n'avez pas de produit dans votre panier actuellement.
                         </div>
                      <div class ="pt-3 pb-1 checkout row" v-if="emptyCart">
                         <form @submit.prevent="submitAddress(isHiddenBillTo,isHiddenShipTo)" action="#" class=" row billing-form">
