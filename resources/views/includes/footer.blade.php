@@ -36,7 +36,7 @@
             <a href="#!">FAQ</a>
           </li>
           <li>
-            <a href="#!">Conditions générales</a>
+            <a href="{{route('conditions-generales-de-vente')}}">Conditions générales</a>
           </li>
         </ul>
       </div>
@@ -47,10 +47,10 @@
 
         <ul class="list-unstyled">
           <li>
-            <a href="#!">Qui sommes-nous ?</a>
+            <a href="{{route('a-propos')}}">Qui sommes-nous ?</a>
           </li>
           <li>
-            <a href="#!">Plan d’accès</a>
+            <a href="/public/uploads/plan_gazzar_fr.pdf" download>Plan d’accès</a>
           </li>
           <li>
             <a href="#!">Partenaires</a>

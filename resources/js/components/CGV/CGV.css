@@ -45,3 +45,9 @@
 .about-us-image {
     margin-top: -1em;
 }
+
+.cgv > h2 {
+    font-size: 18px;
+    color: #850038;
+    padding-top: 1em;
+}

@@ -14,6 +14,8 @@ Vue.component('checkout-component', require('./components/Cart/Cart.vue').defaul
 Vue.component('slider-homepage', require('./components/Slider/Slider.vue').default);
 Vue.component('address-component', require('./components/Address/Address.vue').default);
 Vue.component('confirmation-component', require('./components/Confirmation/Confirmation.vue').default);
+Vue.component('about-us-component', require('./components/AboutUs/AboutUs.vue').default);
+Vue.component('cgv-component', require('./components/CGV/CGV.vue').default);
 
 
 
