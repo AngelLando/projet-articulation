@@ -3,7 +3,7 @@
         <div class="row px20 pt0">
             <div class="col-md-3 hidden-xs hidden-sm block">
                 <nav class="static-menu serif h4 mb35">
-                    <p>Mon compte test2</p>
+                    <p>Mon compte</p>
                     <ul class="nav-account m0 p0">
                         <li class="mb20 active" @click="underline" v-on:click="showOrders=true; showInfos=false; showAdresses=false; showNewsletters=false; showFavs=false">
                             Mes commandes
@@ -25,7 +25,7 @@
             </div>
             <div class="content orders col-md-9 hidden-xs hidden-sm block" v-if="showOrders">
                 <h2>Mes commandes</h2>
-
+                <hr>
                 <div class="row number_orders">
 
                     <div class="col-md-auto text-left ">
@@ -73,18 +73,58 @@
             </div>
             <div class="content infos col-md-9 hidden-xs hidden-sm block" v-if="showInfos">
                 <h2>Mes informations</h2>
-                <div>Rien de fait pour le moment :)</div>
+                <hr>
+                <form action="" method="POST">
+                    <!--{{ csrf_field() }}!-->
+                    <div class="form-group">
+                        <label for="lastname">Nom</label>
+                        <input type="text" name="lastname" class="form-control" value="" id="lastname" placeholder="Nom">
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname">Prénom</label>
+                        <input type="text" name="firstname" class="form-control" value="" id="firstname" placeholder="Prénom">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Genre</label>
+                        <select class="form-control" name="gender" id="gender">
+                            <option value=""></option>
+                            <!--<option value="m" {{ ($user->person->gender == 'm' ? 'selected' : '') }}>Homme</option>!-->
+                            <!--<option value="f" {{ ($user->person->gender == 'f' ? 'selected' : '') }}>Femme</option>!-->
+                            <!--<option value="other" {{ ($user->person->gender == 'other' ? 'selected' : '') }}>Autre</option>!-->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Nom d'utilisateur</label>
+                        <input type="text" name="username" class="form-control" value="" id="username" placeholder="Nom d'utilisateur">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" value="" id="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Nouveau mot de passe</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Mot de passe">
+                    </div>
+                    <div class="form-group">
+                        <label for="birth_date">Date de naissance</label>
+                        <input type="date" name="birth_date" class="form-control" value="" id="birth_date" placeholder="Date de naissance">
+                    </div><hr>
+                    <button type="submit" class="btn btn-primary btn-edit-infos">Mettre à jour mon compte</button>
+                </form>
             </div>
             <div class="content addresses col-md-9 hidden-xs hidden-sm block" v-if="showAdresses">
                 <h2>Mes adresses</h2>
+                <hr>
                 <div>Rien de fait non plus pour le moment :)</div>
             </div>
             <div class="content newsletters col-md-9 hidden-xs hidden-sm block" v-if="showNewsletters">
                 <h2>Mes newsletters</h2>
+                <hr>
                 <div>Pas de newsletter pour le proto :)</div>
             </div>
             <div class="content favorites col-md-9 hidden-xs hidden-sm block" v-if="showFavs">
                 <h2>Mes préférés</h2>
+                <hr>
                 <div>Pas de wishlist pour le proto :)</div>
             </div>
         </div>
