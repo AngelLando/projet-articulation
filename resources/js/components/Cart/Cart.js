@@ -41,6 +41,7 @@ export default {
 			});
 			this.finalsubPrice=finalsubPrice;
 			this.tva = Math.round(this.tvaPercent*this.finalsubPrice/100);
+			console.log(this.finalPrice)
 			this.finalPrice = this.finalsubPrice+this.tva+this.livraison;
 
 		},
@@ -54,7 +55,9 @@ export default {
 				local.splice(removeIndex,1);
 				localStorage.setItem('storedID', JSON.stringify(local));
 				Vue.set(event, 'id',null)
-				if (this.products=="") {
+				Vue.set(event,'price',null)
+				
+				if (this.products=="" || this.products==null) {
 					this.emptyCart=false;
 				}
 				this.adjustTotalPrice();
@@ -91,7 +94,7 @@ export default {
 	mounted () {
 		if (this.id != null) {
 			this.products = JSON.parse(this.cart);
-			if (this.products=="") {
+			if (this.products==null || this.products=="") {
 				this.emptyCart=false;
 			}
 

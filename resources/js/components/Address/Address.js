@@ -154,6 +154,7 @@ export default {
             axios.post('check', this.data).catch(error => {
               this.errors = error.response.data.errors
             }).then(response => {
+              localStorage.removeItem("storedID");
               console.log(response);
 
               //supprimer local storage
