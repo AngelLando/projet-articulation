@@ -1,7 +1,7 @@
 export default {
     data() {
         return {
-            url: 'cart-nav',
+            url: 'cart',
             hover: false,
             errors: '',
             fired : false,
