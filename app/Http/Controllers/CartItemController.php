@@ -99,8 +99,15 @@ class CartItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(Auth::check()) {
+            $cartItem = CartItem::where('id', $id)
+                ->update(['quantity' => $request->quantity]);
+            return $cartItem;
+        } else {
+            return null;
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
