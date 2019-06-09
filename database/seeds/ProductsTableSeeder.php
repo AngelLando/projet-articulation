@@ -86,7 +86,7 @@ class ProductsTableSeeder extends Seeder
             if ($data->supplier_id != "" && $data->year != null && property_exists($data, 'path_image')) {
                         $prod = [];
                         DB::table('products')->insert([
-                            'kind' => 'Vin blanc',
+                            'kind' =>$data->kind,
                             'name' => $data->name,
                             'description' => $data->description,
                             'price' => $data->price,
