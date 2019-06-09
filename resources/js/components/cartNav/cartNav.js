@@ -5,7 +5,8 @@ export default {
             hover: false,
             errors: '',
             fired : false,
-            cart : ''
+            cart : '',
+            img : 'images/shopping-cart.svg'
         }
     },
     mounted() {
@@ -14,10 +15,13 @@ export default {
         let path = href.split('/');
         if (path.indexOf('produit') != -1) {
             this.url = '../' + this.url
+            this.img = '../' + this.img
         } else if (path.indexOf('user') != -1) {
             this.url = '../' + this.url
+            this.img = '../' + this.img
         } else {
             this.url =  this.url
+            this.img =  this.img
         }
     },
     methods: {
