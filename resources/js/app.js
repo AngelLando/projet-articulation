@@ -16,6 +16,8 @@ Vue.component('address-component', require('./components/Address/Address.vue').d
 Vue.component('confirmation-component', require('./components/Confirmation/Confirmation.vue').default);
 Vue.component('about-us-component', require('./components/AboutUs/AboutUs.vue').default);
 Vue.component('cgv-component', require('./components/CGV/CGV.vue').default);
+Vue.component('cart-nav-component', require('./components/cartNav/cartNav.vue').default);
+
 
 
 

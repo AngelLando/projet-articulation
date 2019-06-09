@@ -76,9 +76,9 @@
               <img src="{{ asset('images/favorite-heart-white.svg') }}" width="23" height="23" class="icon"   alt="Mes Préférés">
               <a class="nav-link" href="#" >MES PRÉFÉRÉS</a>
            </li>
-           <li class="nav-item">
-            <img src="{{ asset('images/shopping-cart.svg') }}" class="icon" width="23" height="23" alt="Panier"></a>
-            <a class="nav-link" href="{{route('cart')}}">PANIER</a>
+               <div id="app">
+                   <cart-nav-component></cart-nav-component>
+               </div>
           </li>
           @if(Auth::check())
             @if(Auth::user()->admin)

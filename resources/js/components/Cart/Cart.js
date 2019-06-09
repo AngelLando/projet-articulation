@@ -15,13 +15,6 @@ export default {
         }
     },
     methods: {
-        checkout: function () {
-            if (this.id != null) {
-
-            }
-            // window.location.href = "checkout";
-        }
-        ,
         calculateDelivery: function () {
             var nbBouteilles = 0;
             this.products.forEach(function (element) {
