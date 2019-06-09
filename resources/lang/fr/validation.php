@@ -157,6 +157,10 @@ return [
         ],
         'products.quantity' => [
             'min' => 'Désolé, mais vous devez au moins avoir 1 unité pour passer commande.'
+        ],
+        'cgv' => [
+            'required' => 'Pour valider votre commande, veuillez accepter les conditions générales de ventes.',
+            'in' => 'Pour valider votre commande, veuillez accepter les conditions générales de ventes.'
         ]
 
     ],

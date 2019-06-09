@@ -41,6 +41,11 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'cgv' => 'required|in:1,true'
+        ]);
+
         if (Auth::check()) {
             $personId = Auth::user()->person->id;
         } else {
@@ -79,6 +84,7 @@ class OrderController extends Controller
             'tva' => 7.7,
             'discount' => $request->promotion,
             'payment_method' => $request->payment_method,
+            'CGV' => $request->cgv,
             'address_id_1' => $addressId1,
             'address_id_2' => $addressId2,
             'address_id_3' => $addressId3,
