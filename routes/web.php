@@ -47,6 +47,11 @@ Route::get('/cart', function () {
     return view('cart')->with('cart', $data);
 })->name('cart');
 
+Route::get('/cart-nav', function () {
+    $data = App::call('App\Http\Controllers\CartController@index');
+    return $data;
+})->name('cart-nav');
+
 
 // POST
 Route::post('/user/account/update', [
