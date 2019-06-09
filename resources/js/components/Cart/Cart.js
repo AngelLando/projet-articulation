@@ -18,13 +18,16 @@ export default {
 			this.products.forEach(function(element) {
 				nbBouteilles=nbBouteilles+parseInt(element.quantity, 10);;
 			})
-			if (nbBouteilles<13) {
+			if (nbBouteilles<12) {
 				this.livraison=30;
 			}
-				if (nbBouteilles>13&&nbBouteilles<36) {
-				this.livraison=20;
+				if (nbBouteilles>=12&&nbBouteilles<23) {
+				this.livraison=35;
 			}
-				if (nbBouteilles>35) {
+            if (nbBouteilles>=24&&nbBouteilles<34) {
+                this.livraison=40;
+            }
+				if (nbBouteilles>=35) {
 				this.livraison=0;
 			}
 			},
@@ -134,9 +137,6 @@ export default {
 		this.finalPrice = this.finalsubPrice+this.tva+this.livraison;
 	},
 	beforeMount(){
-
-
-
 	},
 
 }
