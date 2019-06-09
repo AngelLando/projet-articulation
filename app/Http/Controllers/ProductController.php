@@ -54,10 +54,19 @@ class ProductController extends Controller
         foreach ($products as $key => $product) {
             $newProduct = $this->getAllData($products[$key]);
             array_push($allProducts, $newProduct);
+            //dd($newProduct);
         }
+
         $tab['products'] = $allProducts;
         $tab['appellations'] = AppellationController::index();
         $tab['tags'] = TagController::index();
+
+
+        if($id == 'Recommandations') {
+            $ratings = array_column($tab['products'], 'productRating');
+            array_multisort($ratings, SORT_DESC, $tab['products']);
+            $tab['products'] = array_slice($tab['products'], 0, 6);
+        }
 
         // CONVERT ARRAY TO JSON TO PASS DATAS
         $json = json_encode($tab);
@@ -172,7 +181,8 @@ class ProductController extends Controller
         $newProduct['tag'] = $product->tags;
         $newProduct['appellation'] = $product->appellations;
         $newProduct['promotion'] = $product->promotion->amount;
-        //$newProduct['productRating'] = $product->productRatings[0]->value;
+        $rating = $product->productRatings->avg('value');
+        $newProduct['productRating'] = $rating;
         $newProduct['packaging_capacity'] = $product->format->packagings->first()->capacity;
         return $newProduct;
     }

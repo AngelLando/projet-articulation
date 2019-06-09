@@ -33,7 +33,7 @@ Route::get('/user/account', [
 
 // return JSON file
 Route::get('/', function () {
-    $data = App::call('App\Http\Controllers\ProductController@index', [$id = null]);
+    $data = App::call('App\Http\Controllers\ProductController@index', [$id = 'Recommandations']);
     return view('homepage')->with('products', $data);
 })->name('products');
 
