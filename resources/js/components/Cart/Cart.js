@@ -62,7 +62,7 @@ export default {
                     .catch(error => {
                         this.errors = error.response.data.errors
                     }).then(response => {
-                                        console.log(this.cartItem)
+                                        console.log(response)
 
                 })
             }
