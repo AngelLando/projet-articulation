@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Order;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use Hash;
 use Illuminate\Http\Request;
 
@@ -26,12 +27,14 @@ class UserController extends Controller
                     $anOrder = [];
                     $anOrder['no']= $order->id;
                     $anOrder['date']= $order->created_at;
-                    $anOrder['discount'] = $order->discount;
+                    $anOrder['discount'] = 10;
                     $anOrder['products'] = [];
                     $anOrder['shipping_status'] = $order->shipping_status;
                     $anOrder['payment_status'] = $order->payment_status;
                     $anOrder['shipping_costs'] = $order->shippingCost->amount;
                     $orderItems = $order->orderItems;
+                    $anOrder['total'] = OrderController::makeSum($orderItems, $anOrder['shipping_costs']);
+                    $anOrder['total'] -= ($anOrder['total'] * $anOrder['discount'])/100;
                     foreach($orderItems as $orderItem) {
                         //dd($orderItem->product);
                         $aProduct = [];
