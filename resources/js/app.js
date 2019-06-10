@@ -26,3 +26,42 @@ const app = new Vue({
  el: '#app',
 
 });
+
+// ajoute la classe sur l'onglet sélectionné
+
+/*
+$(".second-nav-list").on("click", ".nav-item", evt => {
+    console.log("lkjlkj");
+    let current = $(evt.currentTarget);
+    $(current).addClass("active");
+    $(current).siblings().removeClass("active");
+});*/
+
+
+// rend le menu sticky au scroll
+
+
+window.onscroll = function() {myFunction()};
+
+// Get the navbar
+var navbar = document.getElementById("two-nav");
+var main = document.getElementById("content");
+var newlsetter = document.getElementById("newsletter");
+
+// Get the offset position of the navbar
+var sticky = navbar.offsetTop;
+
+// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+    if (window.pageYOffset >= 1) {
+        navbar.classList.add("sticky");
+        main.classList.add("content-move")
+        newsletter.classList.add("newsletter-hide")
+    } else {
+        navbar.classList.remove("sticky");
+        main.classList.remove("content-move")
+        newlsetter.classList.remove("newsletter-hide")
+    }
+}
+
+

@@ -11,7 +11,7 @@
                             <div class="col-xl-4">
                                 <div class="product">
                                         <div>
-                                            <div class="product_image"><div class="favorite-heart empty" @click="toggleHeart"></div><img class="image" :src="product.path_image" alt=""><div class="share_container"><a class="share" @click="sendMail"></a></div></div>
+                                            <div class="product_image">c<img class="image" :src="product.path_image" alt=""><div class="share_container"><a class="share" @click="sendMail"></a></div></div>
                                         </div>
                                 </div>
                             </div>

@@ -12,7 +12,12 @@ div.navbar-text.main-nav a:hover {
 
 nav.navbar.navbar-expand-md.navbar-light.shadow-sm {
   background-color: #850038;
-  padding: 1em 5em;
+}
+
+@media screen and (min-width: 400px) {
+  nav.navbar.navbar-expand-md.navbar-light.shadow-sm {
+    padding: 1em 5em;
+  }
 }
 
 nav.navbar-light a.navbar-brand {
@@ -64,12 +69,27 @@ nav.navbar-light {
 
 .newsletter {
   margin-right: 0 !important;
+  background-color: #FFFFFF;
 }
 
 .navbar-brand img {
   margin-top: -0.3em;
   margin-bottom: 0.2em !important;
   width: 150px;
+}
+
+@media screen and (max-width: 400px) {
+  nav.first-navbar {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+}
+
+.sticky {
+  position: fixed;
+  z-index: 6;
+  width: 100%;
+  top: 0;
 }
 
 /*secondary nav styles*/
@@ -119,7 +139,6 @@ nav.secondary-nav {
   font-weight: 400;
   font-size: 16px;
   text-align: center;
-  z-index: 5;
 }
 
 .nav.navbar.navbar-expand-lg.navbar-light.secondary-nav {
@@ -10887,5 +10906,13 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+main.content-move {
+  padding-top: 159px;
+}
+
+div.newsletter-hide {
+  display: none;
 }
 

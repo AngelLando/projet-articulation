@@ -11,8 +11,15 @@ div.navbar-text.main-nav a:hover {
 
 nav.navbar.navbar-expand-md.navbar-light.shadow-sm {
   background-color: $main-pink ;
-  padding: 1em 5em;
 }
+
+
+@media screen and (min-width: 400px) {
+    nav.navbar.navbar-expand-md.navbar-light.shadow-sm {
+        padding: 1em 5em;
+    }
+}
+
 
  nav.navbar-light a.navbar-brand {
     color: $white !important;
@@ -64,6 +71,7 @@ nav.navbar-light ul.navbar-nav > li > .dropdown-menu > a.dropdown-item:hover{
 
 .newsletter {
     margin-right: 0 !important;
+    background-color: #FFFFFF;
 }
 
 .navbar-brand img {
@@ -71,3 +79,112 @@ nav.navbar-light ul.navbar-nav > li > .dropdown-menu > a.dropdown-item:hover{
     margin-bottom: 0.2em !important;
     width: 150px;
 }
+
+
+@media screen and (max-width: 400px) {
+    nav.first-navbar {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+}
+
+.sticky {
+    position: fixed;
+    z-index: 6;
+    width: 100%;
+    top: 0;
+}
+
+
+/*secondary nav styles*/
+nav.navbar.navbar-expand-lg.navbar-light.secondary-nav ul.navbar-nav.mr-auto li.nav-item a.nav-link{
+    color: $black !important;
+}
+
+nav.navbar.navbar-expand-lg.navbar-light.secondary-nav ul.navbar-nav.mr-auto li.nav-item a.nav-link:hover,
+nav.navbar.navbar-expand-lg.navbar-light.secondary-nav ul.navbar-nav.mr-auto li.nav-item a.nav-link:focus {
+    font-weight: bold;
+}
+
+.active a {
+    font-weight: bold !important;
+}
+
+
+nav.navbar.navbar-expand-lg.navbar-light.secondary-nav {
+    padding: 1em 4em ;
+    z-index: 2;
+}
+
+input.form-control.mr-sm-2.secondary-nav {
+    background-color: inherit;
+    border: none;
+    border-radius: 0;
+}
+
+input.form-control.mr-sm-2.secondary-nav:focus {
+    border: none;
+    box-shadow: none;
+}
+
+button.btn.my-2.my-sm-0.secondary-nav:focus {
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+nav.secondary-nav form.form-inline {
+    border-bottom: 1px solid #ced4da;
+}
+
+
+nav.secondary-nav {
+    box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2) !important;
+    height: 60px;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+.nav.navbar.navbar-expand-lg.navbar-light.secondary-nav {
+    z-index: 5;
+}
+
+button.btn-search {
+    border: none;
+}
+
+button.btn-search:hover {
+    background-color: transparent !important;
+    border: none;
+}
+
+.second-nav {
+    padding-top: 0.1em;
+    background-color: #f8f9fa;
+}
+
+
+@media screen and (max-width: 640px) {
+    .second-nav-list, .search-bar {
+        background-color: #f8f9fa;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .btn-search > img {
+        display: none;
+    };
+    .search-bar {
+        height: 40px;
+    };
+}
+
+
+.second-nav-toggler {
+    margin-top: -0.3em;
+}
+
+
+

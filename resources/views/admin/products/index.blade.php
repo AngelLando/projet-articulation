@@ -77,4 +77,9 @@
         border-color: #850038 !important;
     }
 
+    .page-link {
+        background-color: red;
+    }
+
+
 </style>

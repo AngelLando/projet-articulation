@@ -29,7 +29,7 @@
     <div id="app">
       @include('includes.main-navbar')
       @include('includes.secondary-navbar')
-      <main>
+      <main id="content">
         @yield('content')
       </main>
     </div>

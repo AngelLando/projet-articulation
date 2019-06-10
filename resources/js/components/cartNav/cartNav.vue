@@ -1,8 +1,8 @@
 <template>
     <div>
         <li class="nav-item" @mouseover="getCart()" @mouseleave="hover = false">
-            <img :src="img" class="icon" width="23" height="23" alt="Panier">
-            <a class="nav-link panier" :href="url">PANIER</a>
+            <div class="fa fa-shopping-cart"></div>
+            <a class="nav-link cart-link" style="color: white;" :href="url">PANIER</a>
             <div class="cart" v-if="hover == true">
                 <div v-if="emptyCart">
                     <div class="cart_header row">

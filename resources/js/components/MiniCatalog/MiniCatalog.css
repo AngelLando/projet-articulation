@@ -155,9 +155,16 @@ Product
 {
     font-family: Montserrat;
     font-weight: bold;
-    font-size: 18px;
-    line-height: 24px;
     color: black !important;
+}
+
+
+
+@media screen and (min-width: 665px) {
+    .product_name a {
+        font-size: 18px;
+        line-height: 24px;
+    }
 }
 
 
@@ -281,7 +288,7 @@ div.favorite-heart.full {
 
 /* for chrome browser*/
 @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
-    @media screen and (max-width: 1200px) {
+    @media screen and (min-width: 460px) and (max-width: 1200px) {
         .favorite-heart {
             top: -205px;
             right: -235px;
@@ -290,15 +297,77 @@ div.favorite-heart.full {
 }
 
 
+/* for chrome browser*/
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+    @media screen and (min-width: 406px) and (max-width: 460px) {
+        .favorite-heart {
+            top: -205px;
+            right: -200px;
+        }
+    }
+}
+
+/* for chrome browser*/
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+    @media screen and (min-width: 371px) and (max-width: 405px) {
+        .favorite-heart {
+            top: -140px;
+            right: -195px;
+        }
+    }
+}
+
+/* for chrome browser*/
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+    @media screen and (max-width: 370px) {
+        .favorite-heart {
+            top: -140px;
+            right: -150px;
+        }
+    }
+}
+
 /* for safari browser*/
 @media not all and (min-resolution:.001dpcm) {
-    @media screen and (max-width: 1200px) {
+    @media screen and (min-width: 461px) and (max-width: 1200px) {
         .favorite-heart {
             top: -200px;
             right: -275px;
         }
     }
 }
+
+/* for safari browser*/
+@media not all and (min-resolution:.001dpcm) {
+    @media screen and (min-width: 406px) and (max-width: 460px) {
+        .favorite-heart {
+            top: -195px;
+            right: -180px;
+        }
+    }
+}
+
+/* for safari browser*/
+@media not all and (min-resolution:.001dpcm) {
+    @media screen and (min-width: 371px) and (max-width: 405px) {
+        .favorite-heart {
+            top: -140px;
+            right: -195px;
+        }
+    }
+}
+
+/* for safari browser*/
+@media not all and (min-resolution:.001dpcm) {
+    @media screen and (max-width: 370px) {
+        .favorite-heart {
+            top: -140px;
+            right: -145px;
+        }
+    }
+}
+
+
 
 .favorite-heart {
     width: 40px;
@@ -376,3 +445,53 @@ Product_rating
 .fa-star {
     color: #850038;
 }
+
+
+
+/*************************************
+Responsivité under 500 pts size screen
+*************************************/
+
+
+@media screen and (max-width: 500px) {
+    .product_name a {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .product_name {
+        font-size: 16px;
+        line-height: 15px
+    }
+}
+
+@media screen and (max-width: 405px) {
+    .product_price {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 405px) {
+    .image {
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .product_cart {
+        width: 3em !important;
+        border-left: solid 1px #850038;
+    }
+}
+
+@media screen and (max-width: 405px) {
+    .products_found {
+        padding: 0;
+    }
+}
+
+
+
+
+
