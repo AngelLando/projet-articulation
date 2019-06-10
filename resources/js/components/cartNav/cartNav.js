@@ -5,7 +5,7 @@ export default {
             hover: false,
             errors: '',
             fired: false,
-            cart: '',
+            cart: [],
             img: 'images/shopping-cart.svg',
             tvaPercent: 7.7,
             tva: 0,
@@ -15,7 +15,9 @@ export default {
             productToDelete: '',
             id: document.querySelector("meta[name='user-id']"),
             emptyCart: true,
-            cartHref : 'cart'
+            cartHref : 'cart',
+            deleteSVG : 'images/delete.svg',
+            checkout : 'checkout'
         }
     },
     mounted() {
@@ -26,14 +28,20 @@ export default {
             this.url = '../' + this.url
             this.img = '../' + this.img
             this.cartHref = '../' + this.cartHref
+            this.deleteSVG = '../' + this.deleteSVG
+            this.checkout = '../' + this.checkout
         } else if (path.indexOf('user') != -1) {
             this.url = '../' + this.url
             this.img = '../' + this.img
             this.cartHref = '../' + this.cartHref
+            this.deleteSVG = '../' + this.deleteSVG
+            this.checkout = '../' + this.checkout
         } else {
             this.url = this.url
             this.img = this.img
             this.cartHref = this.cartHref
+            this.deleteSVG = this.deleteSVG
+            this.checkout = this.checkout
         }
     },
     methods: {
@@ -42,9 +50,12 @@ export default {
                 axios.get(this.url).catch(error => {
                     this.errors = error.response.data.errors
                 }).then(response => {
-                    console.log(response)
-                    this.cart = response.data;
-                    //ici, il faut faire en sorte que this.cart ai les bonnes donéées
+                    if(response.data != null) {
+                        this.cart = response.data;
+                    } else {
+                        this.cart = null
+                    }
+
                     if (this.cart == null || this.cart == "") {
                         this.emptyCart = false;
                     }
