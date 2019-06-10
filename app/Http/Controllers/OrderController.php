@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Order;
 use App\Person;
+use App\ShippingCost;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShippingCostController;
@@ -103,6 +104,7 @@ class OrderController extends Controller
             'city' => $request->address1['city1'],
             'country' => $request->address1['country1'],
             'products' => $productTab,
+            'total' => $this->makeSum($productTab, $shippingCosts)
         ];
 
         // DELETE CART FROM DATABASE
@@ -179,5 +181,16 @@ class OrderController extends Controller
         Mail::send('viewEmailOrder', ['billing' => $billing], function ($message) use ($email) {
             $message->to($email)->subject('Votre dernière facture 🍷 | Gazzar.ch');
         });
+    }
+
+    public function makeSum ($array, $shippingcostsID) {
+        $sum = 0;
+        foreach ($array as $key => $item) {
+         $sum = $sum + ($item['product']->price * $item['quantity']);
+        }
+        $sum = $sum + ($sum * 0.077);
+        $shippingcosts = ShippingCost::where('id', $shippingcostsID)->first();
+        $sum = $sum + $shippingcosts->amount;
+        return $sum;
     }
 }
