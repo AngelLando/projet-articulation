@@ -52,39 +52,40 @@
                 </div>
                 <div class="container pt-3">
                     <div class="orders_header row">
-                        <p class="col-4 col-xs-7">Commande n°</p>
-                        <p class="col-2 col-xs-1 text-left">Date</p>
-                        <p class="col-2 col-xs-1 text-left">Montant</p>
+                        <p class="col-2 ">N°</p>
+                        <p class="col-3 date-col text-left">Date</p>
+                        <p class="col-3 text-left">Montant</p>
                         <p class="col-2 text-left">État</p>
-                        <p class="col-2 text-left">Paiement</p>
+                        <p class="col-1 text-left">Paiement</p>
                     </div>
                         <div class="order_container row" v-for="order in json.orderList" @click="open">
                             <div class="order_line row">
                                 <p class="col-1 arrow down"></p>
-                                <p class="col-3 text-col text-left ">{{order.no}}</p>
-                                <p class="col-2 text-col text-left">{{formatDate(order.date)}}</p>
-                                <p class="col-2 text-col text-left">CHF 108.00 {{total}}</p>
-                                <p class="col-2 text-col text-left">{{order.shipping_status}}</p>
-                                <p class="col-2 text-col text-left">{{order.payment_status}}</p>
+                                <p class="col-1 text-col ">{{order.no}}</p>
+                                <p class="col-3 date text-col text-left">{{formatDate(order.date)}}</p>
+                                <p class="col-3 total text-col text-left">CHF 108.00 {{total}}</p>
+                                <p class="col-2 status text-col text-left">{{order.shipping_status}}</p>
+                                <p class="col-2 payment text-col text-left">{{order.payment_status}}</p>
                             </div>
                             <div class="more">
                                 <div class="row">
-                                    <div class="col-md-12 resume">
+                                    <div class="col-12 resume">
                                         <b>Produits commandés</b>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div v-for="product in order.products" class="col-md-6">
                                         <div class="row">
-                                            <div class="col-md-2">
+                                            <div class="col-2">
                                                 <img  class="product_order_image" :src="product.image" alt="">
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-8">
                                                 <p>{{product.name}}</p>
                                                 <p>{{product.format}}</p>
                                                 <p>CHF {{product.price}}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span> x {{product.quantity}}</p>
                                             </div>
                                         </div>
+                                        <hr>
                                     </div>
                                 </div>
                             </div>
