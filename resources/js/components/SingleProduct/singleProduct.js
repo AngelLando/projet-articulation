@@ -33,6 +33,7 @@ export default {
         },
 		underline: function(event){
 			var clickedElement = event.target;
+						$(clickedElement).removeClass("more_info");
 			$(clickedElement).addClass("more_info_selected");
 			$(clickedElement).siblings().removeClass("more_info_selected");
 			$(clickedElement).siblings().addClass("more_info");
@@ -95,6 +96,7 @@ export default {
 		props : ['prod'],
 		mounted () {
 			let json = JSON.parse(this.prod);
+			console.log(json.product)
 			this.product = json.product;
 			this.products = json.recommandations;
 			this.products = json.products;
