@@ -7,6 +7,7 @@ export default {
             quantity : 1,
             errors : {},
             id:document.querySelector("meta[name='user-id']"),
+            productHREF : ''
         }
     },
 
@@ -15,7 +16,12 @@ export default {
     mounted () {
         let json = JSON.parse(this.prod);
         this.products = json.products;
-    },
+        let href = window.location.pathname;
+        let path = href.split('/');
+        if (path.indexOf('produit') == -1) {
+            this.productHREF = 'produit/'
+        }
+        },
 
     methods : {
 

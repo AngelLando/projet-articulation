@@ -33,7 +33,7 @@
                                             </div>
                                         </div>
                                         <div class="product_info name d-flex flex-row align-items-start justify-content-start">
-                                            <div class="product_name"><a :href="`produit/`+product.slug">{{ product.name }}</a></div>
+                                            <div class="product_name"><a :href="productHREF + product.slug">{{ product.name }}</a></div>
                                         </div>
                                         <div class="product_info price d-flex flex-row align-items-start justify-content-start">
                                             <div class="product_price text-right">CHF {{ product.price }}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Order;
 use App\Person;
+use App\ShippingCost;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShippingCostController;
@@ -75,7 +76,10 @@ class OrderController extends Controller
         $addressId3 = AddressController::store($request, $nb = '3', $addressId1, $personId);
 
         // Make the sum of all products' quantity and return the right shippingcost
-        $shippingCosts = ShippingCostController::getRigthShippingCost($request);
+        $shippingCostsID = ShippingCostController::getRigthShippingCost($request);
+
+        $shippingcosts = ShippingCost::where('id', $shippingCostsID)->first();
+
 
         // Create the Order
         $orderId = Order::insertGetId([
@@ -88,7 +92,7 @@ class OrderController extends Controller
             'address_id_1' => $addressId1,
             'address_id_2' => $addressId2,
             'address_id_3' => $addressId3,
-            'shipping_cost_id' => $shippingCosts
+            'shipping_cost_id' => $shippingCostsID
         ]);
 
         // Create all OrderItems needed
@@ -103,6 +107,7 @@ class OrderController extends Controller
             'city' => $request->address1['city1'],
             'country' => $request->address1['country1'],
             'products' => $productTab,
+            'total' => $this->makeSum($productTab, $shippingcosts->amount)
         ];
 
         // DELETE CART FROM DATABASE
@@ -179,5 +184,15 @@ class OrderController extends Controller
         Mail::send('viewEmailOrder', ['billing' => $billing], function ($message) use ($email) {
             $message->to($email)->subject('Votre dernière facture 🍷 | Gazzar.ch');
         });
+    }
+
+    public static function makeSum ($array, $shippingcosts) {
+        $sum = 0;
+        foreach ($array as $key => $item) {
+         $sum = $sum + ($item['product']->price * $item['quantity']);
+        }
+        $sum = $sum + ($sum * 0.077);
+        $sum = $sum + $shippingcosts;
+        return $sum;
     }
 }
