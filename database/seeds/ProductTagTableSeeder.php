@@ -15,7 +15,7 @@ class ProductTagTableSeeder extends Seeder
         for ($i=1; $i<=4; $i++) {
             DB::table('product_tag')->insert([
                 'product_id'=> $i,
-                'tag_id'=> $i
+                'tag_id'=> 1
             ]);
         }
     }
