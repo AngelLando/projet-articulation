@@ -60,16 +60,16 @@
                     </div>
                         <div class="order_container row" v-for="order in json.orderList" @click="open">
                             <div class="order_line row">
-                                <p class="col-1 down-arrow"><img src="images/down-arrow.svg" alt=""></p>
-                                <p class="col-3">{{order.no}}</p>
-                                <p class="col-2 text-left">{{formatDate(order.date)}}</p>
-                                <p class="col-2 text-left">CHF 108.00 {{total}}</p>
-                                <p class="col-2 text-left">{{order.shipping_status}}</p>
-                                <p class="col-2 text-left">{{order.payment_status}}</p>
+                                <p class="col-1 arrow down"></p>
+                                <p class="col-3 text-col text-left ">{{order.no}}</p>
+                                <p class="col-2 text-col text-left">{{formatDate(order.date)}}</p>
+                                <p class="col-2 text-col text-left">CHF 108.00 {{total}}</p>
+                                <p class="col-2 text-col text-left">{{order.shipping_status}}</p>
+                                <p class="col-2 text-col text-left">{{order.payment_status}}</p>
                             </div>
                             <div class="more">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 resume">
                                         <b>Produits commandés</b>
                                     </div>
                                 </div>
