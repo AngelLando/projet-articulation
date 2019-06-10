@@ -20,6 +20,10 @@ nav.navbar.navbar-expand-md.navbar-light.shadow-sm {
     }
 }
 
+div.navbar-text.main-nav a:hover {
+    text-decoration: none;
+}
+
 
  nav.navbar-light a.navbar-brand {
     color: $white !important;
@@ -90,7 +94,7 @@ nav.navbar-light ul.navbar-nav > li > .dropdown-menu > a.dropdown-item:hover{
 
 .sticky {
     position: fixed;
-    z-index: 6;
+    z-index: 7;
     width: 100%;
     top: 0;
 }
@@ -113,7 +117,7 @@ nav.navbar.navbar-expand-lg.navbar-light.secondary-nav ul.navbar-nav.mr-auto li.
 
 nav.navbar.navbar-expand-lg.navbar-light.secondary-nav {
     padding: 1em 4em ;
-    z-index: 2;
+    z-index: 8;
 }
 
 input.form-control.mr-sm-2.secondary-nav {

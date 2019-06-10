@@ -66,25 +66,18 @@ export default {
 
     methods: {
 
-        increments: function() {
-        },
-
-
         reStartCounter: function () {
-            /*this.$nextTick(() => {
-                var numItems = document.getElementsByClassName("counter").length;
-                this.counter=numItems;
-            })*/
-let vm = this;
-            setTimeout(function () {
-                vm.updateCounter();
-            }, 10);
+            console.log("lkj");
+            let vm = this;
+                setTimeout(function () {
+                    vm.updateCounter();
+                }, 10);
         },
 
-updateCounter:function(){
-      var numItems = document.getElementsByClassName("counter").length;
-                this.counter = numItems
-},
+        updateCounter:function(){
+              var numItems = document.getElementsByClassName("counter").length;
+                        this.counter = numItems
+        },
 
         toggleHeart: function(event){
             var clickedElement = event.target;
@@ -153,46 +146,86 @@ updateCounter:function(){
                     return;
                 })
             } 
-   if (this.quantity>clickedProduct.stock || this.quantity<=0) {
+            if (this.quantity>clickedProduct.stock || this.quantity<=0) {
                 console.log("erreur")
-            }else{
-           var clickedElement = event.target;
-           $(clickedElement).addClass("item-added");
-           setTimeout(function () {
-               $(clickedElement).removeClass('item-added');
-           }, 1500);
+            } else {
+               var clickedElement = event.target;
+               $(clickedElement).addClass("item-added");
+               setTimeout(function () {
+                   $(clickedElement).removeClass('item-added');
+               }, 1500);
 
-            var local = localStorage.getItem('storedID');
-            local = local ? JSON.parse(local): [];
-            var prodId = clickedProduct.id
-            var q = parseInt(this.quantity, 10);
-            var alreadyExist = false;
-            local.forEach(function(element) {
-                if (element.id == prodId) {
-                    alreadyExist=true;
-                    var f = parseInt(element.quantity,10)
-                    element.quantity = q+f;
+                var local = localStorage.getItem('storedID');
+                local = local ? JSON.parse(local): [];
+                var prodId = clickedProduct.id
+                var q = parseInt(this.quantity, 10);
+                var alreadyExist = false;
+                local.forEach(function(element) {
+                    if (element.id == prodId) {
+                        alreadyExist=true;
+                        var f = parseInt(element.quantity,10)
+                        element.quantity = q+f;
+                    }
+                });
+
+                if (alreadyExist==false) {
+                    local.push({
+                      "id":clickedProduct.id,
+                      "packaging_capacity":clickedProduct.packaging_capacity,
+                      "quantity":this.quantity,
+                      "path_image":clickedProduct.path_image,
+                      "name":clickedProduct.name,
+                      "price": clickedProduct.price,
+                      "format":clickedProduct.format,
+                  })
                 }
-            });
-            if (alreadyExist==false) {
-                local.push({
-                  "id":clickedProduct.id,
-                  "packaging_capacity":clickedProduct.packaging_capacity,
-                  "quantity":this.quantity,
-                  "path_image":clickedProduct.path_image,
-                  "name":clickedProduct.name,
-                  "price": clickedProduct.price,
-                  "format":clickedProduct.format,
-              })}
                 localStorage.setItem('storedID', JSON.stringify(local));
-            }
             }
         },
 
-    }
 
+        resetFilter1: function() {
+            $(".filter1:checkbox").prop('checked', false);
+            this.selected_kinds = [];
+            this.reStartCounter()
+        },
 
+        resetFilter2: function() {
+            $(".filter2:checkbox").prop('checked', false);
+            this.selected_formats = [];
+            this.reStartCounter()
+        },
 
+        resetFilter3: function() {
+            $(".filter3:checkbox").prop('checked', false);
+            this.selected_packagings = [];
+            this.reStartCounter()
+        },
 
+        resetFilter4: function() {
+            $(".filter4:checkbox").prop('checked', false);
+            this.selected_years = [];
+            this.reStartCounter()
+        },
 
+        resetFilter5: function() {
+            $(".filter5:checkbox").prop('checked', false);
+            this.selected_appellations = [];
+            this.reStartCounter()
+        },
 
+        resetFilter6: function() {
+            $(".filter6:checkbox").prop('checked', false);
+            this.selected_tags = [];
+            this.reStartCounter()
+        },
+
+        resetFilter7: function() {
+            $(".filter7:checkbox").prop('checked', false);
+            this.selected_countries = [];
+            this.reStartCounter()
+        },
+
+    },
+
+}

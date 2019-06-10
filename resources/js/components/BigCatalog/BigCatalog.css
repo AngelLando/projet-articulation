@@ -59,7 +59,7 @@ Container
     width: 100vw;
     height: 100%;
     background: rgba(0,0,0,0.75);
-    z-index: 101;
+    z-index: 3;
     visibility: hidden;
     opacity: 0;
     -webkit-transition: all 400ms ease;
@@ -654,7 +654,7 @@ div.filter_option.active{
 .products_dropdown > ul
 {
     position: absolute;
-    z-index: 1000;
+    z-index: 6;
     list-style:none;
     display: none;    opacity: 0;
     text-align: left;
@@ -862,4 +862,15 @@ Responsivité under 500 pts size screen
     .products_found {
         padding: 0;
     }
+}
+
+.btn-reset {
+    background-color: #dedede;
+    font-size: 14px;
+    border: none;
+    padding: 0.2em 1.5em 0.2em 1.6em;
+    color: white;
+    margin-left: -1.1em;
+    border-radius: 30px;
+    margin-bottom: 1em;
 }
