@@ -4,7 +4,7 @@
             <div class="fa fa-shopping-cart"></div>
             <a @mouseover="getCart()" class="nav-link cart-link" style="color: white;" :href="cartHref">PANIER</a>
             <div class="cart" v-if="hover == true && cart != null">
-                <div v-if="emptyCart">
+                <div v-if="emptyCart" class="cart-container">
             
                     <div class="cartitems-container row">
                     <div class="row line_bottom pl-3 pb-2 pt-4" v-for="product in cart" v-if="product.id!=null">
