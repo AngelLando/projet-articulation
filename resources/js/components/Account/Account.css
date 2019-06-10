@@ -145,8 +145,6 @@ LIGNE DE COMMANDE
 *****************/
 
 .order_line {
-    margin-top: 1em;
-    margin-bottom: 1em;
     width: 100%;
 }
 
@@ -204,4 +202,39 @@ input:-webkit-autofill:active  {
 
 .order_container {
     border: solid 0.5px #D0D0D0;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+div.more {
+    padding: 2em;
+}
+
+.more .row:first-of-type {
+    padding-bottom: 2em;
+}
+
+
+.more {
+    display: none;
+}
+
+.active .more {
+     display: block !important;
+ }
+
+.active + .more {
+    display: block !important;
+}
+
+
+.order_line {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.order_line.active, .active .order_line {
+    background-color: #850038;
+    color: white;
+
 }

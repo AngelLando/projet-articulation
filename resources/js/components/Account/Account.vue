@@ -58,46 +58,36 @@
                         <p class="col-2 text-left">État</p>
                         <p class="col-2 text-left">Paiement</p>
                     </div>
-                        <div class="order_container row" v-for="order in json.orderList">
+                        <div class="order_container row" v-for="order in json.orderList" @click="open">
                             <div class="order_line row">
-                                <p class="col-1 down-arrow else"><img src="images/down-arrow.svg" alt=""></p>
+                                <p class="col-1 down-arrow"><img src="images/down-arrow.svg" alt=""></p>
                                 <p class="col-3">{{order.no}}</p>
-                                <p class="col-2 text-left">{{order.date}}</p>
-                                <p class="col-2 text-left">CHF 108.00</p>
+                                <p class="col-2 text-left">{{formatDate(order.date)}}</p>
+                                <p class="col-2 text-left">CHF 108.00 {{total}}</p>
                                 <p class="col-2 text-left">{{order.shipping_status}}</p>
                                 <p class="col-2 text-left">{{order.payment_status}}</p>
-
                             </div>
-
-
-                            <div class="more row">
-                                <div class="col-md-12">
-                                    <b>Produits commandés</b>
+                            <div class="more">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <b>Produits commandés</b>
+                                    </div>
                                 </div>
-                            </div>
-
-
-                            <div class="more row">
-                                <div v-for="product in order.products" class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <img  class="product_order_image" :src="product.image" alt="">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <p>{{product.name}}</p>
-                                            <p>{{product.format}}</p>
-                                            <p>CHF {{product.price}} x {{product.quantity}}</p>
+                                <div class="row">
+                                    <div v-for="product in order.products" class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <img  class="product_order_image" :src="product.image" alt="">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>{{product.name}}</p>
+                                                <p>{{product.format}}</p>
+                                                <p>CHF {{product.price}}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span> x {{product.quantity}}</p>
+                                            </div>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
-
-
-
-
-
                         </div>
 
                 </div>
