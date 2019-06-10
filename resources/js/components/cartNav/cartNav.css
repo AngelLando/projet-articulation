@@ -40,10 +40,6 @@ Container
     overflow: hidden;
 }
 
-.cart{
-        max-width: 500px;
-        margin-top:14px;
-}
 
 
 .empty{
@@ -128,7 +124,7 @@ Product
 
 .product_cart_image{
     display: block;
-    width: 40px;
+    width: 30px;
     height: auto;
 }
 
@@ -136,8 +132,8 @@ Product
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 15px;
+    line-height: 15px;
     color: #000000;
     text-align : left;
 }
@@ -152,8 +148,8 @@ Product
     font-family: Montserrat;
     font-style: normal;
     font-weight: 500;
-    font-size: 25px;
-    line-height: 25px;
+    font-size: 20px;
+    line-height: 20px;
     text-align: center;
     color: #828282;
 }
@@ -162,7 +158,7 @@ Product
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
     color: #000000;
 }
 
@@ -180,8 +176,8 @@ Product
     font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
-    font-size: 15px;
-    line-height: 20px;
+    font-size: 13px;
+    line-height: 15px;
     color: #000000;
 
 }
@@ -190,11 +186,10 @@ Product
     min-width: 50px;
     background: #FFFFFF;
     width:50%;
-    height: 100%;
     border-style: solid;
     border-color: #EDEDED;
     border-width: 2.5px;
-    height: 2em !important;
+    height: 1.5em !important;
 }
 .cart_product_details{
     font-family: Montserrat;
@@ -304,9 +299,9 @@ Cart
 div.cart {
     position: absolute;
     z-index : 40000;
-    width : 40vw;
+    width : 35vw;
     right: 30px;
-    top : 60px;
+    top : 93px;
     -webkit-box-shadow: 0px 0px 30px -12px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 30px -12px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 30px -12px rgba(0,0,0,0.75);
@@ -319,5 +314,30 @@ div.cart {
 
 .cartitems-container {
     max-height : 300px;
-    overflow : scroll;
+    overflow-y : scroll;
+     overflow-x: hidden;
+}
+
+.button_cart{
+    padding-top:10px;
+        padding-bottom:10px;
+    background: #DEDEDE;
+border-radius: 15px;
+margin-left:-10px;
+}
+
+.button_cart:hover{
+    text-decoration-line: underline;
+}
+
+.button_order{
+        padding-top:10px;
+        padding-bottom:10px;
+    background: #850038;
+border-radius: 15px;
+margin-left:-10px;
+}
+
+.button_order:hover{
+    text-decoration-line: underline;
 }

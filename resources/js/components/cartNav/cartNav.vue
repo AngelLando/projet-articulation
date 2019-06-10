@@ -11,7 +11,7 @@
                         <p class="header_title col-2 text-center">Prix</p>
                     </div>
                     <div class="cartitems-container row">
-                    <div class="row line_bottom pb-2 pt-4" v-for="product in cart" v-if="product.id!=null">
+                    <div class="row line_bottom pl-3 pb-2 pt-4" v-for="product in cart" v-if="product.id!=null">
                        <div class="col-1 ml-2 mr-2">
                         <img  class="product_cart_image" :src="product.path_image" alt="">
                     </div>
@@ -50,9 +50,9 @@
                      <p class="header_title col-4 text-center">CHF {{finalPrice}}<span v-if="finalPrice % 1 === 0">.–</span><span v-if="(((finalPrice*1000) % 1 === 0) && (finalPrice % 1 !== 0))">0</span></p>
                  </div>
                        <div class="row cart_buttons text-center justify-content-center pb-2">
-                   <div class=" col-5 continuer_achats text-center d-flex flex-column align-items-center justify-content-center"><a class="continuer_text" href="cart">Panier</a></div>
+                   <div class=" col-5 button_cart text-center d-flex flex-column align-items-center justify-content-center"><a class="continuer_text" href="cart">Panier</a></div>
                    <div class="col-1"></div>
-                                      <div class=" col-5 continuer_achats text-center d-flex flex-column align-items-center justify-content-center"><a class="continuer_text" href="checkout">Commander</a></div>
+                                      <div class=" col-5 button_order text-center d-flex flex-column align-items-center justify-content-center"><a class="continuer_text" href="checkout">Commander</a></div>
 
 
                  </div>
