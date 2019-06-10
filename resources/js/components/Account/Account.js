@@ -23,8 +23,6 @@ export default {
         let json = JSON.parse(this.data)
         this.json = json;
 
-        console.log(this.json);
-
         if (this.id != null) {
             var local = JSON.parse(localStorage.getItem('storedID'))
             if (local=="" || local==null) {
@@ -103,10 +101,6 @@ export default {
 
 
         formatDate: function(value){
-
-            console.log(value);
-
-            var output = 0;
             var dateToString;
             var date = '';
 
@@ -114,6 +108,17 @@ export default {
                 dateToString = value.toString();
                 date = dateToString.substr(0, 10)
                 return date;
+            }
+        },
+
+
+        formatMontant: function(value){
+            var montant = '';
+            var formattedMontant = '';
+
+            if (value > 0) {
+                formattedMontant = (Math.ceil(value*20)/20).toFixed(2);
+                return formattedMontant;
             }
         },
     },
