@@ -10,14 +10,15 @@
                     <div class="container">
                         <div class="row filters_row">
                             <div class="selection">
-
-
                                 <div class="text-right d-flex all_filters row align-items-start justify-content-start">
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option type_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span class="filter_name">Type de vin</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
+                                            <button @click="resetFilter1" class="btn-reset">
+                                                Effacer
+                                            </button>
                                             <li v-for="product in unique(products, 'kind')" class="item_filter_btn chiller_cb" data-filter="*">
-                                                <input @click="reStartCounter" :id="product.kind" type="checkbox" :value="product.kind" v-model="selected_kinds">
+                                                <input @click="reStartCounter" :id="product.kind" class="filter1" type="checkbox" :value="product.kind" v-model="selected_kinds">
                                                 <label :for="product.kind">{{product.kind}}</label>
                                                 <span></span>
                                             </li>
@@ -26,8 +27,11 @@
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option format_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Format</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
+                                            <button @click="resetFilter2" class="btn-reset">
+                                                Effacer
+                                            </button>
                                             <li v-for="product in unique(products, 'format')" class="item_filter_btn chiller_cb" data-filter="*">
-                                                <input @click="reStartCounter" :id="product.format" type="checkbox" :value="product.format" v-model="selected_formats">
+                                                <input @click="reStartCounter" :id="product.format" class="filter2" type="checkbox" :value="product.format" v-model="selected_formats">
                                                 <label :for="product.format">{{product.format}}</label>
                                                 <span></span>
                                             </li>
@@ -36,8 +40,11 @@
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Conditionnement</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
+                                            <button @click="resetFilter3" class="btn-reset">
+                                                Effacer
+                                            </button>
                                             <li v-for="product in unique(products, 'packaging_capacity')" class="item_filter_btn chiller_cb" data-filter="*">
-                                                <input @click="reStartCounter" :id="product.packaging_capacity" type="checkbox" :value="product.packaging_capacity" v-model="selected_packagings">
+                                                <input @click="reStartCounter" :id="product.packaging_capacity" class="filter3" type="checkbox" :value="product.packaging_capacity" v-model="selected_packagings">
                                                 <label :for="product.packaging_capacity">{{product.packaging_capacity}}</label>
                                                 <span></span>
                                             </li>
@@ -46,28 +53,34 @@
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option vintage_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Millésime</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul id="years">
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-1" value=1946 type="checkbox" v-model="selected_years"><label for="mil-1">1946-1947</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-2" value=1982 type="checkbox" v-model="selected_years"><label for="mil-2">1982-1983</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-3" value=1984 type="checkbox" v-model="selected_years"><label for="mil-3">1984-1985</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-4" value="1994" type="checkbox" v-model="selected_years"><label for="mil-4">1994-1995</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-5" value="1996" type="checkbox" v-model="selected_years"><label for="mil-5">1996-1997</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-6" value="1998" type="checkbox" v-model="selected_years"><label for="mil-6">1998-1999</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-7" value="2002" type="checkbox" v-model="selected_years"><label for="mil-7">2002-2003</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-8" value="2004" type="checkbox" v-model="selected_years"><label for="mil-8">2004-2005</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-9" value="2006" type="checkbox" v-model="selected_years"><label for="mil-9">2006-2007</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-10" value="2008" type="checkbox" v-model="selected_years"><label for="mil-10">2008-2009</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-11" value="2010" type="checkbox" v-model="selected_years"><label for="mil-11">2010-2011</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-12" value=2012 type="checkbox" v-model="selected_years"><label for="mil-12">2012-2013</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-13" value="2014" type="checkbox" v-model="selected_years"><label for="mil-13">2014-2015</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-14" value="2016" type="checkbox" v-model="selected_years"><label for="mil-14">2016-2017</label><span></span></li>
-                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-15" value="2018" type="checkbox" v-model="selected_years"><label for="mil-15">2018-2019</label><span></span></li>
+                                            <button @click="resetFilter4" class="btn-reset">
+                                                Effacer
+                                            </button>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-1" value=1946 class="filter4" type="checkbox" v-model="selected_years"><label for="mil-1">1946-1947</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-2" value=1982 class="filter4" type="checkbox" v-model="selected_years"><label for="mil-2">1982-1983</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-3" value=1984 class="filter4" type="checkbox" v-model="selected_years"><label for="mil-3">1984-1985</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-4" value="1994" class="filter4" type="checkbox" v-model="selected_years"><label for="mil-4">1994-1995</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-5" value="1996" class="filter4" type="checkbox" v-model="selected_years"><label for="mil-5">1996-1997</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-6" value="1998" class="filter4" type="checkbox" v-model="selected_years"><label for="mil-6">1998-1999</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-7" value="2002" class="filter4" type="checkbox" v-model="selected_years"><label for="mil-7">2002-2003</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-8" value="2004" class="filter4" type="checkbox" v-model="selected_years"><label for="mil-8">2004-2005</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-9" value="2006" class="filter4" type="checkbox" v-model="selected_years"><label for="mil-9">2006-2007</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-10" value="2008" class="filter4" type="checkbox" v-model="selected_years"><label for="mil-10">2008-2009</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-11" value="2010" class="filter4" type="checkbox" v-model="selected_years"><label for="mil-11">2010-2011</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-12" value=2012 class="filter4" type="checkbox" v-model="selected_years"><label for="mil-12">2012-2013</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-13" value="2014" class="filter4" type="checkbox" v-model="selected_years"><label for="mil-13">2014-2015</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-14" value="2016" class="filter4" type="checkbox" v-model="selected_years"><label for="mil-14">2016-2017</label><span></span></li>
+                                            <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-15" value="2018" class="filter4" type="checkbox" v-model="selected_years"><label for="mil-15">2018-2019</label><span></span></li>
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option appellation_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Appellation</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul id="appellations">
+                                            <button @click="resetFilter5" class="btn-reset">
+                                                Effacer
+                                            </button>
                                             <li v-for="appellation in appellations" class="item_filter_btn chiller_cb" data-filter="*">
-                                                <input @click="reStartCounter" :id="appellation.name" type="checkbox" :value="appellation.name" v-model="selected_appellations">
+                                                <input @click="reStartCounter" :id="appellation.name" class="filter5" type="checkbox" :value="appellation.name" v-model="selected_appellations">
                                                 <label :for="appellation.name">{{appellation.name}}</label>
                                                 <span></span>
                                             </li>
@@ -76,8 +89,11 @@
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Catégorie</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
+                                            <button @click="resetFilter6" class="btn-reset">
+                                                Effacer
+                                            </button>
                                             <li v-for="tag in tags" class="item_filter_btn chiller_cb" data-filter="*">
-                                                <input @click="reStartCounter" :id="tag.name" type="checkbox" :value="tag.name" v-model="selected_tags">
+                                                <input @click="reStartCounter" :id="tag.name" class="filter6" type="checkbox" :value="tag.name" v-model="selected_tags">
                                                 <label :for="tag.name">{{tag.name}}</label>
                                                 <span></span>
                                             </li>
@@ -86,8 +102,11 @@
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Pays</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
+                                            <button @click="resetFilter7" class="btn-reset">
+                                                Effacer
+                                            </button>
                                             <li v-for="product in unique(products, 'country')" class="item_filter_btn chiller_cb" data-filter="*">
-                                                <input @click="reStartCounter" :id="product.country" type="checkbox" :value="product.country" v-model="selected_countries">
+                                                <input @click="reStartCounter" :id="product.country" class="filter7" type="checkbox" :value="product.country" v-model="selected_countries">
                                                 <label :for="product.country">{{product.country}}</label>
                                                 <span></span>
                                             </li>

@@ -20,6 +20,10 @@ nav.navbar.navbar-expand-md.navbar-light.shadow-sm {
   }
 }
 
+div.navbar-text.main-nav a:hover {
+  text-decoration: none;
+}
+
 nav.navbar-light a.navbar-brand {
   color: #ffffff !important;
 }
@@ -87,7 +91,7 @@ nav.navbar-light {
 
 .sticky {
   position: fixed;
-  z-index: 6;
+  z-index: 7;
   width: 100%;
   top: 0;
 }
@@ -109,7 +113,7 @@ nav.navbar.navbar-expand-lg.navbar-light.secondary-nav ul.navbar-nav.mr-auto li.
 
 nav.navbar.navbar-expand-lg.navbar-light.secondary-nav {
   padding: 1em 4em;
-  z-index: 2;
+  z-index: 8;
 }
 
 input.form-control.mr-sm-2.secondary-nav {
@@ -10908,8 +10912,16 @@ a.text-dark:focus {
   }
 }
 
-main.content-move {
-  padding-top: 193.65px;
+@media screen and (min-width: 1200px) {
+  main.content-move {
+    padding-top: 193.65px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  main.content-move {
+    padding-top: 178.03px;
+  }
 }
 
 div.newsletter-hide {

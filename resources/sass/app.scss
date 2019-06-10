@@ -13,9 +13,20 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-main.content-move {
-    padding-top: 193.65px;
+
+@media screen and (min-width: 1200px) {
+    main.content-move {
+        padding-top: 193.65px;
+    }
 }
+
+
+@media screen and (max-width: 1200px) {
+    main.content-move {
+        padding-top: 178.03px;
+    }
+}
+
 
 div.newsletter-hide {
     display: none;
