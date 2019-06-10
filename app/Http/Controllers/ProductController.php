@@ -61,7 +61,6 @@ class ProductController extends Controller
         $tab['appellations'] = AppellationController::index();
         $tab['tags'] = TagController::index();
 
-
         if($id == 'Recommandations') {
             $ratings = array_column($tab['products'], 'productRating');
             array_multisort($ratings, SORT_DESC, $tab['products']);
@@ -184,6 +183,7 @@ class ProductController extends Controller
         $rating = $product->productRatings->avg('value');
         $newProduct['productRating'] = $rating;
         $newProduct['packaging_capacity'] = $product->format->packagings->first()->capacity;
+        $newProduct['packagings'] = $product->format->packagings;
         return $newProduct;
     }
 

@@ -58,13 +58,12 @@ export default {
                     product_id: product.id,
                     quantity: product.quantity
                 };
-                console.log(this.cartItem)
-                console.log('test')
                 axios.post('update/'+product.id, {quantity : product.quantity})
                     .catch(error => {
                         this.errors = error.response.data.errors
                     }).then(response => {
-                        console.log(response)
+                                        console.log(this.cartItem)
+
                 })
             }
         }
@@ -124,13 +123,6 @@ export default {
             }
         }
     },
-    setQuantity: function () {
-        console.log("a implémenter")
-    }
-    ,
-
-    computed: {}
-    ,
 
     props: ['cart'],
     mounted() {
@@ -142,26 +134,13 @@ export default {
 
         } else {
             var local = JSON.parse(localStorage.getItem('storedID'))
-
             if (local == "" || local == null) {
                 this.emptyCart = false;
             }
             this.products = JSON.parse(localStorage.getItem('storedID'));
         }
-        var finalsubPrice = 0;
-        this.products.forEach(function (product) {
-            var total = product.price * product.quantity;
-            product.totalprice = total
-            finalsubPrice = finalsubPrice + product.totalprice;
-        });
-        this.finalsubPrice = finalsubPrice;
-        this.tva = Math.round(this.tvaPercent * this.finalsubPrice / 100);
-        this.calculateDelivery();
+                     this.adjustTotalPrice();
 
-        this.finalPrice = this.finalsubPrice + this.tva + this.livraison;
-    }
-    ,
-    beforeMount() {
     }
     ,
 

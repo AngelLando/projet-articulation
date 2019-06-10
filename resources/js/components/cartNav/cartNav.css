@@ -40,6 +40,11 @@ Container
     overflow: hidden;
 }
 
+.cart{
+        max-width: 500px;
+        margin-top:14px;
+}
+
 
 .empty{
     font-family: Montserrat;
@@ -57,7 +62,9 @@ Container
 Products
 ***********/
 
-
+.panier{
+    color:white !important;
+}
 .image {
     display: block;
     margin-left: auto;
@@ -87,6 +94,20 @@ Product
 .cart_header {
     padding-top: 10px;
     background: #850038;
+}
+
+.cart_buttons {
+    padding-top:10px;
+    background: white;
+}
+.cart_header_2 {
+    padding-top: 10px;
+    background: #848484;
+    border-bottom: 2px solid white;
+}
+
+.commander{
+    background:#850038;
 }
 
 .header_title{
