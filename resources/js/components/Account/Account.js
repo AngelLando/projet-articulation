@@ -15,13 +15,14 @@ export default {
             id:document.querySelector("meta[name='user-id']"),
             products:[],
             total: 0,
-
+            user: []
         }
     },
     props : ['data'],
     mounted () {
         let json = JSON.parse(this.data)
         this.json = json;
+        this.user = json.user;
 
         if (this.id != null) {
             var local = JSON.parse(localStorage.getItem('storedID'))
