@@ -114,7 +114,7 @@ class ProductsTableSeeder extends Seeder
                     'format_id' => $data->format_id,
                     'type_id' => rand(1,2),
                     'supplier_id' => $data->supplier_id,
-                    'promotion_id' => $data->promotion_id,
+                    'promotion_id' => rand(1,4),
                     'created_at' => $dateArray[$key]
                 ]);
                 $prod['name'] = $data->name;
