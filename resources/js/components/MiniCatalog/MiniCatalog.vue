@@ -8,7 +8,7 @@
                         <div class="row products_row">
 
                             <!-- Product -->
-                            <div v-for="product in products"  class="col-xl-4 col-md-6">
+                            <div v-for="product in products"  class="col-xl-4 col-md-6 products_found">
                                 <div class="product">
                                     <div>
                                         <div class="product_image"><img class="image" :src="product.path_image" alt=""><div class="favorite-heart empty" @click="toggleHeart"></div></div>
