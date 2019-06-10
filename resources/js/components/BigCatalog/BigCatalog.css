@@ -668,7 +668,14 @@ div.filter_option.active{
     -ms-transition: all 200ms ease;
     -o-transition: all 200ms ease;
     transition: all 200ms ease;
+
 }
+
+.products_dropdown ul#appellations {
+    max-height: 60vh;
+    overflow: scroll;
+}
+
 .products_dropdown ul li:not(:last-child)
 {
     margin-bottom: 7px;

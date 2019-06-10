@@ -104,19 +104,19 @@
 
   <div class="collapse navbar-collapse second-nav" id="secondNav">
     <ul class="navbar-nav second-nav-list mr-auto">
-      <li class="nav-item">
+      <li class="nav-item" id="nouveautes">
         <a class="nav-link" href="{{route('nouveautes')}}">Nouveautés <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" id="nos-vins">
         <a class="nav-link" href="{{route('nos-vins')}}">Nos vins</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" id="nos-primeurs">
         <a class="nav-link" href="{{route('nos-primeurs')}}">Nos primeurs</a>
       </li>
-        <li class="nav-item">
+        <li class="nav-item" id="offres-speciales">
           <a class="nav-link" href="{{route('offres-speciales')}}">Offres spéciales</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="promotions">
           <a class="nav-link" href="{{route('promotions')}}">Promotions</a>
         </li>
     </ul>
