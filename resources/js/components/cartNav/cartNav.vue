@@ -3,7 +3,7 @@
         <li class="nav-item"  @mouseleave="hover = false">
             <div class="fa fa-shopping-cart"></div>
             <a @mouseover="getCart()" class="nav-link cart-link" style="color: white;" :href="cartHref">PANIER</a>
-            <div class="cart" v-if="hover == true">
+            <div class="cart" v-if="hover == true && cart != null">
                 <div v-if="emptyCart">
                     <div class="cart_header row">
                         <p class="header_title col-5">Produits</p>
@@ -31,7 +31,7 @@
                                 v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></p>
                             </div>
                             <div class=" col-1"><img @click="deleteProduct(product)"
-                             src="images/delete.svg" class="cross" alt=""></div>
+                             :src="deleteSVG" class="cross" alt=""></div>
                          </div>
                      </div>
                 </div>
@@ -52,7 +52,7 @@
                        <div class="row cart_buttons text-center justify-content-center pb-2">
                    <div class=" col-5 button_cart text-center d-flex flex-column align-items-center justify-content-center"><a class="continuer_text" href="cart">Panier</a></div>
                    <div class="col-1"></div>
-                                      <div class=" col-5 button_order text-center d-flex flex-column align-items-center justify-content-center"><a class="continuer_text" href="checkout">Commander</a></div>
+                                      <div class=" col-5 button_order text-center d-flex flex-column align-items-center justify-content-center"><a class="continuer_text" :href="checkout">Commander</a></div>
 
 
                  </div>
