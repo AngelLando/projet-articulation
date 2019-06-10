@@ -47,7 +47,7 @@
                                         <div class="selection_title pt-4"><p>Condtionnements disponibles :</p></div>
                                         <div>
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                <div v-for="product in product.packaging_capacity" @click="set_choice" class="product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.type}} de {{product.capacity}} bouteille<template v-if="product.capacity > 1">s</template></div>
+                                                <div v-for="product in product.packagings" @click="set_choice" class="product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.type}} de {{product.capacity}} bouteille<template v-if="product.capacity > 1">s</template></div>
                                             </div>
                                         </div>
                                         <div class="selection_title pt-4"><p>Format :</p></div>
