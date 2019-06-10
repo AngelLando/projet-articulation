@@ -100,9 +100,11 @@ class CartItemController extends Controller
     public function update(Request $request, $id)
     {
         if(Auth::check()) {
-            $cartItem = CartItem::where('id', $id)
+            $cart = Cart::where('user_id', Auth::user()->id)->first();
+            $cartItem = CartItem::where('cart_id', $cart->id)
+                ->where('product_id', $id)->first()
                 ->update(['quantity' => $request->quantity]);
-            return $cartItem;
+            return 1;
         } else {
             return null;
         }
