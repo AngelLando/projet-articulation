@@ -71,11 +71,16 @@ export default {
 
 
         reStartCounter: function () {
-            this.$nextTick(() => {
+            /*this.$nextTick(() => {
                 var numItems = document.getElementsByClassName("counter").length;
                 this.counter=numItems;
-            })
+            })*/
 
+            setTimeout(function () {
+                var numItems = document.getElementsByClassName("counter").length;
+                this.counter = numItems
+                console.log(this.counter)
+            }, 10);
         },
 
 
