@@ -58,17 +58,50 @@
                         <p class="col-2 text-left">État</p>
                         <p class="col-2 text-left">Paiement</p>
                     </div>
-                    <div v-for="order in orders" class="order_line row">
-                        <p class="col-1 down-arrow else"><img src="images/down-arrow.svg" alt=""></p>
-                        <p class="col-3">{{order.no}}</p>
-                        <p class="col-2 text-left">11.03.19</p>
-                        <p class="col-2 text-left">CHF 108.00</p>
-                        <p class="col-2 text-left">Livrée</p>
-                        <p class="col-2 text-left">Réglé</p>
-                    </div>
+                        <div class="order_container row" v-for="order in json.orderList">
+                            <div class="order_line row">
+                                <p class="col-1 down-arrow else"><img src="images/down-arrow.svg" alt=""></p>
+                                <p class="col-3">{{order.no}}</p>
+                                <p class="col-2 text-left">{{order.date}}</p>
+                                <p class="col-2 text-left">CHF 108.00</p>
+                                <p class="col-2 text-left">{{order.shipping_status}}</p>
+                                <p class="col-2 text-left">{{order.payment_status}}</p>
+
+                            </div>
+
+
+                            <div class="more row">
+                                <div class="col-md-12">
+                                    <b>Produits commandés</b>
+                                </div>
+                            </div>
+
+
+                            <div class="more row">
+                                <div v-for="product in order.products" class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img  class="product_order_image" :src="product.image" alt="">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p>{{product.name}}</p>
+                                            <p>{{product.format}}</p>
+                                            <p>CHF {{product.price}} x {{product.quantity}}</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
 
                 </div>
-                <div v-if="orders.length == 0">Pas de commande pour le moment.</div>
+                <div v-if="json.length == 0">Pas de commande pour le moment.</div>
 
             </div>
             <div class="content infos col-md-9 hidden-xs hidden-sm block" v-if="showInfos">

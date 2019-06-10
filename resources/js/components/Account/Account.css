@@ -144,11 +144,10 @@ LIGNE DE COMMANDE
 
 *****************/
 
-
 .order_line {
     margin-top: 1em;
     margin-bottom: 1em;
-    border: solid 0.5px #D0D0D0;
+    width: 100%;
 }
 
 
@@ -195,4 +194,14 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
     -webkit-box-shadow: 0 0 0 30px #eeecef inset !important;
+}
+
+
+
+.product_order_image {
+    width: 25px;
+}
+
+.order_container {
+    border: solid 0.5px #D0D0D0;
 }
