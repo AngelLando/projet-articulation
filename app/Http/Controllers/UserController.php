@@ -20,7 +20,6 @@ class UserController extends Controller
     public function index()
     {
         $userAddress = Auth::user()->person->address->all();
-        //dd($userAddress);
         $orderList = [];
         foreach($userAddress as $address) {
             $orders = Order::where(['address_id_1' => $address->id])->get();
@@ -37,7 +36,6 @@ class UserController extends Controller
                     $anOrder['total'] = OrderController::makeSum($orderItems, $anOrder['shipping_costs']);
                     $anOrder['total'] -= ($anOrder['total'] * $anOrder['discount'])/100;
                     foreach($orderItems as $orderItem) {
-                        //dd($orderItem->product);
                         $aProduct = [];
                         $aProduct['name'] = $orderItem->product->name;
                         $aProduct['price'] = $orderItem->product->price;
@@ -54,10 +52,13 @@ class UserController extends Controller
         }
 
         $cart = CartController::index($require = null);
+        $user = Auth::user();
+
         $data = [
             'orderList' => $orderList,
             'cart' => $cart,
             'addressess' => $userAddress,
+            'user' => $user,
         ];
 
         $datas = json_encode($data);

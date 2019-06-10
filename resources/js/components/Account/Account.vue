@@ -102,28 +102,28 @@
                     <!--{{ csrf_field() }}!-->
                     <div class="form-group">
                         <label for="lastname">Nom</label>
-                        <input type="text" name="lastname" class="form-control" value="" id="lastname" placeholder="Nom">
+                        <input type="text" name="lastname" class="form-control" :value="user.person.lastname" id="lastname" placeholder="Nom">
                     </div>
                     <div class="form-group">
                         <label for="firstname">Prénom</label>
-                        <input type="text" name="firstname" class="form-control" value="" id="firstname" placeholder="Prénom">
+                        <input type="text" name="firstname" class="form-control" :value="user.person.firstname" id="firstname" placeholder="Prénom">
                     </div>
                     <div class="form-group">
                         <label for="gender">Genre</label>
                         <select class="form-control" name="gender" id="gender">
                             <option value=""></option>
-                            <!--<option value="m" {{ ($user->person->gender == 'm' ? 'selected' : '') }}>Homme</option>!-->
-                            <!--<option value="f" {{ ($user->person->gender == 'f' ? 'selected' : '') }}>Femme</option>!-->
-                            <!--<option value="other" {{ ($user->person->gender == 'other' ? 'selected' : '') }}>Autre</option>!-->
+                            <option value="m" {{ user.person.gender = 'm' ? 'selected' : '' }}>Homme</option>
+                            <option value="f" {{ user.person.gender = 'f' ? 'selected' : '' }}>Femme</option>
+                            <option value="other" {{ user.person.gender = 'other' ? 'selected' : '' }}>Autre</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="username">Nom d'utilisateur</label>
-                        <input type="text" name="username" class="form-control" value="" id="username" placeholder="Nom d'utilisateur">
+                        <input type="text" name="username" class="form-control" :value="user.username" id="username" placeholder="Nom d'utilisateur">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control" value="" id="email" placeholder="Email">
+                        <input type="email" name="email" class="form-control" :value="user.email" id="email" placeholder="Email">
                     </div>
                     <div class="form-group">
                         <label for="password">Nouveau mot de passe</label>
@@ -131,7 +131,7 @@
                     </div>
                     <div class="form-group">
                         <label for="birth_date">Date de naissance</label>
-                        <input type="date" name="birth_date" class="form-control" value="" id="birth_date" placeholder="Date de naissance">
+                        <input type="date" name="birth_date" class="form-control" :value="user.birth_date" id="birth_date" placeholder="Date de naissance">
                     </div><hr>
                     <button type="submit" class="btn btn-primary btn-edit-infos">Mettre à jour mon compte</button>
                 </form>
