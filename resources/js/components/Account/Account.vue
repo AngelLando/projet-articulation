@@ -62,7 +62,7 @@
                             <div class="order_line row">
                                 <p class="col-1 down-arrow"><img src="images/down-arrow.svg" alt=""></p>
                                 <p class="col-3">{{order.no}}</p>
-                                <p class="col-2 text-left">{{order.date}}</p>
+                                <p class="col-2 text-left">{{formatDate(order.date)}}</p>
                                 <p class="col-2 text-left">CHF 108.00 {{total}}</p>
                                 <p class="col-2 text-left">{{order.shipping_status}}</p>
                                 <p class="col-2 text-left">{{order.payment_status}}</p>

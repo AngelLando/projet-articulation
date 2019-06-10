@@ -85,5 +85,20 @@ export default {
             $(clickedElement).siblings().addClass("else");
         },
 
+
+        formatDate: function(value){
+
+            console.log(value);
+
+            var output = 0;
+            var dateToString;
+            var date = '';
+
+            if (value !== null) {
+                dateToString = value.toString();
+                date = dateToString.substr(0, 10)
+                return date;
+            }
+        },
     },
 }
