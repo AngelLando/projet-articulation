@@ -4,6 +4,8 @@
     <div class="special_offers" id="app">
 
         <big-catalog prod="{{$products}}"></big-catalog>
+                                <popup-component></popup-component>
+
     </div>
 @endsection
 

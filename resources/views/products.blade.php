@@ -23,5 +23,7 @@
     @endforeach
      <div id="app">
        <products-component></products-component>
+                            <popup-component></popup-component>
+
     </div>
 @endsection
