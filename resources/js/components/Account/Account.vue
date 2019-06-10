@@ -112,9 +112,9 @@
                         <label for="gender">Genre</label>
                         <select class="form-control" name="gender" id="gender">
                             <option value=""></option>
-                            <option value="m" {{ user.person.gender = 'm' ? 'selected' : '' }}>Homme</option>
-                            <option value="f" {{ user.person.gender = 'f' ? 'selected' : '' }}>Femme</option>
-                            <option value="other" {{ user.person.gender = 'other' ? 'selected' : '' }}>Autre</option>
+                            <option value="m" :selected="user.person.gender == 'm' ? 'selected' : ''">Homme</option>
+                            <option value="f" :selected="user.person.gender == 'f' ? 'selected' : ''">Femme</option>
+                            <option value="other" :selected="user.person.gender == 'other' ? 'selected' : ''">Autre</option>
                         </select>
                     </div>
                     <div class="form-group">
