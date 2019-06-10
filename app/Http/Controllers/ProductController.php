@@ -183,7 +183,6 @@ class ProductController extends Controller
         $rating = $product->productRatings->avg('value');
         $newProduct['productRating'] = $rating;
         $newProduct['packaging_capacity'] = $product->format->packagings->first()->capacity;
-        $newProduct['packagings'] = $product->format->packagings;
         return $newProduct;
     }
 

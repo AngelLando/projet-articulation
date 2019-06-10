@@ -11,7 +11,7 @@
                             <div class="col-xl-4">
                                 <div class="product">
                                         <div>
-                                            <div class="product_image">c<img class="image" :src="product.path_image" alt=""><div class="share_container"><a class="share" @click="sendMail"></a></div></div>
+                                            <div class="product_image"><div class="favorite-heart empty" @click="toggleHeart"></div><img class="image" :src="product.path_image" alt=""><div class="share_container"><a class="share" @click="sendMail"></a></div></div>
                                         </div>
                                 </div>
                             </div>
@@ -38,19 +38,22 @@
                                         </form>
                                     </div>
                                     <div class="selection">
-                                        <div class="selection_title pt-4"><p>Année :</p></div>
+                                        <div class="selection_title pt-4"><p>Années pour ce vin :</p></div>
                                         <div>
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
                                                 <div @click="set_choice" class="product_selection product_selection_selected year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.year}}</div>
+                                                <div @click="set_choice" class="product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2016</div>
+                                                <div @click="set_choice" class="product_selection year_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">2017</div>
+
                                             </div>
                                         </div>
-                                        <div class="selection_title pt-4"><p>Condtionnements disponibles :</p></div>
+                                        <div class="selection_title pt-4"><p>Condtionnements disponibles pour ce format :</p></div>
                                         <div>
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                <div v-for="product in product.packagings" @click="set_choice" class="product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.type}} de {{product.capacity}} bouteille<template v-if="product.capacity > 1">s</template></div>
+                                                <div @click="set_choice" class="product_selection product_selection_selected conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">Caisse de {{product.packaging_capacity}} bouteilles</div>
                                             </div>
                                         </div>
-                                        <div class="selection_title pt-4"><p>Format :</p></div>
+                                        <div class="selection_title pt-4"><p>Formats disponibles :</p></div>
                                         <div>
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
                                                 <div @click="set_choice" class="product_selection_selected product_selection conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">{{product.format}}</div>
