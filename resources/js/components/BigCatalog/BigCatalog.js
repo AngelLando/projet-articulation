@@ -75,14 +75,16 @@ export default {
                 var numItems = document.getElementsByClassName("counter").length;
                 this.counter=numItems;
             })*/
-
+let vm = this;
             setTimeout(function () {
-                var numItems = document.getElementsByClassName("counter").length;
-                this.counter = numItems
-                console.log(this.counter)
+                vm.updateCounter();
             }, 10);
         },
 
+updateCounter:function(){
+      var numItems = document.getElementsByClassName("counter").length;
+                this.counter = numItems
+},
 
         toggleHeart: function(event){
             var clickedElement = event.target;
