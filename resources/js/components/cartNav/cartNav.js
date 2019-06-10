@@ -34,21 +34,25 @@ export default {
     },
     methods: {
         getCart: function () {
-        //ICI PAULINE TU DOIS RéCUPéRER LES DONNéES QUI SONT DANS this.cart QUI VIENNENT DE LA BD
-    // ET AJOUTER CHAQUE PRODUIT AU LOCALSTORAGE POUR NE PAS AVOIR BESOIN DE LE REFAIRE DERRIERE
-        // If localstorage is empty, ajax and merge
-        var local = JSON.parse(localStorage.getItem('storedID'))
-        if (local == "" || local == null) {
-            axios.get(this.url).catch(error => {
+
+       if (this.id != null) {
+   axios.get(this.url).catch(error => {
                 this.errors = error.response.data.errors
             }).then(response => {
                 this.cart = response.data;
-                console.log(this.url);
+             //ici, il faut faire en sorte que this.cart ai les bonnes donéées
+                 if (this.cart == null || this.cart == "") {
+                this.emptyCart = false;
+            }
             })
-        // If localstorage is not empty, no ajax
-    } else {
-       this.cart = JSON.parse(localStorage.getItem('storedID'));
-   }
+       }else{
+        this.cart = JSON.parse(localStorage.getItem('storedID'));
+        if (this.cart=="" || this.cart == null) {
+            this.emptyCart=false;
+        }else{
+            this.emptyCart=true;
+        }
+       }
 this.adjustTotalPrice(); 
    this.hover = true;
 },
@@ -80,6 +84,9 @@ deleteProduct: function (event) {
             local.splice(removeIndex, 1);
             localStorage.setItem('storedID', JSON.stringify(local));
             this.cart = JSON.parse(localStorage.getItem('storedID'));
+                 if (this.cart == "" || this.cart == null) {
+            this.emptyCart = false;
+        }
                this.adjustTotalPrice();
           }
       },
@@ -133,8 +140,7 @@ deleteProduct: function (event) {
                 console.log(response)
             })
         }
-    }
-    ,
+    } ,
             adjustTotalPrice: function () {
             var finalsubPrice = 0;
             this.cart.forEach(function (product) {
