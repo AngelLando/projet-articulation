@@ -161,8 +161,5 @@ export default {
         this.finalPrice = this.finalsubPrice + this.tva + this.livraison;
     }
     ,
-    beforeMount() {
-    }
-    ,
 
 }

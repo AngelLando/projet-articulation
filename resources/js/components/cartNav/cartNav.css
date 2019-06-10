@@ -57,7 +57,9 @@ Container
 Products
 ***********/
 
-
+.panier{
+    color:white !important;
+}
 .image {
     display: block;
     margin-left: auto;
