@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option appellation_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Appellation</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
-                                        <ul>
+                                        <ul id="appellations">
                                             <li v-for="appellation in appellations" class="item_filter_btn chiller_cb" data-filter="*">
                                                 <input @click="reStartCounter" :id="appellation.name" type="checkbox" :value="appellation.name" v-model="selected_appellations">
                                                 <label :for="appellation.name">{{appellation.name}}</label>

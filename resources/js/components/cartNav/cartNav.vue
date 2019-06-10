@@ -10,6 +10,7 @@
                         <p class="header_title col-1 text-right">Quantité</p>
                         <p class="header_title col-2 text-center">Prix</p>
                     </div>
+                    <div class="cartitems-container row">
                     <div class="row line_bottom pb-2 pt-4" v-for="product in cart" v-if="product.id!=null">
                        <div class="col-1 ml-2 mr-2">
                         <img  class="product_cart_image" :src="product.path_image" alt="">
@@ -33,6 +34,9 @@
                              src="images/delete.svg" class="cross" alt=""></div>
                          </div>
                      </div>
+                </div>
+
+
                      <div class="cart_header_2 row">
                         <p class="header_title col-6">TVA</p>
                         <p class="header_title col-4 text-center">CHF {{tva}}<span v-if="finalPrice % 1 === 0">.–</span><span v-if="(((finalPrice*1000) % 1 === 0) && (finalPrice % 1 !== 0))">0</span></p>

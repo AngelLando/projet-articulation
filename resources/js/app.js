@@ -37,6 +37,27 @@ $(".second-nav-list").on("click", ".nav-item", evt => {
     $(current).siblings().removeClass("active");
 });*/
 
+let href = window.location.pathname;
+let path = href.split('/');
+let target = null
+if (path.indexOf('nos-vins') != -1) {
+target = $('#nos-vins')
+} else if (path.indexOf('nouveautes') != -1) {
+    target = $('#nouveautes')
+} else if (path.indexOf('nos-primeurs') != -1) {
+    target = $('#nos-primeurs')
+} else if (path.indexOf('offres-speciales') != -1) {
+    target = $('#offres-speciales')
+} else if (path.indexOf('promotions') != -1) {
+    target = $('#promotions')
+} else {
+    target = null;
+}
+$('li.nav-item').removeClass('active')
+
+if(target != null) {
+    target.addClass('active')
+}
 
 // rend le menu sticky au scroll
 
