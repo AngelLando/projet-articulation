@@ -59,6 +59,10 @@ export default {
                     if (this.cart == null || this.cart == "") {
                         this.emptyCart = false;
                     }
+                      else {
+                        this.emptyCart = true;
+                        this.adjustTotalPrice();
+                    }
                 })
             } else {
                 this.cart = JSON.parse(localStorage.getItem('storedID'));
