@@ -123,13 +123,13 @@ class OrderController extends Controller
             $this->sendForm($bill);
         }
 
-        if($request->address1['email'] != null) {
+        if ($request->address1['email'] != null) {
             $bill['email'] = $request->address1['email'];
             $this->sendForm($bill);
         }
 
 
-        return $bill;
+        return 1;
     }
 
     /**
@@ -186,10 +186,11 @@ class OrderController extends Controller
         });
     }
 
-    public static function makeSum ($array, $shippingcosts) {
+    public static function makeSum($array, $shippingcosts)
+    {
         $sum = 0;
         foreach ($array as $key => $item) {
-         $sum = $sum + ($item['product']->price * $item['quantity']);
+            $sum = $sum + ($item['product']->price * $item['quantity']);
         }
         $sum = $sum + ($sum * 0.077);
         $sum = $sum + $shippingcosts;

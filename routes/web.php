@@ -38,17 +38,17 @@ Route::get('/', function () {
 })->name('products');
 
 Route::get('/checkout', function () {
-    $data = App::call('App\Http\Controllers\CartController@index');
+    $data = App::call('App\Http\Controllers\CartController@index', [$require = 'address']);
     return view('checkout')->with('cart', $data);
 })->name('checkout');
 
 Route::get('/cart', function () {
-    $data = App::call('App\Http\Controllers\CartController@index');
+    $data = App::call('App\Http\Controllers\CartController@index', [$require = null]);
     return view('cart')->with('cart', $data);
 })->name('cart');
 
 Route::get('/cart-nav', function () {
-    $data = App::call('App\Http\Controllers\CartController@index');
+    $data = App::call('App\Http\Controllers\CartController@index', [$require = null]);
     return $data;
 })->name('cart-nav');
 

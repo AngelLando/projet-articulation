@@ -6,7 +6,9 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Cart;
 use App\Product;
+use App\Address;
 use App\Http\Controllers\ProductController;
+use App\Person;
 
 
 class CartController extends Controller
@@ -16,7 +18,7 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public static function index()
+    public static function index($require)
     {
         if (Auth::check()) {
             $userId = Auth::id();
@@ -41,12 +43,38 @@ class CartController extends Controller
                     array_push($cart, $newProduct);
                 }
 
-                // CONVERT ARRAY TO JSON TO PASS DATAS
-                $json = json_encode($cart);
+                if($require == 'address') {
+
+                $person = Person::where('id', $userId)->first();
+                $address = Address::where('person_id' , $person->id)->first();
+
+                $favoriteAddress = [
+                    'gender' => $person->prefix,
+                    'firstname' => $person->firstname,
+                    'lastname' => $person->lastname,
+                    'street' => $address->street,
+                    'npa' => $address->npa,
+                    'city' => $address->city,
+                    'region' => $address->region,
+                    'country' => $address->country,
+                ];
+                $data = [
+                    'cart' => $cart,
+                    'address' => $favoriteAddress
+                ];
+
+                    // CONVERT ARRAY TO JSON TO PASS DATAS
+                    $json = json_encode($data);
+
+                } else {
+                    $json = json_encode($cart);
+                }
+
             }
         } else {
             $json = json_encode(null);
         }
+
 
         return $json;
     }
