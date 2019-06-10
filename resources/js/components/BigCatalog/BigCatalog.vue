@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="products_dropdown text-right">
                                         <div class="filter_option vintage_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Millésime</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
-                                        <ul>
+                                        <ul id="years">
                                             <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-1" value=1946 type="checkbox" v-model="selected_years"><label for="mil-1">1946-1947</label><span></span></li>
                                             <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-2" value=1982 type="checkbox" v-model="selected_years"><label for="mil-2">1982-1983</label><span></span></li>
                                             <li class="item_filter_btn chiller_cb" data-filter="*"><input @click="reStartCounter" id="mil-3" value=1984 type="checkbox" v-model="selected_years"><label for="mil-3">1984-1985</label><span></span></li>

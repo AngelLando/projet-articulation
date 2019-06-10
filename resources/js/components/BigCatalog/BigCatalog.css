@@ -671,7 +671,7 @@ div.filter_option.active{
 
 }
 
-.products_dropdown ul#appellations {
+.products_dropdown ul#appellations, .products_dropdown ul#years {
     max-height: 60vh;
     overflow: scroll;
 }
