@@ -66,7 +66,7 @@ var sticky = navbar.offsetTop;
 
 // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
 function myFunction() {
-    if (window.pageYOffset >= 1) {
+    if (window.pageYOffset >= 39.63) {
         navbar.classList.add("sticky");
         main.classList.add("content-move")
         newsletter.classList.add("newsletter-hide")

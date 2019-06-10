@@ -1,9 +1,11 @@
-<section class="two-nav" id="two-nav">
+
 <div class="row newsletter justify-content-center" id="newsletter">
   <div class="navbar-text main-nav">
     <a href="#">Inscription à la newsletter</a>
   </div>
 </div>
+<section class="two-nav" id="two-nav">
+
 <nav  class="navbar first-navbar navbar-expand-md navbar-light shadow-sm">
     <!-- <div class="container"> -->
         <a class="navbar-brand first-nav" href="{{ url('/') }}">
