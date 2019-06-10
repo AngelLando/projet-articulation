@@ -28,15 +28,6 @@ const app = new Vue({
 });
 
 // ajoute la classe sur l'onglet sélectionné
-
-/*
-$(".second-nav-list").on("click", ".nav-item", evt => {
-    console.log("lkjlkj");
-    let current = $(evt.currentTarget);
-    $(current).addClass("active");
-    $(current).siblings().removeClass("active");
-});*/
-
 let href = window.location.pathname;
 let path = href.split('/');
 let target = null
