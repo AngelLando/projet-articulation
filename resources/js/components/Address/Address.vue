@@ -280,7 +280,7 @@
                                     <div class="col-md-12 line_bottom mb-4 pt-1 pb-2" >
                                         <div class="item_filter_btn chiller_cb">
                                             <input id="cgv" type="checkbox" name="optradio"
-                                                   v-model="cgv"><label for="cgv">J'accepte les <a
+                                                   v-model="cgv"><label for="cgv">J'accepte les <a class="cgv"
                                                 href="conditions-generales-de-vente">conditions générales de ventes.</a></label>
                                             <span></span>
                                         </div>

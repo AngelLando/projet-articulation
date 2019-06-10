@@ -65,12 +65,12 @@
                                 <div class ="col-xl-12 "></div>
                                 <div class="row more_info ml-3 pt-5 pb-3">
                                     <div class="description more_info_selected col-md-auto" @click="underline" v-on:click="isHiddenDescr=true; isHiddenInfo=false; isHiddenRating=false">Description</div>
-                                    <div class="information col-md-auto" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=true; isHiddenRating=false">Information</div>
-                                    <div class="rating col-md-auto" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=false; isHiddenRating=true">Avis (1)</div>
+                                    <div class="information col-md-auto more_info" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=true; isHiddenRating=false">Informations</div>
+                                    <div class="rating col-md-auto more_info" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=false; isHiddenRating=true">Avis (1)</div>
                                 </div>
                                 <div class="content content_description col-xl-12 ml-3" v-if="isHiddenDescr">{{product.description}}
                                 </div>
-                                <div class="content content_information col-xl-12 ml-3" v-if="isHiddenInfo"><p >Cotation : {{product.quotation}}</p>
+                                <div class="content content_information col-xl-12 ml-3" v-if="isHiddenInfo"><p >Région : {{product.region}}</p>
                                     <p>Teneur en alcool : 
                                     {{product.alcohol}} %</p>
                                     <p >Type : {{product.kind}}</p>
@@ -85,8 +85,8 @@
                             </div>
                             <div class = "col-xl-12 text-center"><hr class="line ml-3 mt-4 mb-4"></div>
                         </div>
-                        <div class="container pt45 pb70">
-                            <div class="row px20 pt0 similar_products">
+                        <div class="container ">
+                            <div class="row similar_products">
                                 <div class="col-md-5 hidden-xs hidden-sm block similarities">D'autres produits similaires</div>
                             </div>
                         </div>

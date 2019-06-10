@@ -44,6 +44,15 @@ Container
     overflow: hidden;
 }
 
+.cgv{
+    color:#850038;
+    font-weight: bold;
+}
+
+.cgv:hover{
+    text-decoration-line: underline;
+}
+
 
 .super_container_inner
 {
@@ -264,8 +273,6 @@ Products
 
 .comment{
 font-family: Montserrat;
-font-style: normal;
-font-weight: bold;
 font-size: 20px;
 line-height: 25px;
 color: #000000;
