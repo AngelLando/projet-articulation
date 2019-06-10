@@ -45,6 +45,7 @@ export default {
         }
     },
     methods: {
+    
         getCart: function () {
             if (this.id != null) {
                 axios.get(this.url).catch(error => {
