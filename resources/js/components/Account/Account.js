@@ -14,6 +14,7 @@ export default {
             test: [],
             id:document.querySelector("meta[name='user-id']"),
             products:[],
+            total: 0,
 
         }
     },
@@ -67,42 +68,22 @@ export default {
                 }
             }
         }
-/*
-        var finalsubPrice = 0;
-
-        this.json.forEach(function(j) {
-            orders.push(j.orderList)
-        })*/
-
-        console.log(this.products);
-
-        /*
-        this.orders.forEach(function(o) {
-            orders.push(j.orderList)
-        })
-
-
-
-        this.orders.forEach(function (order) {
-            var total = orders.price * product.quantity;
-                product.totalprice = total
-                finalsubPrice = finalsubPrice + product.totalprice;
-            });
-            this.finalsubPrice = finalsubPrice;
-            this.tva = Math.round(this.tvaPercent * this.finalsubPrice / 100);
-            this.calculateDelivery();
-            this.finalPrice = this.finalsubPrice + this.tva + this.livraison;
-        }*/
-},
-
-methods:{
-    underline: function(event){
-        var clickedElement = event.target;
-        $(clickedElement).addClass("active");
-        $(clickedElement).removeClass("else");
-        $(clickedElement).siblings().removeClass("active");
-        $(clickedElement).siblings().addClass("else");
     },
 
-},
+    methods:{
+        open: function(event){
+            var clickedElement = event.target;
+            $(clickedElement).parent().toggleClass("active");
+        },
+
+
+        underline: function(event){
+            var clickedElement = event.target;
+            $(clickedElement).addClass("active");
+            $(clickedElement).removeClass("else");
+            $(clickedElement).siblings().removeClass("active");
+            $(clickedElement).siblings().addClass("else");
+        },
+
+    },
 }
