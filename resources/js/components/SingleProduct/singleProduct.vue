@@ -6,7 +6,7 @@
                 <div class="products">
                     <div class="container">
                         <div class="row product_row">
-                            <div class ="breadcrumbs col-xl-12 mb-4 ml-3"><a href="../nos-vins">Retour aux vins</a></div>
+                            <div class ="breadcrumbs col-xl-12 mb-4 ml-3"><a href="../nos-vins"><i class="fa fa-caret-left mr-2" aria-hidden="true"></i>Retour aux vins</a></div>
                             <!-- Product -->
                             <div class="col-xl-4">
                                 <div class="product">
