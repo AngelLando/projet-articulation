@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Address;
 use App\Order;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
@@ -55,7 +56,8 @@ class UserController extends Controller
         $cart = CartController::index();
         $data = [
             'orderList' => $orderList,
-            'cart' => $cart
+            'cart' => $cart,
+            'addressess' => $userAddress,
         ];
 
         $datas = json_encode($data);
