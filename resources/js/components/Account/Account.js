@@ -9,7 +9,8 @@ export default {
             showFavs: false,
             showArrayLeft: false,
             showArrayRight: true,
-            orders : [],
+            json: [],
+            orders: [],
             test: [],
             id:document.querySelector("meta[name='user-id']"),
             products:[],
@@ -19,7 +20,9 @@ export default {
     props : ['data'],
     mounted () {
         let json = JSON.parse(this.data)
-        this.orders = json;
+        this.json = json;
+
+        console.log(this.json);
 
         if (this.id != null) {
             var local = JSON.parse(localStorage.getItem('storedID'))
@@ -27,41 +30,69 @@ export default {
             }else{
 
                if (json.cart!="null") {
-                console.log("local storage + BD")
-                this.products=JSON.parse(localStorage.getItem('storedID')),
-                this.products.forEach(function(product) {
-                    var cartItem  = {
-                        product_id: product.id,
-                        quantity: product.quantity
-                    };
-                    axios.post('../add', cartItem)
-                    .catch(error => {
-                        this.errors = error.response.data.errors
-                        return;
-                    }).then(response => {
-             
-                    localStorage.removeItem("storedID");
+                    console.log("local storage + BD")
+                    this.products=JSON.parse(localStorage.getItem('storedID')),
+                    this.products.forEach(function(product) {
+                        var cartItem  = {
+                            product_id: product.id,
+                            quantity: product.quantity,
+                            product_price: product.price
+                        };
+                        axios.post('../add', cartItem)
+                        .catch(error => {
+                            this.errors = error.response.data.errors
+                            return;
+                        }).then(response => {
+
+                            localStorage.removeItem("storedID");
                 
-            })
-                });
+                        })
+                    });
                 // on merge ici
-            }else{
-                console.log("seulement local")
-                this.products=JSON.parse(localStorage.getItem('storedID')),
-                this.products.forEach(function(product) {
-                    var cartItem  = {
-                        product_id: product.id,
-                        quantity: product.quantity
-                    };
-                    axios.post('../add', cartItem)
-                    .catch(error => {
-                        this.errors = error.response.data.errors
-                        return;
-                    })
-                });
+               }else{
+                    console.log("seulement local")
+                    this.products=JSON.parse(localStorage.getItem('storedID')),
+                    this.products.forEach(function(product) {
+                        var cartItem  = {
+                            product_id: product.id,
+                            quantity: product.quantity,
+                            product_price: product.price
+                        };
+                        axios.post('../add', cartItem)
+                        .catch(error => {
+                            this.errors = error.response.data.errors
+                            return;
+                        })
+                    });
+                }
             }
         }
-    }
+/*
+        var finalsubPrice = 0;
+
+        this.json.forEach(function(j) {
+            orders.push(j.orderList)
+        })*/
+
+        console.log(this.products);
+
+        /*
+        this.orders.forEach(function(o) {
+            orders.push(j.orderList)
+        })
+
+
+
+        this.orders.forEach(function (order) {
+            var total = orders.price * product.quantity;
+                product.totalprice = total
+                finalsubPrice = finalsubPrice + product.totalprice;
+            });
+            this.finalsubPrice = finalsubPrice;
+            this.tva = Math.round(this.tvaPercent * this.finalsubPrice / 100);
+            this.calculateDelivery();
+            this.finalPrice = this.finalsubPrice + this.tva + this.livraison;
+        }*/
 },
 
 methods:{
