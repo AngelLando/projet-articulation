@@ -74,6 +74,22 @@ export default {
         open: function(event){
             var clickedElement = event.target;
             $(clickedElement).parent().toggleClass("active");
+
+            if($('.order_container').hasClass("active")) {
+
+                $('.arrow').addClass('up');
+                $('.arrow').removeClass('down');
+            } else {
+
+                if($('.order_line').hasClass("active")) {
+
+                    $('.arrow').addClass('up');
+                    $('.arrow').removeClass('down');
+                } else {
+                    $('.arrow').removeClass('up');
+                    $('.arrow').addClass('down');
+                }
+            }
         },
 
 
