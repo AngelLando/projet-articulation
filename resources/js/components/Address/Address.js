@@ -55,11 +55,19 @@ export default {
     },
     mounted() {
         if (this.id != null) {
-            this.products = JSON.parse(this.cart);
+            let prod = JSON.parse(this.cart);
+            this.products = prod['cart'];
             if (this.products == null || this.products == "") {
                 this.emptyCart = false;
             }
-
+            this.gender1 = prod['address'].gender;
+            this.firstname1 = prod['address'].firstname;
+            this.lastname1 = prod['address'].lastname;
+            this.street1 = prod['address'].street;
+            this.npa1 = prod['address'].npa;
+            this.city1 = prod['address'].city;
+            this.region1 = prod['address'].region;
+            this.country1  = prod['address'].country;
         } else {
             var local = JSON.parse(localStorage.getItem('storedID'))
             if (local == "" || local == null) {
@@ -162,7 +170,7 @@ export default {
                     address1: this.address1,
                     address2: this.address2,
                     address3: this.address3,
-                    products: JSON.parse(this.cart),
+                    products: this.products,
                     comment: this.comment,
                     payment_method: this.payment_method,
                     promotion: this.promotion
@@ -183,9 +191,11 @@ export default {
             console.log(this.data);
 
             axios.post('check', this.data).catch(error => {
+                console.log(error)
                 this.errors = error.response.data.errors
             }).then(response => {
                 if (response.status == 200) {
+                    console.log(response)
                     localStorage.removeItem("storedID");
                     window.location.href = 'confirmation'
                 }

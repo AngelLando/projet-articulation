@@ -53,7 +53,7 @@ class UserController extends Controller
                 }
         }
 
-        $cart = CartController::index();
+        $cart = CartController::index($require = null);
         $data = [
             'orderList' => $orderList,
             'cart' => $cart,
