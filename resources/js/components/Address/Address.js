@@ -62,7 +62,6 @@ export default {
 
         } else {
             var local = JSON.parse(localStorage.getItem('storedID'))
-
             if (local == "" || local == null) {
                 this.emptyCart = false;
             }

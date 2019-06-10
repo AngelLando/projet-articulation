@@ -38,7 +38,11 @@ export default {
                     .catch(error => {
                         this.errors = error.response.data.errors
                         return;
-                    })
+                    }).then(response => {
+             
+                    localStorage.removeItem("storedID");
+                
+            })
                 });
                 // on merge ici
             }else{
