@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
+
 
 class ProductsTableSeeder extends Seeder
 {
@@ -82,31 +84,49 @@ class ProductsTableSeeder extends Seeder
         $json = File::get('database/data/products.json');
         $products = json_decode($json);
         $ref = [];
+        $date = $this->randDate();
         foreach ($products as $data) {
             if ($data->supplier_id != "" && $data->year != null && property_exists($data, 'path_image')) {
-                        $prod = [];
-                        DB::table('products')->insert([
-                            'kind' =>$data->kind,
-                            'name' => $data->name,
-                            'description' => $data->description,
-                            'price' => $data->price,
-                            'year' => $data->year,
-                            'path_image' => $data->path_image,
-                            'weight' => $data->weight,
-                            'stock' => $data->stock,
-                            'alcohol' => $data->alcohol,
-                            'quotation' => $data->quotation,
-                            'slug' => str_slug($data->slug . '-' . $data->format_id),
-                            'format_id' => $data->format_id,
-                            'type_id' => $data->type_id,
-                            'supplier_id' => $data->supplier_id,
-                            'promotion_id' => $data->promotion_id
-                        ]);
-                        $prod['name'] = $data->name;
-                        $prod['year'] = $data->year;
-                        $prod['format_id'] = $data->format_id;
-                        array_push($ref, $prod);
+                $dateArray = array(
+                    $date,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                );
+                $key = array_rand($dateArray);
+
+                $prod = [];
+                DB::table('products')->insert([
+                    'kind' => $data->kind,
+                    'name' => $data->name,
+                    'description' => $data->description,
+                    'price' => $data->price,
+                    'year' => $data->year,
+                    'path_image' => $data->path_image,
+                    'weight' => $data->weight,
+                    'stock' => $data->stock,
+                    'alcohol' => $data->alcohol,
+                    'quotation' => $data->quotation,
+                    'slug' => str_slug($data->slug . '-' . $data->format_id),
+                    'format_id' => $data->format_id,
+                    'type_id' => rand(1,2),
+                    'supplier_id' => $data->supplier_id,
+                    'promotion_id' => $data->promotion_id,
+                    'created_at' => $dateArray[$key]
+                ]);
+                $prod['name'] = $data->name;
+                $prod['year'] = $data->year;
+                $prod['format_id'] = $data->format_id;
+                array_push($ref, $prod);
             }
         }
+    }
+
+    private function randDate() {
+        $nbJours = rand(-30,0);
+        return Carbon::now()->addDays($nbJours);
     }
 }

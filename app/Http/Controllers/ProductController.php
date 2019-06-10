@@ -24,7 +24,7 @@ class ProductController extends Controller
             foreach ($products as $key => $val) {
                 switch ($id) {
                     case ($id == 'Offre spéciale') :
-                        if ($val->promotion->type != 'Offre spéciale') {
+                        if ($val->promotion->type != 'Offres spéciales') {
                             unset($products[$key]);
                         }
                         break;
