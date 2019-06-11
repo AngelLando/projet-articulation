@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Session;
 use App\Address;
 use App\Order;
 use App\Http\Controllers\CartController;
@@ -149,6 +150,8 @@ class UserController extends Controller
 
         $user->save();
         $user->person->save();
+
+        Session::flash('success', 'Utilisateur mis à jour!');
 
         return redirect()->back();
     }

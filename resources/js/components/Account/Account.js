@@ -15,7 +15,14 @@ export default {
             id:document.querySelector("meta[name='user-id']"),
             products:[],
             total: 0,
-            user: []
+            user: '',
+            lastname: '',
+            firstname: '',
+            gender: '',
+            username: '',
+            email: '',
+            password: '',
+            birth_date: ''
         }
     },
     props : ['data'],
@@ -23,6 +30,13 @@ export default {
         let json = JSON.parse(this.data)
         this.json = json;
         this.user = json.user;
+        this.lastname = this.user.person.lastname;
+        this.firstname = this.user.person.firstname;
+        this.gender = this.user.person.gender;
+        this.username = this.user.username;
+        this.email = this.user.email;
+        this.password = this.user.password;
+        this.birth_date = this.user.birth_date;
 
         if (this.id != null) {
             var local = JSON.parse(localStorage.getItem('storedID'))
@@ -121,6 +135,23 @@ export default {
                 formattedMontant = (Math.ceil(value*20)/20).toFixed(2);
                 return formattedMontant;
             }
+        },
+
+        updateUser: function () {
+            this.user  = {
+                lastname: this.lastname,
+                firstname: this.firstname,
+                gender: this.gender,
+                username: this.username,
+                email: this.email,
+                password: this.password,
+                birth_date: this.birth_date
+            };
+            axios.post('account/update', this.user)
+            .catch(error => {
+                this.errors = error.response.data.errors
+                return;
+            })
         },
     },
 }
