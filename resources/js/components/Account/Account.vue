@@ -3,7 +3,7 @@
         <div class="row px20 pt0">
             <div class="col-md-3 hidden-xs hidden-sm block">
                 <nav class="static-menu serif h4 mb35">
-                    <p>Mon compte</p>
+                    <p class="myaccount">Mon compte</p>
                     <ul class="nav-account m0 p0">
                         <li class="mb20 active" @click="underline" v-on:click="showOrders=true; showInfos=false; showAdresses=false; showNewsletters=false; showFavs=false">
                             Mes commandes
