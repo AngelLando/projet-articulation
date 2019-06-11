@@ -7,10 +7,10 @@ export default {
     },
       methods : {
       	   sendNews: function () {
-      	   	console.log("d")
+            var dn = this;
       	   	this.submitNews=false;
       	   	setTimeout(function(){
-      	   	 this.newsDisplayOn=false;
+      	   	 dn.newsDisplayOn=false;
       	   	}, 2000);
 
 
