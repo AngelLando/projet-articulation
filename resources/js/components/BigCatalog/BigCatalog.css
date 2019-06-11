@@ -237,6 +237,10 @@ Product
     transition: all 200ms ease;*/
 }
 
+.btn-quantity {
+    height: 3.45em;
+}
+
 .home_item_large .product_buttons > div > div
 {
     border-top: solid 1px rgba(255,255,255,0.2);
