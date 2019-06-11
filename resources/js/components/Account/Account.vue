@@ -98,42 +98,42 @@
             <div class="content infos col-md-9 hidden-xs hidden-sm block" v-if="showInfos">
                 <h2>Mes informations</h2>
                 <hr>
-                <form action="" method="POST">
+                <form method="POST">
                     <!--{{ csrf_field() }}!-->
                     <div class="form-group">
                         <label for="lastname">Nom</label>
-                        <input type="text" name="lastname" class="form-control" :value="user.person.lastname" id="lastname" placeholder="Nom">
+                        <input type="text" name="lastname" class="form-control" :placeholder="lastname" id="lastname" placeholder="Nom" v-model="lastname">
                     </div>
                     <div class="form-group">
                         <label for="firstname">Prénom</label>
-                        <input type="text" name="firstname" class="form-control" :value="user.person.firstname" id="firstname" placeholder="Prénom">
+                        <input type="text" name="firstname" class="form-control" :placeholder="firstname" id="firstname" placeholder="Prénom" v-model="firstname">
                     </div>
                     <div class="form-group">
                         <label for="gender">Genre</label>
-                        <select class="form-control" name="gender" id="gender">
+                        <select class="form-control" name="gender" id="gender" v-model="gender">
                             <option value=""></option>
-                            <option value="m" :selected="user.person.gender == 'm' ? 'selected' : ''">Homme</option>
-                            <option value="f" :selected="user.person.gender == 'f' ? 'selected' : ''">Femme</option>
-                            <option value="other" :selected="user.person.gender == 'other' ? 'selected' : ''">Autre</option>
+                            <option value="m" :selected="gender === 'm' ? 'selected' : ''">Homme</option>
+                            <option value="f" :selected="gender === 'f' ? 'selected' : ''">Femme</option>
+                            <option value="other" :selected="gender === 'other' ? 'selected' : ''">Autre</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="username">Nom d'utilisateur</label>
-                        <input type="text" name="username" class="form-control" :value="user.username" id="username" placeholder="Nom d'utilisateur">
+                        <input type="text" name="username" class="form-control" :placeholder="username" id="username" placeholder="Nom d'utilisateur" v-model="username">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control" :value="user.email" id="email" placeholder="Email">
+                        <input type="email" name="email" class="form-control" :placeholder="email" id="email" placeholder="Email" v-model="email">
                     </div>
                     <div class="form-group">
                         <label for="password">Nouveau mot de passe</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Mot de passe">
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Mot de passe" v-model="password">
                     </div>
                     <div class="form-group">
                         <label for="birth_date">Date de naissance</label>
-                        <input type="date" name="birth_date" class="form-control" :value="user.birth_date" id="birth_date" placeholder="Date de naissance">
+                        <input type="date" name="birth_date" class="form-control" :placeholder="birth_date" id="birth_date" placeholder="Date de naissance" v-model="birth_date">
                     </div><hr>
-                    <button type="submit" class="btn btn-primary btn-edit-infos">Mettre à jour mon compte</button>
+                    <div @click="updateUser(user.id)" class="btn btn-primary btn-edit-infos">Mettre à jour mon compte</div>
                 </form>
             </div>
             <div class="content addresses col-md-9 hidden-xs hidden-sm block" v-if="showAdresses">
