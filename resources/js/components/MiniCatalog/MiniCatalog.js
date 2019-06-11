@@ -85,6 +85,7 @@ export default {
                 if (alreadyExist==false) {
                     local.push({
                         "id":clickedProduct.id,
+   "slug":clickedProduct.slug,
                         "packaging_capacity":clickedProduct.packaging_capacity,
                         "quantity":this.quantity,
                         "path_image":clickedProduct.path_image,
