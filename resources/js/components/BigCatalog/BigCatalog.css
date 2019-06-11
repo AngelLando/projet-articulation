@@ -432,16 +432,19 @@ Product_rating
     color: #850038;
 }
 
+.delete-filters {
+    cursor: pointer;
+    color: #bcbabc;
+}
 
+.delete-filters:hover p {
+    font-weight: 500;
+    color: #850038;
+}
 
-
-
-
-/*************
-
-Code ajouté
-
- *************/
+.fa-times-circle:before {
+    color: #bcbabc;
+}
 
 
 .bootstrap-select {

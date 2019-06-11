@@ -77,155 +77,176 @@ export default {
         updateCounter:function(){
           var numItems = document.getElementsByClassName("counter").length;
           this.counter = numItems
-      },
+        },
 
-      toggleHeart: function(event){
-        var clickedElement = event.target;
+        toggleHeart: function(event){
+            var clickedElement = event.target;
 
-        if($(clickedElement).hasClass("full")) {
-            $(clickedElement).addClass("empty");
-            $(clickedElement).removeClass("full");
-        } else {
-            $(clickedElement).addClass("full");
-            $(clickedElement).removeClass("empty");
-        }
-    },
-
-    isInArray: function (selection, produc_appell) {
-        const finalarray = [];
-        selection.forEach((s) => {
-            produc_appell.forEach((a) => {
-                if (a.name === s) {
-                    finalarray.push(a.name)
-                }
-            });
-        })
-        if(finalarray.length > 0) {
-            return 1;
-        } else {
-            return 0;
-        }
-    },
-
-    setQuantity:function(product){
-        this.quantity = event.target.value;
-    },
-
-
-    transform: function (selection, product) {
-        const intArray = [];
-        const resultArray = [];
-
-        selection.forEach((s) => {
-            intArray.push(parseInt(s, 10))
-            intArray.push((parseInt(s, 10))+1)
-        })
-
-        intArray.forEach((i) => {
-            if (product.year == i) {
-                resultArray.push(product.year)
+            if($(clickedElement).hasClass("full")) {
+                $(clickedElement).addClass("empty");
+                $(clickedElement).removeClass("full");
+            } else {
+                $(clickedElement).addClass("full");
+                $(clickedElement).removeClass("empty");
             }
-        })
-        if(resultArray.length > 0) {
-            return 1;
-        } else {
-            return 0;
-        }
-    },
+        },
 
-
-    input: function (clickedProduct) {
-        if (this.id != null) {
-            this.cartItem  = {
-                product_id: clickedProduct.id,
-                quantity: this.quantity
-            };
-            axios.post('add', this.cartItem)
-            .catch(error => {
-                this.errors = error.response.data.errors
-                return;
+        isInArray: function (selection, produc_appell) {
+            const finalarray = [];
+            selection.forEach((s) => {
+                produc_appell.forEach((a) => {
+                    if (a.name === s) {
+                        finalarray.push(a.name)
+                    }
+                });
             })
-        } 
-        if (this.quantity>clickedProduct.stock || this.quantity<=0) {
-            console.log("erreur")
-        } else {
-         var clickedElement = event.target;
-         $(clickedElement).addClass("item-added");
-         setTimeout(function () {
-             $(clickedElement).removeClass('item-added');
-         }, 1500);
-
-         var local = localStorage.getItem('storedID');
-         local = local ? JSON.parse(local): [];
-         var prodId = clickedProduct.id
-         var q = parseInt(this.quantity, 10);
-         var alreadyExist = false;
-         local.forEach(function(element) {
-            if (element.id == prodId) {
-                alreadyExist=true;
-                var f = parseInt(element.quantity,10)
-                element.quantity = q+f;
+            if(finalarray.length > 0) {
+                return 1;
+            } else {
+                return 0;
             }
-        });
-         if (alreadyExist==false) {
-            local.push({
-              "id":clickedProduct.id,
-              "slug":clickedProduct.slug,
-              "packaging_capacity":clickedProduct.packaging_capacity,
-              "quantity":this.quantity,
-              "path_image":clickedProduct.path_image,
-              "name":clickedProduct.name,
-              "price": clickedProduct.price,
-              "format":clickedProduct.format,
-          })
-        }
-        localStorage.setItem('storedID', JSON.stringify(local));
-    }
-},
+        },
+
+        setQuantity:function(product){
+            this.quantity = event.target.value;
+        },
 
 
-resetFilter1: function() {
-    $(".filter1:checkbox").prop('checked', false);
-    this.selected_kinds = [];
-    this.reStartCounter()
-},
+        transform: function (selection, product) {
+            const intArray = [];
+            const resultArray = [];
 
-resetFilter2: function() {
-    $(".filter2:checkbox").prop('checked', false);
-    this.selected_formats = [];
-    this.reStartCounter()
-},
+            selection.forEach((s) => {
+                intArray.push(parseInt(s, 10))
+                intArray.push((parseInt(s, 10))+1)
+            })
 
-resetFilter3: function() {
-    $(".filter3:checkbox").prop('checked', false);
-    this.selected_packagings = [];
-    this.reStartCounter()
-},
+            intArray.forEach((i) => {
+                if (product.year == i) {
+                    resultArray.push(product.year)
+                }
+            })
+            if(resultArray.length > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        },
 
-resetFilter4: function() {
-    $(".filter4:checkbox").prop('checked', false);
-    this.selected_years = [];
-    this.reStartCounter()
-},
 
-resetFilter5: function() {
-    $(".filter5:checkbox").prop('checked', false);
-    this.selected_appellations = [];
-    this.reStartCounter()
-},
+        input: function (clickedProduct) {
+            if (this.id != null) {
+                this.cartItem  = {
+                    product_id: clickedProduct.id,
+                    quantity: this.quantity
+                };
+                axios.post('add', this.cartItem)
+                .catch(error => {
+                    this.errors = error.response.data.errors
+                    return;
+                })
+            }
+            if (this.quantity>clickedProduct.stock || this.quantity<=0) {
+                console.log("erreur")
+            } else {
+                 var clickedElement = event.target;
+                 $(clickedElement).addClass("item-added");
+                 setTimeout(function () {
+                     $(clickedElement).removeClass('item-added');
+                 }, 1500);
 
-resetFilter6: function() {
-    $(".filter6:checkbox").prop('checked', false);
-    this.selected_tags = [];
-    this.reStartCounter()
-},
+                 var local = localStorage.getItem('storedID');
+                 local = local ? JSON.parse(local): [];
+                 var prodId = clickedProduct.id
+                 var q = parseInt(this.quantity, 10);
+                 var alreadyExist = false;
+                 local.forEach(function(element) {
+                    if (element.id == prodId) {
+                        alreadyExist=true;
+                        var f = parseInt(element.quantity,10)
+                        element.quantity = q+f;
+                    }
+                });
+                 if (alreadyExist==false) {
+                    local.push({
+                      "id":clickedProduct.id,
+                      "slug":clickedProduct.slug,
+                      "packaging_capacity":clickedProduct.packaging_capacity,
+                      "quantity":this.quantity,
+                      "path_image":clickedProduct.path_image,
+                      "name":clickedProduct.name,
+                      "price": clickedProduct.price,
+                      "format":clickedProduct.format,
+                  })
+                }
+                localStorage.setItem('storedID', JSON.stringify(local));
+            }
+        },
 
-resetFilter7: function() {
-    $(".filter7:checkbox").prop('checked', false);
-    this.selected_countries = [];
-    this.reStartCounter()
-},
 
-},
+        resetFilter1: function() {
+            $(".filter1:checkbox").prop('checked', false);
+            this.selected_kinds = [];
+            this.reStartCounter()
+        },
 
+        resetFilter2: function() {
+            $(".filter2:checkbox").prop('checked', false);
+            this.selected_formats = [];
+            this.reStartCounter()
+        },
+
+        resetFilter3: function() {
+            $(".filter3:checkbox").prop('checked', false);
+            this.selected_packagings = [];
+            this.reStartCounter()
+        },
+
+        resetFilter4: function() {
+            $(".filter4:checkbox").prop('checked', false);
+            this.selected_years = [];
+            this.reStartCounter()
+        },
+
+        resetFilter5: function() {
+            $(".filter5:checkbox").prop('checked', false);
+            this.selected_appellations = [];
+            this.reStartCounter()
+        },
+
+        resetFilter6: function() {
+            $(".filter6:checkbox").prop('checked', false);
+            this.selected_tags = [];
+            this.reStartCounter()
+        },
+
+        resetFilter7: function() {
+            $(".filter7:checkbox").prop('checked', false);
+            this.selected_countries = [];
+            this.reStartCounter()
+        },
+
+        resetAllFilters: function() {
+            $('.vue-slider-process').css({
+                left: '0%',
+                width: '100%',
+            });
+            $('.vue-slider-dot:nth-of-type(2)').css({
+                left: '0%',
+            });
+            $('.vue-slider-dot:nth-of-type(3)').css({
+                left: '100%',
+            });
+            this.value_2[0] = 10.70;
+            this.value_2[1] = 915.50;
+
+            this.resetFilter1();
+            this.resetFilter2();
+            this.resetFilter3();
+            this.resetFilter4();
+            this.resetFilter5();
+            this.resetFilter6();
+            this.resetFilter7();
+        },
+    },
 }

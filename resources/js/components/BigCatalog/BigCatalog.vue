@@ -10,9 +10,12 @@
                     <div class="container">
                         <div class="row filters_row">
                             <div class="selection">
-                                <div class="text-right d-flex all_filters row align-items-start justify-content-start">
+                                <div class="row delete-filters">
+                                    <p @click="resetAllFilters"><i class="fa fa-times-circle" aria-hidden="true"></i>  Effacer tous les filtres</p>
+                                </div>
+                                <div class="text-right all_filters row align-items-start justify-content-start">
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option type_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span class="filter_name">Type de vin</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option type_filter text-center align-items-center justify-content-center mr-3 arrow_right"><span class="filter_name">Type de vin</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <button @click="resetFilter1" class="btn-reset">
                                                 Effacer
@@ -25,7 +28,7 @@
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option format_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Format</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option format_filter text-center align-items-center justify-content-center mr-3 arrow_right"><span>Format</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <button @click="resetFilter2" class="btn-reset">
                                                 Effacer
@@ -38,7 +41,7 @@
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Conditionnement</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option packaging_filter text-center align-items-center justify-content-center mr-3 arrow_right"><span>Conditionnement</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <button @click="resetFilter3" class="btn-reset">
                                                 Effacer
@@ -51,7 +54,7 @@
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option vintage_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Millésime</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option vintage_filter text-center align-items-center justify-content-center mr-3 arrow_right"><span>Millésime</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul id="years">
                                             <button @click="resetFilter4" class="btn-reset">
                                                 Effacer
@@ -74,7 +77,7 @@
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option appellation_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Appellation</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option appellation_filter text-center align-items-center justify-content-center mr-3 arrow_right"><span>Appellation</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul id="appellations">
                                             <button @click="resetFilter5" class="btn-reset">
                                                 Effacer
@@ -87,7 +90,7 @@
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Catégorie</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option packaging_filter text-center align-items-center justify-content-center mr-3 arrow_right"><span>Catégorie</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <button @click="resetFilter6" class="btn-reset">
                                                 Effacer
@@ -100,7 +103,7 @@
                                         </ul>
                                     </div>
                                     <div class="products_dropdown text-right">
-                                        <div class="filter_option packaging_filter text-center d-flex flex-column align-items-center justify-content-center mr-3 arrow_right"><span>Pays</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                        <div class="filter_option packaging_filter text-center align-items-center justify-content-center mr-3 arrow_right"><span>Pays</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                                         <ul>
                                             <button @click="resetFilter7" class="btn-reset">
                                                 Effacer
@@ -114,16 +117,12 @@
                                     </div>
                                 </div>
                                 <br>
-
                                 <div class="row price_filter pb-3">
-
                                     <div class="price-filter-label content col-md-1 col-sm-1">Prix :</div>
                                     <div class="price-filter price-filter-min col-md-2 col-sm-1"><span>CHF {{value_2[0]}}</span><span v-if="value_2[0] % 1 === 0">.–</span><span v-if="(((value_2[0]*1000) % 1 === 0) && (value_2[0] % 1 !== 0))">0</span></div>
                                     <div @click="reStartCounter" class="slider-price col-md-4 col-sm-2"><vue-slider v-model="value_2" :min="10.70" :max="915.50" :interval="0.10"/></div>
                                     <div class="price-filter price-filter-max col-md-2 col-sm-1"><span>CHF {{value_2[1]}}</span><span v-if="value_2[1] % 1 === 0">.–</span><span v-if="(((value_2[1]*1000) % 1 === 0) && (value_2[1] % 1 !== 0))">0</span></div>
-
                                 </div>
-
                                 <div class="row results_sort ml-3 pt-4 pb-1">
                                     <div class="sort col-md-auto col-sm-3">
                                         <select class="bootstrap-select sort_by">
