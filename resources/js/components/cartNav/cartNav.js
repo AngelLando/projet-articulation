@@ -17,7 +17,8 @@ export default {
             emptyCart: true,
             cartHref : 'cart',
             deleteSVG : 'images/delete.svg',
-            checkout : 'checkout'
+            checkout : 'checkout',
+            slug :'produit/'
         }
     },
     mounted() {
@@ -30,13 +31,16 @@ export default {
             this.cartHref = '../' + this.cartHref
             this.deleteSVG = '../' + this.deleteSVG
             this.checkout = '../' + this.checkout
+            this.slug = '../'+this.slug
         } else if (path.indexOf('user') != -1) {
+            this.slug='../' + this.slug
             this.url = '../' + this.url
             this.img = '../' + this.img
             this.cartHref = '../' + this.cartHref
             this.deleteSVG = '../' + this.deleteSVG
             this.checkout = '../' + this.checkout
         } else if (path.indexOf('admin') != -1) {
+            this.slug = '../'+this.slug
             this.url = '../' + this.url
             this.img = '../' + this.img
             this.cartHref = '../' + this.cartHref
