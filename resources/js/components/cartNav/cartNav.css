@@ -314,7 +314,7 @@ div.cart {
     z-index : 40000;
     width : 30vw;
     right: 90px;
-    padding-top: 4vh;
+    padding-top: 1.1vh;
 }
 
 .fa-shopping-cart:before {
