@@ -52,7 +52,7 @@ class CartController extends Controller
                     $favoriteAddress = null;
                 } else {
                     $favoriteAddress = [
-                        'gender' => $person->prefix,
+                        'gender' => $person->gender,
                         'firstname' => $person->firstname,
                         'lastname' => $person->lastname,
                         'street' => $address->street,

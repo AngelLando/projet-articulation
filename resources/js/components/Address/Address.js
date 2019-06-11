@@ -61,7 +61,6 @@ export default {
                 this.emptyCart = false;
             }
             this.products = prod['cart'];
-         
             this.gender1 = prod['address'].gender;
             this.firstname1 = prod['address'].firstname;
             this.lastname1 = prod['address'].lastname;
