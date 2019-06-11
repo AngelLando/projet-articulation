@@ -56,10 +56,11 @@ export default {
     mounted() {
         if (this.id != null) {
             let prod = JSON.parse(this.cart);
-            this.products = prod['cart'];
-            if (this.products == null || this.products == "") {
+               if (this.prod == null || this.prod == "") {
                 this.emptyCart = false;
             }
+            this.products = prod['cart'];
+         
             this.gender1 = prod['address'].gender;
             this.firstname1 = prod['address'].firstname;
             this.lastname1 = prod['address'].lastname;
