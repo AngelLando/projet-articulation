@@ -109,15 +109,17 @@ height: 8px;
       display: block;
     width: 40px;
         height: auto;
+        margin-left: 10px;
 }
 
 .cart_product_name{
     font-family: Montserrat;
 font-style: normal;
 font-weight: bold;
-font-size: 20px;
+font-size: 16px;
 line-height: 20px;
 color: #000000;
+margin-bottom:0;
 }
 
 .cart_content{
@@ -168,11 +170,10 @@ color: #000000;
     min-width: 50px;
      background: #FFFFFF;
   width:50%;
-  height: 100%;
   border-style: solid;
   border-color: #EDEDED;
 border-width: 2.5px;
-  height: 2em !important;
+  height: 1.8em ;
 }
 .cart_product_details{
     font-family: Montserrat;
@@ -189,7 +190,7 @@ color: #000000;
 font-family: Montserrat;
 font-style: normal;
 font-weight: 500;
-font-size: 20px;
+font-size: 18px;
 text-align: right;
 color: #787878;
 }
@@ -198,7 +199,7 @@ color: #787878;
     font-family: Montserrat;
 font-style: normal;
 font-weight: 500;
-font-size: 20px;
+font-size: 18px;
 color: #828282;
 }
 
@@ -206,7 +207,7 @@ color: #828282;
     font-family: Montserrat;
 font-style: normal;
 font-weight: bold;
-font-size: 20px;
+font-size: 18px;
 color: #850038;
 
 }
