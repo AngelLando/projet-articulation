@@ -36,6 +36,12 @@ export default {
             this.cartHref = '../' + this.cartHref
             this.deleteSVG = '../' + this.deleteSVG
             this.checkout = '../' + this.checkout
+        } else if (path.indexOf('admin') != -1) {
+            this.url = '../' + this.url
+            this.img = '../' + this.img
+            this.cartHref = '../' + this.cartHref
+            this.deleteSVG = '../' + this.deleteSVG
+            this.checkout = '../' + this.checkout
         } else {
             this.url = this.url
             this.img = this.img
