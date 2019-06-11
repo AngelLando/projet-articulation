@@ -192,7 +192,7 @@
                                         <div class="product_price text-right">CHF {{ product.price }}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></div>
                                     </div>
                                     <div class="product_buttons">
-                                        <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                        <div class="btn-quantity text-right d-flex flex-row align-items-start justify-content-start">
                                            <div class="product_button product_quantity text-center d-flex flex-column align-items-center justify-content-center">
                                             <input type="number" class="choice_list text-center" placeholder="1" min="1" v-model="quantity" :max="product.stock" @click="setQuantity(product)">
                                             <p class="error pt-2" v-if="errors.quantity">{{errors.quantity[0]}}</p>
