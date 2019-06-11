@@ -112,9 +112,9 @@
                         <label for="gender">Genre</label>
                         <select class="form-control" name="gender" id="gender" v-model="gender">
                             <option value=""></option>
-                            <option value="m" :selected="gender === 'm' ? 'selected' : ''">Homme</option>
-                            <option value="f" :selected="gender === 'f' ? 'selected' : ''">Femme</option>
-                            <option value="other" :selected="gender === 'other' ? 'selected' : ''">Autre</option>
+                            <option value="m">Homme</option>
+                            <option value="f">Femme</option>
+                            <option value="other">Autre</option>
                         </select>
                     </div>
                     <div class="form-group">
