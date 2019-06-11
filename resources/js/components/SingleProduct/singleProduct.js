@@ -15,25 +15,25 @@ export default {
 	},
 	methods:{
 
-        sendMail: function(){
-            var name = this.product.slug;
-            window.location.href = "mailto:?subject=Belle découverte&body=Cher ami-e, je te recommande ce vin que j'apprécie beaucoup : http://pingouin1.heig-vd.ch/six/produit/" +name+ ". Belle découverte et à bientôt.";
-        },
+		sendMail: function(){
+			var name = this.product.slug;
+			window.location.href = "mailto:?subject=Belle découverte&body=Cher ami-e, je te recommande ce vin que j'apprécie beaucoup : http://pingouin1.heig-vd.ch/six/produit/" +name+ ". Belle découverte et à bientôt.";
+		},
 
-        toggleHeart: function(event){
-            var clickedElement = event.target;
+		toggleHeart: function(event){
+			var clickedElement = event.target;
 
-            if($(clickedElement).hasClass("full")) {
-                $(clickedElement).addClass("empty");
-                $(clickedElement).removeClass("full");
-            } else {
-                $(clickedElement).addClass("full");
-                $(clickedElement).removeClass("empty");
-            }
-        },
+			if($(clickedElement).hasClass("full")) {
+				$(clickedElement).addClass("empty");
+				$(clickedElement).removeClass("full");
+			} else {
+				$(clickedElement).addClass("full");
+				$(clickedElement).removeClass("empty");
+			}
+		},
 		underline: function(event){
 			var clickedElement = event.target;
-						$(clickedElement).removeClass("more_info");
+			$(clickedElement).removeClass("more_info");
 			$(clickedElement).addClass("more_info_selected");
 			$(clickedElement).siblings().removeClass("more_info_selected");
 			$(clickedElement).siblings().addClass("more_info");
@@ -60,47 +60,47 @@ export default {
 			if (this.quantity>this.product.stock || this.quantity<=0) {
 				console.log("erreur")
 			}else{
-                var clickedElement = event.target;
-                $(clickedElement).addClass("item-added");
-                setTimeout(function () {
-                    $(clickedElement).removeClass('item-added');
-                }, 1500);
+				var clickedElement = event.target;
+				$(clickedElement).addClass("item-added");
+				setTimeout(function () {
+					$(clickedElement).removeClass('item-added');
+				}, 1500);
 
-                var local = localStorage.getItem('storedID');
-                local = local ? JSON.parse(local): [];
-                var prodId = this.product.id
-                var q = parseInt(this.quantity, 10);
-                var alreadyExist = false;
-                local.forEach(function(element) {
-                    if (element.id == prodId) {
-                        alreadyExist=true;
-                        var f = parseInt(element.quantity,10)
-                        element.quantity = q+f;
-                    }
-			    });
-			    if (alreadyExist==false) {
-                    local.push({
-                        "id":this.product.id,
-                        "slug":this.product.slug,
-                        "packaging_capacity":this.product.packaging_capacity,
-                        "quantity":this.quantity,
-                        "path_image":this.product.path_image,
-                        "name":this.product.name,
-                        "price": this.product.price,
-                        "format":this.product.format,
-				    })
-			    }
+				var local = localStorage.getItem('storedID');
+				local = local ? JSON.parse(local): [];
+				var prodId = this.product.id
+				var q = parseInt(this.quantity, 10);
+				var alreadyExist = false;
+				local.forEach(function(element) {
+					if (element.id == prodId) {
+						alreadyExist=true;
+						var f = parseInt(element.quantity,10)
+						element.quantity = q+f;
+					}
+				});
+				if (alreadyExist==false) {
+					local.push({
+						"id":this.product.id,
+						"slug":this.product.slug,
+						"packaging_capacity":this.product.packaging_capacity,
+						"quantity":this.quantity,
+						"path_image":this.product.path_image,
+						"name":this.product.name,
+						"price": this.product.price,
+						"format":this.product.format,
+					})
+				}
 				localStorage.setItem('storedID', JSON.stringify(local));
-            }
-        }
-    },
-		props : ['prod'],
-		mounted () {
-			let json = JSON.parse(this.prod);
-			this.product = json.product;
-			this.products = json.recommandations;
-			this.products = json.products;
-		},
+			}
+		}
+	},
+	props : ['prod'],
+	mounted () {
+		let json = JSON.parse(this.prod);
+		this.product = json.product;
+		this.products = json.recommandations;
+		this.products = json.products;
+	},
 
 }
 

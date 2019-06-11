@@ -21,7 +21,7 @@ export default {
         if (path.indexOf('produit') == -1) {
             this.productHREF = 'produit/'
         }
-        },
+    },
 
     methods : {
 
@@ -85,7 +85,7 @@ export default {
                 if (alreadyExist==false) {
                     local.push({
                         "id":clickedProduct.id,
-   "slug":clickedProduct.slug,
+                        "slug":clickedProduct.slug,
                         "packaging_capacity":clickedProduct.packaging_capacity,
                         "quantity":this.quantity,
                         "path_image":clickedProduct.path_image,
