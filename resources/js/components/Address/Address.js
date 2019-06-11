@@ -56,7 +56,8 @@ export default {
     mounted() {
         if (this.id != null) {
             let prod = JSON.parse(this.cart);
-               if (prod == null || prod == "") {
+            console.log(prod.cart);
+               if (prod.cart == null || prod.cart == "") {
                 this.emptyCart = false;
             }
             this.products = prod['cart'];
