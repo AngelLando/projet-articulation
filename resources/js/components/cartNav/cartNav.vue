@@ -9,7 +9,7 @@
                     <div class="cartitems-container row">
                     <div class="row line_bottom pl-3 pb-2 pt-4" v-for="product in cart" v-if="product.id!=null">
                        <div class="col-1 ml-2 mr-2">
-                        <img  class="product_cart_image" :src="product.path_image" alt="">
+                       <a :href='slug+product.slug'> <img  class="product_cart_image" :src="product.path_image" alt=""></a>
                     </div>
                     <div class="col-11 row">
                         <div class="col-10"><p class="cart_product_name">{{product.name}}</p></div>

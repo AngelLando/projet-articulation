@@ -127,13 +127,8 @@
                                 <div class="row results_sort ml-3 pt-4 pb-1">
                                     <div class="sort col-md-auto col-sm-3">
                                         <select class="bootstrap-select sort_by">
-                                            <option @click="reStartCounter" value="1" selected="selected">Noms A-Z</option>
-                                            <option @click="reStartCounter" value="2">Noms Z-A</option>
-                                            <option @click="reStartCounter" value="3">Prix croissants</option>
-                                            <option @click="reStartCounter" value="4">Prix décroissants</option>
-                                            <option @click="reStartCounter" value="4">Ancienneté croissante</option>
-                                            <option @click="reStartCounter" value="4">Ancienneté décroissante</option>
-
+                                            <option value="1" selected="selected">Prix croissants</option>
+                                            <option value="2">Prix décroissants</option>
                                         </select>
                                     </div>
                                     <div class="sort col-md-auto col-sm-1">

@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('comment')->nullable();
             $table->string('shipping_status')->nullable();
             $table->string('payment_status')->nullable();
-            $table->integer('CGV');
+            $table->integer('cgv');
             $table->timestamps();
             $table->integer('address_id_1')->unsigned();
             $table->foreign('address_id_1')

@@ -39,16 +39,21 @@
                     <div class ="cart_prices mt-3 mb-3 row">
                         <div class="col-1"></div>
                         <div class="row col-11 pt-2">
-                            <div class="col-7"></div>
+                            <div class="col-6"></div>
+                                                        <div class="col-1"></div>
+
                             <p class="col-2 text-center cart_frais">TVA ({{tvaPercent}}%)</p>
                             <p class="col-2 text-right cart_frais_price">CHF {{tva}}<span v-if="tva % 1 === 0">.–</span><span v-if="(((tva*1000) % 1 === 0) && (tva % 1 !== 0))">0</span></p>
                             <div class="col-1"></div>
 
-                            <div class="col-7"></div>
+                            <div class="col-6"></div>
+                                                        <div class="col-1"></div>
+
                             <p class="col-2 text-center cart_frais">Livraison</p>
                             <p class="col-2 text-right cart_frais_price">CHF {{livraison}}<span v-if="livraison % 1 === 0">.–</span><span v-if="(((livraison*1000) % 1 === 0) && (livraison % 1 !== 0))">0</span></p>
                             <div class="col-1"></div>
-                            <div class="col-7"></div>
+                            <div class="col-6"></div>
+                            <div class="col-1"></div>
                             <p class="col-2 text-center cart_frais_price_total">Total</p>
                             <p class="col-2 text-right cart_frais_price_total">CHF {{finalPrice}}<span v-if="finalPrice % 1 === 0">.–</span><span v-if="(((finalPrice*1000) % 1 === 0) && (finalPrice % 1 !== 0))">0</span></p>
                             <div class="col-1"></div>

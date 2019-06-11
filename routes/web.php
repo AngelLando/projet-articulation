@@ -54,10 +54,12 @@ Route::get('/cart-nav', function () {
 
 
 // POST
-Route::post('/user/account/update', [
+/* Route::post('/user/account/update', [
     'uses' => 'UserController@update',
     'as' => 'user.account.update'
-]);
+]); */
+
+Route::post('/user/account/update', 'UserController@update')->name('updateUser');
 
 Route::post('/check', 'OrderController@store')->name('check');
 

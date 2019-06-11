@@ -88,7 +88,7 @@ class OrderController extends Controller
             'tva' => 7.7,
             'discount' => $request->promotion,
             'payment_method' => $request->payment_method,
-            'CGV' => $request->cgv,
+            'cgv' => $request->cgv,
             'address_id_1' => $addressId1,
             'address_id_2' => $addressId2,
             'address_id_3' => $addressId3,
