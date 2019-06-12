@@ -100,6 +100,8 @@ export default {
 		this.product = json.product;
 		this.products = json.recommandations;
 		this.products = json.products;
+
+		console.log(this.products);
 	},
 
 }
