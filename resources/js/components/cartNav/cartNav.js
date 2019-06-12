@@ -80,7 +80,12 @@ this.numberItems = response.data.length;
 
             }else{ 
                 this.cart = JSON.parse(localStorage.getItem('storedID'));
+                if (this.cart==null || this.cart=="") {
+
+                }else{
                 this.numberItems = this.cart.length;
+
+                }
             }
         },
 
