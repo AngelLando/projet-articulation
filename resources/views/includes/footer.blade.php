@@ -7,7 +7,7 @@
     <div class="row big-footer">
 
 
-      <div class="col py-3" >
+      <div class="col col-footer py-3" >
         <!-- Links -->
         <h5 class="text-uppercase footer-title">Actualités</h5>
 
@@ -24,7 +24,7 @@
         </ul>
       </div>
 
-      <div class="col py-3">
+      <div class="col col-footer py-3">
         <!-- Links -->
         <h5 class="text-uppercase footer-title">Aide</h5>
 
@@ -41,7 +41,7 @@
         </ul>
       </div>
 
-      <div class="col py-3">
+      <div class="col col-footer py-3">
         <!-- Links -->
         <h5 class="text-uppercase footer-title">À propos</h5>
 
@@ -59,7 +59,7 @@
       </div>
 
       <div class="col address py-3">
-        <h5 class="">Gazzar SA</h5>
+        <h5 class="footer-address">Gazzar SA</h5>
         <p>Chemin du Dévent  1024 <br>Ecublens, Suisse</p>
         <p>tél : 021 691 86 71 <br> elie@gazzar.ch</p>
       </div>
