@@ -183,7 +183,11 @@
                                         <div class="product_name"><a :href="`produit/`+product.slug">{{ product.name }}</a></div>
                                     </div>
                                     <div class="product_info price d-flex flex-row align-items-start justify-content-start">
-                                        <div class="product_price text-right">CHF {{ product.price }}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></div>
+                                        <div class="product_price text-right">
+                                            <template v-if="product.promotion > 0"><span class="badge badge-success">– {{ product.promotion }}%</span></template> CHF
+                                            <template v-if="product.promotion > 0">{{ product.promotion_price }}<template v-if="product.promotion_price % 1 === 0">.–</template><template v-if="(((product.promotion_price*1000) % 1 === 0) && (product.promotion_price % 1 !== 0)) && ((product.promotion.price*10) % 1 !== 0)">0</template> <del>CHF {{ product.price }}<template v-if="product.price % 1 === 0">.–</template><template v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0)) && ((product.promotion.price*10) % 1 !== 0)">0</template></del></template>
+                                            <template v-else>{{ product.price }}<template v-if="product.price % 1 === 0">.–</template><template v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0)) && ((product.promotion.price*10) % 1 !== 0)">0</template></template>
+                                        </div>
                                     </div>
                                     <div class="product_buttons">
                                         <div class="btn-quantity text-right d-flex flex-row align-items-start justify-content-start">
