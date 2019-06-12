@@ -168,6 +168,13 @@ Product
     padding-bottom: 10px;
 }
 
+@media screen and (max-width: 1200px) {
+    .price {
+        padding-left: 10px;
+        padding-right: 0px;
+    }
+}
+
 .product_name a
 {
     font-family: Montserrat;
@@ -435,6 +442,7 @@ Product_rating
 .delete-filters {
     cursor: pointer;
     color: #bcbabc;
+    margin: 0;
 }
 
 .delete-filters:hover p {
@@ -586,8 +594,8 @@ li.item_filter_btn {
 div.filter_option{
     cursor: pointer;
     padding:10px;
-    padding-left: 17px;
-    padding-right:17px;
+    padding-left: 18px;
+    padding-right:18px;
     background: #FFFFFF;
     border: 1px solid #000000;
     box-sizing: border-box;
@@ -604,16 +612,10 @@ div.filter_option{
     color: #000000;
 }
 
-div.filter_option:hover{
+div.filter-used{
     background: #850038;
     color:white;
     border: 1px solid #850038;
-
-}
-
-div.filter_option.active{
-    background: #850038;
-    color:white;
 
 }
 

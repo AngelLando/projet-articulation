@@ -91,6 +91,10 @@
         border-color: #850038 !important;
     }
 
+    .btn-link {
+        color: #850038 !important;
+    }
+
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
     input:-webkit-autofill:focus,

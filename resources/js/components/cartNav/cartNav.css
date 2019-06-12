@@ -375,3 +375,9 @@ margin-left:-10px;
     -moz-box-shadow: 0px 0px 30px -12px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 30px -12px rgba(0,0,0,0.75);
 }
+
+.cart-link {
+    color: white;
+    font-weight: 500;
+    margin-top: -0.15em;
+}
