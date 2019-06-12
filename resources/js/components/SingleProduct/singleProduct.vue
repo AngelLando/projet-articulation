@@ -20,8 +20,8 @@
                                     <p class="product_name">{{product.name}}</p>
                                     <p class="product_price pb-2">
                                         <template v-if="product.promotion > 0"><span class="badge badge-success">– {{ product.promotion }}%</span></template> CHF
-                                        <template v-if="product.promotion > 0">{{ product.promotion_price }}<template v-if="product.promotion_price % 1 === 0">.–</template><template v-if="(((product.promotion_price*1000) % 1 === 0) && (product.promotion_price % 1 !== 0))">0</template> <del>CHF {{ product.price }}<template v-if="product.price % 1 === 0">.–</template><template v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</template></del></template>
-                                        <template v-else>{{ product.price }}<template v-if="product.price % 1 === 0">.–</template><template v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</template></template>
+                                        <template v-if="product.promotion > 0">{{ product.promotion_price }}<template v-if="product.promotion_price % 1 === 0">.–</template><template v-if="(((product.promotion_price*1000) % 1 === 0) && (product.promotion_price % 1 !== 0)) && (product.promotion_price*100 % 10 == 0)">0</template> <del>CHF {{ product.price }}<template v-if="product.price % 1 === 0">.–</template><template v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0)) && (product.price*100 % 10 == 0)">0</template></del></template>
+                                        <template v-else>{{ product.price }}<template v-if="product.price % 1 === 0">.–</template><template v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0)) (product.price*100 % 10 == 0)">0</template></template>
                                     </p>
                                     <div class="product_buttons">
                                         <form @submit.prevent="submitCartItem">
