@@ -35,11 +35,11 @@
 
                      <div class="cart_header_2 row">
                         <p class="prices col-6">TVA</p>
-                        <p class="prices col-4 text-center">CHF {{tva}}<span v-if="finalPrice % 1 === 0">.–</span><span v-if="(((finalPrice*1000) % 1 === 0) && (finalPrice % 1 !== 0))">0</span></p>
+                        <p class="prices col-4 text-center">CHF {{tva}}<span v-if="tva % 1 === 0">.–</span><span v-if="(((tva*1000) % 1 === 0) && (tva % 1 !== 0))">0</span></p>
                     </div>
                     <div class="cart_header_2 row">
                      <p class="prices col-6">Livraison</p>
-                     <p class="prices col-4 text-center">CHF {{livraison}}<span v-if="finalPrice % 1 === 0">.–</span><span v-if="(((finalPrice*1000) % 1 === 0) && (finalPrice % 1 !== 0))">0</span></p>
+                     <p class="prices col-4 text-center">CHF {{livraison}}<span v-if="livraison % 1 === 0">.–</span><span v-if="(((livraison*1000) % 1 === 0) && (livraison % 1 !== 0))">0</span></p>
                  </div>
                  <div class="cart_header row">
                      <p class="prices white col-6">Total</p>

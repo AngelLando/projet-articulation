@@ -41,7 +41,7 @@ export default {
             tva: 0,
             tvaPercent: 7.7,
             finalPrice: 0,
-            promocode: 10,
+            promocode: 'cuki',
             promotion: false,
             rabais: '',
             errors: {},
@@ -85,13 +85,13 @@ export default {
             }
             product.totalprice = finalPrice
             finalsubPrice = finalsubPrice + product.totalprice;
-            finalsubPrice = Math.round(finalsubPrice * 100) / 100
+            finalsubPrice = Math.round(finalsubPrice * 100) / 100;
         });
         this.finalsubPrice = finalsubPrice;
         this.tva = Math.round(this.tvaPercent * this.finalsubPrice / 100);
         this.calculateDelivery();
         this.finalPrice = this.finalsubPrice + this.tva + this.livraison;
-        this.finalPrice = Math.round(this.finalPrice * 100) / 100
+        this.finalPrice = Math.round(this.finalPrice * 100) / 100;
     },
     methods: {
         checkPromoCode: function () {
