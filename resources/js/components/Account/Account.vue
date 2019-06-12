@@ -26,9 +26,6 @@
                             Mes préférés
                         </li>
                     </ul>
-                    <button @click="deleteUser()" class="btn btn-primary btn-add-new-product float-right">SUPPRIMER LE
-                        COMPTE
-                    </button>
                 </nav>
             </div>
             <div class="content orders col-md-9 hidden-xs hidden-sm block" v-if="showOrders">
@@ -158,6 +155,9 @@
                     <hr>
                     <div @click="updateUser(user.id)" class="btn btn-primary btn-edit-infos">Mettre à jour mon compte
                     </div>
+                    <button @click="deleteUser()" class="btn btn-primary btn-delete-account float-right">Supprimer le
+                        compte
+                    </button>
                 </form>
             </div>
             <div class="content addresses col-md-9 hidden-xs hidden-sm block" v-if="showAdresses">

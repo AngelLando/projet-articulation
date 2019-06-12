@@ -203,6 +203,10 @@ MES INFORMATIONS
     border-color: #850038;
 }
 
+.btn-delete-account {
+    background-color: #bcbabc;
+    border-color: #bcbabc;
+}
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
