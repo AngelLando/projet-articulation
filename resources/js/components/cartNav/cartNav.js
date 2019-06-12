@@ -157,9 +157,6 @@ export default {
                 local = local ? JSON.parse(local) : [];
             var test = event.target.value
             product.quantity = test;
-            var finalsubPrice = 0;
-            var total = product.price * product.quantity;
-            product.totalprice = total;
             this.adjustTotalPrice();
 
             var prodId = product.id
@@ -186,7 +183,11 @@ export default {
         adjustTotalPrice: function () {
             var finalsubPrice = 0;
             this.cart.forEach(function (product) {
-                var total = product.price * product.quantity;
+                if(product.promotion > 0) {
+                    var total = product.promotion_price * product.quantity;
+                } else {
+                    var total = product.price * product.quantity;
+                }
                 product.totalprice = total
                 finalsubPrice = finalsubPrice + product.totalprice;
             });

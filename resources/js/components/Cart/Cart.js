@@ -40,9 +40,6 @@ export default {
                 local = local ? JSON.parse(local) : [];
             var test = event.target.value
             product.quantity = test;
-            var finalsubPrice = 0;
-            var total = product.price * product.quantity;
-            product.totalprice = total;
             this.adjustTotalPrice();
 
             var prodId = product.id
@@ -62,8 +59,7 @@ export default {
                     .catch(error => {
                         this.errors = error.response.data.errors
                     }).then(response => {
-                                        console.log(response)
-
+                        console.log(response)
                 })
             }
         }
@@ -71,14 +67,22 @@ export default {
         adjustTotalPrice: function () {
             var finalsubPrice = 0;
             this.products.forEach(function (product) {
-                var total = product.price * product.quantity;
+                if(product.promotion > 0) {
+                    var total = product.promotion_price * product.quantity;
+                } else {
+                    var total = product.price * product.quantity;
+                }
                 product.totalprice = total
+                product.totalprice = Math.round(product.totalprice * 100) / 100
                 finalsubPrice = finalsubPrice + product.totalprice;
             });
             this.finalsubPrice = finalsubPrice;
             this.tva = Math.round(this.tvaPercent * this.finalsubPrice / 100);
             this.calculateDelivery();
             this.finalPrice = this.finalsubPrice + this.tva + this.livraison;
+            this.finalPrice = Math.round(this.finalPrice * 100) / 100
+
+
         }
         ,
         deleteProduct: function (event) {
