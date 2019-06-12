@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @if(Auth::check()) <meta name="user-id" content="{{ Auth::user()->id }}"> @endif
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Gazzar</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -22,7 +22,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/admin.css')}}">
         <link rel="stylesheet" href="{{asset('css/login.css')}}">
-
+    <link rel="shortcun icon" type="image/png" href="images/fav-gazzar.png">
 
 </head>
 <body>
