@@ -21,7 +21,8 @@ export default {
             slug :'produit/',
             cartItemHref: 'cartItem/',
             updateHref: 'update/',
-            width: ''
+            width: '',
+            numberItems:0,
         }
     },
     mounted() {
@@ -65,8 +66,24 @@ export default {
             this.cartItemHref = this.cartItemHref
             this.updateHref = this.updateHref
         }
+        this.cartNumberItems();
     },
     methods: {
+        cartNumberItems:function(){
+            var number = 0;
+            if (this.id != null) {
+              axios.get(this.url).catch(error => {
+               this.errors = error.response.data.errors;
+           }).then(response => {
+this.numberItems = response.data.length;
+            })
+
+            }else{ 
+                this.cart = JSON.parse(localStorage.getItem('storedID'));
+                this.numberItems = this.cart.length;
+            }
+        },
+
     
         getCart: function () {
             if (this.id != null) {
@@ -103,12 +120,7 @@ export default {
                 axios.delete(this.cartItemHref + event.id).catch(error => {
                     console.dir(error);
                 })
-                var local = JSON.parse(localStorage.getItem('storedID'));
-                var removeIndex = local.map(function (item) {
-                    return item.id;
-                }).indexOf(event.id);
-                local.splice(removeIndex, 1);
-                localStorage.setItem('storedID', JSON.stringify(local));
+              
                 Vue.set(event, 'id', null)
                 Vue.set(event, 'quantity', null)
                 Vue.set(event, 'price', null)
@@ -119,6 +131,7 @@ export default {
                 this.adjustTotalPrice();
 
             } else {
+                console.log("2")
                 var local = JSON.parse(localStorage.getItem('storedID'));
                 var removeIndex = local.map(function (item) {
                     return item.id;

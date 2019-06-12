@@ -1,7 +1,7 @@
 <template>
     <div>
         <li class="nav-item"  @mouseleave="hover = false">
-            <div class="fa fa-shopping-cart"></div>
+            <div class="fa fa-shopping-cart">  <div class="numberItems_container"><div v-if="numberItems>0" class="numberItems" v-model="numberItems">{{numberItems}}</div></div></div>
             <a @mouseover="getCart()" class="nav-link cart-link" style="color: white;" :href="cartHref">PANIER</a>
             <div class="cart" v-if="hover == true && cart != null && width > 700">
                 <div v-if="emptyCart" class="cart-container">

@@ -162,6 +162,7 @@ export default {
                         $(clickedElement).parent().parent().parent().parent().children(':nth-child(2)').removeClass('item-added');
                     }, 1500);
                 }
+                if (this.id == null) {
 
                  var local = localStorage.getItem('storedID');
                  local = local ? JSON.parse(local): [];
@@ -188,6 +189,7 @@ export default {
                   })
                 }
                 localStorage.setItem('storedID', JSON.stringify(local));
+            }
             }
         },
 

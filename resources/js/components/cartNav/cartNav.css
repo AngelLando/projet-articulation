@@ -40,6 +40,26 @@ Container
     overflow: hidden;
 }
 
+.numberItems_container{
+    position:relative;
+}
+
+.numberItems{
+position: absolute;
+left: 83%;
+background: #787878;;
+width: 20px;
+height: 20px;
+border-radius: 72px;
+color: white;
+font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 12px;
+line-height: 19px;
+bottom: 10px;
+}
+
 
 
 .empty{

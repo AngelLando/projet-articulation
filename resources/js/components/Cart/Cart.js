@@ -90,12 +90,6 @@ export default {
                 axios.delete('cartItem/' + event.id).catch(error => {
                     console.dir(error);
                 })
-                var local = JSON.parse(localStorage.getItem('storedID'));
-                var removeIndex = local.map(function (item) {
-                    return item.id;
-                }).indexOf(event.id);
-                local.splice(removeIndex, 1);
-                localStorage.setItem('storedID', JSON.stringify(local));
                 Vue.set(event, 'id', null)
                 Vue.set(event, 'quantity', null)
                 Vue.set(event, 'price', null)

@@ -73,6 +73,7 @@ export default {
                         $(clickedElement).parent().parent().children(':nth-child(2)').removeClass('item-added');
                     }, 1500);
                 }
+                if (this.id == null) {
 
 				var local = localStorage.getItem('storedID');
 				local = local ? JSON.parse(local): [];
@@ -115,6 +116,7 @@ export default {
 				}
 				localStorage.setItem('storedID', JSON.stringify(local));
 			}
+			}
 		}
 	},
 	props : ['prod'],
@@ -124,7 +126,6 @@ export default {
 		this.products = json.recommandations;
 		this.products = json.products;
 
-		console.log(this.products);
 	},
 
 }
