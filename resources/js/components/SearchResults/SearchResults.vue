@@ -1,8 +1,9 @@
 <template>
-    <div>
-        <h1>{{count}} Résultats pour la recherche "{{search}}"</h1>
+    <div class="container">
+        <div class="row similar_products">
+            <h1 class="col-md-5 hidden-xs hidden-sm block similarities">{{count}} Résultats pour la recherche "{{search}}"</h1>        </div>
     </div>
 </template>
 
 <script src="./SearchResults.js"></script>
-<style src="./SearchResults.css" scoped></style>
+<style src="../SingleProduct/SingleProduct.css" scoped></style>
