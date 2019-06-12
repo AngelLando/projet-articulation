@@ -195,6 +195,7 @@ export default {
             this.tva = Math.round(this.tvaPercent * this.finalsubPrice / 100);
             this.calculateDelivery();
             this.finalPrice = this.finalsubPrice + this.tva + this.livraison;
+            this.finalPrice = Math.round(this.finalPrice * 100) / 100;
         }
         ,
 
