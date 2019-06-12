@@ -122,6 +122,9 @@ Product
 
 
 @media screen and (max-width: 1200px) {
+    .slider-price{
+        max-width: 35%;
+    }
     .product {
         margin-right: 4em !important;
         margin-left: 4em !important;

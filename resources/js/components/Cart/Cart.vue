@@ -6,7 +6,7 @@
                 <div></div>
                 <div class="products">
                     <div class="container pt-3">
-                        <div v-if="!emptyCart" class="empty text-center">Vous n'avez pas de produit dans votre panier actuellement.
+                        <div v-if="!emptyCart" class=" text-center">Vous n'avez pas de produit dans votre panier actuellement.
                         </div>
                         <div v-if="emptyCart">
                          <div class ="cart_header row">

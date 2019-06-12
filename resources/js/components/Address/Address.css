@@ -38,6 +38,16 @@ a, a:hover, a:visited, a:active, a:link
 Container
 ***********/
 
+@media(max-width: 700px) {
+    .products{
+            padding-left: 10%;
+    }
+    .order{
+        padding-left: 0;
+    padding-right: 10%;
+    }
+}
+
 .super_container
 {
     width: 100%;
