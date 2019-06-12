@@ -155,10 +155,10 @@
                     <hr>
                     <div @click="updateUser(user.id)" class="btn btn-primary btn-edit-infos">Mettre à jour mon compte
                     </div>
-                    <button @click="deleteUser()" class="btn btn-primary btn-delete-account float-right">Supprimer le
-                        compte
-                    </button>
                 </form>
+                <button @click="deleteUser(user.id)" class="btn btn-primary btn-delete-account float-right">Supprimer le
+                    compte
+                </button>
             </div>
             <div class="content addresses col-md-9 hidden-xs hidden-sm block" v-if="showAdresses">
                 <h2>Mes adresses</h2>
