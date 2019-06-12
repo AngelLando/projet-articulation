@@ -22,9 +22,9 @@
                                 @click="adjustPrice(product)">
                             </div>
                             <p class="multiply">X</p>
-                            <div class="col-3"><p class="cart_product_price">CHF {{product.price}}<span
-                                v-if="product.price % 1 === 0">.–</span><span
-                                v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></p>
+                            <div class="col-3"><p class="cart_product_price">CHF {{product.promotion_price}}<template
+                                v-if="product.promotion_price % 1 === 0">.–</template><template
+                                v-if="(((product.promotion_price*1000) % 1 === 0) && (product.promotion_price % 1 !== 0)) && (product.promotion_price*10 % 1 == 0)">0</template></p>
                             </div>
                             <div class=" col-1"><img @click="deleteProduct(product)"
                              :src="deleteSVG" class="cross" alt=""></div>
