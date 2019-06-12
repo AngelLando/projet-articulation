@@ -156,8 +156,6 @@ export default {
             this.user = {
                 id: this.id.content
             }
-
-            console.log(this.user)
             axios.post('account/delete/' + this.user.id, this.user).catch(error => {
             })
                 .then(response => {
