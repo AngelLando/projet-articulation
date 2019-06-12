@@ -61,10 +61,18 @@ export default {
 				console.log("erreur")
 			}else{
 				var clickedElement = event.target;
-				$(clickedElement).addClass("item-added");
-				setTimeout(function () {
-					$(clickedElement).removeClass('item-added');
-				}, 1500);
+
+                if($(clickedElement).hasClass("product_button")) {
+                    $(clickedElement).addClass("item-added");
+                    setTimeout(function () {
+                        $(clickedElement).removeClass('item-added');
+                    }, 1500);
+                } else {
+                    $(clickedElement).parent().parent().children(':nth-child(2)').addClass("item-added");
+                    setTimeout(function () {
+                        $(clickedElement).parent().parent().children(':nth-child(2)').removeClass('item-added');
+                    }, 1500);
+                }
 
 				var local = localStorage.getItem('storedID');
 				local = local ? JSON.parse(local): [];
