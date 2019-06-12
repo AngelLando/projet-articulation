@@ -18,13 +18,17 @@ export default {
             cartHref : 'cart',
             deleteSVG : 'images/delete.svg',
             checkout : 'checkout',
-            slug :'produit/'
+            slug :'produit/',
+            cartItemHref: 'cartItem/',
+            updateHref: 'update/',
+            width: ''
         }
     },
     mounted() {
         // dynamic url for subdirectories pages
         let href = window.location.pathname;
         let path = href.split('/');
+        this.width = $(window).width();
         if (path.indexOf('produit') != -1) {
             this.url = '../' + this.url
             this.img = '../' + this.img
@@ -32,6 +36,8 @@ export default {
             this.deleteSVG = '../' + this.deleteSVG
             this.checkout = '../' + this.checkout
             this.slug = '../'+this.slug
+            this.cartItemHref = '../'+this.cartItemHref
+            this.updateHref = '../'+this.updateHref
         } else if (path.indexOf('user') != -1) {
             this.slug='../' + this.slug
             this.url = '../' + this.url
@@ -39,6 +45,8 @@ export default {
             this.cartHref = '../' + this.cartHref
             this.deleteSVG = '../' + this.deleteSVG
             this.checkout = '../' + this.checkout
+            this.cartItemHref = '../'+this.cartItemHref
+            this.updateHref = '../'+this.updateHref
         } else if (path.indexOf('admin') != -1) {
             this.slug = '../'+this.slug
             this.url = '../' + this.url
@@ -46,12 +54,16 @@ export default {
             this.cartHref = '../' + this.cartHref
             this.deleteSVG = '../' + this.deleteSVG
             this.checkout = '../' + this.checkout
+            this.cartItemHref = '../'+this.cartItemHref
+            this.updateHref = '../'+this.updateHref
         } else {
             this.url = this.url
             this.img = this.img
             this.cartHref = this.cartHref
             this.deleteSVG = this.deleteSVG
             this.checkout = this.checkout
+            this.cartItemHref = this.cartItemHref
+            this.updateHref = this.updateHref
         }
     },
     methods: {
@@ -88,7 +100,7 @@ export default {
         },
         deleteProduct: function (event) {
             if (this.id != null) {
-                axios.delete('cartItem/' + event.id).catch(error => {
+                axios.delete(this.cartItemHref + event.id).catch(error => {
                     console.dir(error);
                 })
                 var local = JSON.parse(localStorage.getItem('storedID'));
@@ -163,7 +175,7 @@ export default {
                     product_id: product.id,
                     quantity: product.quantity
                 };
-                axios.post('update/' + product.id, {quantity: product.quantity})
+                axios.post(this.updateHref + product.id, {quantity: product.quantity})
                     .catch(error => {
                         this.errors = error.response.data.errors
                     }).then(response => {

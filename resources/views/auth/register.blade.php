@@ -70,6 +70,8 @@
                         </div>
                     </form>
                 </div>
+                <a class="btn btn-link btn-forgot-password mb-4" href="{{ route('login') }}"> Vous avez déjà un compte ? Connectez-vous.</a>
+
             </div>
         </div>
     </div>

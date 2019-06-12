@@ -67,6 +67,9 @@ Route::post('/add', 'CartItemController@store')->name('add');
 
 Route::post('/update/{id}', 'CartItemController@update')->name('update');
 
+Route::post('/user/account/delete/{id}', 'UserController@destroy')->name('deleteUser');
+
+
 
 //Route::delete('/del', 'CartItemController@destroy')->name('del');
 
