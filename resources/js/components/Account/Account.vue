@@ -177,6 +177,11 @@
             </div>
 
         </div>
+        <div v-if="redirect" id="delete" class="delete">
+            <div class="delete-container">
+                <p>Votre compte a bien été supprimé. Vous allez être redirigé vers la page d'accueil.</p>
+            </div>
+        </div>
     </div>
 
 </template>
