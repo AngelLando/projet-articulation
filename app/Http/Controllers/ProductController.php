@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Appellation;
+use DB;
 use App\Tag;
 use App\Type;
 use App\Http\Controllers\AppellationController;
@@ -199,5 +201,40 @@ class ProductController extends Controller
             array_push($recommandations, $newRecommandation);
         }
         return $recommandations;
+    }
+
+    public function searchProduct (Request $request) {
+        $research = '%'.$request->search.'%';
+        $products = Product::where('name', 'LIKE', $research)
+            ->orWhere('description', 'LIKE', $research)
+            ->orWhere('kind', 'LIKE', $research)
+            ->orWhereHas('appellations', function ($q) use ($research) {
+                $q->where('name', 'LIKE', $research);
+            })
+            ->orWhereHas('tags', function ($query) use ($research) {
+                $query->where('name', 'LIKE', $research);
+            })
+            ->orderBy('name')
+            ->get()->all();
+/*
+       $test = DB::table('products')
+           ->join('suppliers', 'products.id', '=', 'suppliers.id')
+           ->join('regions', 'suppliers.region_id', '=', 'regions.id')
+           ->join('countries', 'countries.id', '=', 'regions.country_id')
+           ->where('suppliers.name', 'LIKE', $research)
+           ->orWhere('regions.name', 'LIKE', $research)
+           ->orWhere('countries.name', 'LIKE', $research)
+           ->orWhere('countries.code', 'LIKE', $research)
+           ->get();*/
+        $allProducts = [];
+        foreach($products as $key => $product) {
+            $newProduct = $this->getAllData($products[$key]);
+            array_push($allProducts, $newProduct);
+        }
+        $tab['products'] = $allProducts;
+        $tab['search'] = $research;
+        $json = json_encode($tab);
+
+        return $json;
     }
 }
