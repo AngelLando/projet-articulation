@@ -70,20 +70,21 @@
                         <p class="col-2 text-left">État</p>
                         <p class="col-1 text-left">Paiement</p>
                     </div>
-                        <div class="order_container row" v-for="order in json.orderList" @click="open">
-                            <div class="order_line row">
-                                <p class="col-1 arrow down"></p>
-                                <p class="col-1 text-col ">{{order.no}}</p>
-                                <p class="col-3 date text-col text-left">{{formatDate(order.date)}}</p>
-                                <p class="col-3 total text-col text-left">CHF {{formatMontant(order.total)}}<span v-if="order.total % 1 === 0">.–</span></p>
-                                <p class="col-2 status text-col text-left">{{order.shipping_status}}</p>
-                                <p class="col-2 payment text-col text-left">{{order.payment_status}}</p>
-                            </div>
-                            <div class="more">
-                                <div class="row">
-                                    <div class="col-12 resume">
-                                        <b>Produits commandés</b>
-                                    </div>
+                    <div class="order_container row" v-for="order in json.orderList" @click="open">
+                        <div class="order_line row">
+                            <p class="col-1 arrow down"></p>
+                            <p class="col-1 text-col ">{{order.no}}</p>
+                            <p class="col-3 date text-col text-left">{{formatDate(order.date)}}</p>
+                            <p class="col-3 total text-col text-left">CHF {{formatMontant(order.total)}}<span
+                                    v-if="order.total % 1 === 0">.–</span><span
+                                    v-if="(((order.total*1000) % 1 === 0) && (order.total % 1 !== 0))">0</span></p>
+                            <p class="col-2 status text-col text-left">{{order.shipping_status}}</p>
+                            <p class="col-2 payment text-col text-left">{{order.payment_status}}</p>
+                        </div>
+                        <div class="more">
+                            <div class="row">
+                                <div class="col-12 resume">
+                                    <b>Produits commandés</b>
                                 </div>
                             </div>
                             <div class="row">
@@ -174,12 +175,9 @@
                 <hr>
                 <div>Pas de wishlist pour le proto :)</div>
             </div>
-        <div v-if="redirect" id="delete" class="delete">
-            <div class="delete-container">
-                <p>Votre compte a bien été supprimé. Vous allez être redirigé vers la page d'accueil.</p>
-            </div>
+
         </div>
-        </div>
+    </div>
 
 </template>
 
