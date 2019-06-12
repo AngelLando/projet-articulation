@@ -604,16 +604,10 @@ div.filter_option{
     color: #000000;
 }
 
-div.filter_option:hover{
+div.filter-used{
     background: #850038;
     color:white;
     border: 1px solid #850038;
-
-}
-
-div.filter_option.active{
-    background: #850038;
-    color:white;
 
 }
 
