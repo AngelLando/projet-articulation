@@ -127,9 +127,7 @@ export default {
             }
         },
 
-
         formatMontant: function (value) {
-            var montant = '';
             var formattedMontant = '';
 
             if (value > 0) {
