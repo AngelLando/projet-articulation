@@ -168,6 +168,13 @@ Product
     padding-bottom: 10px;
 }
 
+@media screen and (max-width: 1200px) {
+    .price {
+        padding-left: 10px;
+        padding-right: 0px;
+    }
+}
+
 .product_name a
 {
     font-family: Montserrat;
@@ -435,6 +442,7 @@ Product_rating
 .delete-filters {
     cursor: pointer;
     color: #bcbabc;
+    margin: 0;
 }
 
 .delete-filters:hover p {
