@@ -20,13 +20,15 @@ export default {
             checkout : 'checkout',
             slug :'produit/',
             cartItemHref: 'cartItem/',
-            updateHref: 'update/'
+            updateHref: 'update/',
+            width: ''
         }
     },
     mounted() {
         // dynamic url for subdirectories pages
         let href = window.location.pathname;
         let path = href.split('/');
+        this.width = $(window).width();
         if (path.indexOf('produit') != -1) {
             this.url = '../' + this.url
             this.img = '../' + this.img
