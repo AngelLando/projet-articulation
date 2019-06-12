@@ -151,6 +151,9 @@
                 <hr>
                 <div>Pas de wishlist pour le proto :)</div>
             </div>
+
+            <button @click="deleteUser()">SUPPRIMER LE COMPTE</button>
+            <p v-if="redirect">VOUS ALLEZ ÊTRE REDIRIGé</p>
         </div>
     </div>
 </template>
