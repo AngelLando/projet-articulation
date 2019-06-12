@@ -847,7 +847,7 @@ Responsivité under 500 pts size screen
 
 @media screen and (max-width: 405px) {
     .product_price {
-        font-size: 20px;
+        font-size: 18px;
     }
 }
 
