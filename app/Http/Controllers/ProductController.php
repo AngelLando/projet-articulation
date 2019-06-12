@@ -167,6 +167,7 @@ class ProductController extends Controller
         $newProduct['year'] = $product->year;
         $newProduct['description'] = $product->description;
         $newProduct['price'] = $product->price;
+        $newProduct['promotion_price'] = $product->price - (($product->price*$product->promotion->amount)/100);
         $newProduct['path_image'] = $product->path_image;
         $newProduct['type'] = $product->type->name;
         $newProduct['supplier'] = $product->supplier->name;
