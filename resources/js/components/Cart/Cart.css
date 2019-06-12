@@ -19,7 +19,7 @@
 Global
 ***********/
 
-@media(max-width: 700px) {
+@media(max-width: 1200px) {
 img{
     padding-right: 20px;
 }
