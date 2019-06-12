@@ -78,7 +78,11 @@ export default {
         }
         var finalsubPrice = 0;
         this.products.forEach(function (product) {
-            var finalPrice = product.price * product.quantity;
+            if(product.promotion > 0) {
+                var finalPrice = product.promotion_price * product.quantity;
+            } else {
+                var finalPrice = product.price * product.quantity;
+            }
             product.totalprice = finalPrice
             finalsubPrice = finalsubPrice + product.totalprice;
         });
