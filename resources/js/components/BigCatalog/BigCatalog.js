@@ -163,9 +163,6 @@ export default {
                     }, 1500);
                 }
 
-
-
-
                  var local = localStorage.getItem('storedID');
                  local = local ? JSON.parse(local): [];
                  var prodId = clickedProduct.id
@@ -259,5 +256,60 @@ export default {
             this.resetFilter6();
             this.resetFilter7();
         },
+
+        sortByPrice: function(products) {
+
+            var clickedElement = event.target.value;
+
+            console.log(clickedElement);
+
+            if (clickedElement == 1) {
+                products.sort(sortByLow);
+            } else if (clickedElement == 2) {
+                products.sort(sortByHigh);
+            } else {
+                products.sort(sortDefault);
+            }
+
+            function sortDefault(a, b) {
+                const nameA = a.name;
+                const nameB = b.name;
+
+                let comparison = 0;
+                if (nameA > nameB) {
+                    comparison = 1;
+                } else if (nameA < nameB) {
+                    comparison = -1;
+                }
+                return comparison;
+            }
+
+            function sortByLow(a, b) {
+                const priceA = a.price;
+                const priceB = b.price;
+
+                let comparison = 0;
+                if (priceA > priceB) {
+                    comparison = 1;
+                } else if (priceA < priceB) {
+                    comparison = -1;
+                }
+                return comparison;
+            }
+
+            function sortByHigh(a, b) {
+                const priceA = a.price;
+                const priceB = b.price;
+
+                let comparison = 0;
+                if (priceA > priceB) {
+                    comparison = -1;
+                } else if (priceA < priceB) {
+                    comparison = 1;
+                }
+                return comparison;
+            }
+
+        }
     },
 }
