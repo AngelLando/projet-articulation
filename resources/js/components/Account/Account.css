@@ -206,6 +206,7 @@ MES INFORMATIONS
 .btn-delete-account {
     background-color: #bcbabc;
     border-color: #bcbabc;
+    margin-top: -2.3em;
 }
 
 input:-webkit-autofill,
