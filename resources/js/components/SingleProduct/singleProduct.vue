@@ -18,7 +18,12 @@
                                 <div class ="col-xl-7 ">
                                     <p class ="product_kind ">{{product.kind}}</p>
                                     <p class="product_name">{{product.name}}</p>
-                                    <p class="product_price pb-2">CHF {{ product.price }}<span v-if="product.price % 1 === 0">.–</span><span v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span></p>
+                                    <p class="product_price pb-2"><span class="badge badge-success">– {{ product.promotion }}%</span> CHF
+                                        <template v-if="product.promotion > 0">{{ product.promotion_price }}<template v-if="product.promotion_price % 1 === 0">.–</template><template v-if="(((product.promotion_price*1000) % 1 === 0) && (product.promotion_price % 1 !== 0)) && ((product.promotion.price*10) % 1 !== 0)">0</template> <del>CHF {{ product.price }}<template v-if="product.price % 1 === 0">.–</template><template v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0)) && ((product.promotion.price*10) % 1 !== 0)">0</template></del></template>
+                                        <template v-else>{{ product.price }}
+                                            <template v-if="product.price % 1 === 0">.–</template><template v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0)) && ((product.promotion.price*10) % 1 !== 0)">0</template>
+                                        </template>
+                                    </p>
                                     <div class="product_buttons">
                                         <form @submit.prevent="submitCartItem">
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
