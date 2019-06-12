@@ -159,10 +159,8 @@ export default {
 
             console.log(this.user)
             axios.post('account/delete/' + this.user.id, this.user).catch(error => {
-                console.log(error)
             })
                 .then(response => {
-                    console.log(response)
                     if(response.status == 200 && response.data == 1) {
                         this.redirect = true;
                         setTimeout(function(){ window.location.href = ('../'); }, 2000);
