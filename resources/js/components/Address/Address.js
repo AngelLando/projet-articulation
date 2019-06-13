@@ -203,6 +203,8 @@ export default {
                 this.errors = error.response.data.errors
                 if(this.errors != null) {
                     this.enabled = 0
+                                                            this.loading=false;
+
                 }
             }).then(response => {
                 if (response.status == 200 && response.data == 1) {

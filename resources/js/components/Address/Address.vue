@@ -297,7 +297,7 @@
             </div>
         </div>
         <div class=" col-md-12 row text-center ">
-            <button type="submit" class="text-center col-12 submit_order" :disabled="enabled == 1">Commander  <div v-if="loading" class="spinner-border" role="status">
+            <button type="submit" class="text-center col-12 submit_order" :disabled="enabled == 1"><span v-if="!loading">Commander</span>  <div v-if="loading" class="spinner-border" role="status">
           </div></button>
           <p class="error pt-2" v-if="errors['cgv']">
           {{errors['cgv'][0]}}</p>
