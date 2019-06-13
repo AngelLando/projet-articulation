@@ -124,6 +124,7 @@ export default {
 	props : ['prod'],
 	mounted () {
 		let json = JSON.parse(this.prod);
+		console.log(json);
 		this.product = json.product;
 		this.products = json.recommandations;
 		this.products = json.products;
