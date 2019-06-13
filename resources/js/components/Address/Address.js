@@ -58,7 +58,6 @@ export default {
     mounted() {
         if (this.id != null) {
             let prod = JSON.parse(this.cart);
-            console.log(prod.cart);
                if (prod.cart == null || prod.cart == "") {
                 this.emptyCart = false;
             }
@@ -143,7 +142,6 @@ export default {
                 country1: this.country1,
                 email: this.email,
             };
-            console.log(this.address1)
             if (isHiddenShipTo) {
                 this.address2 = {
                     firstname2: this.firstname2,
