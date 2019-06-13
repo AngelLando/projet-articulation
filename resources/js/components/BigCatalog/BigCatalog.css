@@ -391,11 +391,11 @@ border-width: 2.5px 0 2.5px 2.5px ;
 }
 
 div.favorite-heart.empty {
-    content:url('/images/favorite-heart-empty.svg');
+    content:url('six/images/favorite-heart-empty.svg');
 }
 
 div.favorite-heart.full {
-    content:url('/images/favorite-heart-full.svg');
+    content:url('six/images/favorite-heart-full.svg');
 }
 
 

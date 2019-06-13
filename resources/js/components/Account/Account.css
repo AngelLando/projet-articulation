@@ -263,20 +263,17 @@ div.more {
 
 
 p.arrow.down {
-    content:url('/images/down-arrow.svg');
+    content:url('six/images/down-arrow.svg');
 }
 
 p.arrow.up {
-    content:url('/images/up-arrow.svg');
+    content:url('six/images/up-arrow.svg');
 }
 
 
 div.favorite-heart.full {
-    content:url('/images/favorite-heart-full.svg');
+    content:url('six/images/favorite-heart-full.svg');
 }
-
-
-
 
 @media screen and (min-width: 1200px) {
     .arrow img {
