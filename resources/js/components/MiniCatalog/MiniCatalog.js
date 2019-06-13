@@ -65,7 +65,6 @@ export default {
             }
 
             if (this.quantity>clickedProduct.stock || this.quantity<=0) {
-                console.log("erreur")
             } else {
 
                 var clickedElement = event.target;

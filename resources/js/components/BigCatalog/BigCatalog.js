@@ -67,7 +67,6 @@ export default {
     methods: {
 
         reStartCounter: function () {
-            console.log("lkj");
             let vm = this;
             setTimeout(function () {
                 vm.updateCounter();
@@ -167,7 +166,6 @@ export default {
                 })
             }
             if (this.quantity>clickedProduct.stock || this.quantity<=0) {
-                console.log("erreur")
             } else {
                 var clickedElement = event.target;
 
@@ -299,9 +297,6 @@ export default {
         sortByPrice: function(products) {
 
             var clickedElement = event.target.value;
-
-            console.log(clickedElement);
-
             if (clickedElement == 1) {
                 products.sort(sortByLow);
             } else if (clickedElement == 2) {

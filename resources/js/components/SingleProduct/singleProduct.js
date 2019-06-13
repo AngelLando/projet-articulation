@@ -64,7 +64,6 @@ export default {
 				})
 			}
 			if (this.quantity>this.product.stock || this.quantity<=0) {
-				console.log("erreur")
 			}else{
 				var clickedElement = event.target;
 
