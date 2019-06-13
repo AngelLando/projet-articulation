@@ -149,6 +149,7 @@ export default {
 
 
         input: function (clickedProduct) {
+            this.errors = [] ;
             if (this.id != null) {
                 this.cartItem  = {
                     product_id: clickedProduct.id,
