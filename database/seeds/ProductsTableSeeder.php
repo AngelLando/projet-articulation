@@ -98,6 +98,18 @@ class ProductsTableSeeder extends Seeder
                 );
                 $key = array_rand($dateArray);
 
+                $promotionsArray = array(
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2,
+                    3,
+                    4
+                );
+                $promoKey = array_rand($promotionsArray);
+
                 $prod = [];
                 DB::table('products')->insert([
                     'kind' => $data->kind,
@@ -114,7 +126,7 @@ class ProductsTableSeeder extends Seeder
                     'format_id' => $data->format_id,
                     'type_id' => rand(1,2),
                     'supplier_id' => $data->supplier_id,
-                    'promotion_id' => rand(1,4),
+                    'promotion_id' => $promotionsArray[$promoKey],
                     'created_at' => $dateArray[$key]
                 ]);
                 $prod['name'] = $data->name;
