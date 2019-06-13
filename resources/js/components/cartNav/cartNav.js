@@ -75,6 +75,7 @@ export default {
               axios.get(this.url).catch(error => {
                this.errors = error.response.data.errors;
            }).then(response => {
+            console.log(this.numberItems)
 this.numberItems = response.data.length;
             })
 
