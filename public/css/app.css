@@ -108,13 +108,13 @@ nav.navbar-light {
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 760px) {
   .first-nav-item {
     display: flex;
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 760px) {
   nav.first-navbar {
     padding-left: 2em;
     padding-right: 2em;
@@ -194,10 +194,16 @@ nav.first-navbar {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 400px) {
   #navbarSupportedContent {
     margin-top: 0.5em;
     padding-bottom: 0.5em;
+  }
+}
+
+@media screen and (min-width: 401px) and (max-width: 800px) {
+  #navbarSupportedContent {
+    margin-top: 0.4em;
   }
 }
 
