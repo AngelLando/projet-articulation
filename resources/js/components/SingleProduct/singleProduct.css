@@ -504,3 +504,8 @@ del {
   font-size: 16px;
   color: #777777;
 }
+
+.btn-rate {
+    background-color: #bcbabc;
+    border-color: #bcbabc;
+}
