@@ -103,6 +103,11 @@ Container
     opacity: 1;
 }
 
+.spinner-border{
+        width: 1.5rem;
+    height: 1.5rem;
+}
+
 .order_title{
     font-family: Montserrat;
 font-style: normal;

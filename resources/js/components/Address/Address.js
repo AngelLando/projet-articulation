@@ -52,6 +52,7 @@ export default {
             id: document.querySelector("meta[name='user-id']"),
             cgv: 0,
             enabled : 0,
+            loading:false,
         }
     },
     mounted() {
@@ -197,6 +198,7 @@ export default {
             }
             this.data.cgv = this.cgv
             this.enabled = 1;
+            this.loading=true;
             axios.post('check', this.data).catch(error => {
                 this.errors = error.response.data.errors
                 if(this.errors != null) {
@@ -206,6 +208,8 @@ export default {
                 if (response.status == 200 && response.data == 1) {
                     localStorage.removeItem("storedID");
                     window.location.href = 'confirmation'
+                                        this.loading=false;
+
                 } else {
                     this.errors['products'] = 'Une erreur est survenue, veuillez réssayer s\'il vous plaît.';
                 }
