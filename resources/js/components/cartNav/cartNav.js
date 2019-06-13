@@ -80,7 +80,12 @@ this.numberItems = response.data.length;
 
             }else{ 
                 this.cart = JSON.parse(localStorage.getItem('storedID'));
+                if (this.cart==null || this.cart=="") {
+
+                }else{
                 this.numberItems = this.cart.length;
+
+                }
             }
         },
 
@@ -131,7 +136,6 @@ this.numberItems = response.data.length;
                 this.adjustTotalPrice();
 
             } else {
-                console.log("2")
                 var local = JSON.parse(localStorage.getItem('storedID'));
                 var removeIndex = local.map(function (item) {
                     return item.id;
@@ -143,6 +147,8 @@ this.numberItems = response.data.length;
                     this.emptyCart = false;
                 }
                 this.adjustTotalPrice();
+                                    this.cart = JSON.parse(localStorage.getItem('storedID'));
+                    $('.numberItems').text(this.cart.length);
             }
         },
         calculateDelivery: function () {

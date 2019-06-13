@@ -20,8 +20,8 @@
                                     <p class="product_name">{{product.name}}</p>
                                     <p class="product_price pb-2">
                                         <template v-if="product.promotion > 0"><span class="badge badge-success">– {{ product.promotion }}%</span></template> CHF
-                                        <template v-if="product.promotion > 0">{{ product.promotion_price }}<template v-if="product.promotion_price % 1 === 0">.–</template><template v-if="(((product.promotion_price*1000) % 1 === 0) && (product.promotion_price % 1 !== 0)) && ((product.promotion_price*100) % 10 == 0)">0</template> <del>CHF {{ product.price }}<template v-if="product.price % 1 === 0">.–</template><template v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0)) && ((product.price*100) % 10 == 0)">0</template></del></template>
-                                        <template v-else>{{ product.price }}<template v-if="product.price % 1 === 0">.–</template><template v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0)) && ((product.price*100) % 10 == 0)">0</template></template>
+                                        <template v-if="product.promotion > 0">{{ product.promotion_price.toFixed(2) }} <del>CHF {{ product.price.toFixed(2) }}</del></template>
+                                        <template v-else>{{ product.price.toFixed(2) }}</template>
                                     </p>
                                     <div class="product_buttons">
                                         <form @submit.prevent="submitCartItem">
@@ -54,7 +54,7 @@
                                         <div class="selection_title pt-4"><p>Condtionnements disponibles pour ce format :</p></div>
                                         <div>
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                <div @click="set_choice" class="product_selection product_selection_selected conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">Caisse de {{product.packaging_capacity}} bouteilles</div>
+                                                <div @click="set_choice" class="product_selection product_selection_selected conditionnement_choice text-center d-flex flex-column align-items-center justify-content-center mr-3">Caisse de {{product.packaging_capacity}} bouteille<template v-if="product.packaging_capacity > 1">s</template></div>
                                             </div>
                                         </div>
                                         <div class="selection_title pt-4"><p>Formats disponibles :</p></div>

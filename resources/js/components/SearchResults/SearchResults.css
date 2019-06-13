@@ -1,0 +1,506 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,700,700i,900,900i&display=swap');
+
+
+/* permet de rajouter la font "icomoon" */
+
+
+/***********
+Global
+***********/
+
+
+.item-added {
+
+}
+
+.item-added ~.product_cart {
+    background-color: rgba(133, 0, 56, 0.3) !important;
+}
+
+.added {
+    display: none;
+}
+
+
+.item-added ~ .added {
+    display: flex !important;
+    background-color: rgba(133, 0, 56, 0.3) !important;
+}
+
+.item-added {
+    display: none !important;
+}
+
+
+a, a:visited, a:active, a:link
+{
+    text-decoration: none;
+    color: black;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+    text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #828282;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+    text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+
+.error{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 20px;
+    color: #000000;
+    margin-top:5px;
+}
+
+/***********
+Container
+***********/
+
+.similarities{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.similar_products {
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+.super_container
+{
+    width: 100%;
+    overflow: hidden;
+    margin-top: 3em;
+}
+
+
+.super_container_inner
+{
+    -webkit-transition: all 400ms ease;
+    -moz-transition: all 400ms ease;
+    -ms-transition: all 400ms ease;
+    -o-transition: all 400ms ease;
+    transition: all 400ms ease;
+}
+.super_container_inner.active
+{
+    -webkit-transform: translateX(350px);
+    -moz-transform: translateX(350px);
+    -ms-transform: translateX(350px);
+    -o-transform: translateX(350px);
+    transform: translateX(350px);
+}
+.super_overlay
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+    z-index: 101;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 400ms ease;
+    -moz-transition: all 400ms ease;
+    -ms-transition: all 400ms ease;
+    -o-transition: all 400ms ease;
+    transition: all 400ms ease;
+}
+.super_container_inner.active .super_overlay
+{
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+/***********
+Products
+***********/
+
+
+.image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 110px;
+
+}
+
+.products
+{
+    background: #FFFFFF;
+}
+
+
+.products_row
+{
+    margin-top: 10px;
+}
+
+
+/***********
+Product
+***********/
+
+.product
+{
+    width: 321px;
+    overflow: hidden;
+    border-radius: 3px;
+    padding-top: 10px;
+    margin-bottom: 0px;
+    border: 1px solid #F0F0F0;
+    box-sizing: border-box;
+    box-shadow: 4px 5px 14px rgba(0, 0, 0, 0.09);
+}
+
+.line{
+    border-top: 1px solid #D3D3D3;
+
+}
+
+.product_kind {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    color: #828282;
+}
+
+@media screen and (max-width: 1200px) {
+    .product_kind {
+        padding-top: 2em;
+    }
+}
+
+.product_info
+{
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 18px;
+    padding-bottom: 10px;
+}
+
+.product_name
+{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+}
+
+
+.product_image {
+    margin-bottom:-65px;
+    margin-top: 0px;
+    height: 35em;
+}
+
+
+.product_info.name {
+    height: 5.5em;
+}
+
+
+.product_info.price {
+    height:4.5em;
+}
+
+
+.product_info.year_format {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    margin-top: -15px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    height: 2em;
+    color: #000000;
+}
+
+
+.product_price {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 30px;
+    color: #850038;
+}
+
+.product_cart {
+    border-radius: 0px 50px 50px 0px;
+}
+
+.product_buttons > div
+{
+    width: 100%;
+    height: 100%;
+}
+.product_buttons > div > div
+{
+    width: 50%;
+    height: 100%;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+
+.home_item_large .product_buttons > div > div
+{
+    border-top: solid 1px rgba(255,255,255,0.2);
+}
+
+
+/*taille du panier*/
+.product_button > div > div img {
+    padding-top: 3px;
+    max-width: 70%;
+}
+
+.home_item_large .product_buttons > div > div:hover
+{
+    background: rgba(255,255,255,0.1);
+}
+.product_buttons > div > div:first-of-type
+{
+    border-right: solid 1px #ededed;
+}
+.home_item_large .product_buttons > div > div:first-of-type
+{
+    border-right: solid 1px rgba(255,255,255,0.2);
+}
+.product_button
+{
+    cursor: pointer;
+}
+
+.more_info{
+    cursor: pointer;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold !important;
+    font-size: 15px;
+    line-height: 20px;
+    color: black !important;
+}
+
+.more_info_selected {
+    cursor: pointer;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold !important;
+    font-size: 15px;
+    line-height: 20px;
+    text-decoration: underline;
+    color: #850038 ;
+
+}
+
+.product_button > div > div
+{
+    width: 36px;
+    height: 36px;
+    margin-top: 4px;
+}
+
+
+div
+{
+    position: relative;
+}
+
+
+
+div.favorite-heart.empty {
+    content:url('/public/images/favorite-heart-empty.svg');
+}
+
+div.favorite-heart.full {
+    content:url('/public/images/favorite-heart-full.svg');
+}
+
+
+a.share {
+    content:url('/public/images/share.svg');
+}
+
+div.cart {
+    content:url('/public/images/cart.svg');
+}
+
+div.cart {
+    width: 20px;
+}
+
+.favorite-heart {
+    width: 40px;
+}
+
+.share_container {
+    width: 45px;
+    cursor: pointer;
+}
+
+.favorite-heart {
+    top: 15px;
+    right: -250px;
+}
+
+.share_container {
+    top: -20px;
+    right: -30px;
+}
+
+
+div.product_button.product_cart, .add_product {
+    color: white;
+    font-family: Montserrat;
+    font-style: normal;
+    line-height: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: #850038;
+}
+
+.content {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.breadcrumbs {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 17px;
+    color: #000000;
+}
+
+div.product_selection{
+    cursor: pointer;
+    padding:10px;
+    padding-left: 25px;
+    padding-right:25px;
+    background: #FFFFFF;
+    border: 1.5px solid #850038;
+    box-sizing: border-box;
+    border-radius: 100px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 15px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #850038;
+}
+
+div.product_selection:hover{
+    background: #850038;
+    color:white;
+
+}
+
+div.product_selection_selected{
+    background: #850038;
+    color:white;
+
+}
+
+.product_cart {
+    width: 4em !important;
+    padding: 1.5em;
+    height: 2.25em !important;
+}
+
+.add_product {
+    padding: 1.5em 0em 1.5em 3em;
+    height: 2.25em !important;
+    width: 7em !important;
+    padding-left: 0.5em;
+}
+
+.product_quantity{
+    width: 5em !important;
+}
+
+.choice_list {
+    background: #FFFFFF;
+    width:100%;
+    height: 100%;
+    border-style: solid;
+    border-color: #EDEDED;
+    border-width: 2.5px 0 2.5px 2.5px ;
+    height: 2.8em !important;
+
+}
+
+.selection_title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 15px;
+    color: #000000;
+
+}
+
+/***********
+Product_rating
+***********/
+
+
+.rating_r i:not(:last-of-type)
+{
+    margin-right: 4px;
+}
+.rating_r i::before
+{
+    font-family: 'icomoon';
+    content: "\e9d9";
+    font-style: normal;
+    font-size: 16px;
+    color: #850038;
+}
+
+.fa-star {
+    color: #850038;
+}
+
+del {
+    font-size: 16px;
+    color: #777777;
+}

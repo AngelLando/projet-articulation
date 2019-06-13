@@ -72,6 +72,21 @@ export default {
             setTimeout(function () {
                 vm.updateCounter();
             }, 10);
+            var clickedElement = event.target;
+
+            if ($(clickedElement).is(':checked')) {
+                if($(clickedElement).parent().parent().parent().children(':nth-child(1)').hasClass("filter-used")) {
+
+                } else {
+                    $(clickedElement).parent().parent().parent().children(':nth-child(1)').addClass("filter-used")
+                }
+            } else {
+                $(clickedElement).parent().parent().parent().children(':nth-child(1)').removeClass("filter-used")
+            }
+
+
+
+
         },
 
         updateCounter:function(){
@@ -149,7 +164,7 @@ export default {
             if (this.quantity>clickedProduct.stock || this.quantity<=0) {
                 console.log("erreur")
             } else {
-                 var clickedElement = event.target;
+                var clickedElement = event.target;
 
                 if($(clickedElement).hasClass("product_button")) {
                     $(clickedElement).addClass("item-added");
@@ -177,45 +192,71 @@ export default {
                     }
                 });
                  if (alreadyExist==false) {
-                    local.push({
-                      "id":clickedProduct.id,
-                      "slug":clickedProduct.slug,
-                      "packaging_capacity":clickedProduct.packaging_capacity,
-                      "quantity":this.quantity,
-                      "path_image":clickedProduct.path_image,
-                      "name":clickedProduct.name,
-                      "price": clickedProduct.price,
-                      "format":clickedProduct.format,
-                  })
+
+                    if(clickedProduct.promotion > 0) {
+                        local.push({
+                            "id":clickedProduct.id,
+                            "slug":clickedProduct.slug,
+                            "packaging_capacity":clickedProduct.packaging_capacity,
+                            "quantity":this.quantity,
+                            "path_image":clickedProduct.path_image,
+                            "name":clickedProduct.name,
+                            "price": clickedProduct.promotion_price,
+                            "format":clickedProduct.format,
+                        })
+                    } else {
+                        local.push({
+                            "id":clickedProduct.id,
+                            "slug":clickedProduct.slug,
+                            "packaging_capacity":clickedProduct.packaging_capacity,
+                            "quantity":this.quantity,
+                            "path_image":clickedProduct.path_image,
+                            "name":clickedProduct.name,
+                            "price": clickedProduct.price,
+                            "format":clickedProduct.format,
+                        })
+					}
+                  
                 }
                 localStorage.setItem('storedID', JSON.stringify(local));
+                                    this.cart = JSON.parse(localStorage.getItem('storedID'));
+                    $('.numberItems').text(this.cart.length);
             }
             }
+        },
+
+        removeColorFilter: function() {
+            var clickedElement = event.target;
+            $(clickedElement).parent().parent().children(':nth-child(1)').removeClass("filter-used");
         },
 
 
         resetFilter1: function() {
             $(".filter1:checkbox").prop('checked', false);
             this.selected_kinds = [];
-            this.reStartCounter()
+            this.reStartCounter();
+            this.removeColorFilter();
         },
 
         resetFilter2: function() {
             $(".filter2:checkbox").prop('checked', false);
             this.selected_formats = [];
-            this.reStartCounter()
+            this.reStartCounter();
+            this.removeColorFilter();
         },
 
         resetFilter3: function() {
             $(".filter3:checkbox").prop('checked', false);
             this.selected_packagings = [];
-            this.reStartCounter()
+            this.reStartCounter();
+            this.removeColorFilter();
         },
 
         resetFilter4: function() {
             $(".filter4:checkbox").prop('checked', false);
             this.selected_years = [];
-            this.reStartCounter()
+            this.reStartCounter();
+            this.removeColorFilter();
         },
 
         resetFilter5: function() {
@@ -227,13 +268,15 @@ export default {
         resetFilter6: function() {
             $(".filter6:checkbox").prop('checked', false);
             this.selected_tags = [];
-            this.reStartCounter()
+            this.reStartCounter();
+            this.removeColorFilter();
         },
 
         resetFilter7: function() {
             $(".filter7:checkbox").prop('checked', false);
             this.selected_countries = [];
-            this.reStartCounter()
+            this.reStartCounter();
+            this.removeColorFilter();
         },
 
         resetAllFilters: function() {
@@ -250,6 +293,7 @@ export default {
             this.value_2[0] = 10.70;
             this.value_2[1] = 915.50;
 
+            $("div.filter_option").removeClass('filter-used');
             this.resetFilter1();
             this.resetFilter2();
             this.resetFilter3();

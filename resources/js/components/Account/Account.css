@@ -206,6 +206,7 @@ MES INFORMATIONS
 .btn-delete-account {
     background-color: #bcbabc;
     border-color: #bcbabc;
+    margin-top: -2.3em;
 }
 
 input:-webkit-autofill,
@@ -341,6 +342,16 @@ div.favorite-heart.full {
     padding : 0vh 5vw 0vh 5vw;
 }
 
+.confirmation {
+    padding : 10px 20px 10px 20px;
+    margin-bottom : 10px;
+    background-color : #28a745;
+    -webkit-border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    border-radius: 0.25rem;
+    color : white;
+    text-align : center;
+}
 
 
 

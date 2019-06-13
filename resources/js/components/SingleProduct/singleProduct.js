@@ -115,6 +115,8 @@ export default {
 
 				}
 				localStorage.setItem('storedID', JSON.stringify(local));
+				                    this.cart = JSON.parse(localStorage.getItem('storedID'));
+                    $('.numberItems').text(this.cart.length);
 			}
 			}
 		}
@@ -122,6 +124,7 @@ export default {
 	props : ['prod'],
 	mounted () {
 		let json = JSON.parse(this.prod);
+		console.log(json);
 		this.product = json.product;
 		this.products = json.recommandations;
 		this.products = json.products;

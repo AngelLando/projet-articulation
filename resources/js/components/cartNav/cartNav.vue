@@ -1,7 +1,7 @@
 <template>
     <div>
-        <li class="nav-item"  @mouseleave="hover = false">
-            <div class="fa fa-shopping-cart">  <div class="numberItems_container"><div v-if="numberItems>0" class="numberItems" v-model="numberItems">{{numberItems}}</div></div></div>
+        <li class="nav-item first-nav-item"  @mouseleave="hover = false">
+            <div class="fa fa-shopping-cart icon-nav">  <div class="numberItems_container"><div v-if="numberItems>0" class="numberItems" v-model="numberItems">{{numberItems}}</div></div></div>
             <a @mouseover="getCart()" class="nav-link cart-link" style="color: white;" :href="cartHref">PANIER</a>
             <div class="cart" v-if="hover == true && cart != null && width > 700">
                 <div v-if="emptyCart" class="cart-container">
@@ -22,9 +22,7 @@
                                 @click="adjustPrice(product)">
                             </div>
                             <p class="multiply">X</p>
-                            <div class="col-3"><p class="cart_product_price">CHF {{product.promotion_price}}<template
-                                v-if="product.promotion_price % 1 === 0">.–</template><template
-                                v-if="(((product.promotion_price*1000) % 1 === 0) && (product.promotion_price % 1 !== 0)) && (product.promotion_price*10 % 1 == 0)">0</template></p>
+                            <div class="col-3"><p class="cart_product_price">CHF {{product.promotion_price.toFixed(2)}}</p>
                             </div>
                             <div class=" col-1"><img @click="deleteProduct(product)"
                              :src="deleteSVG" class="cross" alt=""></div>
@@ -35,15 +33,15 @@
 
                      <div class="cart_header_2 row">
                         <p class="prices col-6">TVA</p>
-                        <p class="prices col-4 text-center">CHF {{tva}}<span v-if="tva % 1 === 0">.–</span><span v-if="(((tva*1000) % 1 === 0) && (tva % 1 !== 0))">0</span></p>
+                        <p class="prices col-4 text-center">CHF {{tva.toFixed(2)}}</p>
                     </div>
                     <div class="cart_header_2 row">
                      <p class="prices col-6">Livraison</p>
-                     <p class="prices col-4 text-center">CHF {{livraison}}<span v-if="livraison % 1 === 0">.–</span><span v-if="(((livraison*1000) % 1 === 0) && (livraison % 1 !== 0))">0</span></p>
+                     <p class="prices col-4 text-center">CHF {{livraison.toFixed(2)}}</p>
                  </div>
                  <div class="cart_header row">
                      <p class="prices white col-6">Total</p>
-                     <p class="prices white col-4 text-center">CHF {{finalPrice}}<span v-if="finalPrice % 1 === 0">.–</span><span v-if="(((finalPrice*1000) % 1 === 0) && (finalPrice % 1 !== 0))">0</span></p>
+                     <p class="prices white col-4 text-center">CHF {{finalPrice.toFixed(2)}}</p>
                  </div>
                        <div class="row cart_buttons text-center justify-content-center pb-2">
                    <div class=" ml-2 col-5 button_cart text-center d-flex flex-column align-items-center justify-content-center"><a class="continuer_text" :href="cartHref">Panier</a></div>
