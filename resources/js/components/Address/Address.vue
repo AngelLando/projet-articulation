@@ -312,27 +312,21 @@
                                                 <h6 class="my-0">Sous total</h6>
                                                 <small class="text-muted">Hors TVA et frais</small>
                                             </div>
-                                            <span class="text-muted " v-model="finalsubPrice">CHF {{finalsubPrice}}<span
-                                                    v-if="finalsubPrice % 1 === 0">.–</span><span
-                                                    v-if="(((finalsubPrice*1000) % 1 === 0) && (finalsubPrice % 1 !== 0))">0</span></span>
+                                            <span class="text-muted " v-model="finalsubPrice">CHF {{finalsubPrice.toFixed(2)}}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between background_grey lh-condensed">
                                             <div>
                                                 <h6 class="my-0">TVA</h6>
                                                 <small class="text-muted" v-model="tva">7.7%</small>
                                             </div>
-                                            <span class="text-muted">CHF {{tva}}<span
-                                                    v-if="tva % 1 === 0">.–</span><span
-                                                    v-if="(((tva*1000) % 1 === 0) && (tva % 1 !== 0))">0</span></span>
+                                            <span class="text-muted">CHF {{tva.toFixed(2)}}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                                             <div>
                                                 <h6 class="my-0">Frais de livraison</h6>
                                                 <small class="text-muted">En Suisse</small>
                                             </div>
-                                            <span class="text-muted" v-model="livraison">CHF {{livraison}}<span
-                                                    v-if="livraison % 1 === 0">.–</span><span
-                                                    v-if="(((livraison*1000) % 1 === 0) && (livraison % 1 !== 0))">0</span></span>
+                                            <span class="text-muted" v-model="livraison">CHF {{livraison.toFixed(2)}}</span>
                                         </li>
                                         <li v-if="isHiddenPromoCode"
                                             class="list-group-item d-flex justify-content-between bg-light">
@@ -340,12 +334,12 @@
                                                 <h6 class="my-0">Code promo</h6>
                                                 <small class="text-muted">cuki -10%</small>
                                             </div>
-                                            <span class="text-success"><strong>- CHF {{rabais}}<template class="text-success" v-if="rabais % 1 === 0">.–</template><template class="text-success" v-if="(((rabais*1000) % 1 === 0) && (rabais % 1 !== 0)) && (rabais*100 % 10 == 0)">0</template></strong></span>
+                                            <span class="text-success"><strong>- CHF {{rabais.toFixed(2)}}</strong></span>
                                         </li>
 
                                         <li class="list-group-item d-flex justify-content-between background_grey">
                                             <h6 class="my-0">Total</h6>
-                                            <p class="price_total" v-model="finalPrice">CHF {{finalPrice}}<span class="price_total" v-if="finalPrice % 1 === 0">.–</span><span class="price_total" v-if="(((finalPrice*1000) % 1 === 0) && (finalPrice % 1 !== 0)) && (rabais*100 % 10 == 0)">0</span></p>
+                                            <p class="price_total" v-model="finalPrice">CHF {{finalPrice.toFixed(2)}}</p>
                                         </li>
                                     </ul>
 
