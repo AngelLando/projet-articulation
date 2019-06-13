@@ -67,10 +67,10 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'username' => 'min:3',
-            'email' => 'email',
-            'password' => 'min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/',
-            'birth_date' => 'date|before:-18 years'
+            'username' => 'min:3|required',
+            'email' => 'email|required',
+            'password' => 'min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/|required',
+            'birth_date' => 'date|before:-18 years|required'
         ]);
 
         $user = Auth::user();
