@@ -13,15 +13,6 @@
                             v-on:click="showOrders=false; showInfos=true; showAdresses=false; showNewsletters=false; showFavs=false">
                             Mes informations
                         </li>
-                        <li class="mb20 else">
-                            Mes adresses
-                        </li>
-                        <li class="mb20 else">
-                            Mes newsletters
-                        </li>
-                        <li class="mb20 else">
-                            Mes préférés
-                        </li>
                     </ul>
                 </nav>
             </div>
