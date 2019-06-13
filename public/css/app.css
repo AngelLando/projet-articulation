@@ -63,10 +63,6 @@ nav.navbar-light {
   font-family: Montserrat;
 }
 
-#navbarSupportedContent {
-  margin-bottom: -0.7em;
-}
-
 .first-nav {
   margin-bottom: -0.5em;
 }
@@ -80,6 +76,12 @@ nav.navbar-light {
   margin-top: -0.3em;
   margin-bottom: 0.2em !important;
   width: 150px;
+}
+
+@media screen and (max-width: 400px) {
+  .first-nav-item {
+    display: flex;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -111,9 +113,39 @@ nav.navbar.navbar-expand-lg.navbar-light.secondary-nav ul.navbar-nav.mr-auto li.
   font-weight: bold !important;
 }
 
-nav.navbar.navbar-expand-lg.navbar-light.secondary-nav {
+nav.secondary-nav {
   padding: 1em 4em;
   z-index: 8;
+  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2) !important;
+  height: 60px;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+}
+
+nav.first-navbar {
+  height: 4.9em;
+}
+
+#navbarSupportedContent {
+  background-color: #850038;
+  z-index: 90;
+  padding-top: 0.8em;
+}
+
+@media screen and (max-width: 1200px) {
+  #navbarSupportedContent {
+    margin-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .icon-nav {
+    margin-top: 0.5em;
+    margin-right: 1em;
+    margin-left: 0.5em;
+  }
 }
 
 input.form-control.mr-sm-2.secondary-nav {
@@ -135,18 +167,6 @@ button.btn.my-2.my-sm-0.secondary-nav:focus {
 
 nav.secondary-nav form.form-inline {
   border-bottom: 1px solid #ced4da;
-}
-
-nav.secondary-nav {
-  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2) !important;
-  height: 60px;
-  font-weight: 400;
-  font-size: 16px;
-  text-align: center;
-}
-
-.nav.navbar.navbar-expand-lg.navbar-light.secondary-nav {
-  z-index: 5;
 }
 
 button.btn-search {
