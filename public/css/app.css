@@ -78,9 +78,21 @@ nav.navbar-light {
   width: 150px;
 }
 
-@media screen and (min-width: 765px) and (max-width: 865px) {
+@media screen and (max-width: 765px) {
+  .navbar-brand img {
+    margin-top: -0.6em;
+  }
+}
+
+@media screen and (min-width: 765px) and (max-width: 800px) {
   .fn-link {
-    font-size: 9px;
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 880px) {
+  .fn-link {
+    font-size: 12px;
   }
 }
 
@@ -148,7 +160,18 @@ nav.first-navbar {
 #navbarSupportedContent {
   background-color: #850038;
   z-index: 90;
-  padding-top: 0.6em;
+}
+
+@media screen and (min-width: 1200px) {
+  #navbarSupportedContent {
+    padding-top: 0.8em;
+  }
+}
+
+@media screen and (min-width: 765px) and (max-width: 1199px) {
+  #navbarSupportedContent {
+    padding-top: 0.5em;
+  }
 }
 
 @media screen and (max-width: 600px) {
