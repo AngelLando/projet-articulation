@@ -130,17 +130,30 @@ nav.first-navbar {
 #navbarSupportedContent {
   background-color: #850038;
   z-index: 90;
-  padding-top: 0.8em;
+  padding-top: 0.7em;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 600px) {
+  .nav-item-snd-nav {
+    display: flex;
+    padding-left: 0.5em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .search-bar {
+    padding-left: 0.7em;
+  }
+}
+
+@media screen and (max-width: 600px) {
   #navbarSupportedContent {
     margin-top: 0.5em;
     padding-bottom: 0.5em;
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 600px) {
   .icon-nav {
     margin-top: 0.5em;
     margin-right: 1em;
@@ -10958,13 +10971,13 @@ a.text-dark:focus {
 
 @media screen and (min-width: 1200px) {
   main.content-move {
-    padding-top: 193.65px;
+    padding-top: 178px;
   }
 }
 
 @media screen and (max-width: 1200px) {
   main.content-move {
-    padding-top: 178.03px;
+    padding-top: 178px;
   }
 }
 
