@@ -80,6 +80,24 @@ nav.navbar-light ul.navbar-nav > li > .dropdown-menu > a.dropdown-item:hover{
     width: 150px;
 }
 
+@media screen and (min-width: 765px) and (max-width: 865px) {
+    .fn-link {
+        font-size: 9px;
+    }
+}
+
+@media screen and (min-width: 1051px) and (max-width: 1190px) {
+    .sn-link {
+        font-size: 10.5px;
+    }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1050px) {
+    .sn-link {
+        font-size: 9px;
+    }
+}
+
 @media screen and (max-width: 400px) {
     .first-nav-item {
         display: flex;
@@ -133,8 +151,16 @@ nav.first-navbar {
 #navbarSupportedContent {
     background-color: #850038;
     z-index:90 ;
-    padding-top: 0.7em;
+    padding-top: 0.6em;
 }
+
+@media screen and (max-width: 600px) {
+    .nav-item-snd-nav {
+        display: flex;
+        padding-left: 0.5em;
+    }
+}
+
 
 @media screen and (max-width: 600px) {
     .nav-item-snd-nav {
@@ -145,7 +171,7 @@ nav.first-navbar {
 
 @media screen and (max-width: 600px) {
     .search-bar {
-        padding-left: 0.7em;
+        padding-left: 0.6em;
     }
 }
 
@@ -226,6 +252,3 @@ button.btn-search:hover {
 .second-nav-toggler {
     margin-top: -0.3em;
 }
-
-
-

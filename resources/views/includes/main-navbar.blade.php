@@ -21,7 +21,7 @@
                 <!-- Languages -->
                 <li class="nav-item first-nav-item dropdown">
                   <img src="{{ asset('images/select-language-button.svg') }} " class="icon icon-nav" width="23" height="23" alt="Languages" >
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link fn-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     FR
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -36,7 +36,7 @@
           @guest
           <li class="nav-item first-nav-item dropdown">
             <img src="{{ asset('images/user.svg') }} " width="23" height="23" class="icon icon-nav"alt="Login" >
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MON COMPTE</a>
+            <a class="nav-link fn-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MON COMPTE</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('login') }}">{{ __('Se connecter') }}</a>
               <div class="dropdown-divider"></div>
@@ -49,7 +49,7 @@
           @else
           <li class="nav-item first-nav-item dropdown">
             <img src="{{ asset('images/user.svg') }} " width="23" height="23" class="icon icon-nav"  alt="Login" >
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              <a id="navbarDropdown" class="nav-link fn-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
                   {{ Auth::user()->username }} <span class="caret"></span>
               </a>
@@ -73,7 +73,7 @@
           @endguest
             <li class="nav-item first-nav-item">
               <img src="{{ asset('images/favorite-heart-white.svg') }}" width="23" height="23" class="icon icon-nav"   alt="Mes Préférés">
-              <a class="nav-link" href="#" >MES PRÉFÉRÉS</a>
+              <a class="nav-link fn-link" href="#" >MES PRÉFÉRÉS</a>
            </li>
                <div id="app">
                    <cart-nav-component></cart-nav-component>
@@ -83,7 +83,7 @@
             @if(Auth::user()->admin)
             <li class="nav-item admin-item">
               <img src="{{ asset('images/administration.svg') }}"class="icon" width="23" height="23" alt="Administration"></a>
-              <a class="nav-link" href="{{route('produits.index')}}">ADMINISTRATION</a>
+              <a class="nav-link fn-link" href="{{route('produits.index')}}">ADMINISTRATION</a>
             </li>
             @endif
           @endif
@@ -105,19 +105,19 @@
   <div class="collapse navbar-collapse second-nav" id="secondNav">
     <ul class="navbar-nav second-nav-list mr-auto">
       <li class="nav-item nav-item-snd-nav" id="nouveautes">
-        <a class="nav-link" href="{{route('nouveautes')}}">Nouveautés <span class="sr-only">(current)</span></a>
+        <a class="nav-link sn-link" href="{{route('nouveautes')}}">Nouveautés <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item nav-item-snd-nav" id="nos-vins">
-        <a class="nav-link" href="{{route('nos-vins')}}">Nos vins</a>
+        <a class="nav-link sn-link" href="{{route('nos-vins')}}">Nos vins</a>
       </li>
       <li class="nav-item nav-item-snd-nav" id="nos-primeurs">
-        <a class="nav-link" href="{{route('nos-primeurs')}}">Nos primeurs</a>
+        <a class="nav-link sn-link" href="{{route('nos-primeurs')}}">Nos primeurs</a>
       </li>
         <li class="nav-item nav-item-snd-nav" id="offres-speciales">
-          <a class="nav-link" href="{{route('offres-speciales')}}">Offres spéciales</a>
+          <a class="nav-link sn-link" href="{{route('offres-speciales')}}">Offres spéciales</a>
         </li>
         <li class="nav-item nav-item-snd-nav" id="promotions">
-          <a class="nav-link" href="{{route('promotions')}}">Promotions</a>
+          <a class="nav-link sn-link" href="{{route('promotions')}}">Promotions</a>
         </li>
     </ul>
       <div>
