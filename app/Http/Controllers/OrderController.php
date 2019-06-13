@@ -43,8 +43,15 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
+        if($request->products == null) {
+            return 0;
+        }
+
         $request->validate([
-            'cgv' => 'required|in:1,true'
+            'cgv' => 'required|in:1,true',
+            'address1.firstname1' => 'required',
+            'address1.lastname1' => 'required',
+            'address1.gender1' => 'required'
         ]);
 
         if (Auth::check()) {
@@ -79,7 +86,6 @@ class OrderController extends Controller
         $shippingCostsID = ShippingCostController::getRigthShippingCost($request);
 
         $shippingcosts = ShippingCost::where('id', $shippingCostsID)->first();
-
 
         // Create the Order
         $orderId = Order::insertGetId([
@@ -122,13 +128,10 @@ class OrderController extends Controller
             $bill['email'] = Auth::user()->email;
             $this->sendForm($bill);
         }
-
         if ($request->address1['email'] != null) {
             $bill['email'] = $request->address1['email'];
             $this->sendForm($bill);
         }
-
-
         return 1;
     }
 

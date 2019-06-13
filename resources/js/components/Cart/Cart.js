@@ -37,7 +37,7 @@ export default {
         ,
         adjustPrice: function (product) {
             var local = localStorage.getItem('storedID'),
-                local = local ? JSON.parse(local) : [];
+            local = local ? JSON.parse(local) : [];
             var test = event.target.value
             product.quantity = test;
             this.adjustTotalPrice();
@@ -56,10 +56,8 @@ export default {
                     quantity: product.quantity
                 };
                 axios.post('update/'+product.id, {quantity : product.quantity})
-                    .catch(error => {
-                        this.errors = error.response.data.errors
-                    }).then(response => {
-                        console.log(response)
+                .catch(error => {
+                    this.errors = error.response.data.errors
                 })
             }
         }
@@ -89,14 +87,20 @@ export default {
             if (this.id != null) {
                 axios.delete('cartItem/' + event.id).catch(error => {
                     console.dir(error);
-                })
+                }).then(response=>{
+                        console.log("d")
+                if (response.status==200) {
+                    $('.numberItems').text(response.data);
+                    if (response.data==0) {
+                         this.emptyCart = false;
+                    }
+
+                }
+            })
                 Vue.set(event, 'id', null)
                 Vue.set(event, 'quantity', null)
                 Vue.set(event, 'price', null)
 
-                if (this.products == "" || this.products == null) {
-                    this.emptyCart = false;
-                }
                 this.adjustTotalPrice();
 
             } else {
@@ -108,8 +112,8 @@ export default {
                 localStorage.setItem('storedID', JSON.stringify(local));
                 this.products = JSON.parse(localStorage.getItem('storedID'));
                 this.adjustTotalPrice();
-                                    this.cart = JSON.parse(localStorage.getItem('storedID'));
-                    $('.numberItems').text(this.cart.length);
+                this.cart = JSON.parse(localStorage.getItem('storedID'));
+                $('.numberItems').text(this.cart.length);
             }
         }
         ,
@@ -126,6 +130,7 @@ export default {
 
     props: ['cart'],
     mounted() {
+        console.log(this.id)
         if (this.id != null) {
             this.products = JSON.parse(this.cart);
             if (this.products == null || this.products == "") {
@@ -139,7 +144,7 @@ export default {
             }
             this.products = JSON.parse(localStorage.getItem('storedID'));
         }
-                     this.adjustTotalPrice();
+        this.adjustTotalPrice();
 
     }
     ,

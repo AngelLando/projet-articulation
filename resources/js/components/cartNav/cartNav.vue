@@ -1,7 +1,7 @@
 <template>
     <div>
         <li class="nav-item first-nav-item"  @mouseleave="hover = false">
-            <div class="fa fa-shopping-cart icon-nav">  <div class="numberItems_container"><div v-if="numberItems>0" class="numberItems" v-model="numberItems">{{numberItems}}</div></div></div>
+            <div class="fa fa-shopping-cart icon-nav">  <div class="numberItems_container"><div class="numberItems" v-model="numberItems">{{numberItems}}</div></div></div>
             <a @mouseover="getCart()" class="nav-link fn-link cart-link" style="color: white;" :href="cartHref">PANIER</a>
             <div class="cart" v-if="hover == true && cart != null && width > 700">
                 <div v-if="emptyCart" class="cart-container">
@@ -22,7 +22,7 @@
                                 @click="adjustPrice(product)">
                             </div>
                             <p class="multiply">X</p>
-                            <div class="col-3"><p class="cart_product_price">CHF {{product.promotion_price.toFixed(2)}}</p>
+                            <div class="col-3"><p class="cart_product_price">CHF {{product.price.toFixed(2)}}</p>
                             </div>
                             <div class=" col-1"><img @click="deleteProduct(product)"
                              :src="deleteSVG" class="cross" alt=""></div>

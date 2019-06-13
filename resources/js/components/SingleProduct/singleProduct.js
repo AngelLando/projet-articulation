@@ -56,6 +56,11 @@ export default {
 				.catch(error => {
 					this.errors = error.response.data.errors
 					return;
+				}).then(response=>{
+					if (response.status==200) {
+						                    $('.numberItems').text(response.data);
+
+					}
 				})
 			}
 			if (this.quantity>this.product.stock || this.quantity<=0) {
@@ -116,8 +121,7 @@ export default {
 
 				}
 				localStorage.setItem('storedID', JSON.stringify(local));
-				                    this.cart = JSON.parse(localStorage.getItem('storedID'));
-                    $('.numberItems').text(this.cart.length);
+                    $('.numberItems').text(JSON.parse(localStorage.getItem('storedID')).length);
 			}
 			}
 		}
@@ -125,7 +129,6 @@ export default {
 	props : ['prod'],
 	mounted () {
 		let json = JSON.parse(this.prod);
-		console.log(json);
 		this.product = json.product;
 		this.products = json.recommandations;
 		this.products = json.products;

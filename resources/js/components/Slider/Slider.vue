@@ -18,7 +18,7 @@
                         <div class="infos-inside">
                             <h2>Jusqu'au 30 juin</h2>
                             <p class="descr">Profitez de réductions exceptionnelles sur les offres du mois !</p>
-                            <button class="btn-primary btn-inscription">Découvrir</button>
+                            <a class="btn-primary btn-inscription" href="promotions">Découvrir</a>
                         </div>
                     </div>
                 </div>

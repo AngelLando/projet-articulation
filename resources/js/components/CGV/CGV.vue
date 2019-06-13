@@ -34,9 +34,10 @@
                     </p>
                     <h2>6. Participation aux frais de livraison</h2>
                     <ul>
-                        <li>Fr. 20.- jusqu'à 12 bouteilles de 75 cl.</li>
-                        <li>Fr. 30.- pour 24 bouteilles de 75 cl.</li>
-                        <li>Dès 36 bouteilles de 75 cl., la livraison est gratuite dans toute la Suisse.</li>
+                        <li>CHF 30.- jusqu'à 12 bouteilles</li>
+                        <li>CHF 35.- de 12 à 24 bouteilles</li>
+                        <li>CHF 40.- de 24 à 34 bouteilles</li>
+                        <li>Dès 35 bouteilles, la livraison vous est offerte dans toute la Suisse.</li>
                     </ul>
                     <h2>7. Dispositions en matière de protection des données</h2>
                     <p>
