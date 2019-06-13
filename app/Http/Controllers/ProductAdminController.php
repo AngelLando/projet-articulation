@@ -15,21 +15,11 @@ use Illuminate\Http\Request;
 
 class ProductAdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('admin.products.index')->with('products', Product::orderBy('created_at', 'desc')->paginate(10));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.products.create')->with('products', Product::all())
@@ -42,12 +32,6 @@ class ProductAdminController extends Controller
                                             ->with('tags', Tag::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -101,12 +85,6 @@ class ProductAdminController extends Controller
         return redirect()->route('produits.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $product = Product::find($id);
@@ -121,13 +99,6 @@ class ProductAdminController extends Controller
                                             ->with('tags', Tag::all());
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -183,12 +154,6 @@ class ProductAdminController extends Controller
         return redirect()->route('produits.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         Product::destroy($id);
