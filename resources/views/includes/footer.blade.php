@@ -19,7 +19,7 @@
             <a href="#!">Presse</a>
           </li>
           <li>
-            <a href="six/uploads/catalogue_gazzar.pdf" target="_blank">Catalogue</a>
+            <a href="/six/uploads/catalogue_gazzar.pdf" target="_blank">Catalogue</a>
           </li>
         </ul>
       </div>
@@ -50,7 +50,7 @@
             <a href="{{route('a-propos')}}">Qui sommes-nous ?</a>
           </li>
           <li>
-            <a href="six/uploads/plan_gazzar_fr.pdf" target="_blank">Plan d’accès</a>
+            <a href="/six/uploads/plan_gazzar_fr.pdf" target="_blank">Plan d’accès</a>
           </li>
           <li>
             <a href="#!">Partenaires</a>
