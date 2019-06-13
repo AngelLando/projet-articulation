@@ -74,10 +74,16 @@ class ProductController extends Controller
 
         $user_id = Auth::id();
         if ($user_id != null) {
-            $cart = Cart::where('user_id', $user_id)->first()->id;
-            $cartItems = CartItem::where('cart_id', $cart)->count();
-            if ($cartItems != null) {
-                $tab['cart'] = $cartItems;
+            $cart = Cart::where('user_id', $user_id)->first();
+            if ($cart == null) {
+                $tab['cart'] = 0;
+            } else {
+                $cartItems = CartItem::where('cart_id', $cart->id)->count();
+                if ($cartItems == null) {
+                    $tab['cart'] = 0;
+                } else {
+                    $tab['cart'] = $cartItems;
+                }
             }
         }
 
@@ -98,10 +104,16 @@ class ProductController extends Controller
 
         $user_id = Auth::id();
         if ($user_id != null) {
-            $cart = Cart::where('user_id', $user_id)->first()->id;
-            $cartItems = CartItem::where('cart_id', $cart)->count();
-            if ($cartItems != null) {
-                $products['cart'] = $cartItems;
+            $cart = Cart::where('user_id', $user_id)->first();
+            if ($cart == null) {
+                $products['cart'] = 0;
+            } else {
+                $cartItems = CartItem::where('cart_id', $cart->id)->count();
+                if ($cartItems == null) {
+                    $products['cart'] = 0;
+                } else {
+                    $products['cart'] = $cartItems;
+                }
             }
         }
 
