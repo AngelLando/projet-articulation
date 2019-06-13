@@ -40,25 +40,22 @@ class CartController extends Controller
                     $person = Person::where('id', $userId)->first();
                     $address = Address::where('person_id' , $person->id)->first();
 
+                    $favoriteAddress = [];
                     if($address == null) {
                         $favoriteAddress = null;
                     } else {
-                        $favoriteAddress = [
-                            'street' => $address->street,
-                            'npa' => $address->npa,
-                            'city' => $address->city,
-                            'region' => $address->region,
-                            'country' => $address->country,
-                        ];
+                        $favoriteAddress['street'] = $address->street;
+                        $favoriteAddress['npa'] = $address->npa;
+                        $favoriteAddress['city'] = $address->city;
+                        $favoriteAddress['region'] = $address->region;
+                        $favoriteAddress['country'] = $address->country;
                     }
                     if($person == null) {
                         $person == null;
                     } else {
-                        $favoriteAddress = [
-                            'gender' => $person->gender,
-                            'firstname' => $person->firstname,
-                            'lastname' => $person->lastname,
-                        ];
+                        $favoriteAddress['gender'] = $person->gender;
+                        $favoriteAddress['firstname'] = $person->firstname;
+                        $favoriteAddress['lastname'] = $person->lastname;
                     }
 
                     $data = [
