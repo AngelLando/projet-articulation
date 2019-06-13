@@ -48,7 +48,7 @@ export default {
             this.checkout = '../' + this.checkout
             this.cartItemHref = '../'+this.cartItemHref
             this.updateHref = '../'+this.updateHref
-        } else if (path.indexOf('admin') != -1) {
+        } else if (path.indexOf('admin') != -1 && path.indexOf('edit') == -1 ) {
             this.slug = '../'+this.slug
             this.url = '../' + this.url
             this.img = '../' + this.img
@@ -57,6 +57,15 @@ export default {
             this.checkout = '../' + this.checkout
             this.cartItemHref = '../'+this.cartItemHref
             this.updateHref = '../'+this.updateHref
+        } else if (path.indexOf('admin') != -1 && path.indexOf('edit') != -1 ) {
+            this.slug = '../../../'+this.slug
+            this.url = '../../../' + this.url
+            this.img = '../../../' + this.img
+            this.cartHref ='../../../' + this.cartHref
+            this.deleteSVG = '../../../' + this.deleteSVG
+            this.checkout = '../../../' + this.checkout
+            this.cartItemHref = '../../../'+this.cartItemHref
+            this.updateHref = '../../../'+this.updateHref
         } else {
             this.url = this.url
             this.img = this.img
