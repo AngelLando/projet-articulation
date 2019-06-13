@@ -65,7 +65,9 @@ class CartItemController extends Controller
                     ->update(['quantity' => $request->quantity + $actualQuantity]);
             }
         }
-        return $cartItem;
+        $count = CartItem::where('cart_id', $cart->id)->count();
+
+        return $count;
     }
 
     /**
