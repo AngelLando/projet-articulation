@@ -161,6 +161,12 @@ nav.first-navbar {
   }
 }
 
+@media screen and (max-width: 600px) {
+  .admin-item {
+    display: none;
+  }
+}
+
 input.form-control.mr-sm-2.secondary-nav {
   background-color: inherit;
   border: none;
