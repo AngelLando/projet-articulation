@@ -47,7 +47,7 @@
           @endif
 
           @else
-          <li class="nav-item dropdown">
+          <li class="nav-item first-nav-item dropdown">
             <img src="{{ asset('images/user.svg') }} " width="23" height="23" class="icon icon-nav"  alt="Login" >
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
@@ -81,7 +81,7 @@
           </li>
           @if(Auth::check())
             @if(Auth::user()->admin)
-            <li class="nav-item">
+            <li class="nav-item admin-item">
               <img src="{{ asset('images/administration.svg') }}"class="icon" width="23" height="23" alt="Administration"></a>
               <a class="nav-link" href="{{route('produits.index')}}">ADMINISTRATION</a>
             </li>
