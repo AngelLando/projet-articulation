@@ -80,6 +80,7 @@
                                     <hr><br>
                                     <p><b>Teneur en alcool : </b>
                                     {{product.alcohol}} %</p>
+                                    <p ><b>Pays :</b> {{product.country}}</p>
                                     <p ><b>Région :</b> {{product.region}}</p>
                                     <p ><b>Producteur :</b> {{product.supplier}}</p>
                                 </div>
