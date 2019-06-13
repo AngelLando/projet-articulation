@@ -91,6 +91,9 @@ export default {
                         console.log("d")
                 if (response.status==200) {
                     $('.numberItems').text(response.data);
+                    if (response.data==0) {
+                         this.emptyCart = false;
+                    }
 
                 }
             })
@@ -98,9 +101,6 @@ export default {
                 Vue.set(event, 'quantity', null)
                 Vue.set(event, 'price', null)
 
-                if (this.products == "" || this.products == null) {
-                    this.emptyCart = false;
-                }
                 this.adjustTotalPrice();
 
             } else {
