@@ -185,3 +185,7 @@ font-size: 17px;
     margin-top: 3em;
     margin-bottom: 0em;
 }
+
+a.btn-primary.btn-inscription {
+    display: block;
+}
