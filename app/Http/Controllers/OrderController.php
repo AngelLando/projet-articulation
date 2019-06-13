@@ -46,6 +46,8 @@ class OrderController extends Controller
             ]);
         }
 
+
+
         // Insert the order address in the database
         $addressId1 = AddressController::store($request, $nb = '1', $id = null, $personId);
 
@@ -70,7 +72,9 @@ class OrderController extends Controller
             'address_id_1' => $addressId1,
             'address_id_2' => $addressId2,
             'address_id_3' => $addressId3,
-            'shipping_cost_id' => $shippingCostsID
+            'shipping_cost_id' => $shippingCostsID,
+            'shipping_status' => 'En attente',
+            'payment_status' => 'En attente'
         ]);
 
         // Create all OrderItems needed
