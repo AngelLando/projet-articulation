@@ -42,6 +42,9 @@ class CartController extends Controller
 
                     if($address == null) {
                         $favoriteAddress = null;
+                    }
+                    if($person == null) {
+                        $person == null;
                     } else {
                         $favoriteAddress = [
                             'gender' => $person->gender,
