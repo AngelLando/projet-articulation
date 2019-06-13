@@ -22,7 +22,7 @@
                                 @click="adjustPrice(product)">
                             </div>
                             <p class="multiply">X</p>
-                            <div class="col-3"><p class="cart_product_price">CHF {{product.price.toFixed(2)}}</p>
+                            <div class="col-3"><p class="cart_product_price">CHF <template v-if="product.promotion > 0">{{product.promotion_price.toFixed(2)}}</template><template v-else>{{product.price.toFixed(2)}}</template></p>
                             </div>
                             <div class=" col-1"><img @click="deleteProduct(product)"
                              :src="deleteSVG" class="cross" alt=""></div>

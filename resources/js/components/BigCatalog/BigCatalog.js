@@ -198,18 +198,6 @@ export default {
                 });
                  if (alreadyExist==false) {
 
-                    if(clickedProduct.promotion > 0) {
-                        local.push({
-                            "id":clickedProduct.id,
-                            "slug":clickedProduct.slug,
-                            "packaging_capacity":clickedProduct.packaging_capacity,
-                            "quantity":this.quantity,
-                            "path_image":clickedProduct.path_image,
-                            "name":clickedProduct.name,
-                            "price": clickedProduct.promotion_price,
-                            "format":clickedProduct.format,
-                        })
-                    } else {
                         local.push({
                             "id":clickedProduct.id,
                             "slug":clickedProduct.slug,
@@ -218,9 +206,9 @@ export default {
                             "path_image":clickedProduct.path_image,
                             "name":clickedProduct.name,
                             "price": clickedProduct.price,
+                            "promotion_price": clickedProduct.promotion_price,
                             "format":clickedProduct.format,
                         })
-					}
                   
                 }
                 localStorage.setItem('storedID', JSON.stringify(local));
