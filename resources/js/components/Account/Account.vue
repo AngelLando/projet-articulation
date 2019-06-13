@@ -72,9 +72,7 @@
                             <p class="col-1 arrow down"></p>
                             <p class="col-1 text-col ">{{order.no}}</p>
                             <p class="col-3 date text-col text-left">{{formatDate(order.date)}}</p>
-                            <p class="col-3 total text-col text-left">CHF {{formatMontant(order.total)}}<span
-                                    v-if="order.total % 1 === 0">.–</span><span
-                                    v-if="(((order.total*1000) % 1 === 0) && (order.total % 1 !== 0))">0</span></p>
+                            <p class="col-3 total text-col text-left">CHF {{formatMontant(order.total.toFixed(2))}}</p>
                             <p class="col-2 status text-col text-left">{{order.shipping_status}}</p>
                             <p class="col-2 payment text-col text-left">{{order.payment_status}}</p>
                         </div>
@@ -93,9 +91,7 @@
                                         <div class="col-8">
                                             <p>{{product.name}}</p>
                                             <p>{{product.format}}</p>
-                                            <p>CHF {{product.price}}<span v-if="product.price % 1 === 0">.–</span><span
-                                                    v-if="(((product.price*1000) % 1 === 0) && (product.price % 1 !== 0))">0</span>
-                                                x {{product.quantity}}</p>
+                                            <p>CHF {{product.price.toFixed(2)}} x {{product.quantity}}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -153,6 +149,8 @@
                                id="birth_date" placeholder="Date de naissance" v-model="birth_date">
                     </div>
                     <hr>
+                    <div v-if="confirm" class="confirmation">
+                        Votre compte a bien été mis à jour !</div>
                     <div @click="updateUser(user.id)" class="btn btn-primary btn-edit-infos">Mettre à jour mon compte
                     </div>
                 </form>

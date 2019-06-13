@@ -159,6 +159,11 @@ export default {
                 .catch(error => {
                     this.errors = error.response.data.errors
                     return;
+                }).then(response=>{
+                    if (response.status==200) {
+                                            $('.numberItems').text(response.data);
+
+                    }
                 })
             }
             if (this.quantity>clickedProduct.stock || this.quantity<=0) {
@@ -192,20 +197,35 @@ export default {
                     }
                 });
                  if (alreadyExist==false) {
-                    local.push({
-                      "id":clickedProduct.id,
-                      "slug":clickedProduct.slug,
-                      "packaging_capacity":clickedProduct.packaging_capacity,
-                      "quantity":this.quantity,
-                      "path_image":clickedProduct.path_image,
-                      "name":clickedProduct.name,
-                      "price": clickedProduct.price,
-                      "format":clickedProduct.format,
-                  })
+
+                    if(clickedProduct.promotion > 0) {
+                        local.push({
+                            "id":clickedProduct.id,
+                            "slug":clickedProduct.slug,
+                            "packaging_capacity":clickedProduct.packaging_capacity,
+                            "quantity":this.quantity,
+                            "path_image":clickedProduct.path_image,
+                            "name":clickedProduct.name,
+                            "price": clickedProduct.promotion_price,
+                            "format":clickedProduct.format,
+                        })
+                    } else {
+                        local.push({
+                            "id":clickedProduct.id,
+                            "slug":clickedProduct.slug,
+                            "packaging_capacity":clickedProduct.packaging_capacity,
+                            "quantity":this.quantity,
+                            "path_image":clickedProduct.path_image,
+                            "name":clickedProduct.name,
+                            "price": clickedProduct.price,
+                            "format":clickedProduct.format,
+                        })
+					}
+                  
                 }
                 localStorage.setItem('storedID', JSON.stringify(local));
-                                    this.cart = JSON.parse(localStorage.getItem('storedID'));
-                    $('.numberItems').text(this.cart.length);
+                                                   $('.numberItems').text(JSON.parse(localStorage.getItem('storedID')).length);
+
             }
             }
         },
