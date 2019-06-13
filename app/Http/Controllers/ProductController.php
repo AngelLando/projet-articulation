@@ -2,26 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use DB;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Appellation;
-use DB;
 use App\Tag;
 use App\Type;
 use App\Cart;
 use App\CartItem;
-use Auth;
 use App\Http\Controllers\AppellationController;
 use App\Http\Controllers\TagsController;
 
 class ProductController extends Controller
 {
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index($id)
     {
         $products = Product::all();
@@ -59,7 +53,6 @@ class ProductController extends Controller
         foreach ($products as $key => $product) {
             $newProduct = $this->getAllData($products[$key]);
             array_push($allProducts, $newProduct);
-            //dd($newProduct);
         }
 
         $tab['products'] = $allProducts;
@@ -87,10 +80,8 @@ class ProductController extends Controller
             }
         }
 
-        // CONVERT ARRAY TO JSON TO PASS DATAS
         $json = json_encode($tab);
         return $json;
-        //return view('homepage')->with('products', $json);
     }
 
     public function single($slug)
@@ -121,71 +112,10 @@ class ProductController extends Controller
         return view('single')->with('products', $json);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Product $product)
     {
         $product = ['products' => $product::all()];
         return $product;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public static function getById($id)
@@ -250,16 +180,7 @@ class ProductController extends Controller
             })
             ->orderBy('name')
             ->get()->all();
-        /*
-               $test = DB::table('products')
-                   ->join('suppliers', 'products.id', '=', 'suppliers.id')
-                   ->join('regions', 'suppliers.region_id', '=', 'regions.id')
-                   ->join('countries', 'countries.id', '=', 'regions.country_id')
-                   ->where('suppliers.name', 'LIKE', $research)
-                   ->orWhere('regions.name', 'LIKE', $research)
-                   ->orWhere('countries.name', 'LIKE', $research)
-                   ->orWhere('countries.code', 'LIKE', $research)
-                   ->get();*/
+
         $allProducts = [];
         foreach ($products as $key => $product) {
             $newProduct = $this->getAllData($products[$key]);
