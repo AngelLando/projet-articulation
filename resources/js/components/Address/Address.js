@@ -196,19 +196,18 @@ export default {
                 }
             }
             this.data.cgv = this.cgv
-            console.log(this.data);
             this.enabled = 1;
             axios.post('check', this.data).catch(error => {
-                console.log(error)
                 this.errors = error.response.data.errors
                 if(this.errors != null) {
                     this.enabled = 0
                 }
             }).then(response => {
-                if (response.status == 200) {
-                    console.log(response)
+                if (response.status == 200 && response.data == 1) {
                     localStorage.removeItem("storedID");
                     window.location.href = 'confirmation'
+                } else {
+                    this.errors['products'] = 'Une erreur est survenue, veuillez réssayer s\'il vous plaît.';
                 }
             })
         },

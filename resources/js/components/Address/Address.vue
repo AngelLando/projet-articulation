@@ -300,6 +300,8 @@
                                         <button type="submit" class="text-center col-12 submit_order" :disabled="enabled == 1">Commander</button>
                                         <p class="error pt-2" v-if="errors['cgv']">
                                             {{errors['cgv'][0]}}</p>
+                                        <p class="error pt-2" v-if="errors['products']">
+                                            {{errors['products']}}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3 order order-md-2 ml-2 mb-4">
