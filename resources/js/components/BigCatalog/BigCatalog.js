@@ -159,6 +159,11 @@ export default {
                 .catch(error => {
                     this.errors = error.response.data.errors
                     return;
+                }).then(response=>{
+                    if (response.status==200) {
+                                            $('.numberItems').text(response.data);
+
+                    }
                 })
             }
             if (this.quantity>clickedProduct.stock || this.quantity<=0) {
@@ -219,8 +224,8 @@ export default {
                   
                 }
                 localStorage.setItem('storedID', JSON.stringify(local));
-                                    this.cart = JSON.parse(localStorage.getItem('storedID'));
-                    $('.numberItems').text(this.cart.length);
+                                                   $('.numberItems').text(JSON.parse(localStorage.getItem('storedID')).length);
+
             }
             }
         },
