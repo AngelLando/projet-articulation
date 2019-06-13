@@ -8,6 +8,9 @@ use App\Appellation;
 use DB;
 use App\Tag;
 use App\Type;
+use App\Cart;
+use App\CartItem;
+use Auth;
 use App\Http\Controllers\AppellationController;
 use App\Http\Controllers\TagsController;
 
@@ -31,7 +34,7 @@ class ProductController extends Controller
                         }
                         break;
                     case ($id == 'Nouveautés') :
-                        $myDate = date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "-1 month" ) );
+                        $myDate = date("Y-m-d", strtotime(date("Y-m-d", strtotime(date("Y-m-d"))) . "-1 month"));
                         if ($val->created_at < $myDate) {
                             unset($products[$key]);
                         }
@@ -63,10 +66,25 @@ class ProductController extends Controller
         $tab['appellations'] = AppellationController::index();
         $tab['tags'] = TagController::index();
 
-        if($id == 'Recommandations') {
+        if ($id == 'Recommandations') {
             $ratings = array_column($tab['products'], 'productRating');
             array_multisort($ratings, SORT_DESC, $tab['products']);
             $tab['products'] = array_slice($tab['products'], 0, 6);
+        }
+
+        $user_id = Auth::id();
+        if ($user_id != null) {
+            $cart = Cart::where('user_id', $user_id)->first();
+            if ($cart == null) {
+                $tab['cart'] = 0;
+            } else {
+                $cartItems = CartItem::where('cart_id', $cart->id)->count();
+                if ($cartItems == null) {
+                    $tab['cart'] = 0;
+                } else {
+                    $tab['cart'] = $cartItems;
+                }
+            }
         }
 
         // CONVERT ARRAY TO JSON TO PASS DATAS
@@ -83,6 +101,21 @@ class ProductController extends Controller
         $product = $this->getAllData($rawProduct);
         $products['product'] = $product;
         $products['products'] = $recommandations;
+
+        $user_id = Auth::id();
+        if ($user_id != null) {
+            $cart = Cart::where('user_id', $user_id)->first();
+            if ($cart == null) {
+                $products['cart'] = 0;
+            } else {
+                $cartItems = CartItem::where('cart_id', $cart->id)->count();
+                if ($cartItems == null) {
+                    $products['cart'] = 0;
+                } else {
+                    $products['cart'] = $cartItems;
+                }
+            }
+        }
 
         $json = json_encode($products);
         return view('single')->with('products', $json);
@@ -169,7 +202,7 @@ class ProductController extends Controller
         $newProduct['year'] = $product->year;
         $newProduct['description'] = $product->description;
         $newProduct['price'] = $product->price;
-        $newProduct['promotion_price'] = $product->price - (($product->price*$product->promotion->amount)/100);
+        $newProduct['promotion_price'] = $product->price - (($product->price * $product->promotion->amount) / 100);
         $newProduct['path_image'] = $product->path_image;
         $newProduct['type'] = $product->type->name;
         $newProduct['supplier'] = $product->supplier->name;
@@ -203,8 +236,9 @@ class ProductController extends Controller
         return $recommandations;
     }
 
-    public function searchProduct (Request $request) {
-        $research = '%'.$request->search.'%';
+    public function searchProduct(Request $request)
+    {
+        $research = '%' . $request->search . '%';
         $products = Product::where('name', 'LIKE', $research)
             ->orWhere('description', 'LIKE', $research)
             ->orWhere('kind', 'LIKE', $research)
@@ -216,18 +250,18 @@ class ProductController extends Controller
             })
             ->orderBy('name')
             ->get()->all();
-/*
-       $test = DB::table('products')
-           ->join('suppliers', 'products.id', '=', 'suppliers.id')
-           ->join('regions', 'suppliers.region_id', '=', 'regions.id')
-           ->join('countries', 'countries.id', '=', 'regions.country_id')
-           ->where('suppliers.name', 'LIKE', $research)
-           ->orWhere('regions.name', 'LIKE', $research)
-           ->orWhere('countries.name', 'LIKE', $research)
-           ->orWhere('countries.code', 'LIKE', $research)
-           ->get();*/
+        /*
+               $test = DB::table('products')
+                   ->join('suppliers', 'products.id', '=', 'suppliers.id')
+                   ->join('regions', 'suppliers.region_id', '=', 'regions.id')
+                   ->join('countries', 'countries.id', '=', 'regions.country_id')
+                   ->where('suppliers.name', 'LIKE', $research)
+                   ->orWhere('regions.name', 'LIKE', $research)
+                   ->orWhere('countries.name', 'LIKE', $research)
+                   ->orWhere('countries.code', 'LIKE', $research)
+                   ->get();*/
         $allProducts = [];
-        foreach($products as $key => $product) {
+        foreach ($products as $key => $product) {
             $newProduct = $this->getAllData($products[$key]);
             array_push($allProducts, $newProduct);
         }
