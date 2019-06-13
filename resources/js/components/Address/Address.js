@@ -51,6 +51,7 @@ export default {
             email: '',
             id: document.querySelector("meta[name='user-id']"),
             cgv: 0,
+            enabled : 0,
         }
     },
     mounted() {
@@ -196,10 +197,13 @@ export default {
             }
             this.data.cgv = this.cgv
             console.log(this.data);
-
+            this.enabled = 1;
             axios.post('check', this.data).catch(error => {
                 console.log(error)
                 this.errors = error.response.data.errors
+                if(this.errors != null) {
+                    this.enabled = 0
+                }
             }).then(response => {
                 if (response.status == 200) {
                     console.log(response)

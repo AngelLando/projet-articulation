@@ -12,8 +12,8 @@ export default {
             json: [],
             orders: [],
             test: [],
-            id:document.querySelector("meta[name='user-id']"),
-            products:[],
+            id: document.querySelector("meta[name='user-id']"),
+            products: [],
             total: 0,
             user: '',
             lastname: '',
@@ -22,11 +22,12 @@ export default {
             username: '',
             email: '',
             password: '',
-            birth_date: ''
+            birth_date: '',
+            redirect: false
         }
     },
-    props : ['data'],
-    mounted () {
+    props: ['data'],
+    mounted() {
         let json = JSON.parse(this.data)
         this.json = json;
         this.user = json.user;
@@ -40,61 +41,61 @@ export default {
 
         if (this.id != null) {
             var local = JSON.parse(localStorage.getItem('storedID'))
-            if (local=="" || local==null) {
-            }else{
+            if (local == "" || local == null) {
+            } else {
 
-               if (json.cart!="null") {
+                if (json.cart != "null") {
                     console.log("local storage + BD")
-                    this.products=JSON.parse(localStorage.getItem('storedID')),
-                    this.products.forEach(function(product) {
-                        var cartItem  = {
-                            product_id: product.id,
-                            quantity: product.quantity,
-                            product_price: product.price
-                        };
-                        axios.post('../add', cartItem)
-                        .catch(error => {
-                            this.errors = error.response.data.errors
-                            return;
-                        }).then(response => {
+                    this.products = JSON.parse(localStorage.getItem('storedID')),
+                        this.products.forEach(function (product) {
+                            var cartItem = {
+                                product_id: product.id,
+                                quantity: product.quantity,
+                                product_price: product.price
+                            };
+                            axios.post('../add', cartItem)
+                                .catch(error => {
+                                    this.errors = error.response.data.errors
+                                    return;
+                                }).then(response => {
 
-                            localStorage.removeItem("storedID");
-                
-                        })
-                    });
-                // on merge ici
-               }else{
+                                localStorage.removeItem("storedID");
+
+                            })
+                        });
+                    // on merge ici
+                } else {
                     console.log("seulement local")
-                    this.products=JSON.parse(localStorage.getItem('storedID')),
-                    this.products.forEach(function(product) {
-                        var cartItem  = {
-                            product_id: product.id,
-                            quantity: product.quantity,
-                            product_price: product.price
-                        };
-                        axios.post('../add', cartItem)
-                        .catch(error => {
-                            this.errors = error.response.data.errors
-                            return;
-                        })
-                    });
+                    this.products = JSON.parse(localStorage.getItem('storedID')),
+                        this.products.forEach(function (product) {
+                            var cartItem = {
+                                product_id: product.id,
+                                quantity: product.quantity,
+                                product_price: product.price
+                            };
+                            axios.post('../add', cartItem)
+                                .catch(error => {
+                                    this.errors = error.response.data.errors
+                                    return;
+                                })
+                        });
                 }
             }
         }
     },
 
-    methods:{
-        open: function(event){
+    methods: {
+        open: function (event) {
             var clickedElement = event.target;
             $(clickedElement).parent().toggleClass("active");
 
-            if($('.order_container').hasClass("active")) {
+            if ($('.order_container').hasClass("active")) {
 
                 $('.arrow').addClass('up');
                 $('.arrow').removeClass('down');
             } else {
 
-                if($('.order_line').hasClass("active")) {
+                if ($('.order_line').hasClass("active")) {
 
                     $('.arrow').addClass('up');
                     $('.arrow').removeClass('down');
@@ -106,7 +107,7 @@ export default {
         },
 
 
-        underline: function(event){
+        underline: function (event) {
             var clickedElement = event.target;
             $(clickedElement).addClass("active");
             $(clickedElement).removeClass("else");
@@ -115,7 +116,7 @@ export default {
         },
 
 
-        formatDate: function(value){
+        formatDate: function (value) {
             var dateToString;
             var date = '';
 
@@ -126,19 +127,17 @@ export default {
             }
         },
 
-
-        formatMontant: function(value){
-            var montant = '';
+        formatMontant: function (value) {
             var formattedMontant = '';
 
             if (value > 0) {
-                formattedMontant = (Math.ceil(value*20)/20).toFixed(2);
+                formattedMontant = (Math.ceil(value * 20) / 20).toFixed(2);
                 return formattedMontant;
             }
         },
 
         updateUser: function () {
-            this.user  = {
+            this.user = {
                 lastname: this.lastname,
                 firstname: this.firstname,
                 gender: this.gender,
@@ -148,10 +147,24 @@ export default {
                 birth_date: this.birth_date
             };
             axios.post('account/update', this.user)
-            .catch(error => {
-                this.errors = error.response.data.errors
-                return;
-            })
+                .catch(error => {
+                    this.errors = error.response.data.errors
+                    return;
+                })
         },
+        deleteUser: function () {
+            this.user = {
+                id: this.id.content
+            }
+            axios.post('account/delete/' + this.user.id, this.user).catch(error => {
+            })
+                .then(response => {
+                    if(response.status == 200 && response.data == 1) {
+                        this.redirect = true;
+                        setTimeout(function(){ window.location.href = ('../'); }, 2000);
+                    }
+
+                })
+        }
     },
 }

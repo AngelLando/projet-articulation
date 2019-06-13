@@ -18,13 +18,18 @@ export default {
             cartHref : 'cart',
             deleteSVG : 'images/delete.svg',
             checkout : 'checkout',
-            slug :'produit/'
+            slug :'produit/',
+            cartItemHref: 'cartItem/',
+            updateHref: 'update/',
+            width: '',
+            numberItems:0,
         }
     },
     mounted() {
         // dynamic url for subdirectories pages
         let href = window.location.pathname;
         let path = href.split('/');
+        this.width = $(window).width();
         if (path.indexOf('produit') != -1) {
             this.url = '../' + this.url
             this.img = '../' + this.img
@@ -32,6 +37,8 @@ export default {
             this.deleteSVG = '../' + this.deleteSVG
             this.checkout = '../' + this.checkout
             this.slug = '../'+this.slug
+            this.cartItemHref = '../'+this.cartItemHref
+            this.updateHref = '../'+this.updateHref
         } else if (path.indexOf('user') != -1) {
             this.slug='../' + this.slug
             this.url = '../' + this.url
@@ -39,6 +46,8 @@ export default {
             this.cartHref = '../' + this.cartHref
             this.deleteSVG = '../' + this.deleteSVG
             this.checkout = '../' + this.checkout
+            this.cartItemHref = '../'+this.cartItemHref
+            this.updateHref = '../'+this.updateHref
         } else if (path.indexOf('admin') != -1) {
             this.slug = '../'+this.slug
             this.url = '../' + this.url
@@ -46,15 +55,40 @@ export default {
             this.cartHref = '../' + this.cartHref
             this.deleteSVG = '../' + this.deleteSVG
             this.checkout = '../' + this.checkout
+            this.cartItemHref = '../'+this.cartItemHref
+            this.updateHref = '../'+this.updateHref
         } else {
             this.url = this.url
             this.img = this.img
             this.cartHref = this.cartHref
             this.deleteSVG = this.deleteSVG
             this.checkout = this.checkout
+            this.cartItemHref = this.cartItemHref
+            this.updateHref = this.updateHref
         }
+        this.cartNumberItems();
     },
     methods: {
+        cartNumberItems:function(){
+            var number = 0;
+            if (this.id != null) {
+              axios.get(this.url).catch(error => {
+               this.errors = error.response.data.errors;
+           }).then(response => {
+this.numberItems = response.data.length;
+            })
+
+            }else{ 
+                this.cart = JSON.parse(localStorage.getItem('storedID'));
+                if (this.cart==null || this.cart=="") {
+
+                }else{
+                this.numberItems = this.cart.length;
+
+                }
+            }
+        },
+
     
         getCart: function () {
             if (this.id != null) {
@@ -88,15 +122,10 @@ export default {
         },
         deleteProduct: function (event) {
             if (this.id != null) {
-                axios.delete('cartItem/' + event.id).catch(error => {
+                axios.delete(this.cartItemHref + event.id).catch(error => {
                     console.dir(error);
                 })
-                var local = JSON.parse(localStorage.getItem('storedID'));
-                var removeIndex = local.map(function (item) {
-                    return item.id;
-                }).indexOf(event.id);
-                local.splice(removeIndex, 1);
-                localStorage.setItem('storedID', JSON.stringify(local));
+              
                 Vue.set(event, 'id', null)
                 Vue.set(event, 'quantity', null)
                 Vue.set(event, 'price', null)
@@ -118,6 +147,8 @@ export default {
                     this.emptyCart = false;
                 }
                 this.adjustTotalPrice();
+                                    this.cart = JSON.parse(localStorage.getItem('storedID'));
+                    $('.numberItems').text(this.cart.length);
             }
         },
         calculateDelivery: function () {
@@ -160,7 +191,7 @@ export default {
                     product_id: product.id,
                     quantity: product.quantity
                 };
-                axios.post('update/' + product.id, {quantity: product.quantity})
+                axios.post(this.updateHref + product.id, {quantity: product.quantity})
                     .catch(error => {
                         this.errors = error.response.data.errors
                     }).then(response => {

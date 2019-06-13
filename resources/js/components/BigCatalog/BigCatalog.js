@@ -72,6 +72,21 @@ export default {
             setTimeout(function () {
                 vm.updateCounter();
             }, 10);
+            var clickedElement = event.target;
+
+            if ($(clickedElement).is(':checked')) {
+                if($(clickedElement).parent().parent().parent().children(':nth-child(1)').hasClass("filter-used")) {
+
+                } else {
+                    $(clickedElement).parent().parent().parent().children(':nth-child(1)').addClass("filter-used")
+                }
+            } else {
+                $(clickedElement).parent().parent().parent().children(':nth-child(1)').removeClass("filter-used")
+            }
+
+
+
+
         },
 
         updateCounter:function(){
@@ -149,11 +164,20 @@ export default {
             if (this.quantity>clickedProduct.stock || this.quantity<=0) {
                 console.log("erreur")
             } else {
-                 var clickedElement = event.target;
-                 $(clickedElement).addClass("item-added");
-                 setTimeout(function () {
-                     $(clickedElement).removeClass('item-added');
-                 }, 1500);
+                var clickedElement = event.target;
+
+                if($(clickedElement).hasClass("product_button")) {
+                    $(clickedElement).addClass("item-added");
+                    setTimeout(function () {
+                        $(clickedElement).removeClass('item-added');
+                    }, 1500);
+                } else {
+                    $(clickedElement).parent().parent().parent().parent().children(':nth-child(2)').addClass("item-added");
+                    setTimeout(function () {
+                        $(clickedElement).parent().parent().parent().parent().children(':nth-child(2)').removeClass('item-added');
+                    }, 1500);
+                }
+                if (this.id == null) {
 
                  var local = localStorage.getItem('storedID');
                  local = local ? JSON.parse(local): [];
@@ -180,32 +204,44 @@ export default {
                   })
                 }
                 localStorage.setItem('storedID', JSON.stringify(local));
+                                    this.cart = JSON.parse(localStorage.getItem('storedID'));
+                    $('.numberItems').text(this.cart.length);
             }
+            }
+        },
+
+        removeColorFilter: function() {
+            var clickedElement = event.target;
+            $(clickedElement).parent().parent().children(':nth-child(1)').removeClass("filter-used");
         },
 
 
         resetFilter1: function() {
             $(".filter1:checkbox").prop('checked', false);
             this.selected_kinds = [];
-            this.reStartCounter()
+            this.reStartCounter();
+            this.removeColorFilter();
         },
 
         resetFilter2: function() {
             $(".filter2:checkbox").prop('checked', false);
             this.selected_formats = [];
-            this.reStartCounter()
+            this.reStartCounter();
+            this.removeColorFilter();
         },
 
         resetFilter3: function() {
             $(".filter3:checkbox").prop('checked', false);
             this.selected_packagings = [];
-            this.reStartCounter()
+            this.reStartCounter();
+            this.removeColorFilter();
         },
 
         resetFilter4: function() {
             $(".filter4:checkbox").prop('checked', false);
             this.selected_years = [];
-            this.reStartCounter()
+            this.reStartCounter();
+            this.removeColorFilter();
         },
 
         resetFilter5: function() {
@@ -217,13 +253,15 @@ export default {
         resetFilter6: function() {
             $(".filter6:checkbox").prop('checked', false);
             this.selected_tags = [];
-            this.reStartCounter()
+            this.reStartCounter();
+            this.removeColorFilter();
         },
 
         resetFilter7: function() {
             $(".filter7:checkbox").prop('checked', false);
             this.selected_countries = [];
-            this.reStartCounter()
+            this.reStartCounter();
+            this.removeColorFilter();
         },
 
         resetAllFilters: function() {
@@ -240,6 +278,7 @@ export default {
             this.value_2[0] = 10.70;
             this.value_2[1] = 915.50;
 
+            $("div.filter_option").removeClass('filter-used');
             this.resetFilter1();
             this.resetFilter2();
             this.resetFilter3();
@@ -248,5 +287,60 @@ export default {
             this.resetFilter6();
             this.resetFilter7();
         },
+
+        sortByPrice: function(products) {
+
+            var clickedElement = event.target.value;
+
+            console.log(clickedElement);
+
+            if (clickedElement == 1) {
+                products.sort(sortByLow);
+            } else if (clickedElement == 2) {
+                products.sort(sortByHigh);
+            } else {
+                products.sort(sortDefault);
+            }
+
+            function sortDefault(a, b) {
+                const nameA = a.name;
+                const nameB = b.name;
+
+                let comparison = 0;
+                if (nameA > nameB) {
+                    comparison = 1;
+                } else if (nameA < nameB) {
+                    comparison = -1;
+                }
+                return comparison;
+            }
+
+            function sortByLow(a, b) {
+                const priceA = a.price;
+                const priceB = b.price;
+
+                let comparison = 0;
+                if (priceA > priceB) {
+                    comparison = 1;
+                } else if (priceA < priceB) {
+                    comparison = -1;
+                }
+                return comparison;
+            }
+
+            function sortByHigh(a, b) {
+                const priceA = a.price;
+                const priceB = b.price;
+
+                let comparison = 0;
+                if (priceA > priceB) {
+                    comparison = -1;
+                } else if (priceA < priceB) {
+                    comparison = 1;
+                }
+                return comparison;
+            }
+
+        }
     },
 }

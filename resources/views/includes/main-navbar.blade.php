@@ -122,10 +122,12 @@
           <a class="nav-link" href="{{route('promotions')}}">Promotions</a>
         </li>
     </ul>
-    <form class="form-inline search-bar my-2 my-lg-0">
-      <input class="form-control mr-sm-2 secondary-nav" type="search" placeholder="Rechercher" aria-label="Search">
-      <button class="btn btn-search btn-outline-success my-2 my-sm-0" type="submit" ><img src="{{ asset('images/search-loupe.svg')}} " alt=""></button>
-    </form>
+      <div>
+          <form class="form-inline search-bar my-2 my-lg-0" action="{{ route('search') }}" method="GET">
+              <input class="form-control mr-sm-2 secondary-nav" type="search" placeholder="Rechercher" aria-label="Search" name="search">
+              <button class="btn btn-search btn-outline-success my-2 my-sm-0" type="submit" ><img src="images/search-loupe.svg" alt=""></button>
+          </form>
+      </div>
   </div>
 </nav>
 </section>
