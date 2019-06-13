@@ -51,7 +51,7 @@
 
                                             </div>
                                             <div @click="input(product)" class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
-                                            <div class="product_button add_product added text-center flex-column align-items-center justify-content-center">AJOUTÉ</div>
+                                            <div class="product_button add_product added text-center flex-column align-items-center justify-content-center">AJOUTÉ ✔</div>
                                             <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
                                                 <div><div @click="input(product)"><img src="images/cart.svg" class="svg" alt=""></div></div>
                                             </div>
