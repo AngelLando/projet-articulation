@@ -23,7 +23,8 @@ export default {
             email: '',
             password: '',
             birth_date: '',
-            redirect: false
+            redirect: false,
+            confirm : false
         }
     },
     props: ['data'],
@@ -150,7 +151,11 @@ export default {
                 .catch(error => {
                     this.errors = error.response.data.errors
                     return;
-                })
+                }).then(response => {
+                    if(response.status == 200) {
+                        this.confirm = true
+                    }
+            })
         },
         deleteUser: function () {
             this.user = {
