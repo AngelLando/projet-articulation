@@ -88,7 +88,6 @@ export default {
                 axios.delete('cartItem/' + event.id).catch(error => {
                     console.dir(error);
                 }).then(response=>{
-                        console.log("d")
                 if (response.status==200) {
                     $('.numberItems').text(response.data);
                     if (response.data==0) {
@@ -130,7 +129,6 @@ export default {
 
     props: ['cart'],
     mounted() {
-        console.log(this.id)
         if (this.id != null) {
             this.products = JSON.parse(this.cart);
             if (this.products == null || this.products == "") {
