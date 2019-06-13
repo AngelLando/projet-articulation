@@ -34,7 +34,7 @@
                                                 <div @click="input(product.id)" class="product_button add_product normal text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
                                                 <div class="product_button add_product added text-center flex-column align-items-center justify-content-center">AJOUTÉ</div>
                                                 <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-                                                    <div class="cart"></div>
+                                                    <div class="cart" @click="input(product)"></div>
                                                 </div>
                                             </div>
                                             <p class="error pt-2" v-if="errors.quantity">{{errors.quantity[0]}}</p>
@@ -72,14 +72,20 @@
                                     <div class="information col-md-auto more_info" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=true; isHiddenRating=false">Informations</div>
                                     <div class="rating col-md-auto more_info" @click="underline" v-on:click="isHiddenDescr=false; isHiddenInfo=false; isHiddenRating=true">Avis (1)</div>
                                 </div>
-                                <div class="content content_description col-xl-12 ml-3" v-if="isHiddenDescr">{{product.description}}
+                                <div class="content content_description col-xl-12 ml-3" v-if="isHiddenDescr">
+                                    <hr><br>
+                                    <p>{{product.description}}</p>
                                 </div>
-                                <div class="content content_information col-xl-12 ml-3" v-if="isHiddenInfo"><p >Région : {{product.region}}</p>
-                                    <p>Teneur en alcool : 
+                                <div class="content content_information col-xl-12 ml-3" v-if="isHiddenInfo">
+                                    <hr><br>
+                                    <p><b>Teneur en alcool : </b>
                                     {{product.alcohol}} %</p>
-                                    <p >Type : {{product.kind}}</p>
+                                    <p ><b>Région :</b> {{product.region}}</p>
+                                    <p ><b>Producteur :</b> {{product.supplier}}</p>
                                 </div>
-                                <div class="content content_rating col-xl-12 ml-3" v-if="isHiddenRating"><p>Excellent !!</p>
+                                <div class="content content_rating col-xl-12 ml-3" v-if="isHiddenRating">
+                                    <hr><br>
+                                    <p>Excellent !!</p>
                                 <p><i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>

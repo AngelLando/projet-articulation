@@ -70,6 +70,8 @@
                         </div>
                     </form>
                 </div>
+                <a class="btn btn-link btn-forgot-password mb-4" href="{{ route('login') }}"> Vous avez déjà un compte ? Connectez-vous.</a>
+
             </div>
         </div>
     </div>
@@ -87,6 +89,10 @@
     .btn-register {
         background-color: #850038 !important;
         border-color: #850038 !important;
+    }
+
+    .btn-link {
+        color: #850038 !important;
     }
 
     input:-webkit-autofill,

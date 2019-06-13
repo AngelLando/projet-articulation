@@ -7,7 +7,8 @@ export default {
             quantity : 1,
             errors : {},
             id:document.querySelector("meta[name='user-id']"),
-            productHREF : ''
+            productHREF : '',
+            cart: [],
         }
     },
 
@@ -21,13 +22,13 @@ export default {
         if (path.indexOf('produit') == -1) {
             this.productHREF = 'produit/'
         }
+
     },
 
     methods : {
 
         toggleHeart: function(event){
             var clickedElement = event.target;
-
             if($(clickedElement).hasClass("full")) {
                 $(clickedElement).addClass("empty");
                 $(clickedElement).removeClass("full");
@@ -63,53 +64,65 @@ export default {
             } else {
 
                 var clickedElement = event.target;
-                $(clickedElement).addClass("item-added");
-                setTimeout(function () {
-                    $(clickedElement).removeClass('item-added');
-                }, 1500);
 
-                var local = localStorage.getItem('storedID');
-                local = local ? JSON.parse(local): [];
-                var prodId = clickedProduct.id
-                var q = parseInt(this.quantity, 10);
-                var alreadyExist = false;
-
-                local.forEach(function(element) {
-                    if (element.id == prodId) {
-                        alreadyExist=true;
-                        var f = parseInt(element.quantity,10)
-                        element.quantity = q+f;
-                    }
-                });
-
-                if (alreadyExist==false) {
-
-                    if(clickedProduct.promotion > 0) {
-                        local.push({
-                            "id":clickedProduct.id,
-                            "slug":clickedProduct.slug,
-                            "packaging_capacity":clickedProduct.packaging_capacity,
-                            "quantity":this.quantity,
-                            "path_image":clickedProduct.path_image,
-                            "name":clickedProduct.name,
-                            "price": clickedProduct.promotion_price,
-                            "format":clickedProduct.format,
-                        })
-                    } else {
-                        local.push({
-                            "id":clickedProduct.id,
-                            "slug":clickedProduct.slug,
-                            "packaging_capacity":clickedProduct.packaging_capacity,
-                            "quantity":this.quantity,
-                            "path_image":clickedProduct.path_image,
-                            "name":clickedProduct.name,
-                            "price": clickedProduct.price,
-                            "format":clickedProduct.format,
-                        })
-					}
-
+                if($(clickedElement).hasClass("product_button")) {
+                    $(clickedElement).addClass("item-added");
+                    setTimeout(function () {
+                        $(clickedElement).removeClass('item-added');
+                    }, 1500);
+                } else {
+                    $(clickedElement).parent().parent().parent().parent().children(':nth-child(2)').addClass("item-added");
+                    setTimeout(function () {
+                        $(clickedElement).parent().parent().parent().parent().children(':nth-child(2)').removeClass('item-added');
+                    }, 1500);
                 }
-                localStorage.setItem('storedID', JSON.stringify(local));
+                if (this.id == null) {
+
+                    var local = localStorage.getItem('storedID');
+                    local = local ? JSON.parse(local): [];
+                    var prodId = clickedProduct.id
+                    var q = parseInt(this.quantity, 10);
+                    var alreadyExist = false;
+
+                    local.forEach(function(element) {
+                        if (element.id == prodId) {
+                            alreadyExist=true;
+                            var f = parseInt(element.quantity,10)
+                            element.quantity = q+f;
+                        }
+                    });
+
+                    if (alreadyExist==false) {
+                        
+                        if(clickedProduct.promotion > 0) {
+                            local.push({
+                                "id":clickedProduct.id,
+                                "slug":clickedProduct.slug,
+                                "packaging_capacity":clickedProduct.packaging_capacity,
+                                "quantity":this.quantity,
+                                "path_image":clickedProduct.path_image,
+                                "name":clickedProduct.name,
+                                "price": clickedProduct.promotion_price,
+                                "format":clickedProduct.format,
+                            })
+                        } else {
+                            local.push({
+                                "id":clickedProduct.id,
+                                "slug":clickedProduct.slug,
+                                "packaging_capacity":clickedProduct.packaging_capacity,
+                                "quantity":this.quantity,
+                                "path_image":clickedProduct.path_image,
+                                "name":clickedProduct.name,
+                                "price": clickedProduct.price,
+                                "format":clickedProduct.format,
+                            })
+                        }
+
+                    }
+                    localStorage.setItem('storedID', JSON.stringify(local));
+                    this.cart = JSON.parse(localStorage.getItem('storedID'));
+                    $('.numberItems').text(this.cart.length);
+                }
             }
         },
 

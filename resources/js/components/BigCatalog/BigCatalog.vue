@@ -125,8 +125,9 @@
                                 </div>
                                 <div class="row results_sort ml-3 pt-4 pb-1">
                                     <div class="sort col-md-auto col-sm-3">
-                                        <select class="bootstrap-select sort_by">
-                                            <option value="1" selected="selected">Prix croissants</option>
+                                        <select @change="sortByPrice(products)" class="bootstrap-select sort_by">
+                                            <option value="0" selected="selected">—</option>
+                                            <option value="1">Prix croissants</option>
                                             <option value="2">Prix décroissants</option>
                                         </select>
                                     </div>
@@ -198,7 +199,7 @@
                                         <div @click="input(product)" class="product_button add_product text-center d-flex flex-column align-items-center justify-content-center">AJOUTER</div>
                                         <div class="product_button add_product added text-center flex-column align-items-center justify-content-center">AJOUTÉ</div>
                                         <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-                                            <div><div><img src="images/cart.svg" class="svg" alt=""></div></div>
+                                            <div><div @click="input(product)"><img src="images/cart.svg" class="svg" alt=""></div></div>
                                         </div>
                                     </div>
                                 </div>

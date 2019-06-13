@@ -19,7 +19,48 @@
 Global
 ***********/
 
+@media(max-width: 1200px) {
+img{
+    padding-right: 20px;
+}
+        .empty{
+        display: none !important;
+    }
+    .multiply{
+        margin-left: 20px;
+    }
+    .content{
+        margin-left:10px;
+    }
+    .header_title{
+max-width: 80px;
+    }
+    .fix_cross{
+        margin-left:10%;
+    }
+    .cart_frais{
+        margin-right:50%;
+    }
 
+    .panier_total{
+        margin-right:50%;
+    }
+    .continuer_achats{
+        min-width: 150px !important;
+        margin-left:25px !important;
+    }
+    .commander{
+        min-width: 150px;
+    }
+    .vide_button{
+        display: none;
+    }
+    .cross{
+        width: 40px !important;
+    }
+
+
+}
 
 a, a:hover, a:visited, a:active, a:link
 {
@@ -116,7 +157,7 @@ height: 8px;
     font-family: Montserrat;
 font-style: normal;
 font-weight: bold;
-font-size: 16px;
+font-size: 100%;
 line-height: 20px;
 color: #000000;
 margin-bottom:0;

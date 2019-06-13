@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Session;
+use App\User;
 use App\Address;
 use App\Order;
+use App\Cart;
+use App\CartItem;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use Hash;
@@ -20,36 +23,37 @@ class UserController extends Controller
      */
     public function index()
     {
+
         $userAddress = Auth::user()->person->address->all();
         $orderList = [];
-        foreach($userAddress as $address) {
+        foreach ($userAddress as $address) {
             $orders = Order::where(['address_id_1' => $address->id])->get();
-                foreach($orders as $order) {
-                    $anOrder = [];
-                    $anOrder['no']= $order->id;
-                    $anOrder['date']= $order->created_at;
-                    $anOrder['discount'] = 10;
-                    $anOrder['products'] = [];
-                    $anOrder['shipping_status'] = $order->shipping_status;
-                    $anOrder['payment_status'] = $order->payment_status;
-                    $anOrder['shipping_costs'] = $order->shippingCost->amount;
-                    $orderItems = $order->orderItems;
-                    $anOrder['total'] = OrderController::makeSum($orderItems, $anOrder['shipping_costs']);
-                    $anOrder['total'] -= ($anOrder['total'] * $anOrder['discount'])/100;
-                    foreach($orderItems as $orderItem) {
-                        $aProduct = [];
-                        $aProduct['name'] = $orderItem->product->name;
-                        $aProduct['price'] = $orderItem->product->price;
-                        $aProduct['format'] = $orderItem->product->format->name;
-                        $aProduct['packaging_type'] = $orderItem->product->format->packagings->first()['type'];
-                        $aProduct['packaging_capacity'] = $orderItem->product->format->packagings->first()['capacity'];
-                        $aProduct['image'] = $orderItem->product->path_image;
-                        $aProduct['quantity'] = $orderItem->quantity;
-                        $aProduct['discount'] = $orderItem->discount;
-                        array_push($anOrder['products'], $aProduct);
-                    }
-                    array_push($orderList, $anOrder);
+            foreach ($orders as $order) {
+                $anOrder = [];
+                $anOrder['no'] = $order->id;
+                $anOrder['date'] = $order->created_at;
+                $anOrder['discount'] = 10;
+                $anOrder['products'] = [];
+                $anOrder['shipping_status'] = $order->shipping_status;
+                $anOrder['payment_status'] = $order->payment_status;
+                $anOrder['shipping_costs'] = $order->shippingCost->amount;
+                $orderItems = $order->orderItems;
+                $anOrder['total'] = OrderController::makeSum($orderItems, $anOrder['shipping_costs']);
+                $anOrder['total'] -= ($anOrder['total'] * $anOrder['discount']) / 100;
+                foreach ($orderItems as $orderItem) {
+                    $aProduct = [];
+                    $aProduct['name'] = $orderItem->product->name;
+                    $aProduct['price'] = $orderItem->product->price;
+                    $aProduct['format'] = $orderItem->product->format->name;
+                    $aProduct['packaging_type'] = $orderItem->product->format->packagings->first()['type'];
+                    $aProduct['packaging_capacity'] = $orderItem->product->format->packagings->first()['capacity'];
+                    $aProduct['image'] = $orderItem->product->path_image;
+                    $aProduct['quantity'] = $orderItem->quantity;
+                    $aProduct['discount'] = $orderItem->discount;
+                    array_push($anOrder['products'], $aProduct);
                 }
+                array_push($orderList, $anOrder);
+            }
         }
 
         $cart = CartController::index($require = null);
@@ -79,7 +83,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -90,7 +94,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -101,7 +105,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -112,8 +116,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -124,15 +128,15 @@ class UserController extends Controller
             'password' => 'min:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/',
             'birth_date' => 'date|before:-18 years'
         ]);
-    
+
         $user = Auth::user();
 
         $user->person->firstname = $request->firstname;
         $user->person->lastname = $request->lastname;
 
-        if($request->gender == 'm') {
+        if ($request->gender == 'm') {
             $user->person->prefix = 'M';
-        } elseif($request->gender == 'f') {
+        } elseif ($request->gender == 'f') {
             $user->person->prefix = 'Mme';
         } else {
             $user->person->prefix = '';
@@ -144,7 +148,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->birth_date = $request->birth_date;
 
-        if($request->has('password')) {
+        if ($request->has('password')) {
             $user->password = Hash::make($request->password);
         }
 
@@ -159,11 +163,22 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $cart = Cart::where('user_id', $id)->first();
+        if ($cart != null) {
+            $cartItems = CartItem::where('cart_id', $cart->id)->get()->all();
+            foreach ($cartItems as $cartItem) {
+                CartItem::destroy($cartItem->id);
+            }
+            Cart::destroy($cart->id);
+        }
+        Auth::logout();
+        $user = User::where('id', $id)->get()->first();
+        User::destroy($user->id);
+        return 1;
     }
 }

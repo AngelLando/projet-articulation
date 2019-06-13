@@ -61,10 +61,19 @@ export default {
 				console.log("erreur")
 			}else{
 				var clickedElement = event.target;
-				$(clickedElement).addClass("item-added");
-				setTimeout(function () {
-					$(clickedElement).removeClass('item-added');
-				}, 1500);
+
+                if($(clickedElement).hasClass("product_button")) {
+                    $(clickedElement).addClass("item-added");
+                    setTimeout(function () {
+                        $(clickedElement).removeClass('item-added');
+                    }, 1500);
+                } else {
+                    $(clickedElement).parent().parent().children(':nth-child(2)').addClass("item-added");
+                    setTimeout(function () {
+                        $(clickedElement).parent().parent().children(':nth-child(2)').removeClass('item-added');
+                    }, 1500);
+                }
+                if (this.id == null) {
 
 				var local = localStorage.getItem('storedID');
 				local = local ? JSON.parse(local): [];
@@ -106,6 +115,9 @@ export default {
 
 				}
 				localStorage.setItem('storedID', JSON.stringify(local));
+				                    this.cart = JSON.parse(localStorage.getItem('storedID'));
+                    $('.numberItems').text(this.cart.length);
+			}
 			}
 		}
 	},
@@ -115,6 +127,7 @@ export default {
 		this.product = json.product;
 		this.products = json.recommandations;
 		this.products = json.products;
+
 	},
 
 }

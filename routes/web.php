@@ -52,6 +52,11 @@ Route::get('/cart-nav', function () {
     return $data;
 })->name('cart-nav');
 
+Route::get('/search', function () {
+    $data = App::call('App\Http\Controllers\ProductController@searchProduct');
+    return view ('search')->with('products', $data);
+})->name('search');
+
 
 // POST
 /* Route::post('/user/account/update', [
@@ -66,6 +71,9 @@ Route::post('/check', 'OrderController@store')->name('check');
 Route::post('/add', 'CartItemController@store')->name('add');
 
 Route::post('/update/{id}', 'CartItemController@update')->name('update');
+
+Route::post('/user/account/delete/{id}', 'UserController@destroy')->name('deleteUser');
+
 
 
 //Route::delete('/del', 'CartItemController@destroy')->name('del');
