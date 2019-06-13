@@ -153,6 +153,8 @@
                                id="birth_date" placeholder="Date de naissance" v-model="birth_date">
                     </div>
                     <hr>
+                    <div v-if="confirm" class="confirmation">
+                        Votre compte a bien été mis à jour !</div>
                     <div @click="updateUser(user.id)" class="btn btn-primary btn-edit-infos">Mettre à jour mon compte
                     </div>
                 </form>
