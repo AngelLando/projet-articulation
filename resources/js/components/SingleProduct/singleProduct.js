@@ -10,6 +10,7 @@ export default {
 			quantity : 1,
 			errors : {},
 			exception:false,
+            id: document.querySelector("meta[name='user-id']"),
 			id: document.querySelector("meta[name='user-id']"),
 		}
 	},

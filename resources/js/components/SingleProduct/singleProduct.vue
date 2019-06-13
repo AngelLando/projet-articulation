@@ -92,6 +92,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i></p>
                                 <p>Ce vin est de loin mon favori parmi tout le catalogue, je le recommande à 100 % ! Il se prête à toutes les occasions, ni trop sucré, ni trop sec, la perfection. </p>
+                                    <button v-if="id != null" class="btn btn-primary btn-rate">Donner mon avis</button>
                             </div>
                             <div class = "col-xl-12 text-center"><hr class="line ml-3 mt-4 mb-4"></div>
                         </div>
