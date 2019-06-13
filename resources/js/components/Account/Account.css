@@ -263,16 +263,16 @@ div.more {
 
 
 p.arrow.down {
-    content:url('/public/images/down-arrow.svg');
+    content:url('/images/down-arrow.svg');
 }
 
 p.arrow.up {
-    content:url('/public/images/up-arrow.svg');
+    content:url('/images/up-arrow.svg');
 }
 
 
 div.favorite-heart.full {
-    content:url('/public/images/favorite-heart-full.svg');
+    content:url('/images/favorite-heart-full.svg');
 }
 
 

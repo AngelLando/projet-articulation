@@ -338,20 +338,20 @@ div
 
 
 div.favorite-heart.empty {
-    content:url('/public/images/favorite-heart-empty.svg');
+    content:url('/images/favorite-heart-empty.svg');
 }
 
 div.favorite-heart.full {
-    content:url('/public/images/favorite-heart-full.svg');
+    content:url('/images/favorite-heart-full.svg');
 }
 
 
 a.share {
-    content:url('/public/images/share.svg');
+    content:url('/images/share.svg');
 }
 
 div.cart {
-    content:url('/public/images/cart.svg');
+    content:url('/images/cart.svg');
 }
 
 div.cart {
