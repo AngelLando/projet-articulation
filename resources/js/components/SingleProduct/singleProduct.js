@@ -93,7 +93,6 @@ export default {
 					}
 				});
 				if (alreadyExist==false) {
-
 					local.push({
 						"id":this.product.id,
 						"slug":this.product.slug,
@@ -101,9 +100,9 @@ export default {
 						"quantity":this.quantity,
 						"path_image":this.product.path_image,
 						"name":this.product.name,
-						"price": this.product.price,
-						"promotion_price": this.product.promotion_price,
+						"price": this.product.promotion_price,
 						"format":this.product.format,
+						"promotion":this.product.promotion
 					})
 
 				}

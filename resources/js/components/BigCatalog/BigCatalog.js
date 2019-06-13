@@ -206,6 +206,7 @@ export default {
                             "price": clickedProduct.price,
                             "promotion_price": clickedProduct.promotion_price,
                             "format":clickedProduct.format,
+                            "promotion":clickedProduct.promotion
                         })
                   
                 }
