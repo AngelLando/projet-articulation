@@ -65,7 +65,9 @@ class CartItemController extends Controller
                     ->update(['quantity' => $request->quantity + $actualQuantity]);
             }
         }
-        return $cartItem;
+        $count = CartItem::where('cart_id', $cart->id)->count();
+
+        return $count;
     }
 
     /**
@@ -99,7 +101,7 @@ class CartItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::check()) {
+        if (Auth::check()) {
             $cart = Cart::where('user_id', Auth::user()->id)->first();
             $cartItem = CartItem::where('cart_id', $cart->id)
                 ->where('product_id', $id)->first()
@@ -123,6 +125,9 @@ class CartItemController extends Controller
             $cart = Cart::where('user_id', Auth::id())->first();
             $cartItemId = $cart->cartItems->where('product_id', $id)->first()->id;
             CartItem::destroy($cartItemId);
+
+            $count = CartItem::where('cart_id', $cart->id)->count();
+            return $count;
         } else {
             return null;
         }

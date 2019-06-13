@@ -410,11 +410,6 @@ div.product_button.product_cart, .add_product {
     background-color: rgba(133, 0, 56, 0.3) !important;
 }
 
-.item-added {
-
-}
-
-
 .added {
     display: none;
 }
