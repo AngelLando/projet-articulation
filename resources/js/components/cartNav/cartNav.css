@@ -394,3 +394,11 @@ margin-left:-10px;
 .cart-link {
     margin-top: -0.15em;
 }
+
+
+
+@media screen and (min-width: 765px) and (max-width: 865px) {
+    .fn-link {
+        font-size: 9px;
+    }
+}

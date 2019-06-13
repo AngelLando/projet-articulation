@@ -2,7 +2,7 @@
     <div>
         <li class="nav-item first-nav-item"  @mouseleave="hover = false">
             <div class="fa fa-shopping-cart icon-nav">  <div class="numberItems_container"><div class="numberItems" v-model="numberItems">{{numberItems}}</div></div></div>
-            <a @mouseover="getCart()" class="nav-link cart-link" style="color: white;" :href="cartHref">PANIER</a>
+            <a @mouseover="getCart()" class="nav-link fn-link cart-link" style="color: white;" :href="cartHref">PANIER</a>
             <div class="cart" v-if="hover == true && cart != null && width > 700">
                 <div v-if="emptyCart" class="cart-container">
             
