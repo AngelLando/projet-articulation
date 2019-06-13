@@ -126,6 +126,7 @@ export default {
 
     props: ['cart'],
     mounted() {
+        console.log(this.id)
         if (this.id != null) {
             this.products = JSON.parse(this.cart);
             if (this.products == null || this.products == "") {
