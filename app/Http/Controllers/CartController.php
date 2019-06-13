@@ -42,6 +42,14 @@ class CartController extends Controller
 
                     if($address == null) {
                         $favoriteAddress = null;
+                    } else {
+                        $favoriteAddress = [
+                            'street' => $address->street,
+                            'npa' => $address->npa,
+                            'city' => $address->city,
+                            'region' => $address->region,
+                            'country' => $address->country,
+                        ];
                     }
                     if($person == null) {
                         $person == null;
@@ -50,11 +58,6 @@ class CartController extends Controller
                             'gender' => $person->gender,
                             'firstname' => $person->firstname,
                             'lastname' => $person->lastname,
-                            'street' => $address->street,
-                            'npa' => $address->npa,
-                            'city' => $address->city,
-                            'region' => $address->region,
-                            'country' => $address->country,
                         ];
                     }
 
