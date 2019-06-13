@@ -108,6 +108,8 @@ export default {
                 localStorage.setItem('storedID', JSON.stringify(local));
                 this.products = JSON.parse(localStorage.getItem('storedID'));
                 this.adjustTotalPrice();
+                                    this.cart = JSON.parse(localStorage.getItem('storedID'));
+                    $('.numberItems').text(this.cart.length);
             }
         }
         ,

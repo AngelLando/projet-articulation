@@ -204,6 +204,8 @@ export default {
                   })
                 }
                 localStorage.setItem('storedID', JSON.stringify(local));
+                                    this.cart = JSON.parse(localStorage.getItem('storedID'));
+                    $('.numberItems').text(this.cart.length);
             }
             }
         },

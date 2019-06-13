@@ -79,3 +79,7 @@ function myFunction() {
 }
 
 
+$(document).on("click", ".add_product", function() { 
+    console.log("inside");
+    $(".cart-link").trigger("hover");
+ });
