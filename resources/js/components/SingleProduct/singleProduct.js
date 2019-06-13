@@ -94,29 +94,17 @@ export default {
 				});
 				if (alreadyExist==false) {
 
-					if(this.product.promotion > 0) {
-						local.push({
-							"id":this.product.id,
-							"slug":this.product.slug,
-							"packaging_capacity":this.product.packaging_capacity,
-							"quantity":this.quantity,
-							"path_image":this.product.path_image,
-							"name":this.product.name,
-							"price": this.product.promotion_price,
-							"format":this.product.format,
-						})
-					} else {
-						local.push({
-							"id":this.product.id,
-							"slug":this.product.slug,
-							"packaging_capacity":this.product.packaging_capacity,
-							"quantity":this.quantity,
-							"path_image":this.product.path_image,
-							"name":this.product.name,
-							"price": this.product.price,
-							"format":this.product.format,
-						})
-					}
+					local.push({
+						"id":this.product.id,
+						"slug":this.product.slug,
+						"packaging_capacity":this.product.packaging_capacity,
+						"quantity":this.quantity,
+						"path_image":this.product.path_image,
+						"name":this.product.name,
+						"price": this.product.price,
+						"promotion_price": this.product.promotion_price,
+						"format":this.product.format,
+					})
 
 				}
 				localStorage.setItem('storedID', JSON.stringify(local));

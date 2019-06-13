@@ -13,16 +13,13 @@
                             v-on:click="showOrders=false; showInfos=true; showAdresses=false; showNewsletters=false; showFavs=false">
                             Mes informations
                         </li>
-                        <li class="mb20 else" @click="underline"
-                            v-on:click="showOrders=false; showInfos=false; showAdresses=true; showNewsletters=false; showFavs=false">
+                        <li class="mb20 else">
                             Mes adresses
                         </li>
-                        <li class="mb20 else" @click="underline"
-                            v-on:click="showOrders=false; showInfos=false; showAdresses=false; showNewsletters=true; showFavs=false">
+                        <li class="mb20 else">
                             Mes newsletters
                         </li>
-                        <li class="mb20 else" @click="underline"
-                            v-on:click="showOrders=false; showInfos=false; showAdresses=false; showNewsletters=false; showFavs=true">
+                        <li class="mb20 else">
                             Mes préférés
                         </li>
                     </ul>
@@ -158,22 +155,6 @@
                     compte
                 </button>
             </div>
-            <div class="content addresses col-md-9 hidden-xs hidden-sm block" v-if="showAdresses">
-                <h2>Mes adresses</h2>
-                <hr>
-                <div>Rien de fait non plus pour le moment :)</div>
-            </div>
-            <div class="content newsletters col-md-9 hidden-xs hidden-sm block" v-if="showNewsletters">
-                <h2>Mes newsletters</h2>
-                <hr>
-                <div>Pas de newsletter pour le proto :)</div>
-            </div>
-            <div class="content favorites col-md-9 hidden-xs hidden-sm block" v-if="showFavs">
-                <h2>Mes préférés</h2>
-                <hr>
-                <div>Pas de wishlist pour le proto :)</div>
-            </div>
-
         </div>
         <div v-if="redirect" id="delete" class="delete">
             <div class="delete-container">
