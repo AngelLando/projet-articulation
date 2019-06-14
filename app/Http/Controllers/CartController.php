@@ -15,9 +15,9 @@ class CartController extends Controller
     public static function index($require)
     {
         if (Auth::check()) {
-            $userId = Auth::id();
+            $user = Auth::user();
 
-            $cart = Cart::where('user_id', $userId)->first();
+            $cart = Cart::where('user_id', $user->id)->first();
 
             if ($cart == null) {
                 $json = json_encode(null);
@@ -35,35 +35,39 @@ class CartController extends Controller
                     array_push($cart, $newProduct);
                 }
 
-                if($require == 'address') {
+                if ($require == 'address') {
 
-                    $person = Person::where('id', $userId)->first();
-                    $address = Address::where('person_id' , $person->id)->first();
+                    $person = Person::where('id', $user->person_id)->first();
 
-                    $favoriteAddress = [];
-                    if($address == null) {
+                    if ($person == null) {
                         $favoriteAddress = null;
                     } else {
-                        $favoriteAddress['street'] = $address->street;
-                        $favoriteAddress['npa'] = $address->npa;
-                        $favoriteAddress['city'] = $address->city;
-                        $favoriteAddress['region'] = $address->region;
-                        $favoriteAddress['country'] = $address->country;
-                    }
-                    if($person == null) {
-                        $person == null;
-                    } else {
-                        $favoriteAddress['gender'] = $person->gender;
-                        $favoriteAddress['firstname'] = $person->firstname;
-                        $favoriteAddress['lastname'] = $person->lastname;
-                    }
+                        $address = Address::where('person_id', $person->id)->first();
 
-                    $data = [
-                        'cart' => $cart,
-                        'address' => $favoriteAddress
-                    ];
+                        $favoriteAddress = [];
+                        if ($address == null) {
+                            $favoriteAddress = null;
+                        } else {
+                            $favoriteAddress['street'] = $address->street;
+                            $favoriteAddress['npa'] = $address->npa;
+                            $favoriteAddress['city'] = $address->city;
+                            $favoriteAddress['region'] = $address->region;
+                            $favoriteAddress['country'] = $address->country;
+                        }
+                        if ($person == null) {
+                            $person == null;
+                        } else {
+                            $favoriteAddress['gender'] = $person->gender;
+                            $favoriteAddress['firstname'] = $person->firstname;
+                            $favoriteAddress['lastname'] = $person->lastname;
+                        }
 
-                    $json = json_encode($data);
+                        $data = [
+                            'cart' => $cart,
+                            'address' => $favoriteAddress
+                        ];
+                        $json = json_encode($data);
+                    }
                 } else {
                     $json = json_encode($cart);
                 }
