@@ -27,17 +27,26 @@ class OrderController extends Controller
             'address1.gender1' => 'required'
         ]);
 
-        if (Auth::check()) {
-            $personId = Auth::user()->person->id;
+        $name = 'address1';
+        if ($request->$name['gender1'] == 'm') {
+            $prefix = 'M';
+        } elseif ($request->$name['gender1'] == 'f') {
+            $prefix = 'Mme';
         } else {
-            $name = 'address1';
-            if ($request->$name['gender1'] == 'm') {
-                $prefix = 'M';
-            } elseif ($request->$name['gender1'] == 'f') {
-                $prefix = 'Mme';
-            } else {
-                $prefix = null;
-            }
+            $prefix = '/';
+        }
+
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            Person::where('id', $user->person_id)->update([
+                'firstname' => $request->$name['firstname1'],
+                'lastname' => $request->$name['lastname1'],
+                'gender' => $request->$name['gender1'],
+                'prefix' => $prefix
+            ]);
+            $personId = $user->person->id;
+        } else {
             $personId = Person::insertGetId([
                 'firstname' => $request->$name['firstname1'],
                 'lastname' => $request->$name['lastname1'],
@@ -45,7 +54,6 @@ class OrderController extends Controller
                 'gender' => $request->$name['gender1'],
             ]);
         }
-
 
 
         // Insert the order address in the database
