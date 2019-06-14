@@ -65,7 +65,7 @@
                     </div>
                     <div class = "cart_buttons mb-3 row">
                         <div class="col-6 vide_button"></div>
-                        <div class=" col-3 continuer_achats text-center d-flex flex-column align-items-center justify-content-center"><a class="continuer_text" href="nos-vins"><img src="images/polygon.svg" class="svg_button pr-2" alt="">Continuer mes achats</a></div>
+                        <div class=" col-3 continuer_achats text-center d-flex flex-column align-items-center justify-content-center"><a class="continuer_text" href="nos-vins"><img src="/six/images/polygon.svg" class="svg_button pr-2" alt="">Continuer mes achats</a></div>
                         <div class=" col-3 commander text-center d-flex flex-column align-items-center justify-content-center"><a class="commander_text" href="checkout">Finaliser la commande</a></div>
                     </div>
                 </div>
