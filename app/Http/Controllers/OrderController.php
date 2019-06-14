@@ -100,14 +100,14 @@ class OrderController extends Controller
             }
             $cart = Auth::user()->cart->where('user_id', Auth::id())->first();
             $cart->destroy($cart->id);
-
+/*
             $bill['email'] = Auth::user()->email;
-            $this->sendForm($bill);
-        }
+            $this->sendForm($bill);*/
+        }/*
         if ($request->address1['email'] != null) {
             $bill['email'] = $request->address1['email'];
             $this->sendForm($bill);
-        }
+        }*/
         return 1;
     }
 
