@@ -14,6 +14,7 @@
 
     .new_wines {
         padding-top: 4em;
+        min-height: 38.5em;
     }
 
     .title{
